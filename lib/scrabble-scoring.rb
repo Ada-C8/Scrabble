@@ -46,10 +46,9 @@ module Scrabble
         return score
       end
 
-      def self.highest_score_from(array_of_words)
+      def self.highest_score_from_array(array_of_words)
         max_score = [0,0, ""]
         array_of_words.each do |word|
-          puts self.score(word)
           if self.score(word) > max_score[0]
             max_score = [self.score(word), word.length, word]
           elsif self.score(word) == max_score[0]

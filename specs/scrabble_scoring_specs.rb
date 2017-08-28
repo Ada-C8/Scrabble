@@ -16,18 +16,27 @@ describe "Scrabble::Scoring" do
       Scrabble::Scoring.score("").must_equal 0
     end
 
-    it "returns highest score correctly" do
-      array = %w(do file tiger happily)
-      Scrabble::Scoring.highest_score_from(array).must_equal "happily"
-
-      array2 = %w(cat dog)
-      Scrabble::Scoring.highest_score_from(array2).must_equal "cat"
-
-      array3 = %w(cat k)
-      Scrabble::Scoring.highest_score_from(array3).must_equal "k"
-
-      array4 = %w(aaaaaaa aak)
-      Scrabble::Scoring.highest_score_from(array4).must_equal "aaaaaaa"
+    describe "returns highest score correctly" do
+      it "finds highest score word" do
+        array = %w(do file tiger happily)
+        Scrabble::Scoring.highest_score_from_array(array).must_equal "happily"
+      end
+      it "finds first index when words are same length same score" do
+        array2 = %w(cat dog)
+        Scrabble::Scoring.highest_score_from_array(array2).must_equal "cat"
+      end
+      it "finds word with smallest length when words are the same score" do
+        array3 = %w(cat k)
+        Scrabble::Scoring.highest_score_from_array(array3).must_equal "k"
+      end
+      it "finds word with length = 7 when words are same score" do
+        array4 = %w(aaaaaaa aak)
+        Scrabble::Scoring.highest_score_from_array(array4).must_equal "aaaaaaa"
+      end
+      it "calls blank strings zero" do
+        array4 = ['','','']
+        Scrabble::Scoring.highest_score_from_array(array4).must_equal ''
+      end
     end
 
   end
