@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 # require 'minitest/skipra_dsl'
 require_relative '../lib/scoring.rb'
-# require_relative '../lib/restaurant_bill'
+
 
 describe "Scrabble::Scoring class" do
 
