@@ -35,7 +35,7 @@ module Scrabble
         "Y" => 4,
         "Z" => 10,
       }
-
+      word = word.upcase
       score = 0
 
       word.split('').each do |l|
@@ -48,7 +48,7 @@ module Scrabble
       else
         return score
       end
-      
+
     end #end self.score
 
 

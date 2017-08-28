@@ -24,7 +24,14 @@ describe "Scrabble::Scoring class" do
 
     it "Returns the score for a word" do
       Scrabble::Scoring.score("CASA").must_equal 6
+    end
 
+    it "Returns the score even when lowercase word" do
+      Scrabble::Scoring.score('casa').must_equal 6
+    end
+
+    it "Returns score plus 50 for a 7 letter word" do
+      Scrabble::Scoring.score("LAPTOPS").must_equal 61
     end
 
   end#Describe Score class methos
