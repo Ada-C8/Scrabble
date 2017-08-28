@@ -47,6 +47,21 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from(words).must_equal "jazzily"
     end
 
+    it "returns shortest word in case of a tie" do
+      words = ["jar","XD"]
+      Scrabble::Scoring.highest_score_from(words).must_equal "XD"
+    end
+
+    it "it returns 7-letter word rather than short word" do
+      words = ["aeadaea","zzzzzj"]
+      Scrabble::Scoring.highest_score_from(words).must_equal "aeadaea"
+    end
+
+    it "returns first word in event of an absolute tie" do
+      words = ["jazzily","ylizzaj"]
+      Scrabble::Scoring.highest_score_from(words).must_equal "jazzily"            
+    end
+
   end # 'self.highest_score_from'
 
 end # end of Scoring

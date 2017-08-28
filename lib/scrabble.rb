@@ -20,12 +20,21 @@ module Scrabble
     def self.highest_score_from(array_of_words)
       best_word = array_of_words[0]
       array_of_words.each do |word|
-        if self.score(word) > self.score(best_word)
+        if self.score(word) == self.score(best_word)
+          if best_word.length == 7
+            # do nothing
+          elsif word.length == 7
+            best_word = word
+          elsif word.length < best_word.length
+            best_word = word
+          end
+        elsif self.score(word) > self.score(best_word)
           best_word = word
         end
       end
       return best_word
     end # end of self.highest_score
+
 
   end # end of Scoring class
 
