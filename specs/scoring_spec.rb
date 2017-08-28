@@ -20,12 +20,17 @@ describe "Scoring class" do
     end
   end
 
-  describe "highest_score_from" do
+  describe "highest_score_from_array" do
     it "Returns the highest score from an array of words" do
       words = ["fantastically", "cat", "scrabble", "peanuts", "spy"]
 
-      Scrabble::Scoring.highest_score_from(words).must_equal "FANTASTICALLY"
+      Scrabble::Scoring.highest_score_from_array(words).must_equal "FANTASTICALLY"
+    end
 
+    it "Breaks tie by choosing shorter word" do
+      words = ["fantastic", "cat", "scrabble", "peanuts", "spy"]
+
+      Scrabble::Scoring.highest_score_from_array(words).must_equal "SCRABBLE"
     end
   end
 end

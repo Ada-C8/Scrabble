@@ -7,7 +7,9 @@ module Scrabble
 
       # iterate through string, and get vals for each char in word
       score = 0
-      word.upcase!.each_char do |letter|
+      word.upcase!
+
+      word.each_char do |letter|
         score += letter_values[letter.to_sym]
       end
 
@@ -18,13 +20,29 @@ module Scrabble
       return score
     end
 
+    def self.highest_score_from_array(array_of_words)
+      high = array_of_words.max_by { |word| self.score(word) }
+
+      high_score = self.score(high)
+
+      array_of_words.each do |word|
+        if (self.score(word) == high_score) && (word.length < high.length)
+          high = word
+        end
+      end
+
+      return high
+
+    end
+
+
   end # end of Scoring class
 
 end
 
-words = ["fantastically", "cat", "scrabble", "peanuts", "spy"]
-
-words.each do |word|
-  score = Scrabble::Scoring.score(word)
-  puts "#{word} value is #{score}"
-end
+# words = ["fantastically", "cat", "scrabble", "peanuts", "spy"]
+#
+# words.each do |word|
+#   score = Scrabble::Scoring.score(word)
+#   puts "#{word} value is #{score}"
+# end
