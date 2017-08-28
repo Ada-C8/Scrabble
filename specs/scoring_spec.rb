@@ -8,4 +8,13 @@ describe "#Scrabble.score" do
     score1 = Scrabble::Scoring.new
     score1.must_be_instance_of Scrabble::Scoring
   end
+
+  it "Scrabble::Scoring can respond to self.score" do
+    Scrabble::Scoring.must_respond_to :score
+
+  end
+
+
+
+  
 end
