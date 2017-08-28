@@ -1,5 +1,0 @@
-require 'minitest/autorun'
-require 'minitest/reporters'
-require 'minitest/skip_dsl'
-require 'lib/scoring.rb'
-# require_relative '../lib/restaurant_bill'
