@@ -11,9 +11,20 @@ module Scrabble
         score += letter_values[letter.to_sym]
       end
 
+      if word.length >= 7
+        score += 50
+      end
+
       return score
     end
 
   end # end of Scoring class
 
+end
+
+words = ["fantastically", "cat", "scrabble", "peanuts", "spy"]
+
+words.each do |word|
+  score = Scrabble::Scoring.score(word)
+  puts "#{word} value is #{score}"
 end

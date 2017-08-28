@@ -14,7 +14,18 @@ describe "Scoring class" do
     end
 
     it "Adds a 50-point bonus if it's a seven-letter word (or longer)" do
-      
+      score = Scrabble::Scoring.score("scrabble")
+
+      score.must_equal 64
+    end
+  end
+
+  describe "highest_score_from" do
+    it "Returns the highest score from an array of words" do
+      words = ["fantastically", "cat", "scrabble", "peanuts", "spy"]
+
+      Scrabble::Scoring.highest_score_from(words).must_equal "FANTASTICALLY"
+
     end
   end
 end
