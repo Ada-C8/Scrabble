@@ -52,11 +52,8 @@ module Scrabble
     end
 
     def self.tiebreaker(word1, word2)
-      if word1.length < word2.length
-        return word1 if word2.length != 7
-      else
-        return word1 if word1.length == 7 && word2.length != 7
-      end
+      return word1 if (word1.length < word2.length) && (word2.length != 7)
+      return word1 if (word1.length == 7) && (word2.length != 7)
       return word2
     end
 
