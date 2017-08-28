@@ -14,12 +14,25 @@ describe "#Scrabble.score" do
 
   end
 
-  it "can recognize a one-point letter and add 1 point to the score" do
+  it "can recognize a letter's value and add it to the score" do
     Scrabble::Scoring.score("A").must_equal 1
-    Scrabble::Scoring.score("T").must_equal 1
+    Scrabble::Scoring.score("t").must_equal 1
+    Scrabble::Scoring.score("Q").must_equal 10
+    Scrabble::Scoring.score("z").must_equal 10
+
   end
+ it "can handle multiple letters" do
+   Scrabble::Scoring.score("ogmfkj").must_equal 23
+ end
+ it "can add 50 point bonus to seven letter word" do
+   Scrabble::Scoring.score("ogmfkjz").must_equal 83
+ end
+describe "Testing highest_score_from" do
+  it "returns an array of scores" do
+    Scrabble::Scoring.highest_score_from(["cat", "doge"]).must_be_instance_of Array
 
-
+  end
+end
 
 
 end

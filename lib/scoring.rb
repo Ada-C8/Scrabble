@@ -28,7 +28,18 @@ module Scrabble
           raise ArgumenError.new("Invalide Input !")
         end
       end
+      if word.length == 7
+        score += 50
+      end
     return score
+    end
+
+    def self.highest_score_from(array_of_words)
+      score_total = []
+      array_of_words.each do |word|
+        score_total << score(word)
+      end
+      return score_total
     end
 
 
