@@ -42,6 +42,11 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from(words).must_be_kind_of String
     end
 
+    it "finds highest score of these word" do
+      words = ["cat","bird","jazzily"]
+      Scrabble::Scoring.highest_score_from(words).must_equal "jazzily"
+    end
+
   end # 'self.highest_score_from'
 
 end # end of Scoring

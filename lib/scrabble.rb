@@ -18,6 +18,13 @@ module Scrabble
     end # end of self.score
 
     def self.highest_score_from(array_of_words)
+      best_word = array_of_words[0]
+      array_of_words.each do |word|
+        if self.score(word) > self.score(best_word)
+          best_word = word
+        end
+      end
+      return best_word
     end # end of self.highest_score
 
   end # end of Scoring class
