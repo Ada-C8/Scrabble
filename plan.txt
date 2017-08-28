@@ -3,6 +3,6 @@
 -make module Scrabble for everything
 
 -w/in Scoring
-take letter get value
+-take letter get value
 from there take letters get score
 and later take words and compare scores

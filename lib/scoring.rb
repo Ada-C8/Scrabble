@@ -25,6 +25,14 @@ module Scrabble
     end
 
     def self.score(word)
+      total = 0
+      word.split('').each do |let|
+        total += score_letter(let)
+      end
+      if word.length == 7
+        total += 50
+      end
+      return total
     end
 
   end
