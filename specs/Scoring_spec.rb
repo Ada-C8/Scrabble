@@ -30,4 +30,32 @@ describe "Scrabble::Scoring" do
       proc{Scrabble::Scoring.score("alongword")}.must_raise ArgumentError
     end
   end
+
+  describe "self.highest_score_from method" do
+    it "returns a string" do
+      test_strings = ["hello", "quiz", "water"]
+      highest_score= Scrabble::Scoring.highest_score_from(test_strings)
+      highest_score.must_be_instance_of String
+
+      test_strings.must_include highest_score
+    end
+
+    it "awards a tie to the shortest word except in the case of a seven letter word" do
+      test_strings = ["jd", "q"]
+
+      Scrabble::Scoring.highest_score_from(test_strings).must_equal "q"
+
+      test_strings << "qzqzqz"
+      test_strings << "aeioulf"
+      test_strings << "ioulfae"
+
+      Scrabble::Scoring.highest_score_from(test_strings).must_equal "aeioulf"
+
+
+    end
+
+    it "awards a tie to the first word in the case of same word length and score" do
+
+    end
+  end
 end

@@ -30,5 +30,24 @@ module Scrabble
 
       return total
     end
+
+    def self.highest_score_from(array_of_words)
+      highest_score = ""
+
+      array_of_words.each do |word|
+        highest_score = word if self.score(word) > self.score(highest_score)
+        if self.score(word) == self.score(highest_score)
+          if word.length < highest_score.length
+            highest_score = word if highest_score.length != 7
+          else
+            highest_score = word if word.length == 7 && highest_score.length != 7
+          end
+        end
+      end
+
+      return highest_score
+
+    end
+
   end
 end
