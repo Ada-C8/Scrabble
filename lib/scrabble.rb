@@ -5,15 +5,16 @@ module Scrabble
 
     def self.score(word)
       word = word.upcase.split("")
-      # word.each do |letter|
-      #   total_score = 0
-      #   total_score += POINTS[letter]
-      # end
-      return word
+      total_score = 0
+      word.each do |letter|
+        total_score += POINTS[letter]
+      end
+      return total_score
     end # end of self.score
 
     def self.highest_score_from(array_of_words)
     end # end of self.highest_score
+    
   end # end of Scoring class
 
 end # end of module

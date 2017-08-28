@@ -31,4 +31,9 @@ describe 'Scoring' do
 
   end # 'self.score'
 
+  xdescribe 'self.highest_score_from' do
+
+
+  end # 'self.highest_score_from'
+
 end # end of Scoring
