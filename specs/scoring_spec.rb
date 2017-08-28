@@ -14,7 +14,12 @@ describe "#Scrabble.score" do
 
   end
 
+  it "can recognize a one-point letter and add 1 point to the score" do
+    Scrabble::Scoring.score("A").must_equal 1
+    Scrabble::Scoring.score("T").must_equal 1
+  end
 
 
-  
+
+
 end

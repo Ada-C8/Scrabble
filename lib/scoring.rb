@@ -6,20 +6,39 @@ module Scrabble
     end
 
     def self.score(word)
-
+      word = word.upcase.split("") #array
+      score = 0
+      word.each do |letter|
+        case letter
+        when "A", "E", "I", "O", "U", "L", "N", "R", "S", "T"
+          score += 1
+        when "D", "G"
+          score += 2
+        when "B", "C", "M", "P"
+          score += 3
+        when "F", "H", "V", "W", "Y"
+          score += 4
+        when "K"
+          score += 5
+        when "J", "X"
+          score += 8
+        when "Q", "Z"
+          score += 10
+        else
+          raise ArgumenError.new("Invalide Input !")
+        end
+      end
+    return score
     end
-
-
 
 
   end
 end
-
-
-point_one = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
-point_two = ["D", "G"]
-point_three = ["B", "C", "M", "P"]
-point_four = ["F", "H", "V", "W", "Y"]
-point_five = ["K"]
-point_eight = ["J", "X"]
-point_ten = ["Q", "Z"]
+#
+# point_one = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
+# point_two = ["D", "G"]
+# point_three = ["B", "C", "M", "P"]
+# point_four = ["F", "H", "V", "W", "Y"]
+# point_five = ["K"]
+# point_eight = ["J", "X"]
+# point_ten = ["Q", "Z"]
