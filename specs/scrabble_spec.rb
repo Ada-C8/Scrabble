@@ -21,10 +21,6 @@ describe 'Scoring' do
       Scrabble::Scoring.must_respond_to :score
     end
 
-    xit "returns the Array of word" do
-      Scrabble::Scoring.score("cat").must_equal ["C", "A", "T"]
-    end
-
     it "calculates the score of the word passed in" do
       Scrabble::Scoring.score("bird").must_equal 7
     end
@@ -59,8 +55,9 @@ describe 'Scoring' do
 
     it "returns first word in event of an absolute tie" do
       words = ["jazzily","ylizzaj"]
-      Scrabble::Scoring.highest_score_from(words).must_equal "jazzily"            
+      Scrabble::Scoring.highest_score_from(words).must_equal "jazzily"
     end
+
 
   end # 'self.highest_score_from'
 

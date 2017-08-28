@@ -35,7 +35,6 @@ module Scrabble
       return best_word
     end # end of self.highest_score
 
-
   end # end of Scoring class
 
 end # end of module
