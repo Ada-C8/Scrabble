@@ -39,4 +39,19 @@ describe "Scoring class" do
       Scrabble::Scoring.score("QUIZZED").must_equal 85
     end
   end
+
+  describe "highest_score method" do
+    it "takes array and returns string" do
+      Scrabble::Scoring.highest_score_from(["this", "that", "queasy"]).must_be_kind_of String
+    end
+    it "actually finds highest scoring word" do
+      Scrabble::Scoring.highest_score_from(["this", "that", "queasy"]).must_equal "QUEASY"
+    end
+    it "in a tie returns word with less letters" do
+      Scrabble::Scoring.highest_score_from(["dart", "at", "gp"]).must_equal "GP"
+    end
+    # it "in a tie returns word with 7 letters" do
+    #   Scrabble::Scoring.highest_score_from([""])
+    # end
+  end
 end
