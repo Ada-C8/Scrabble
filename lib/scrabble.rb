@@ -31,7 +31,7 @@ module Scrabble
       'y' => 4,
       'z' => 10
     }
-    # max input cannot go beyond 7
+    # later in code we should ensure that we only pass out 7 tiles
 
 
     def self.score(word)
@@ -44,8 +44,8 @@ module Scrabble
         return num + 50
       else
         return num
-      end
-    end
+      end # if conditional
+    end  # .each do loop
 
   end #scoring
 end #module
