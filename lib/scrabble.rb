@@ -1,3 +1,4 @@
+require 'pry'
 module Scrabble
   class Scoring
 
@@ -55,13 +56,20 @@ module Scrabble
       max_word = ""
 
       array_of_words.each do |word|
-        # puts word
-      if  self.score(word) > max_score
-        max_score = self.score(word)
-        max_word = word
+        if  self.score(word) == max_score
+          if word.length < max_word.length
+            max_word = word
+            max_score = self.score(word)
+            # return max_word.downcase
+          end
+          # max_word.downcase
+        elsif self.score(word) > max_score
+          max_score = self.score(word)
+          max_word = word
+        end
       end
       return max_word.downcase
-      end
+
 
     end
 

@@ -29,12 +29,19 @@ describe 'Scrabble' do
 
     describe "self.highest_score_from(array_of_words)" do
 
-      it "Rebecca will win" do
-        array_of_words = ["Rebecca", "Lauren1"]
+      it "read array and return highest word count" do
+        array_of_words = ["Rebecca", "Lauren", "cat"]
         Scrabble::Scoring.highest_score_from(array_of_words).must_equal "rebecca"
-      end
+      end # rebecca wins
 
-      end
+      it "tie will make shorter word win" do
+        array_of_words = ["be", "it", "cat", "date", "sit"]
+        Scrabble::Scoring.highest_score_from(array_of_words).must_equal "cat"
+      end #short word tie win
+
+      # it "tie 7 letter word win" do
+      # end # 7 letter tie
+    end # self.highest_score_from
 
 
   end #describe scoring
