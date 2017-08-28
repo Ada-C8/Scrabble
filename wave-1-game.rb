@@ -1,4 +1,5 @@
-require_relative 'lib/scrabble'
+require'wave-1-scoring'
+require 'pry'
 
 module Scrabble
   class Game
