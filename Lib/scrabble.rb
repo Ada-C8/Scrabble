@@ -40,13 +40,20 @@ module Scrabble
 
 
     def scored(word)
-      points = 0
+      points = word_has_7?(word)
       word.each_char do |letter|
         points += POINTPERVARIABLE[letter.upcase]
       end
       points
     end
 
+    def word_has_7?(word)
+      if word.length >= 7
+        50
+      else
+        0
+      end
+    end
   end #self::Scoring
 
 end #Module End
