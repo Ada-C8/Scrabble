@@ -2,8 +2,12 @@ module Scrabble
 
   class Scoring
 
-    def initialize()
-      @all_values = {
+    def initialize
+
+    end#Initialize
+
+    def self.score(word)
+      all_values = {
         "A" => 1,
         "B" => 3,
         "C" => 3,
@@ -31,14 +35,23 @@ module Scrabble
         "Y" => 4,
         "Z" => 10,
       }
-    end#Initialize
 
-    def self.score(word)
       score = 0
-      word.each do |l|
-        score += @all_values[l]
+
+      word.split('').each do |l|
+        score += all_values[l]
       end
+
+      #return score
+      if word.length == 7
+        return score + 50
+      else
+        return score
+      end
+      
     end #end self.score
+
+
 
   end #class end
 

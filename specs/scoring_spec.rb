@@ -15,6 +15,18 @@ describe "Scrabble::Scoring class" do
       #assert
 
     end
-  end
+  end#describe initialize
 
-end #describe end
+  describe "Score class method" do
+    it "Retunrs 0 for an empty string" do
+      Scrabble::Scoring.score("").must_equal 0
+    end
+
+    it "Returns the score for a word" do
+      Scrabble::Scoring.score("CASA").must_equal 6
+
+    end
+
+  end#Describe Score class methos
+
+end #describe first end
