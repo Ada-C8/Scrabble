@@ -36,12 +36,8 @@ module Scrabble
 
       array_of_words.each do |word|
         highest_score = word if self.score(word) > self.score(highest_score)
-        if self.score(word) == self.score(highest_score)
-          if word.length < highest_score.length
-            highest_score = word if highest_score.length != 7
-          else
-            highest_score = word if word.length == 7 && highest_score.length != 7
-          end
+        if self.tie?(word, highest_score)
+          highest_score = self.tiebreaker(word, highest_score)
         end
       end
 
@@ -49,5 +45,20 @@ module Scrabble
 
     end
 
-  end
-end
+    private
+
+    def self.tie?(word1, word2)
+      return self.score(word1) == self.score(word2)
+    end
+
+    def self.tiebreaker(word1, word2)
+      if word1.length < word2.length
+        return word1 if word2.length != 7
+      else
+        return word1 if word1.length == 7 && word2.length != 7
+      end
+      return word2
+    end
+
+  end #end class Scoring
+end #end module Scrabble

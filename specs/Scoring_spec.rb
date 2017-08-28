@@ -40,7 +40,7 @@ describe "Scrabble::Scoring" do
       test_strings.must_include highest_score
     end
 
-    it "awards a tie to the shortest word except in the case of a seven letter word" do
+    it "awards a tie to the shortest word except in the case of a seven letter word, and first word in case of 2 same-length words" do
       test_strings = ["jd", "q"]
 
       Scrabble::Scoring.highest_score_from(test_strings).must_equal "q"
@@ -50,12 +50,6 @@ describe "Scrabble::Scoring" do
       test_strings << "ioulfae"
 
       Scrabble::Scoring.highest_score_from(test_strings).must_equal "aeioulf"
-
-
-    end
-
-    it "awards a tie to the first word in the case of same word length and score" do
-
     end
   end
 end
