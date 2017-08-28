@@ -29,15 +29,19 @@ describe "Scrabble::Scoring" do
     it "doesn't accept words greater than 7 letters long" do
       proc{Scrabble::Scoring.score("alongword")}.must_raise ArgumentError
     end
+
+    it "doesn't accept empty strings as words" do
+      proc{Scrabble::Scoring.score("")}.must_raise ArgumentError
+    end
   end
 
   describe "self.highest_score_from method" do
     it "returns a string" do
       test_strings = ["hello", "quiz", "water"]
-      highest_score= Scrabble::Scoring.highest_score_from(test_strings)
-      highest_score.must_be_instance_of String
+      highest = Scrabble::Scoring.highest_score_from(test_strings)
+      highest.must_be_instance_of String
 
-      test_strings.must_include highest_score
+      test_strings.must_include highest
     end
 
     it "awards a tie to the shortest word except in the case of a seven letter word, and first word in case of 2 same-length words" do

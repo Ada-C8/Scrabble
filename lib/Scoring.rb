@@ -18,7 +18,7 @@ module Scrabble
     end
 
     def self.score(word)
-      raise ArgumentError.new("All words must be 7 letters or less.") if word.length > 7
+      raise ArgumentError.new("All words must be between 1 and 7 letters long.") if (word.length > 7 || word.length == 0)
       letters = word.downcase.chars
       total= 0
 
@@ -32,9 +32,9 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
-      highest_score = ""
+      highest_score = array_of_words[0]
 
-      array_of_words.each do |word|
+      array_of_words[1..-1].each do |word|
         highest_score = word if self.score(word) > self.score(highest_score)
         if self.tie?(word, highest_score)
           highest_score = self.tiebreaker(word, highest_score)
