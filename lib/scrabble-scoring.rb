@@ -31,25 +31,40 @@ module Scrabble
       "Q"=>10,
       "Z"=>10}
 
-    def initialize
-    end
-
-    def self.score(word)
-      letters = word.upcase.split(//)
-      score = 0
-      letters.each do |letter|
-        score += TILE_SCORES[letter]
+      def initialize
       end
-      if letters.length == 7
-        score += 50
+
+      def self.score(word)
+        letters = word.upcase.split(//)
+        score = 0
+        letters.each do |letter|
+          score += TILE_SCORES[letter]
+        end
+        if letters.length == 7
+          score += 50
+        end
+        return score
       end
-      return score
-    end
+
+      def self.highest_score_from(array_of_words)
+        max_score = [0,0, ""]
+        array_of_words.each do |word|
+          puts self.score(word)
+          if self.score(word) > max_score[0]
+            max_score = [self.score(word), word.length, word]
+          elsif self.score(word) == max_score[0]
+            if word.length == 7
+              max_score = [self.score(word), word.length, word]
+            elsif max_score[1] > word.length
+              max_score = [self.score(word), word.length, word]
+            end
+          end
+        end
+        return max_score[2]
+      end
 
 
 
 
-
-
-  end # end class
-end # end module
+    end # end class
+  end # end module
