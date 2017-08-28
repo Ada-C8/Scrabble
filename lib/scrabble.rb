@@ -21,19 +21,25 @@ module Scrabble
       best_word = array_of_words[0]
       array_of_words.each do |word|
         if self.score(word) == self.score(best_word)
-          if best_word.length == 7
-            # do nothing
-          elsif word.length == 7
-            best_word = word
-          elsif word.length < best_word.length
-            best_word = word
-          end
+          best_word = handle_tie(best_word,word)
         elsif self.score(word) > self.score(best_word)
           best_word = word
         end
       end
       return best_word
     end # end of self.highest_score
+
+    def handle_tie(word1, word2)
+      if word1.length == 7
+        return word1
+      elsif word2.length == 7
+        return word2
+      elsif word2.length < word1.length
+        return word2
+      else
+        return word1
+      end
+    end # end of handle_tie
 
   end # end of Scoring class
 
