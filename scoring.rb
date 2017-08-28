@@ -2,8 +2,6 @@ require 'pry'
 
 module Scrabble
   class Scoring
-    # def initialize
-    # end
 
     def self.score(word)
       letter_values = {
@@ -16,21 +14,17 @@ module Scrabble
         ['Q', 'Z'] => 10
       }
 
-      word = word.split("")
+      word = word.upcase.split("")
 
       total = 0
-
-      letter_values.each do |letters, points|
-        word.each do |letter|
-          binding.pry
-
-          letters.include?(letter)
-          total += points
+      word.each do |letter|
+        letter_values.each do |letters, points|
+          if letters.include?(letter)
+            total += points
+          end
         end
       end
-
       return total
-
     end
 
 
@@ -38,7 +32,6 @@ module Scrabble
   end # end of class
 end # end of module
 
-Scrabble::Scoring.score("cats")
 
 # self.score(word): returns the total score for the given word. The word is input as a string (case insensitive). The chart in the baseline requirements shows the point value for a given letter.
 # Letter	Value
