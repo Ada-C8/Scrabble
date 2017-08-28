@@ -11,7 +11,11 @@ describe 'Scrabble' do
       game1 = Scrabble::Scoring.new
       game1.must_be_instance_of Scrabble::Scoring
 
-    end
-  end
+    end # new instance of scoring
 
-end #describe scoring
+    it "self.score " do
+      
+    end # self.score
+
+  end #describe scoring
+end # describe scrabble
