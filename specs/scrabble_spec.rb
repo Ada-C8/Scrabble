@@ -19,7 +19,14 @@ describe 'Scoring' do
 
     it "takes a word as an argument" do
       Scrabble::Scoring.must_respond_to :score
-      Scrabble::Scoring.score("bird").must_be_kind_of Integer
+    end
+
+    xit "returns the Array of word" do
+      Scrabble::Scoring.score("cat").must_equal ["C", "A", "T"]
+    end
+
+    it "calculates the score of the word passed in" do
+      Scrabble::Scoring.score("bird").must_equal 7
     end
 
   end # 'self.score'
