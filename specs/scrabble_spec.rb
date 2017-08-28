@@ -35,8 +35,12 @@ describe 'Scoring' do
 
   end # 'self.score'
 
-  xdescribe 'self.highest_score_from' do
+  describe 'self.highest_score_from' do
 
+    it "returns a word from the given array" do
+      words = ["cat","bird","jazzily"]
+      Scrabble::Scoring.highest_score_from(words).must_be_kind_of String
+    end
 
   end # 'self.highest_score_from'
 
