@@ -31,20 +31,35 @@ module Scrabble
       if word.length == 7
         score += 50
       end
-    return score
+      return score
     end
 
-    def self.highest_score_from(array_of_words)
-      score_total = []
+    def self.highest_score_from_array(array_of_words)
+      #IF there's a tie && word.lenghts ==
+      #take the first word
+      #If there's a tie and words !=, take the shortest one unless one of them has 7 tiles
+
+      # score_total = []
+      # array_of_words.each do |word|
+      #   score_total << score(word)
+      # end
+      # return score_total
+
+      highest_scoring_word = ""
+
+      highest_score = 0
       array_of_words.each do |word|
-        score_total << score(word)
+        if score(word) > highest_score
+          highest_scoring_word = word
+          highest_score = score(word)
+        end
       end
-      return score_total
+    highest_scoring_word
     end
-
 
   end
 end
+
 #
 # point_one = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
 # point_two = ["D", "G"]

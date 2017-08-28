@@ -29,7 +29,9 @@ describe "#Scrabble.score" do
  end
 describe "Testing highest_score_from" do
   it "returns an array of scores" do
-    Scrabble::Scoring.highest_score_from(["cat", "doge"]).must_be_instance_of Array
+    Scrabble::Scoring.highest_score_from_array(["cat", "doge"]).must_be_instance_of String
+    
+    Scrabble::Scoring.highest_score_from_array(["cat", "doge"]).must_equal 'doge'
 
   end
 end
