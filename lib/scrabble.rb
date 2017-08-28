@@ -6,6 +6,11 @@ module Scrabble
     def self.score(word)
       word = word.upcase.split("")
       total_score = 0
+
+      if word.length == 7
+        total_score += 50
+      end
+
       word.each do |letter|
         total_score += POINTS[letter]
       end
@@ -14,7 +19,7 @@ module Scrabble
 
     def self.highest_score_from(array_of_words)
     end # end of self.highest_score
-    
+
   end # end of Scoring class
 
 end # end of module

@@ -29,6 +29,10 @@ describe 'Scoring' do
       Scrabble::Scoring.score("bird").must_equal 7
     end
 
+    it "adds 50 points for a 7-letter word" do
+      Scrabble::Scoring.score("jazzily").must_equal 85
+    end
+
   end # 'self.score'
 
   xdescribe 'self.highest_score_from' do
