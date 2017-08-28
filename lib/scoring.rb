@@ -8,25 +8,29 @@ module Scrabble
       @letter = letter
     end
 
-    def self.score(w)
-      case w
-      when "a", "e", "i", "o", "u", "l", "n", "r", "s", "t"
-        return 1
-      when "d", "g"
-        return 2
-      when "b", "c", "m", "p"
-        return 3
-      when "f", "h", "v", "w", "y"
-        return 4
-      when "j", "x"
-        return 8
-      when "k"
-        return 5
-      when "q", "z"
-        return 10
-      end
-
-
-    end
+    def self.score(word)
+      score_arr = []
+      letters = word.downcase.split('', word.length)
+      letters.each do |letter|
+        case letter
+        when "a", "e", "i", "o", "u", "l", "n", "r", "s", "t"
+           score_arr << 1
+        when "d", "g"
+          score_arr << 2
+        when "b", "c", "m", "p"
+          score_arr << 3
+        when "f", "h", "v", "w", "y"
+          score_arr << 4
+        when "j", "x"
+          score_arr << 8
+        when "k"
+          score_arr << 5
+        when "q", "z"
+          score_arr << 10
+        end #end case
+      end #end letters loop
+      sum = score_arr.inject(:+)
+      return sum
+    end #end self.score
   end
 end
