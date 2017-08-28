@@ -7,7 +7,7 @@ describe 'Scoring' do
     end
 
     it "can retrieve point value from POINTS hash" do
-      Scrabble::Scoring::POINTS["A"].must_equal 1
+      Scrabble::POINTS["A"].must_equal 1
       Scrabble::Scoring::POINTS["B"].must_equal 3
       Scrabble::Scoring::POINTS["Z"].must_equal 10
       Scrabble::Scoring::POINTS["K"].must_equal 5
