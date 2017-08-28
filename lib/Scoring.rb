@@ -18,12 +18,15 @@ module Scrabble
     end
 
     def self.score(word)
+      raise ArgumentError.new("All words must be 7 letters or less.") if word.length > 7
       letters = word.downcase.chars
       total= 0
 
       letters.each do |letter|
         total += @letter_attributes[letter][:value]
       end
+
+      total += 50 if word.length == 7
 
       return total
     end
