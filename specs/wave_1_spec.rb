@@ -19,7 +19,12 @@ describe 'Scrabble' do
     describe "self.score " do
       it "CAT returns 5" do
       Scrabble::Scoring.score("cAt").must_equal 5
-    end
+    end # CAT logic
+
+    it "7 letter words receive 50 point bonus" do
+      Scrabble::Scoring.score("laurenl").must_equal 57 
+
+    end #50 point bonus
 
     end # self.score
 

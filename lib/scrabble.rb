@@ -31,7 +31,7 @@ module Scrabble
       'y' => 4,
       'z' => 10
     }
-
+    # max input cannot go beyond 7
 
 
     def self.score(word)
@@ -39,7 +39,12 @@ module Scrabble
       word.chars.each do |char|
         num += LETTER_VALUES[char.downcase]
       end
-      return num
+      if word.length == 7
+        # num = num + 50
+        return num + 50
+      else
+        return num
+      end
     end
 
   end #scoring
