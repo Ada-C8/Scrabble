@@ -27,5 +27,15 @@ describe 'Scrabble' do
 
     end # self.score
 
+    describe "self.highest_score_from(array_of_words)" do
+
+      it "Rebecca will win" do
+        array_of_words = ["Rebecca", "Lauren1"]
+        Scrabble::Scoring.highest_score_from(array_of_words).must_equal "rebecca"
+      end
+
+      end
+
+
   end #describe scoring
 end # describe scrabble

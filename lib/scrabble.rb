@@ -1,6 +1,9 @@
 module Scrabble
   class Scoring
+
+    # attr_reader :num
     def initialize
+      # @num = 0
     end #initialize
 
     LETTER_VALUES = {
@@ -46,6 +49,21 @@ module Scrabble
         return num
       end # if conditional
     end  # .each do loop
+
+    def self.highest_score_from(array_of_words)
+      max_score = 0
+      max_word = ""
+
+      array_of_words.each do |word|
+        # puts word
+      if  self.score(word) > max_score
+        max_score = self.score(word)
+        max_word = word
+      end
+      return max_word.downcase
+      end
+
+    end
 
   end #scoring
 end #module
