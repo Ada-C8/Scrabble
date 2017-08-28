@@ -1,0 +1,8 @@
+make lib and spec folders for everything
+make lib/Scrabble::Scoring/made spec
+make module Scrabble for everything
+
+w/in Scoring
+take letter get value
+from there take letters get score
+and later take words and compare scores
