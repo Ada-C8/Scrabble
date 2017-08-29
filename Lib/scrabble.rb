@@ -88,20 +88,16 @@ module Scrabble
     #Takes an array of words and returns shortest word.
     #If there is a tie, the first shortest word is returned.
     def self.shortest_word(words)
-      shortest_word = words[0]
-      shortest_length = words[0].length
-      words.each do |word|
-        if word.length < shortest_length
-          shortest_word = word
-          shortest_length = word.length
-        end
+      sorted = words.sort_by do |word|
+        word.length
       end
+      shortest_word = sorted[0]
       return shortest_word
     end
 
     # Takes an a array of words and returns a seven lettered word.
     # If there are two seven-lettered, it returns the first one.
-    def self.seven_lettered(words)
+    def self.seven_lettered(words) #try with select
       seven_letters = ""
       words.each do |word|
         if word.length >= 7
@@ -115,16 +111,11 @@ module Scrabble
     # Takes an a array of words and returns an array of all the words
     # that tie for the highest score.
     def self.isolate_tieing_words(words)
-      scores = []
       tieing_words =[]
-      words.each do |word|
-        scores << scored(word)
-      end
-      max_score = scores.sort.reverse[0]
-      words.each do |word|
-        if scored(word) == max_score
-          tieing_words << word
-        end
+      best_word= words.max_by {|word| scored(word)}
+      max_score = scored(best_word)
+      tieing_words = words.select do |word|
+        scored(word) == max_score
       end
       return tieing_words
     end
@@ -147,14 +138,7 @@ module Scrabble
     # Takes an array of words and returns the word with the highest score.
     # If their are two words that tie, it returns the first.
     def self.return_higest(words)
-      highest_score = scored(words[0])
-      best_word = words[0]
-      words.each do |word|
-        if scored(word) > highest_score
-          highest_score = scored(word)
-          best_word = word
-        end
-      end
+      best_word= words.max_by {|word| scored(word)}
       return best_word
     end
   end #self::Scoring

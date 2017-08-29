@@ -45,23 +45,27 @@ describe "Scrabble" do
     it "returns word with highest score if there are no ties" do
       array = ["wizard", "dog", "xray", "artery"]
       (Scrabble::Scoring.highest_score_from(array)).must_equal "wizard"
+      (Scrabble::Scoring.highest_score_from(array.reverse)).must_equal "wizard"
     end
 
     #it can break ties
     it " If there is a tie and the tied words are the same length, pick the first one in the supplied list." do
       array = ["zap", "zip"]
       (Scrabble::Scoring.highest_score_from(array)).must_equal "zap"
+      (Scrabble::Scoring.highest_score_from(array.reverse)).must_equal "zip"
     end
 
     it "If there is a tie and the words are different lengths (but not 7 letters), it returns the shortest word" do
       array = ["barn", "cat", "zags", "zip"]
       (Scrabble::Scoring.highest_score_from(array)).must_equal "zip"
+      (Scrabble::Scoring.highest_score_from(array.reverse)).must_equal "zip"
     end
   end
 
   it "If there is a tie and the words are different lengths, and at least one word is is  7 letters long, it returns first 7 letter word" do
     array = ["jqqqqq", "aeiouag"]
     (Scrabble::Scoring.highest_score_from(array)).must_equal "aeiouag"
+    (Scrabble::Scoring.highest_score_from(array.reverse)).must_equal "aeiouag"
   end
 # end
 end #end module
