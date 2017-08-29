@@ -6,7 +6,7 @@ module Scrabble
     attr_reader :name, :plays
 
     def initialize(name)
-      @name = name
+      @name = name.to_s
       @plays = []
     end
 
