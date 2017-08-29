@@ -48,7 +48,6 @@ module Scrabble
       end
       num += 50 if word.length == 7
         return num
-      # end # if conditional
     end  # .each do loop
 
 # note to rebecca:
