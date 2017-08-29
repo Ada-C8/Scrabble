@@ -40,9 +40,6 @@ describe "Scoring" do
 
     it "Raises an ArgumentError if input is not a String" do
       proc { Scrabble::Scoring.score(123) }.must_raise ArgumentError
-      # test_class = Scrabble::Scoring.score("word")
-      # test_class.must_be_instance_of String
-      # test_class.must_equal "WORD"
     end
 
     it "Returns the total score for the given word" do
@@ -94,7 +91,7 @@ describe "Scoring" do
     end
 
     it "Returns the seven letter word, in the case of a tie" do
-      test_arr = ["AEIOULN", "KD"] #both score to 2
+      test_arr = ["AEIOULN", "KD"] #both score to 7
       test_ob = Scrabble::Scoring.highest_score_from_array(test_arr)
       test_ob.must_equal "AEIOULN"
     end
