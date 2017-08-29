@@ -47,4 +47,16 @@ describe "Player class" do
     end
   end
 
+  describe "won?" do
+    it "Player doesn't win (less than or equal to 100 points) returns false" do
+      @bennett.play("aaa")
+      @bennett.won?.must_equal false
+    end
+    it "Player wins (more than 100 points) returns true" do
+      @bennett.play("zzzzzzzzzz")
+      @bennett.play("a")
+      @bennett.won?.must_equal true
+    end
+  end
+
 end
