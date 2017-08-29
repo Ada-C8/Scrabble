@@ -28,6 +28,18 @@ describe "Player" do
       @player.play("jazzily")
       @player.plays.must_include "jazzily"
     end
+
+    xit "returns false if the player has already won" do
+      @player.play("jazzily") # score => 85
+      @player.play("jazzily") # score => 170
+
+      @player.play("jazzily").must_equal false
+    end
+
+    it "returns the score of the word" do
+      @player.play("jazzily").must_equal 85
+    end
+
   end
 
 end

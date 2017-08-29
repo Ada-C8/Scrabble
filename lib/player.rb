@@ -11,6 +11,7 @@ module Scrabble
     end
 
     def play(word)
+      @plays << word
       # Adds the input word to the plays Array
       # Returns false if player has already won
       # Returns the score of the word
