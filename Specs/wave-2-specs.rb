@@ -21,16 +21,16 @@ describe 'Player' do
     end
   end
 
-    describe "plays" dog
+    describe "plays" do
       it "must return an Array" do
         @new_player.plays.must_be_kind_of Array
       end
-#
-#       it "array must be an array of words played by that player" do
-#         @new_player.play("APPLE")
-#         @new_player.play("FRUIT")
-#         @new_player.plays.must_equal ["APPLE, FRUIT"]
-#       end
+
+      it "array must be an array of words played by that player" do
+        @new_player.play("APPLE")
+        @new_player.play("FRUIT")
+        @new_player.plays.must_equal ["APPLE," "FRUIT"]
+      end
 #
 # ###ADD MORE TESTS?
     end
