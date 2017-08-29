@@ -21,6 +21,8 @@ describe "scoring" do
         Scrabble::Scoring::SCORE_CHART.keys.must_include letter
       end #.each
     end #it "@score_chart must include ("A".."z")" do
+
+    
   end #describe "initialize" do
 
   describe "self.score(word)" do
@@ -45,25 +47,25 @@ describe "scoring" do
     end
   end #describe "self.score(word)" do
 
-  describe "self.highest_score_from(array_of_words)" do
+  describe "self.highest_score_from_array_array(array_of_words)" do
     it "should return a string" do
-      Scrabble::Scoring.highest_score_from(["cat", "dog", "pony"]).must_be_kind_of String
+      Scrabble::Scoring.highest_score_from_array(["cat", "dog", "pony"]).must_be_kind_of String
     end #it "should return a string" do
 
     it "should pick the highest scoring word" do
-      Scrabble::Scoring.highest_score_from(["cat", "pony"]).must_equal "PONY"
+      Scrabble::Scoring.highest_score_from_array(["cat", "pony"]).must_equal "PONY"
     end #it "should pick the highest scoring word" do
 
     it "if equal, should pick the word with 7 letters" do
-      Scrabble::Scoring.highest_score_from(["cat", "pony", "animals"]).must_equal "ANIMALS"
+      Scrabble::Scoring.highest_score_from_array(["cat", "pony", "animals"]).must_equal "ANIMALS"
     end #it "if equal, should pick the word with 7 letters" do
 
     it "if equal, it should pick the word with least number of letters" do
-      Scrabble::Scoring.highest_score_from(["dog", "train"]).must_equal "DOG"
+      Scrabble::Scoring.highest_score_from_array(["dog", "train"]).must_equal "DOG"
     end #it "if equal, should pick the word with 7 letters" do
 
     it "if equal in score and length, it should pick the first word in the list" do
-      Scrabble::Scoring.highest_score_from(["dog", "god"]).must_equal "DOG"
+      Scrabble::Scoring.highest_score_from_array(["dog", "god"]).must_equal "DOG"
     end #it "if equal in score and length, it should pick the first word in the list" do
 
   end # Describe

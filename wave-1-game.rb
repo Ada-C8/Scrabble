@@ -1,4 +1,5 @@
-require_relative 'lib/scrabble'
+# require_relative 'lib/scrabble'
+require_relative 'lib/scoring'
 
 module Scrabble
   class Game
@@ -26,7 +27,7 @@ module Scrabble
       return true if @words.length == 0 # haven't started playing yet
 
       puts "Would you like to score another word? (Y/N)"
-      continue = gets.chomp
+      continue = gets.chomp.upcase
       (continue == "Y") ? true : false
     end
 

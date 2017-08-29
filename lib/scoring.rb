@@ -20,7 +20,7 @@ module Scrabble
     end #def self.score(word)
 
     #self.highest_score_from will return the highest scoring word in the array of words passed to the method as an argument. If there is a tie to for the highest scoring word the highest priority will be given to a seven letter word. If there is no seven letter word then the word using less tiles will be returned. If the tie is between words of the same length and score then the one with the lower index in the array will be returned.
-    def self.highest_score_from(array_of_words)
+    def self.highest_score_from_array(array_of_words)
       highest_score = 0
       highest_score_word = nil
 
