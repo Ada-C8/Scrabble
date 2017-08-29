@@ -43,20 +43,13 @@ module Scrabble
             unless highest_score_word.length == 7
               highest_score_word = word.upcase
             end
-            #word.length == 7 || highest_score_word.length == 7
-
-            # if word.length == 7
-            #   highest_score_word = word.upcase
-            # elsif highest_score_word.length == 7
-            #   highest_score_word == w
-            #end
           elsif word_score == highest_score && word.length < highest_score_word.length
             unless highest_score_word.length == 7
-            highest_score_word = word.upcase
+              highest_score_word = word.upcase
             end
           end
         end
         return highest_score_word
       end
-    end
   end
+end
