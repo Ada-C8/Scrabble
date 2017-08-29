@@ -12,23 +12,45 @@ module Scrabble
     }  #letter_arr , letter_score
 
     def self.score(word)
-      raise ArgumentError.new "Input must be a String class."
-      if word.class != String
 
-        raise ArgumentError.new "Word must be one to seven letters long."
-        if word == 0 && word > 7
-        end
-      end
+      word_score = 0
+      letters = word.upcase.split("")
+      letters.each do |letter|
+        raise ArgumentError.new "Word must contain only regular ASCII letters." if !letter.match(/^[A-Z]$/)
 
-      total_score = 0
-      word.upcase.each_char do |letter|
-        SCORE_HASH.keys.each do |arr|
-          if arr.include? letter
-            total_score += SCORE_HASH[arr]
+        SCORE_HASH.each do |letter_arr, letter_score|
+          if letter_arr.include? letter
+            word_score += letter_score
           end
         end
       end
-    end
-    return total_score
-  end
-end
+
+      if word.length == 7
+        word_score += 50
+      end
+      return word_score
+    end #end self.score
+  end #end class
+end #end module
+
+puts Scrabble::Scoring.score("Shaunna") #works
+
+
+
+#     raise ArgumentError.new "Input must be a String class."
+#     if word.class != String
+#
+#       raise ArgumentError.new "Word must be one to seven letters long."
+#       if word == 0 && word > 7
+#       end
+#     end
+#
+#     total_score = 0
+#     word.upcase.each_char do |letter|
+#       SCORE_HASH.keys.each do |arr|
+#         if arr.include? letter
+#           total_score += SCORE_HASH[arr]
+#         end
+#       end
+#     end
+#   end
