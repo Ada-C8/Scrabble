@@ -51,11 +51,25 @@ module Scrabble
     end #end self.score
 
     def self.highscore_from(array_of_words)
+      array_of_word_scores = []
       scores = []
       array_of_words.each do |word|
+        array_of_word_scores << [word, self.score(word)]
         scores << self.score(word)
       end
-      return max = scores.max
+
+      max = scores.max
+      puts "max score is #{max}"
+
+      if array_of_words.count(max) == 1
+        index_of_max_word = array_of_words.index(max)
+        return index_of_max_word
+      end
+
+      #   return array_of_words[e]
+      # elsif array_of_words.count(max) > 1
+      #
+
       #return scores
     end
 
@@ -63,3 +77,7 @@ module Scrabble
 
 
 end #module end
+
+array_words = ["house", "mama", "florida", "flan", "dulce"]
+
+puts Scrabble::Scoring.highscore_from(array_words)

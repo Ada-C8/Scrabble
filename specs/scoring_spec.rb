@@ -43,13 +43,19 @@ describe "Scrabble::Scoring class" do
     # end
 
     it "Score return the correct score for each word in the array" do
-      array_words = ["house", "mama", "florida", "flan", "dulce"]
+      # array_words = ["house", "mama", "florida", "flan", "dulce"]
       # try_scores = []
       # array_words.each do |word|
       #   puts "This is the score #{score = Scrabble::Scoring.score(word)}"
       #   puts "For this word: #{word}"
       # end
-      Scrabble::Scoring.highscore_from(array_words).must_equal 61
+      # Scrabble::Scoring.highscore_from(array_words).must_equal 61
+    end
+
+    it "Returns the word with the max score" do
+      array_words = ["house", "mama", "florida", "flan", "dulce"]
+
+      Scrabble::Scoring.highscore_from(array_words).must_equal "The winning word is florida"
     end
   end #describe high score method
 
