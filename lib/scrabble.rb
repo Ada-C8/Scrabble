@@ -44,15 +44,23 @@ module Scrabble
         word_scores << self.score(word)
       end
       greatest_score = word_scores.sort![-1]
+      greatest_words = []
       input_array.each do |word|
         if self.score(word) == greatest_score
-          return word
+          greatest_words << word
         end
+      end
+      if greatest_words.length == 1
+        return greatest_words[0]
+      elsif
+
       end
     end
 
+      def tie_breaker
+        # if greatest_words.length
+      end
 
 
-
-  end#end of scoring
-end # end of module
+    end#end of scoring
+  end # end of module

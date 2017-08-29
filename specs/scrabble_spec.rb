@@ -61,6 +61,32 @@ end
       # Assert
       output.must_equal expected_output
     end
+
+    it "Should pick word with less letters if tied between two words" do
+      # TODO
+      #Arrage
+      words = ["draank", "zoo"]
+      expected_output = "zoo"
+      # Action
+      output = Scrabble::Scoring.highest_score_from(words)
+      # Assert
+      output.must_equal expected_output
+    end
+
+    it "When multiple words are tied, pick word with 7 letters" do
+      # TODO
+      #Arrage
+      words = ["drinkin", "dddddd","bbbb"]
+      expected_output = "drinkin"
+      # Action
+      output = Scrabble::Scoring.highest_score_from(words)
+      # Assert
+      output.must_equal expected_output
+    end
+
+    it "When tied between words with same length and score, choose first word from list" do
+      # TODO
+    end
   end
   #
   # xdescribe "self.tie breaking rules" do
