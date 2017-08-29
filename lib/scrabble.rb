@@ -52,8 +52,10 @@ module Scrabble
       end
       if highest_scoring_words.length == 1
         return highest_scoring_words[0]
-      elsif tie_breaker(highest_scoring_words)
-
+      elsif highest_score_words.length > 1
+         self.tie_breaker(highest_scoring_words)
+      else
+        raise ArgumentError.new "There are no words here"
       end
     end
 
@@ -67,7 +69,8 @@ module Scrabble
       end
       if shortest_word.length >= 1
         return shortest_word # => winning word
-        # => TODO: raise ArgumentError
+      else
+        raise ArgumentError.new "There are no tied words here"
       end
     end # => end of tie breaker
 

@@ -109,6 +109,10 @@ describe "Scoring class " do
       output.must_equal expected_output
     end
     it "should pick first word given if they are same score and letter count" do
+      input = ["AAA", "EEE"]
+      expected_output = "AAA"
+      output = Scrabble::Scoring.tie_breaker(input)
+      output.must_equal expected_output
     end
   end # => end tie breaker
 end # => end scoring
