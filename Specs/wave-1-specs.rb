@@ -47,23 +47,29 @@ describe "Scoring" do
     end
 
     it "returns correct highest score word from array of 2 words" do
-
+      word_array = ["apples", "cat"]
+      Scrabble::Scoring.highest_score_from(word_array).must_equal "APPLES"
     end
 
     it "returns correct highest score word from array of 5 words" do
-
+      word_array = ["apples", "cat", "lizard", "range", "none"]
+      Scrabble::Scoring.highest_score_from(word_array).must_equal "LIZARD"
     end
 
     it "in case of a tie where words are same length, returns 1st word entry" do
-      
+      word_array = ["on", "one", "cat", "pat", "mat"]
+      Scrabble::Scoring.highest_score_from(word_array).must_equal "CAT"
     end
 
     it "returns smallest word in case of a tie (where words are under 7 letters)" do
-
+      word_array = ["pack", "zoo", "dog"]
+      Scrabble::Scoring.highest_score_from(word_array).must_equal "ZOO"
     end
 
     it "returns 7 letter word in case of tie involving a 7 letter word" do
-
+      word_array = ["dancers", "animal", "what" "ZQZZQQ", "dpple"]
+      Scrabble::Scoring.highest_score_from(word_array).must_equal "DANCERS"
+      #Could not find any real words that can tie for highest score under 7 letters, since 7 letters gets a bonus of 50 points already
     end
 
   end
