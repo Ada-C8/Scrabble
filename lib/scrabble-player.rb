@@ -14,28 +14,36 @@ module Scrabble
         return false
       else
         @plays << word
-        returns Scrabble::Scoring.score(word)
+        return Scrabble::Scoring.score(word)
       end
     end
 
 
     def total_score
-
+      total = 0
+      plays.each do |word|
+        total += Scrabble::Scoring.score(word)
+      end
+      return total
     end
 
     def highest_scoring_word
-
+      return Scrabble::Scoring.highest_score_from_array(@plays)
     end
 
     def highest_word_score
-
+      return Scrabble::Scoring.score(highest_scoring_word)
     end
 
 
-    private
+    # private
 
     def won?
-
+      if total_score > 100
+        return true
+      else
+        return false
+      end
     end
 
   end

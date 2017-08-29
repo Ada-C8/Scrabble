@@ -23,8 +23,19 @@ end
     first_length = averi.plays.length
     averi.play("dog")
     averi.plays.length.must_be :>, first_length
-    averi.plays.length.must_equal 1 
+    averi.plays.length.must_equal 1
   end
 
+  it "plays word returns correct score" do
+    averi = Scrabble::Player.new("Averi")
+    averi.play("dog").must_equal 5
+  end
+
+  it "plays returns false if have already won" do
+    averi = Scrabble::Player.new("Averi")
+    averi.play("qqqqq")
+    averi.play("zzzzzz")
+    averi.play("dog").must_equal false
+  end
 
 end
