@@ -40,7 +40,7 @@ module Scrabble
     def self.highest_score_from_array(array_of_words)
       scores_array = []
       array_of_words.each do |word|
-        # nested array with word and its cooresponding
+        # nested array with word and its cooresponding score
         scores_array << [word, score(word)]
       end
 
@@ -48,5 +48,16 @@ module Scrabble
       return higest_score_word
     end
 
+    def tie(words_and_scores)
+      # iterate over nested array and return words with highest score
+      # compare words by length
+      # return word with shortest length 
+    end
+
   end # end of ScoringClass
 end
+
+# ties
+# It’s better to use fewer tiles, in the case of a tie, prefer the word with the fewest letters.
+# There is a bonus for words that are seven letters. If the top score is tied between multiple words and one used all seven letters, choose the one with seven letters over the one with fewer tiles.
+# If the there are multiple words that are the same score and same length, pick the first one in the supplied list.

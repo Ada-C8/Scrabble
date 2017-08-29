@@ -35,13 +35,34 @@ describe "Scoring Class" do
     end #end of self.score tests
 
     describe "self.highest_score_from_array(array_of_words)" do
-      it "" do
+      it "returns word with highest score" do
         #SET UP VARIABLES
         array_of_words = ["adb", "kay", "jig"]
         #CALL THE METHOD BEING TESTED
         winning_word = Scrabble::ScoringClass.highest_score_from_array(array_of_words)
         #CHECK RESULT OF THAT METHOD
         winning_word.must_equal "jig"
+      end
+    end
+
+    describe "tie" do
+      it "returns word with fewest letters to break tie" do
+        #SET UP VARIABLES
+        words_and_scores = [["bbbxph", 24],["jjj", 24],["jig", 11]]
+        #CALL THE METHOD BEING TESTED
+        winning_word = Scrabble::ScoringClass.tie(words_and_scores)
+        #CHECK RESULT OF THAT METHOD
+        winning_word.must_equal "jjj"
+      end
+      it "" do
+        #SET UP VARIABLES
+        #CALL THE METHOD BEING TESTED
+        #CHECK RESULT OF THAT METHOD
+      end
+      it "" do
+        #SET UP VARIABLES
+        #CALL THE METHOD BEING TESTED
+        #CHECK RESULT OF THAT METHOD
       end
     end
 
