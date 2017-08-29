@@ -69,90 +69,27 @@ module Scrabble
     #    word with the fewest letters.
 
     def self.highest_score_from(array_of_words)
-      #if there is no tie return higest scoring word
-      #if there is a tie makes a string of the tieing words
-      #if none of the tieing words are seven letters long, returns the
-      #first instance of the shortest_word
-      # If at least one word is seven letters long, returns the first
-      #seven lettered word
       highest_score_array = array_of_words.group_by{|word| scored(word)}.max.last
 
       if highest_score_array.length == 1
         return highest_score_array[0]
       else
-        win_word = "YYYYYYY"
-        highest_score_array.each do |word|
-          if word.length ==7
-            return word
-            exit
-          elsif win_word.length > word.length
-            win_word = word
-          else #do nothing
-          end
+        self.tie_break(highest_score_array)
+      end
+    end
+
+    def self.tie_break(array)
+      win_word = "zzzzzzz"
+      array.each do |word|
+        case
+        when word.length ==7
+          return word
+        when win_word.length > word.length
+          win_word = word
         end
       end
       win_word
     end
 
-    #Takes an array of words and returns shortest word.
-    #If there is a tie, the first shortest word is returned.
-    def self.shortest_word(words)
-      sorted = words.sort_by do |word|
-        word.length
-      end
-      shortest_word = sorted[0]
-      return shortest_word
-    end
-
-    # Takes an a array of words and returns a seven lettered word.
-    # If there are two seven-lettered, it returns the first one.
-    def self.seven_lettered(words) #try with select
-      seven_letters = ""
-      words.each do |word|
-        if word.length >= 7
-          seven_letters = word
-          return seven_letters
-        end
-      end
-      return seven_letters
-    end
-
-    # Takes an a array of words and returns an array of all the words
-    # that tie for the highest score.
-    def self.isolate_tieing_words(words)
-      # tieing_words =[]
-      # best_word= words.find {|word| scored(word)}
-      words.find{|word| scored[word].max}
-      # max_score = scored(best_word)
-      # tieing_words = words.select do |word|
-      #   scored(word) == max_score
-      # end
-      return tieing_words
-    end
-
-    # Takes an array of of words and returns 1 if there is a tie, and
-    # zero if there is not.
-    def self.tied(words)
-      values = []
-      words.each do |word|
-        values << scored(word)
-      end
-      if values.sort.reverse[0] == values.sort.reverse[1]
-        tie = 1
-      else
-        tie = 0
-      end
-      return tie
-    end
-
-    # Takes an array of words and returns the word with the highest score.
-    # If their are two words that tie, it returns the first.
-    # def self.return_highest(words)
-    #   words.group_by{|word| scored(word)}.max.last
-    # end
   end #self::Scoring
 end #Module End
-#
-# words = ["apple", "sananab", "apple", "cat", "dog", "bananas"]
-#
-# puts Scrabble::Scoring.highest_score_from(words)

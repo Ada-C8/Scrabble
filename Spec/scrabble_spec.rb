@@ -73,5 +73,10 @@ describe "Scrabble" do
     array = [ "yyyyyyy", "fffffff", "hhhhhhh"]
     (Scrabble::Scoring.highest_score_from(array)).must_equal "yyyyyyy"
   end
+
+    it "returns the first seven letter winning word from a tie" do
+      array = [ "yyyyyyy", "fffffff", "hhhhhhh"]
+      (Scrabble::Scoring.highest_score_from(array.reverse)).must_equal "hhhhhhh"
+    end
 # end
 end #end module
