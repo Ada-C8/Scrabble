@@ -55,17 +55,16 @@ module Scrabble
       if word.length != 7 || max_word.length != 7
         if word.length == 7
           redefine_max
-          return max_word.downcase
         end
       elsif word.length < max_word.length
         redefine_max
-        return max_word.downcase
       end
     end
 
     def redefine_max(max_word, max_score)
       max_word = word
-      max_score = self.score(word)
+      max_score = score(word)
+      return max_word.downcase
     end
 
     def self.highest_score_from(array_of_words)
@@ -84,5 +83,6 @@ module Scrabble
 
   end #scoring
 end #module
+
 # puts Scrabble::Scoring.highest_score_from(["cat", "be", "bat", "pat"])
 # puts Scrabble::Scoring.tie("cat", "bat")
