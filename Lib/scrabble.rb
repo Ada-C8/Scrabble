@@ -98,15 +98,18 @@ module Scrabble
     # Takes an a array of words and returns a seven lettered word.
     # If there are two seven-lettered, it returns the first one.
     def self.seven_lettered(words) #try with select
-      seven_letters = ""
-      words.each do |word|
-        if word.length >= 7
-          seven_letters = word
-          return seven_letters
-        end
-      end
+      seven_letters = words.select {|word| word.length >=7}
       return seven_letters
     end
+    #   seven_letters = ""
+    #   words.each do |word|
+    #     if word.length == 7
+    #       seven_letters = word
+    #       return seven_letters
+    #     end
+    #   end
+    #   return seven_letters
+    # end
 
     # Takes an a array of words and returns an array of all the words
     # that tie for the highest score.

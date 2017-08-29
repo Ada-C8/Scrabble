@@ -67,5 +67,12 @@ describe "Scrabble" do
     (Scrabble::Scoring.highest_score_from(array)).must_equal "aeiouag"
     (Scrabble::Scoring.highest_score_from(array.reverse)).must_equal "aeiouag"
   end
+
+  it "If there is a tie and both the words are 7 letters long it returns first 7 letter word" do
+    array = ["aeiouag", "aeiouga"]
+    (Scrabble::Scoring.highest_score_from(array)).must_equal "aeiouag"
+    (Scrabble::Scoring.highest_score_from(array.reverse)).must_equal "aeiouga"
+  end
+
 # end
 end #end module
