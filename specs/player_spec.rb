@@ -43,7 +43,11 @@ describe "Player" do
   end
 
   describe 'total_score' do
-    
+    it "returns the sum of scores of played words" do
+      @player.play("jazzily")
+      @player.play("ylizzaj")
+      @player.total_score.must_equal 170
+    end
   end
 
 end
