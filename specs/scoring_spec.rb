@@ -1,9 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/reporters'
-require 'minitest/skip_dsl'
-require 'minitest/pride'
 require 'pry'
-
 require_relative 'spec_helper'
 
 describe "Scoring class" do
@@ -54,7 +49,7 @@ describe "Scoring class" do
     end
 
     it "in a tie with same length returns first" do
-      Scrabble::Scoring.highest_score_from(["god", "dog", "tar"])
+      Scrabble::Scoring.highest_score_from(["god", "dog", "tar"]).must_equal "GOD"
     end
 
     # # this feels like a superfluous test
