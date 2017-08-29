@@ -93,4 +93,21 @@ describe "Scrabble::Player class " do
     end
 
   end
+
+  describe "higest_scoring_word" do
+    it "returns the word with the highest score" do
+      player = Scrabble::Player.new("Ada")
+      words = ["quizzed", "zippers"]
+
+      words.each do |word|
+        player.play(word)
+      end
+
+      player.highest_scoring_word.must_be_instance_of String
+
+      player.highest_scoring_word.must_equal "quizzed"
+    end
+  end
+
+
 end
