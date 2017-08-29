@@ -32,8 +32,10 @@ describe "Player class" do
       @bennett.play("swift").must_equal 11
     end
 
-    xit "returns false if already won" do
-
+    it "returns false if already won" do
+      @bennett.play("zzzzzzzzzz")
+      @bennett.play("a")
+      @bennett.play("blah").must_equal false
     end
   end
 
@@ -50,12 +52,18 @@ describe "Player class" do
   describe "won?" do
     it "Player doesn't win (less than or equal to 100 points) returns false" do
       @bennett.play("aaa")
-      @bennett.won?.must_equal false
+      # @bennett.won?.must_equal false
+      @bennett.send(:won?).must_equal false
+
     end
     it "Player wins (more than 100 points) returns true" do
       @bennett.play("zzzzzzzzzz")
       @bennett.play("a")
-      @bennett.won?.must_equal true
+      # @bennett.won?.must_equal true
+      @bennett.send(:won?).must_equal true
+    end
+    it "won? is a private method" do
+      @bennett.wont_respond_to :won?
     end
   end
 
