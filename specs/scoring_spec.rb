@@ -63,6 +63,11 @@ describe "Scrabble::Scoring class" do
       Scrabble::Scoring.highscore_from(array_words).must_equal "BADAAAA"
     end
 
+    it "Returns the tied word with the least number of letters (and not 7 letters)" do
+      array_words = ["mama", "pmd", "kc"]
+      Scrabble::Scoring.highscore_from(array_words).must_equal "kc"
+    end
+
   end #describe high score method
 
 end #describe first end

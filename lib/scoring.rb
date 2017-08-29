@@ -63,14 +63,17 @@ module Scrabble
       all_max = array_of_word_scores.find_all{|array_of_2| array_of_2[1]==max }
       #puts "max score is #{all_max}"
 
-      if all_max.length == 1
+      if all_max.length == 1 # no ties
         return all_max[0][0]
-      else
+      else #ties
         all_max.each do |n|
-          if n[0].length == 7
+          if n[0].length == 7 #there is a seven letters word
             return n[0]
           end
-        end
+        end # no seven leters word
+
+        shortest_winning_word = all_max.min_by {|x| x[0].length} #regresa la palabra mas corta
+        return shortest_winning_word[0]
       end
 
 
@@ -88,4 +91,4 @@ end #module end
 
 array_words = ["house", "mama", "flan", "dulce"]
 
-#puts Scrabble::Scoring.highscore_from(array_words)
+puts Scrabble::Scoring.highscore_from(array_words)
