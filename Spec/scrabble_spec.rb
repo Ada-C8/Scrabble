@@ -15,15 +15,16 @@ describe "Scrabble" do
         instance.must_be_kind_of Scrabble::Scoring
       end
     end
-  end
-
-  describe "Scored method" do
     it "has value for all letters" do
       ("A".."Z").each do |letter|
         instance = Scrabble::Scoring.new(letter)
         instance.score.wont_equal 0
       end
     end
+  end
+
+  describe "Scored method" do
+
 
     it "Can add the letters from a word" do
       word = "apples"
@@ -68,11 +69,24 @@ describe "Scrabble" do
     (Scrabble::Scoring.highest_score_from(array.reverse)).must_equal "aeiouag"
   end
 
-  it "If there is a tie and both the words are 7 letters long it returns first 7 letter word" do
-    array = ["aeiouag", "aeiouga"]
-    (Scrabble::Scoring.highest_score_from(array)).must_equal "aeiouag"
-    (Scrabble::Scoring.highest_score_from(array.reverse)).must_equal "aeiouga"
+  it "returns the first seven letter winning word from a tie" do
+    array = [ "yyyyyyy", "fffffff", "hhhhhhh"]
+    (Scrabble::Scoring.highest_score_from(array)).must_equal "yyyyyyy"
   end
 
-# end
+  it "returns the first seven letter winning word from a tie" do
+    array = [ "yyyyyyy", "fffffff", "hhhhhhh"]
+    (Scrabble::Scoring.highest_score_from(array.reverse)).must_equal "hhhhhhh"
+  end
+
+  describe "class Player" do
+    describe "initialize" do
+
+
+    end
+  end
+
+
+
+
 end #end module
