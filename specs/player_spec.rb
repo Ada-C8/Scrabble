@@ -50,7 +50,7 @@ describe "Player class" do
     end
   end
 
-  describe "won?" do
+  describe "won? method" do
     it "Player doesn't win (less than or equal to 100 points) returns false" do
       @bennett.play("aaa")
       # @bennett.won?.must_equal false
@@ -68,14 +68,23 @@ describe "Player class" do
     end
   end
 
-describe "highest_scoring_word" do
-  it "returns the player's highest_scoring_word" do
-    @bennett.play("zzz")
-    @bennett.play("qqq")
-    @bennett.play("aaa")
-    @bennett.highest_scoring_word.must_equal "ZZZ"
+  describe "highest_scoring_word method" do
+    it "returns the player's highest_scoring_word" do
+      @bennett.play("zzz")
+      @bennett.play("qqq")
+      @bennett.play("aaa")
+      @bennett.highest_scoring_word.must_equal "ZZZ"
+    end
   end
-end
 
+  describe "highest_word_score method" do
+    it "returns the score of the highest_scoring_word" do
+      @bennett.play("zzz")
+      @bennett.play("qqq")
+      @bennett.play("aaa")
+
+      @bennett.highest_word_score.must_equal 30
+    end
+  end
 
 end
