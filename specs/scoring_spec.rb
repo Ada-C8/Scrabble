@@ -54,10 +54,13 @@ describe "Scoring Class" do
         #CHECK RESULT OF THAT METHOD
         winning_word.must_equal "jjj"
       end
-      it "" do
+      it "returns 7 letter word to break tie" do
         #SET UP VARIABLES
+        words_and_scores = [["7777777", 24],["ccc", 24],["jig", 11]]
         #CALL THE METHOD BEING TESTED
+        winning_word = Scrabble::ScoringClass.tie(words_and_scores)
         #CHECK RESULT OF THAT METHOD
+        winning_word.must_equal "7777777"
       end
       it "" do
         #SET UP VARIABLES
