@@ -47,29 +47,35 @@ module Scrabble
         num += LETTER_VALUES[char.downcase]
       end
       num += 50 if word.length == 7
-        return num
+      return num
     end  # .each do loop
 
-# note to rebecca:
-# could we possibly use .map, .select and .max to do this more concisely?
+
+    def self.tie(word, max_word)
+      if word.length != 7 || max_word.length != 7
+        if word.length == 7
+          redefine_max
+          return max_word.downcase
+        end
+      elsif word.length < max_word.length
+        redefine_max
+        return max_word.downcase
+      end
+    end
+
+    def redefine_max(max_word, max_score)
+      max_word = word
+      max_score = self.score(word)
+    end
+
     def self.highest_score_from(array_of_words)
       max_score = 0
       max_word = ""
-
       array_of_words.each do |word|
-        if  self.score(word) == max_score
-          if word.length != 7 || max_word.length != 7
-            if word.length == 7
-              max_word = word
-              max_score = self.score(word)
-            end
-          elsif word.length < max_word.length
-            max_word = word
-            max_score = self.score(word)
-            # return max_word.downcase
-          end
-        elsif self.score(word) > max_score
-          max_score = self.score(word)
+        if score(word) == max_score
+          tie(word, max_word)
+        elsif score(word) > max_score
+          max_score = score(word)
           max_word = word
         end # if conditional
       end # do loop
@@ -78,3 +84,5 @@ module Scrabble
 
   end #scoring
 end #module
+# puts Scrabble::Scoring.highest_score_from(["cat", "be", "bat", "pat"])
+# puts Scrabble::Scoring.tie("cat", "bat")
