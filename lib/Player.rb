@@ -16,8 +16,6 @@ module Scrabble
       @total_score += Scoring.score(word)
     end
 
-    private
-
     def won?
       return @total_score >= 100
     end
