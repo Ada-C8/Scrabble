@@ -37,6 +37,10 @@ module Scrabble
     end
 
     def self.highest_score_from(words)
+      # Product.all.sort_by do |product|
+      #   product.margins_average_year_over_year(adjust_for_inflation: true)
+      # end
+
 
       scores_hash = {}
       words.each do |word|
