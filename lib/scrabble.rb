@@ -13,22 +13,27 @@ module Scrabble
     }
 
     def self.score(input_word)
-      input_letters = input_word.upcase.split("")
+      if !(input_word.to_s.match(/[a-zA-Z]/))
+        raise ArgumentError.new "Invalid character in word"
+      end
+      input_letters = input_word.split("")
       score = 0
       input_letters.each do |letter|
-        if VALUES[1].include? letter
+        # if !(letter.match(/[a-zA-Z]/))
+        #   raise ArgumentError.new "Invalid character in word"
+        if VALUES[1].include? letter.upcase
           score += 1
-        elsif VALUES[2].include? letter
+        elsif VALUES[2].include? letter.upcase
           score += 2
-        elsif VALUES[3].include? letter
+        elsif VALUES[3].include? letter.upcase
           score += 3
-        elsif VALUES[4].include? letter
+        elsif VALUES[4].include? letter.upcase
           score += 4
-        elsif VALUES[5].include? letter
+        elsif VALUES[5].include? letter.upcase
           score += 5
-        elsif VALUES[8].include? letter
+        elsif VALUES[8].include? letter.upcase
           score += 8
-        elsif VALUES[10].include? letter
+        elsif VALUES[10].include? letter.upcase
           score += 10
         else
           raise ArgumentError.new "Invalid letter in word"
@@ -52,7 +57,7 @@ module Scrabble
       end
       if highest_scoring_words.length == 1
         return highest_scoring_words[0]
-      elsif highest_score_words.length > 1
+      elsif highest_scoring_words.length > 1
          self.tie_breaker(highest_scoring_words)
       else
         raise ArgumentError.new "There are no words here"

@@ -44,7 +44,26 @@ end
       expected_output = 5
       output.must_equal expected_output
     end
-
+    it "should raise an error if the word includes an integer" do
+      input = "one1"
+      proc {Scrabble::Scoring.score(input)}.must_raise ArgumentError
+    end
+    it "should raise an error if the word is an empty string" do
+      input = ""
+      proc {Scrabble::Scoring.score(input)}.must_raise ArgumentError
+    end
+    it "should raise an error if the the word is numeric" do
+      input = 45
+      proc {Scrabble::Scoring.score(input)}.must_raise ArgumentError
+    end
+    it "should raise an error if the word contains special characters" do
+      input1 = "hello!"
+      proc {Scrabble::Scoring.score(input1)}.must_raise ArgumentError
+      input2 = "what?"
+      proc {Scrabble::Scoring.score(input2)}.must_raise ArgumentError
+      input3 = "$three"
+      proc {Scrabble::Scoring.score(input3)}.must_raise ArgumentError
+    end
   end
 
   describe "self.highest_score_from" do
@@ -87,6 +106,8 @@ end
     it "When tied between words with same length and score, choose first word from list" do
       # TODO
     end
+
+
   end
 
   describe "self.tie_breaker" do
