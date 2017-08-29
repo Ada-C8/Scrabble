@@ -43,22 +43,41 @@ module Scrabble
       input_array.each do |word|
         word_scores << self.score(word)
       end
-      greatest_score = word_scores.sort![-1]
-      greatest_words = []
+      highest_score = word_scores.sort![-1]
+      highest_scoring_words = []
       input_array.each do |word|
-        if self.score(word) == greatest_score
-          greatest_words << word
+        if self.score(word) == highest_score
+          highest_scoring_words << word
         end
       end
-      if greatest_words.length == 1
-        return greatest_words[0]
-      elsif
-
+      if highest_scoring_words.length == 1
+        return highest_scoring_words[0]
+      elsif tie_breaker(highest_scoring_words)
+        
       end
     end
 
-      def tie_breaker
-        # if greatest_words.length
+    def tie_breaker(tie_array)
+      # same value different amount of letters
+      # prefers short words
+
+      seven_letters = tie_array.select{|word| word.length == 7}
+      if seven_letters.length >= 1
+        return seven_letters[0] # => winning word, only 1 word with 7 letters
+      else
+        shortest_word = input_array.inject do |memo, word|
+          memo.length >= word.length ? memo : word
+        end
+        if shortest_word.length >= 1
+          return shortest_word[0] # => winning word
+          # => TODO: raise ArgumentError
+        end
+        # tie_array.each do |word|
+        #   if word.length == 7 # => 7 letter word wins automatically
+        #     return word
+        #   elsif word
+        #     return tie_array[0] # =>
+        #
       end
 
 
