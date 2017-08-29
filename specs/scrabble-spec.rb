@@ -16,12 +16,23 @@ describe "Scoring class" do
       Scrabble::Scoring.score("aeioulnrst").must_equal 10
     end
 
+    it "raises an argument when word is not a string" do
+      not_a_string = 1234
+      string_with_numbers = "mne4pl"
+      string_with_symbol = "me%^&p"
+      proc { Scrabble::Scoring.score(not_a_string)}.must_raise ArgumentError
+      proc { Scrabble::Scoring.score(string_with_numbers)}.must_raise ArgumentError
+      proc { Scrabble::Scoring.score(string_with_symbol)}.must_raise ArgumentError
+
+    end
+
   end
 
   describe "Self.highest_score_from" do
-    it "Exists" do
+    it "Gets the highest scoring word" do
       word_list = ['One', 'Two', 'Three']
-      Scrabble::Scoring.highest_score_from(word_list).must_be_instance_of Array
+      Scrabble::Scoring.highest_score_from(word_list).must_be_instance_of String
+      Scrabble::Scoring.highest_score_from(word_list).must_equal "Three"
     end
   end
 end
