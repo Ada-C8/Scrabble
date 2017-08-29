@@ -50,14 +50,14 @@ describe "Wave 1 Scoring" do
     it "Raises an argument error unless given at least 2 elements to compare" do
       proc{Scrabble::Scoring.highest_score_from(["one element"])}.must_raise ArgumentError
     end
-    it "Raises an argument error of array elements are not strings" do
+    it "Raises an argument error if array elements are not strings" do
       proc{Scrabble::Scoring.highest_score_from([1, 2, 3])}.must_raise ArgumentError
     end
     it "Returns the score of the highest scoring word" do
-
+      Scrabble::Scoring.highest_score_from(["aaa", "eee", "zzz"]).must_equal "zzz"
     end
     it "Returns ths score of the seven letter word in case of a tie" do
-
+      Scrabble::Scoring.highest_score_from(["zzzzzz", "haaaaaa"]).must_equal "haaaaaa"
     end
     it "Returns the score of the shortest word if 2 words have the same score" do
 

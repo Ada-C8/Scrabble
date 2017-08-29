@@ -28,14 +28,22 @@ module Scrabble
       if array.class != Array
         raise ArgumentError.new("Must pass an array.")
       end
-      unless array.length > 1
+      unless array.length > 1 #Should it just return the one?
         raise ArgumentError.new("Needs at least two words to compare")
       end
       array.each do |i|
-        if array[i].class != String
+        if i.class != String
           raise ArgumentError.new("Can only compare strings")
         end
       end
+
+      # winner = ""
+      # array.each do |string|
+      #   if score(string) > score(winner)
+      #     winner = string
+      #   end
+      # end
+      # return winner
     end
   end
 end
