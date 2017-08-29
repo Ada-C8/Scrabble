@@ -35,11 +35,12 @@ module Scrabble
 
     def initialize(word = "")
       @word =  word
-      @score = scored(word)
+      # @score = score
     end
 
-
-    def scored(word)
+    # self.score(word): returns the total score for the given word. The word is input as a string (case insensitive). The chart in the baseline requirements shows the point value for a given letter.
+    # A seven letter word means that a player used all the tiles. Seven letter words receive a 50 point bonus.
+    def self.scored(word)
       points = word_has_7?(word)
       word.each_char do |letter|
         points += POINTPERVARIABLE[letter.upcase]
@@ -47,13 +48,34 @@ module Scrabble
       points
     end
 
-    def word_has_7?(word)
+    def self.word_has_7?(word)
       if word.length >= 7
         50
       else
         0
       end
     end
-  end #self::Scoring
+  # self.highest_score_from(array_of_words): returns the word in the array with the highest score. In the case of tie, use these tiebreaking rules:
+  # It’s better to use fewer tiles, in the case of a tie, prefer the word with the fewest letters.
+  # There is a bonus for words that are seven letters. If the top score is tied between multiple words and one used all seven letters, choose the one with seven letters over the one with fewer tiles.
+  # If the there are multiple words that are the same score and same length, pick the first one in the supplied list.
+  def self.highest_score_from(array_of_words)
+    hash_of_scores = {}
+    array_of_words.each do |word|
+      value = scored(word)
+      hash_of_scores[word] = value
+    end
+    puts hash_of_scores
+    max_score = hash_of_scores.values.max
+    #hash_of_scores max_score
+  end
+  #check if tie for max code
 
+
+
+  end #self::Scoring
 end #Module End
+
+#
+# array = ["wizard", "dog", "xray", "artery"]
+# puts (Scrabble::Scoring.highest_score_from(array))
