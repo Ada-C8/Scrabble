@@ -1,3 +1,4 @@
+
 module Scrabble
 
   class Scoring
@@ -37,13 +38,21 @@ module Scrabble
         end
       end
 
-      # winner = ""
-      # array.each do |string|
-      #   if score(string) > score(winner)
-      #     winner = string
-      #   end
-      # end
-      # return winner
+      scores = array.map { |word| score(word) }
+      if scores.length == scores.uniq.length
+
+
+        array.inject("") do|winner, element|
+              score(winner) >= score(element) ? winner : element
+
+        end
+
+      else
+        sorted_array = array.sort_by { |word| score(word) }
+        puts sorted_array
+      end
     end
   end
 end
+
+Scrabble::Scoring.highest_score_from(['qqq', 'eee', 'zzz'])

@@ -54,7 +54,7 @@ describe "Wave 1 Scoring" do
       proc{Scrabble::Scoring.highest_score_from([1, 2, 3])}.must_raise ArgumentError
     end
     it "Returns the score of the highest scoring word" do
-      Scrabble::Scoring.highest_score_from(["aaa", "eee", "zzz"]).must_equal "zzz"
+      Scrabble::Scoring.highest_score_from(["aaa", "ggg", "zzz"]).must_equal "zzz"
     end
     it "Returns ths score of the seven letter word in case of a tie" do
       Scrabble::Scoring.highest_score_from(["zzzzzz", "haaaaaa"]).must_equal "haaaaaa"
