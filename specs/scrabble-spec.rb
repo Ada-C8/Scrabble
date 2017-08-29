@@ -11,9 +11,11 @@ describe "Scoring class" do
   end
 
   describe "Self.Score" do
-    it "Exists" do
-      Scrabble::Scoring.score("word").must_equal "word"
+    it "tests a letter returns a number" do
+      Scrabble::Scoring.score("x").must_equal 8
+      Scrabble::Scoring.score("aeioulnrst").must_equal 10
     end
+
   end
 
   describe "Self.highest_score_from" do
