@@ -33,6 +33,12 @@ describe 'Scoring' do
       @scrabble.score("jazzily").must_equal 85
     end
 
+    it "raise ArgumentError if passed anything but a string" do
+      proc{@scrabble.score(nil)}.must_raise ArgumentError
+      proc{@scrabble.score(true)}.must_raise ArgumentError
+      proc{@scrabble.score(4.0)}.must_raise ArgumentError
+    end
+
   end # 'self.score'
 
   describe 'self.highest_score_from' do
