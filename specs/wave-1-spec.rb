@@ -49,11 +49,7 @@ describe "method self.highest_score_from" do
     @array_of_words.include?(highest_word).must_equal true #why doesn't any? work?
   end
 
-
-
-
-######WRITE TO PASS
-  # it "must return the word with the highest score (no-ties)" do
-  #   Scrabble::Scoring.highest_score_from(@array_of_words).must_equal "letters"
-  # end
+  it "must return the word with the highest score (no-ties)" do
+    Scrabble::Scoring.highest_score_from(@array_of_words).must_equal "letters"
+  end
 end
