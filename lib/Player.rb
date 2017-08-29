@@ -1,11 +1,13 @@
+require_relative 'Scoring'
+
 module Scrabble
   class Player
-    #attr_reader :name, :plays
+    attr_reader :name, :plays
 
     def initialize(name)
-      #@name = name
-      #@plays = []
-      #@total_score = 0
+      @name = name
+      @plays = []
+      @total_score = 0
     end
 
     #plays returns an Array of the words played by the player
@@ -13,11 +15,17 @@ module Scrabble
     def play(word)
       #adds input word to plays Array
       #@plays << word
+
       #returns false if the player has already won
+      #won?
+
       #returns score of the word
       #Scoring.score(word)
-      #total_score += score
-      #won?
+      #total_score(score)
+    end
+
+    def total_score(score)
+      #@total_score += score
     end
 
     def highest_word_score
