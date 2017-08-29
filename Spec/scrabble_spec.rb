@@ -27,34 +27,34 @@ describe "Scrabble" do
 
     it "Can add the letters from a word" do
       word = "apples"
-      instance = Scrabble::Scoring.new(word)
-      instance.score.must_equal 10
+      Scrabble::Scoring.scored(word).must_equal 10
+      #instance.score.must_equal 10
     end
 
     it "adds 50 to any word with 7 letters" do
       word = "bananas"
-      instance = Scrabble::Scoring.new(word)
-      instance.score.must_equal 59
+      Scrabble::Scoring.scored(word).must_equal 59
     end
-
+    #
     describe "self.highest_score_from(array_of_words)" do
       #returns word with highest score
+      # instance = Scrabble::Scoring.new
       it "returns word with highest score" do
         array = ["wizard", "dog", "xray", "artery"]
         (Scrabble::Scoring.highest_score_from(array)).must_equal "wizard"
       end
 
-      #it can break ties
-      it "breaks ties when the word has the same score" do
-        array = ["blacks", "zip"]
-        (Scrabble::Scoring.highest_score_from(array)).must_equal "zip"
-      end
+      # #it can break ties
+      # it "breaks ties when the word has the same score" do
+      #   array = ["blacks", "zip"]
+      #   (Scrabble::Scoring.highest_score_from(array)).must_equal "zip"
+      # end
+
 
     end
+    # it "Contains 26 key/value pairs" do
+    #   instance = Scrabble::Scoring.new
+    #   instance.point_per_letter.length.must_equal 26
+    # end
   end
-  # it "Contains 26 key/value pairs" do
-  #   instance = Scrabble::Scoring.new
-  #   instance.point_per_letter.length.must_equal 26
-  # end
-
 end #end module
