@@ -31,9 +31,13 @@ describe "ScoringClass" do
       highest = Scrabble::Scoring.highest_scoring_word(array)
       highest.must_equal "zzzz"
     end
-    it "returns the word with the fewest tiles if there is a tie" do
 
+    it "returns the word with the fewest tiles if there is a tie" do
+      array = ["bob", "zzzz", "zzkkkk","billy"]
+      tie = Scrabble::Scoring.highest_scoring_word(array)
+      tie.must_equal "zzzz"
     end
+
 
     it "returns the word that uses 7 tiles for bonus if there is a tie" do
 

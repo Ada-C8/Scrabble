@@ -30,9 +30,41 @@ module Scrabble
       return total
     end
 
+# This one works!
+ #    def self.highest_scoring_word(words)
+ # +      words.sort_by! {|word| Scrabble::Scoring.score(word)}
+ # +      return words[-1]
+ # +    end
+
     def self.highest_scoring_word(words)
-      words.sort_by! {|word| Scrabble::Scoring.score(word)}
-      return words[-1]
+
+      words = words
+      scores = words.map! {|word| Scrabble::Scoring.score(word)}
+      word_scores = Hash[words.zip(scores)]
+      
+
+      # This one works!
+       #    def self.highest_scoring_word(words)
+       # +      words.sort_by! {|word| Scrabble::Scoring.score(word)}
+       # +      return words[-1]
+       # +    end
+
+      #
+      # word_scores = word_scores.sort_by {|word, score| score}
+      #
+      #
+      #   if word_scores.value[-1] != word_scores.value[-2]
+      #     return word_scores.key[-1]
+      #   elsif word_scores.value[-1] == word_scores.value[-2]
+      #     if word_scores.key[-1].length > word_scores.key[-2].length
+      #       return word_scores.key[-2]
+      #     else
+      #       return word_scores.key[-1]
+      #     end
+      #   end
+
+
+
     end
 
 
