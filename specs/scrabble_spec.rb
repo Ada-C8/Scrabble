@@ -34,18 +34,18 @@ end
   # end
 
 
-  # describe "self.score" do
-  #   it "should respond to score" do
-  #     # input = Scrabble::Scoring.new
-  #     (Scrabble::Scoring).must_respond_to :score
-  #   end
-  #   it "should return a total score for the word" do
-  #     output = Scrabble::Scoring.score("dog")
-  #     expected_output = 5
-  #     output.must_equal expected_output
-  #   end
-  #
-  # end
+  describe "self.score" do
+    it "should respond to score" do
+      # input = Scrabble::Scoring.new
+      (Scrabble::Scoring).must_respond_to :score
+    end
+    it "should return a total score for the word" do
+      output = Scrabble::Scoring.score("dog")
+      expected_output = 5
+      output.must_equal expected_output
+    end
+
+  end
 
   # xdescribe "self.highest_score_from" do
   #   it "Should respond to highest_score_from" do
