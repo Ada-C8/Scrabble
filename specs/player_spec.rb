@@ -37,6 +37,7 @@ describe "Player class" do
       @bennett.play("a")
       @bennett.play("blah").must_equal false
     end
+
   end
 
   describe "total_score method" do
@@ -66,5 +67,15 @@ describe "Player class" do
       @bennett.wont_respond_to :won?
     end
   end
+
+describe "highest_scoring_word" do
+  it "returns the player's highest_scoring_word" do
+    @bennett.play("zzz")
+    @bennett.play("qqq")
+    @bennett.play("aaa")
+    @bennett.highest_scoring_word.must_equal "ZZZ"
+  end
+end
+
 
 end
