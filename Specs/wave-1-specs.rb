@@ -72,6 +72,11 @@ describe "Scoring" do
       #Could not find any real words that can tie for highest score under 7 letters, since 7 letters gets a bonus of 50 points already
     end
 
+    it "if there is a tie between two 7-letter words, the first word will be selected for highest score" do
+    word_array = ["dancers", "animal", "what", "ZQZZQQ", "dpple", "doncers"]
+    Scrabble::Scoring.highest_score_from(word_array).must_equal "DANCERS"
+    end
+
   end
 
 end
