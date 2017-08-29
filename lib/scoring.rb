@@ -36,35 +36,41 @@ module Scrabble
       return total
     end
 
-    def self.highest_score_from(words_arr)
-      highest_score = words_arr[0]
-      # tie = []
-      words_arr.each do |word|
-        if score(word) > score(highest_score)
-          highest_score = word
-        # elsif score(word) == score(highest_score)
-          # tie << word
-          # tie << highest_score
-        end
-      end
-      return highest_score.upcase
-
-
-      # this code doesn't work
-      # scorefinder = {}
+    def self.highest_score_from(words)
+      # # using variable replace
+      # highest_score = words_arr[0]
+      # # tie = []
       # words_arr.each do |word|
-      #   scorefinder[word] = score(word)
+      #   if score(word) > score(highest_score)
+      #     highest_score = word
+      #   # elsif score(word) == score(highest_score)
+      #     # tie << word
+      #     # tie << highest_score
+      #   end
       # end
-      #
-      # highest_score = scorefinder.values.max
-      # highest_scoring_words = []
-      # highest_scoring_words << scorefinder.select { |k, v| v == highest_score }.keys
-      # binding.pry
-      # if highest_scoring_words.length == 0
-      #   return highest_scoring_words[0][0]
-      # end
+      # return highest_score.upcase
 
-      #
+      # using enumerable
+      # this line works by itself for not ties.
+      # highest_scoring_word = words.max_by { |word| score(word)}
+
+      scores_hash = {}
+      words.each do |word|
+        scores_hash[word] = score(word)
+      end
+
+
+      highest_score = scores_hash.values.max
+      highest_scoring_words = scores_hash.select { |k, v| v == highest_score }.keys
+      # binding.pry
+      if highest_scoring_words.length == 1
+        winning_word = highest_scoring_words[0].upcase
+        return winning_word
+      else
+        winning_word = highest_scoring_words.min_by { |word| word.length}
+        return winning_word.upcase
+      end
+
       # this is logic for determining ties
       # binding.pry
       # if tie
@@ -75,7 +81,17 @@ module Scrabble
       #   shortest word wins
       # end
 
-      # return highest_score.upcase
+      # # using .zip method
+      # scores = []
+      # words.each do |word|
+      #   scores << score(word)
+      # end
+      #
+      # highest_score = scores.zip(words)
+      #
+      # highest_scoring_word = highest_score[1].upcase
+
+      # return highest_scoring_word.upcase
     end
 
   end
