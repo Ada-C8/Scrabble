@@ -9,19 +9,21 @@ module Scrabble
     end
 
     def play(word)
-      @plays << word.upcase
-      return Scoring.score(word)
-      # if won? == false
-      #   @plays << word.upcase
-      #   return Scoring.score(word)
-      # else
-      #   return false
-      # end
+      if @plays != [] && won?
+        return false
+      else
+        @plays << word.upcase
+        return Scoring.score(word)
+      end
     end
 
     def total_score
       total_score = @plays.map { |word| Scoring.score(word)}.reduce(:+)
       return total_score
+    end
+
+    def highest_scoring_word
+      Scoring.highest_score_from(@plays)
     end
 
     private
