@@ -47,21 +47,21 @@ end
 
   end
 
-  # xdescribe "self.highest_score_from" do
-  #   it "Should respond to highest_score_from" do
-  #     (Scrable::Scoring).must_respond_to :highest_score_from
-  #   end
-  #
-  #   it "Should select highest_score_from Array" do
-  #     #Arrage
-  #     words = ["dog", "cat", "technical"]
-  #     expected_output = "technical"
-  #     # Action
-  #     output = Scrabble::Scoring(words)
-  #     # Assert
-  #     output.must_equal expected_output
-  #   end
-  # end
+  describe "self.highest_score_from" do
+    it "Should respond to highest_score_from" do
+      (Scrabble::Scoring).must_respond_to :highest_score_from
+    end
+
+    it "Should select highest_score_from Array" do
+      #Arrage
+      words = ["dog", "cat", "technical"]
+      expected_output = "technical"
+      # Action
+      output = Scrabble::Scoring(words)
+      # Assert
+      output.must_equal expected_output
+    end
+  end
   #
   # xdescribe "self.tie breaking rules" do
   #   #Arrage

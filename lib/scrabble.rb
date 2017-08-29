@@ -37,6 +37,9 @@ module Scrabble
       return score
     end
 
+    def self.highest_score_from(input_array)
+    end
+
 
 
 
