@@ -62,10 +62,13 @@ describe "Scoring Class" do
         #CHECK RESULT OF THAT METHOD
         winning_word.must_equal "7777777"
       end
-      it "" do
+      it "returns first word if same length and same word" do
         #SET UP VARIABLES
+        words_and_scores = [["fffe", 13],["fffa", 13],["jig", 11]]
         #CALL THE METHOD BEING TESTED
+        winning_word = Scrabble::ScoringClass.tie(words_and_scores)
         #CHECK RESULT OF THAT METHOD
+        winning_word.must_equal "fffe"
       end
     end
 
