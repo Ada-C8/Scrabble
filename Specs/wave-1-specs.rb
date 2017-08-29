@@ -15,7 +15,7 @@ describe "Scoring" do
 
   describe "self.score" do
     before do
-      new_word = Scrabble::Scoring.new
+      Scrabble::Scoring.new
     end
     it "can be called on Scoring" do
       Scrabble::Scoring.must_respond_to :score
@@ -47,8 +47,8 @@ describe "Scoring" do
     end
 
     it "returns correct highest score word from array of 2 words" do
-      word_array = ["apples", "cat"]
-      Scrabble::Scoring.highest_score_from(word_array).must_equal "APPLES"
+      word_array = ["cat", "apples", "zygote"]
+      Scrabble::Scoring.highest_score_from(word_array).must_equal "ZYGOTE"
     end
 
     it "returns correct highest score word from array of 5 words" do
@@ -67,7 +67,7 @@ describe "Scoring" do
     end
 
     it "returns 7 letter word in case of tie involving a 7 letter word" do
-      word_array = ["dancers", "animal", "what" "ZQZZQQ", "dpple"]
+      word_array = ["dancers", "animal", "what", "ZQZZQQ", "dpple"]
       Scrabble::Scoring.highest_score_from(word_array).must_equal "DANCERS"
       #Could not find any real words that can tie for highest score under 7 letters, since 7 letters gets a bonus of 50 points already
     end
