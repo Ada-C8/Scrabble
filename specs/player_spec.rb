@@ -42,4 +42,8 @@ describe "Player" do
 
   end
 
+  describe 'total_score' do
+    
+  end
+
 end

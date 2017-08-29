@@ -12,9 +12,8 @@ module Scrabble
 
     def play(word)
       @plays << word
-      # Adds the input word to the plays Array
+      Scoring.score(word)
       # Returns false if player has already won
-      # Returns the score of the word
     end
 
     def total_score
