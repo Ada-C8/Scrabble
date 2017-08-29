@@ -15,6 +15,11 @@ module Scrabble
     end
 
     def self.score(word)
+
+      unless word.class == String
+        raise ArgumentError.new("Input must be a String")
+      end
+
       word_caps = word.upcase
       word_arr = word_caps.split("")
 
@@ -36,5 +41,9 @@ module Scrabble
 
       return total_score
     end
+
+    def self.highest_score_from_array
+    end
+
   end # class
 end # module

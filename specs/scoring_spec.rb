@@ -38,10 +38,11 @@ describe "Scoring" do
       test_class.must_respond_to :score
     end
 
-    it "The input is a string (case insensitive)" do
-      test_class = Scrabble::Scoring.score("word")
-      test_class.must_be_instance_of String
-      test_class.must_equal "WORD"
+    it "Raises an ArgumentError if input is not a String" do
+      proc { Scrabble::Scoring.score(123)}.must_raise ArgumentError
+      # test_class = Scrabble::Scoring.score("word")
+      # test_class.must_be_instance_of String
+      # test_class.must_equal "WORD"
     end
 
     it "Returns the total score for the given word" do
@@ -57,4 +58,21 @@ describe "Scoring" do
     end
   end
 
+  describe "highest_score_from_array method" do
+
+    it "Can be called" do
+      test_class = Scrabble::Scoring
+      test_class.must_respond_to :highest_score_from_array
+    end
+
+    it "Returns the word in the array with the highest score" do
+
+    end
+
+  end
 end
+
+# self.highest_score_from(array_of_words): returns the word in the array with the highest score. In the case of tie, use these tiebreaking rules:
+# It’s better to use fewer tiles, in the case of a tie, prefer the word with the fewest letters.
+# There is a bonus for words that are seven letters. If the top score is tied between multiple words and one used all seven letters, choose the one with seven letters over the one with fewer tiles.
+# If the there are multiple words that are the same score and same length, pick the first one in the supplied list.
