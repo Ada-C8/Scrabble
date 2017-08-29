@@ -15,7 +15,7 @@ module Scrabble
 
     def play(word)
       #adds input word to plays Array
-      #@plays << word
+      @plays << word
 
       #returns false if the player has already won
       #won?
