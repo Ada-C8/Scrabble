@@ -22,12 +22,15 @@ module Scrabble
 
     def self.highest_score_from(array_of_words)
       highest_score = 0
+      highest_score_word = nil
       array_of_words.each do |word|
-        if Scrabble::Scoring.score(word) > highest_score
-          highest_score = Scrabble::Scoring.score(word)
+        word_score = Scrabble::Scoring.score(word)
+        if word_score > highest_score
+          highest_score = word_score
+          highest_score_word = word.upcase
         end
       end
-    end
-
+      return highest_score_word
+    end # DEF
   end #Scoring
 end #Scrabble
