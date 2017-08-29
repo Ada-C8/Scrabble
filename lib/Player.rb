@@ -10,6 +10,7 @@ module Scrabble
       @total_score = 0
     end
 
+
     #plays returns an Array of the words played by the player
 
     def play(word)
