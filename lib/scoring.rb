@@ -37,10 +37,6 @@ module Scrabble
     end
 
     def self.highest_score_from(words)
-      # Product.all.sort_by do |product|
-      #   product.margins_average_year_over_year(adjust_for_inflation: true)
-      # end
-
 
       scores_hash = {}
       words.each do |word|
@@ -56,6 +52,42 @@ module Scrabble
         winning_word = highest_scoring_words.min_by { |word| word.length}
         return winning_word.upcase
       end
+
+      # if .length == 1
+      #   return scores[scores.keys.max].upcase
+      # else
+      #   winning_word = highest_scoring_words.min_by { |word| word.length}
+      #   return winning_word.upcase
+      # end
+
+      # scores = words.group_by { |word| score(word)}
+      # highest_scoring_words = scores[scores.keys.max]
+      # lengths = highest_scoring_words.group_by { |word| word.length}
+      # if lengths.keys.include?(7)
+      #   return lengths[7]
+      # else
+      #   return lengths[lengths.keys.min]
+      # end
+
+      # scores_hash = words.inject({}) { |hash, word| hash.update word => score(word) }
+
+
+      # highest_scoring_word = words.max_by { |word| score(word) }
+      # highest_scoring_words = words.select do |word|
+      #   score(word) == score(highest_scoring_word)
+      # end
+      # # lowest_to_highest = words.sort_by { |word| score(word) }
+      # if highest_scoring_words.length == 1
+      #   return highest_scoring_words[0].upcase
+      # else
+      #   lengths = highest_scoring_words.group_by { |word| word.length }
+      #   if lengths.keys.include?(7)
+      #     return lengths[7].upcase
+      #   else
+      #     return lengths[lengths.keys.min].upcase
+      #   end
+      # end
+
     end
   end
 end
