@@ -61,14 +61,13 @@ module Scrabble
       seven_letters = tie_array.select{|word| word.length == 7}
       if seven_letters.length >= 1
         return seven_letters[0] # => winning word, only 1 word with 7 letters
-      else
-        shortest_word = input_array.inject do |memo, word|
-          memo.length >= word.length ? memo : word
-        end
-        if shortest_word.length >= 1
-          return shortest_word[0] # => winning word
-          # => TODO: raise ArgumentError
-        end
+      end
+      shortest_word = tie_array.inject do |memo, word|
+        memo.length <= word.length ? memo : word
+      end
+      if shortest_word.length >= 1
+        return shortest_word # => winning word
+        # => TODO: raise ArgumentError
       end
     end # => end of tie breaker
 

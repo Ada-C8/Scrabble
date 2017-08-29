@@ -97,10 +97,16 @@ describe "Scoring class " do
       output.must_equal expected_output
     end
     it "should pick first 7 letter word if multiple 7 letter words" do
-
+      input = ["AAAAAAA", "EEEEEEE"]
+      expected_output = "AAAAAAA"
+      output = Scrabble::Scoring.tie_breaker(input)
+      output.must_equal expected_output
     end
     it "should pick shortest word if there are no 7 letter words" do
-
+      input = ["BB", "AAAAAA"]
+      expected_output = "BB"
+      output = Scrabble::Scoring.tie_breaker(input)
+      output.must_equal expected_output
     end
     it "should pick first word given if they are same score and letter count" do
     end
