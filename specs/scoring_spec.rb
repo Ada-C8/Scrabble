@@ -55,6 +55,19 @@ describe "scoring" do
       Scrabble::Scoring.highest_score_from(["cat", "pony"]).must_equal "PONY"
     end #it "should pick the highest scoring word" do
 
+    it "should pick the word with 7 letters" do
+      Scrabble::Scoring.highest_score_from(["cat", "pony", "animals"]).must_equal "ANIMALS"
+    end
+
+    it "if equal, it should pick the word with least number of letters" do
+      Scrabble::Scoring.highest_score_from(["dog", "train"]).must_equal "DOG"
+    end
+
+    it "if equal in score and length, it should pick the first word in the list" do
+      #TODO:
+      # Scrabble::Scoring.highest_score_from(["dog", "train"]).must_equal "DOG"
+    end
+
   end # Describe
 
 end #describe "scoring" do

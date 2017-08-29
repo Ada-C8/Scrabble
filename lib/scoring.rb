@@ -21,37 +21,45 @@ module Scrabble
     end #def self.score(word)
 
     def self.highest_score_from(array_of_words)
-      def self.highest_score_from(array_of_words)
         #TODO
         highest_score = 0
-        highest_score_words = []
+        highest_score_words = nil
 
         array_of_words.each do |word|
           word_score = Scrabble::Scoring.score(word)
           if word_score > highest_score
-            highest_score_words << word
+            highest_score = word_score
+            highest_score_words = word.upcase
           elsif word_score == highest_score
-            highest_score_words << word
+            if word.length == 7
+              highest_score_words = word.upcase
+            elsif word.length < highest_score_words.length
+              highest_score_words = word.upcase
+            else
+              # highest_score_words = highest_score_words
+            end
           end #if/else
         end #.each
+        return highest_score_words
 
-          highest_score_words.each do |word|
-            word.upcase!
-          end
 
-          if highest_score_words.length == 1
-            return highest_score_words[0]
-          elsif highest_score_words.length > 1
-            highest_score_words.each do |word|
-              if word.length == 7
-                return word
-              end #if
-            end #.each
-
-            shortest_word = highest_score_words.min{|a,b| a.size <=> b.size }
-            return shortest_word
-          end #if/else\
-        end #.each
+        # highest_score_words.each do |word|
+        #   word.upcase!
+        # end
+        #
+        # if highest_score_words.length == 1
+        #   return highest_score_words[0]
+        # elsif highest_score_words.length > 1
+        #   highest_score_words.each do |word|
+        #     if word.length == 7
+        #       return word
+        #     end #if
+        #   end #.each
+        #
+        #   shortest_word = highest_score_words.min{|a,b| a.size <=> b.size }
+        #   return shortest_word
+      #   end #if/else\
+      # end #.each
 
 
       # highest_score = 0
