@@ -11,9 +11,6 @@ module Scrabble
       letters = word.downcase.split('', word.length)
       word_score = 0
 
-      # if word.length == 7
-        # word_score += 50
-
       letters.each do |letter|
         case letter
         when "a", "e", "i", "o", "u", "l", "n", "r", "s", "t"
@@ -32,8 +29,12 @@ module Scrabble
           score_arr << 10
         end #end case
       end #end letters loop
-      sum = score_arr.inject(:+)
-      return sum
+      word_score = score_arr.inject(:+)
+      # add 50 pt bonus for 7 letter word
+      if word.length >= 7
+        word_score += 50
+      end
+      return word_score
     end #end self.score
   end
 end
