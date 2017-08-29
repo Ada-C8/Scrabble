@@ -21,18 +21,12 @@ module Scrabble
         word.length.times do |index|
           score_chart.each do |point, score_letters|
             score_letters.each do |score_letter|
-              if score_letter == word[index]
-                this_score += point
-              end
+              this_score += point if score_letter == word[index]
             end
           end
         end
       end
-      if word.length == 7
-        return this_score + 50
-      else
-        return this_score
-      end
+      word.length == 7 ? this_score + 50 : this_score
     end
 
     def self.highest_score_from(array_of_words)

@@ -57,12 +57,12 @@ describe "The Score method" do
 end
 
 describe "The highest_score_from method" do
-  # it "Responds to the highest score from method" do
-  #   Scrabble::Scoring.must_respond_to :highest_score_from
-  # end
-  # it "should return the highest scoring word" do
-  #   Scrabble::Scoring.highest_score_from(["AA","ZZ"]).must_equal "ZZ"
-  # end
+  it "Responds to the highest score from method" do
+    Scrabble::Scoring.must_respond_to :highest_score_from
+  end
+  it "should return the highest scoring word" do
+    Scrabble::Scoring.highest_score_from(["AA","ZZ"]).must_equal "ZZ"
+  end
   it "If there is a tie, it should return the shorter word" do
     Scrabble::Scoring.highest_score_from(["KK", "Z"]).must_equal "Z"
   end
