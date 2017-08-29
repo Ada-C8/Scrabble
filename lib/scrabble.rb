@@ -38,6 +38,17 @@ module Scrabble
     end
 
     def self.highest_score_from(input_array)
+      word_scores = []
+
+      input_array.each do |word|
+        word_scores << self.score(word)
+      end
+      greatest_score = word_scores.sort![-1]
+      input_array.each do |word|
+        if self.score(word) == greatest_score
+          return word
+        end
+      end
     end
 
 

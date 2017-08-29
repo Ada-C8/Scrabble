@@ -57,7 +57,7 @@ end
       words = ["dog", "cat", "technical"]
       expected_output = "technical"
       # Action
-      output = Scrabble::Scoring(words)
+      output = Scrabble::Scoring.highest_score_from(words)
       # Assert
       output.must_equal expected_output
     end
