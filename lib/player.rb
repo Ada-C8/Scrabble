@@ -6,9 +6,9 @@ module Scrabble
       @plays = []
     end
 
-    # def play(word)
-    #
-    # end
+    def play(word)
+
+    end
 
   end
 end
