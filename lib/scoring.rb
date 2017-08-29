@@ -59,12 +59,20 @@ module Scrabble
       end
 
       max = scores.max
-      puts "max score is #{max}"
 
-      if array_of_words.count(max) == 1
-        index_of_max_word = array_of_words.index(max)
-        return index_of_max_word
+      all_max = array_of_word_scores.find_all{|array_of_2| array_of_2[1]==max }
+      #puts "max score is #{all_max}"
+
+      if all_max.length == 1
+        return all_max[0][0]
+      else
+        all_max.each do |n|
+          if n[0].length == 7
+            return n[0]
+          end
+        end
       end
+
 
       #   return array_of_words[e]
       # elsif array_of_words.count(max) > 1
@@ -78,6 +86,6 @@ module Scrabble
 
 end #module end
 
-array_words = ["house", "mama", "florida", "flan", "dulce"]
+array_words = ["house", "mama", "flan", "dulce"]
 
-puts Scrabble::Scoring.highscore_from(array_words)
+#puts Scrabble::Scoring.highscore_from(array_words)

@@ -52,11 +52,17 @@ describe "Scrabble::Scoring class" do
       # Scrabble::Scoring.highscore_from(array_words).must_equal 61
     end
 
-    it "Returns the word with the max score" do
+    it "Returns the word with the max score, when is just one winner" do
       array_words = ["house", "mama", "florida", "flan", "dulce"]
 
-      Scrabble::Scoring.highscore_from(array_words).must_equal "The winning word is florida"
+      Scrabble::Scoring.highscore_from(array_words).must_equal "florida"
     end
+
+    it "Return the word with 7 letters in case a tie" do
+      array_words = ["BADAAAA", "QQQQQQ", "PLANES"]
+      Scrabble::Scoring.highscore_from(array_words).must_equal "BADAAAA"
+    end
+
   end #describe high score method
 
 end #describe first end
