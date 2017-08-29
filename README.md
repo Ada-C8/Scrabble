@@ -99,7 +99,7 @@ These comprehension questions are optional, and do not need to be answered/submi
 - What kinds of edge cases did you test for in Scoring and Player behavior?
 -->
 
-<!--
+
 ## Wave 3
 ### Primary Requirements
 #### `TileBag`
