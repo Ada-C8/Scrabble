@@ -22,6 +22,5 @@ module Scrabble
       return @total_score >= 100
     end
 
-
   end
 end
