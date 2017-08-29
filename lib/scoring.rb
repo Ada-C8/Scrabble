@@ -11,6 +11,11 @@ module Scrabble
     def self.score(word)
       score_arr = []
       letters = word.downcase.split('', word.length)
+      word_score = 0
+      
+      # if word.length == 7
+        # word_score += 50
+
       letters.each do |letter|
         case letter
         when "a", "e", "i", "o", "u", "l", "n", "r", "s", "t"

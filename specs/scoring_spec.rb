@@ -26,11 +26,16 @@ describe "Scoring Class" do
         Scrabble::ScoringClass.score("q").must_equal 10
       end
       it "Returns the score for a word" do
-        Scrabble::ScoringClass.score("agmvJqk").must_equal 33
+        Scrabble::ScoringClass.score("tanish").must_equal 9
       end
+
+      it "Returns the score for 7 letter word with bonus" do
+        Scrabble::ScoringClass.score("agmvJqk").must_equal 83
+      end
+
     end
   end
-  #arrange
-  #act
-  #assert
 end
+#arrange
+#act
+#assert
