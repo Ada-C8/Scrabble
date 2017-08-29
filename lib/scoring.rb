@@ -48,12 +48,23 @@ module Scrabble
       return higest_score_word
     end
 
-    def tie(words_and_scores)
+    def self.tie(words_and_scores)
       # iterate over nested array and return words with highest score
       # compare words by length
-      # return word with shortest length 
-    end
+      # return word with shortest length
+      max_score = words_and_scores.max_by{|a| a[1]}[1]
+      top_scoring_words = words_and_scores.select{|a| a[1] == max_score}.map(&:first)
+      tie_word = top_scoring_words[0]
 
+      top_scoring_words.each do |word|
+        if word.length == 7
+          return word
+        elsif word.length < tie_word.length
+          tie_word = word
+        end
+      end
+      return tie_word
+    end
   end # end of ScoringClass
 end
 
