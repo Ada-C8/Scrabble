@@ -12,7 +12,6 @@ describe "scoring" do
   end
 
   describe "SCORE_CHART" do
-    #TODO
     it "must be able to return SCORE_CHART hash" do
       Scrabble::Scoring::SCORE_CHART.must_be_kind_of Hash
     end #it "must be able to initilize @score_chart as a hash"
@@ -38,7 +37,7 @@ describe "scoring" do
     end #it "will return the right score for a word" do
 
     it "will return the right score for elephant" do
-        Scrabble::Scoring.score("turkey").must_equal 13
+      Scrabble::Scoring.score("turkey").must_equal 13
     end #it "will return the right score for elephant" do
 
     it "will add 50 to a 7 letter word" do
