@@ -36,7 +36,15 @@ describe "Testing highest_score_from" do
 
    it "prioritizes word with seven letters as winner" do
      Scrabble::Scoring.highest_score_from_array(["qqqzzx", "aeiouad"]).must_equal 'aeiouad'
+     Scrabble::Scoring.highest_score_from_array(["cat", "doge", "qqqzzx", "aeiouad", "qkz", "kin"]).must_equal 'aeiouad'
    end
+
+   it "breaks ties between long and short words with same value" do
+     Scrabble::Scoring.highest_score_from_array(["qaz", "zokk"]).must_equal 'qaz'
+     Scrabble::Scoring.highest_score_from_array(["kin", "qaz", "zokk", "cat", "doge"]).must_equal 'qaz'
+   end
+
+
 
 end
 

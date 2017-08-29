@@ -49,7 +49,7 @@ module Scrabble
         if seven_letters.length >= 1 #if there are any with 7 letters
           return seven_letters.first #return the first one
         else
-          fewest_letters = score[max_score].min_by {|word| word.length} #returns the first intance of (a word with) length F, where F is fewest number of letters.
+          fewest_letters = scores[max_score].min_by {|word| word.length} #returns the first intance of (a word with) length F, where F is fewest number of letters.
 
           return fewest_letters
         end
