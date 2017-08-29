@@ -7,16 +7,43 @@ describe "Scoring class" do
     end
 
     it "Returns an integer from a string input" do
-      # cat is worth 5
-      @score.must_equal 5
       @score.must_be_instance_of Integer
 
+    end
+
+    it "Correctly scores 'cat'" do
+      # cat is worth 5
+      @score.must_equal 5
     end
 
     it "Adds a 50-point bonus if it's a seven-letter word (or longer)" do
       score = Scrabble::Scoring.score("scrabble")
 
       score.must_equal 64
+    end
+  end
+
+  describe "self.score improper input cases" do
+    it "Raises an error if word is empty string" do
+      proc {Scrabble::Scoring.score("")}.must_raise ArgumentError
+    end
+
+    it "Raises an error if word is passed nil" do
+      proc {Scrabble::Scoring.score(nil)}.must_raise ArgumentError
+    end
+
+    it "Raises an error if word is not a string" do
+      non_strings = [1234, 4.56, :key, ["sugar", 2], {4 => "pie"}]
+
+      proc {
+        non_strings.each do |thing|
+          Scrabble::Scoring.score(thing)
+        end
+      }.must_raise ArgumentError
+    end
+
+    it "Raises an error if word is string with non-alphabetical characters" do
+      proc {Scrabble::Scoring.score("app123")}.must_raise ArgumentError
     end
   end
 
@@ -32,7 +59,7 @@ describe "Scoring class" do
     #
     #   Scrabble::Scoring.highest_score_from_array(words).must_equal "SCRABBLE"
     # end
-
+    #
     # it "Breaks tie by choosing shorter word unless one of the words is 7 chars long" do
     #   words = ["aaaaaad", "qqqqqj"]
     #
