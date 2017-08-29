@@ -46,18 +46,13 @@ module Scrabble
       word.chars.each do |char|
         num += LETTER_VALUES[char.downcase]
       end
-      #rewrite this to be more concise
       num += 50 if word.length == 7
-      # if word.length == 7
-      #   # num = num + 50
-      #   return num + 50
-      # else
         return num
       # end # if conditional
     end  # .each do loop
 
 # note to rebecca:
-# could we possibly use .map, .select and .max to do this more concisely? 
+# could we possibly use .map, .select and .max to do this more concisely?
     def self.highest_score_from(array_of_words)
       max_score = 0
       max_word = ""
