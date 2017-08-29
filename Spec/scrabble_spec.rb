@@ -9,15 +9,15 @@ require_relative '../Lib/scrabble.rb'
 describe "Scrabble" do
 
   describe "Scoring class" do
-
-    it "Can be created" do
-      instance = Scrabble::Scoring.new
-      instance.must_be_kind_of Scrabble::Scoring
+    describe "initialize" do
+      it "Can be created" do
+        instance = Scrabble::Scoring.new
+        instance.must_be_kind_of Scrabble::Scoring
+      end
     end
   end
 
-  describe "instance of score" do
-
+  describe "Scored method" do
     it "has value for all letters" do
       ("A".."Z").each do |letter|
         instance = Scrabble::Scoring.new(letter)
@@ -36,25 +36,32 @@ describe "Scrabble" do
       Scrabble::Scoring.scored(word).must_equal 59
     end
     #
-    describe "self.highest_score_from(array_of_words)" do
-      #returns word with highest score
-      # instance = Scrabble::Scoring.new
-      it "returns word with highest score" do
-        array = ["wizard", "dog", "xray", "artery"]
-        (Scrabble::Scoring.highest_score_from(array)).must_equal "wizard"
-      end
-
-      # #it can break ties
-      # it "breaks ties when the word has the same score" do
-      #   array = ["blacks", "zip"]
-      #   (Scrabble::Scoring.highest_score_from(array)).must_equal "zip"
-      # end
-
-
-    end
-    # it "Contains 26 key/value pairs" do
-    #   instance = Scrabble::Scoring.new
-    #   instance.point_per_letter.length.must_equal 26
-    # end
   end
+
+  #
+  describe "self.highest_score_from(array_of_words)" do
+    #returns word with highest score
+    # instance = Scrabble::Scoring.new
+    it "returns word with highest score if there are no ties" do
+      array = ["wizard", "dog", "xray", "artery"]
+      (Scrabble::Scoring.highest_score_from(array)).must_equal "wizard"
+    end
+
+    #it can break ties
+    it " If the there are multiple words that are the same score and same length, pick the first one in the supplied list." do
+      array = ["zap", "zip"]
+      (Scrabble::Scoring.highest_score_from(array)).must_equal "zap"
+    end
+
+    it "If the there are multiple words that are the same score but are different lengths (but not 7 letters), it returns the shortest" do
+      array = ["barn", "cat", "zags", "zip"]
+      (Scrabble::Scoring.highest_score_from(array)).must_equal "zip"
+    end
+  end
+
+  it "If the there are multiple words that are the same score, different lengths, and one is  7 letters long, it returns first 7 letter word" do
+    array = ["aeioud", "aeiouae"]
+    (Scrabble::Scoring.highest_score_from(array)).must_equal "aeiouae"
+  end
+# end
 end #end module
