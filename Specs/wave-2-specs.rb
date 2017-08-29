@@ -18,13 +18,18 @@ describe 'Player' do
     end
   end
 
-    describe "plays" do
+    describe "plays" dog
+      it "must return an Array" do
+        @new_player.plays.must_be_kind_of Array
+      end
+###ADD MORE TESTS?
+    end
 
-      # it "must return an Array" do
-      #   @new_player.plays.must_be_kind_of Array
-      # end
+    describe "plays(word)" do
 
-      it
+      it "adds input to plays array" do
+        @newplayer
+      end
 
     end
 
