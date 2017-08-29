@@ -12,9 +12,13 @@ module Scrabble
     }
 
     def self.score(word)
-      unless word.class == String && word.match?(/^[A-z]+$/) && word.length < 8
+      unless word.class == String && word.match?(/^[A-z]+$/)
         raise ArgumentError.new("Value passed in doesn't contain only letters from A-Z")
       end
+      if word.length > 7
+        raise ArgumentError.new("You can only have words up to 7 letters.")
+      end
+
       word = word.downcase
       word_score = 0
       # Add 50 points if the word is 7 letters
