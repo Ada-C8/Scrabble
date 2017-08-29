@@ -36,6 +36,36 @@ describe "Scoring" do
     it "returns score of zero if input is an empty string" do
       Scrabble::Scoring.score("").must_equal 0
     end
+
+    #WRite tests to handle inappropriate input (and the code)
+  end
+
+  describe "self.highest_score_from(array_of_words)" do
+
+    it "Scoring responds to self.highest_score_from" do
+      Scrabble::Scoring.must_respond_to :highest_score_from
+    end
+
+    it "returns correct highest score word from array of 2 words" do
+
+    end
+
+    it "returns correct highest score word from array of 5 words" do
+
+    end
+
+    it "in case of a tie where words are same length, returns 1st word entry" do
+      
+    end
+
+    it "returns smallest word in case of a tie (where words are under 7 letters)" do
+
+    end
+
+    it "returns 7 letter word in case of tie involving a 7 letter word" do
+
+    end
+
   end
 
 end
