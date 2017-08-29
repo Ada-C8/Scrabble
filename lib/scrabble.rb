@@ -57,21 +57,23 @@ module Scrabble
 
       array_of_words.each do |word|
         if  self.score(word) == max_score
-          if word.length < max_word.length
+          if word.length != 7 || max_word.length != 7
+            if word.length == 7
+              max_word = word
+              max_score = self.score(word)
+            end
+          elsif word.length < max_word.length
             max_word = word
             max_score = self.score(word)
             # return max_word.downcase
           end
-          # max_word.downcase
         elsif self.score(word) > max_score
           max_score = self.score(word)
           max_word = word
-        end
-      end
+        end # if conditional
+      end # do loop
       return max_word.downcase
-
-
-    end
+    end # self.highest_score_from
 
   end #scoring
 end #module
