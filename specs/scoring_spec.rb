@@ -50,6 +50,8 @@ describe "scoring" do
     it "should pick the highest scoring word" do
       Scrabble::Scoring.highest_score_from(["cat", "elephant"]).must_equal "ELEPHANT"
     end
+
+
   end # Describe
 
 end #describe "scoring" do
