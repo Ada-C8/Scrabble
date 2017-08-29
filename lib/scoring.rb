@@ -43,9 +43,7 @@ module Scrabble
         # nested array with word and its cooresponding score
         scores_array << [word, score(word)]
       end
-
-      higest_score_word = scores_array.max_by { |word| word[1] }[0]
-      return higest_score_word
+      return tie(scores_array)
     end
 
     def self.tie(words_and_scores)
