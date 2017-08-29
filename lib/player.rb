@@ -3,6 +3,8 @@ module Scrabble
     # name: returns the value of the @name instance variable
     # plays: returns an Array of the words played by the player
 
+    attr_reader :name, :plays
+
     def initialize(name)
       @name = name
       @plays = []
