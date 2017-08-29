@@ -11,7 +11,6 @@ describe 'Player' do
   end
 
   describe "initialize" do
-    end
     it "must_be_instance_of Player" do
       new_player = Scrabble::Player.new("Ada")
       new_player.must_be_instance_of Scrabble::Player
