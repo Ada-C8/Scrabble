@@ -23,17 +23,17 @@ module Scrabble
     end
 
     def highest_scoring_word
-      Scoring.highest_score_from(@plays)
+      return Scoring.highest_score_from(@plays)
+    end
+
+    def highest_word_score
+      return Scoring.score(highest_scoring_word)
     end
 
     private
 
     def won?
-      if total_score <= 100
-        return false
-      else
-        return true
-      end
+      return total_score > 100
     end
 
   end
