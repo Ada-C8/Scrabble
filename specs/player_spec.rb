@@ -61,6 +61,18 @@ describe "Player" do
 
       @player.highest_scoring_word.must_equal "jazzily"
     end
+
+    it "returns Exception if called before words are played" do
+      @player.highest_scoring_word.must_raise Exception
+    end
+  end
+
+  describe "highest_word_score" do
+    it "returns the numeric highest word score" do
+      @player.play("jazzily")
+
+      @player.highest_word_score.must_equal 85
+    end
   end
 
 end

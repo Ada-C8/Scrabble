@@ -26,7 +26,7 @@ module Scrabble
     end
 
     def highest_scoring_word
-      # highest_scoring_word: Returns the highest scoring played word
+      Scoring.highest_score_from(@plays)
     end
 
     def highest_word_score
