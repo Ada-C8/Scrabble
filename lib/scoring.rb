@@ -27,6 +27,18 @@ module Scrabble
       return word_score
     end
 
+    def self.highest_score_from(word_array)
+      word_scores = word_array.map { |word| [Scoring.score(word), word.downcase] }
 
+      high_score = word_scores.max_by { |word_score| word_score[0] }
+
+      winning_words = word_scores.select { |word_score| word_score[0] == high_score[0] }
+      puts winning_words
+      if winning_words.length > 1
+        return winning_words.min_by { |win_word| win_word[1].length }[1]
+      else
+        return winning_words[0][1]
+      end
+    end
   end
 end

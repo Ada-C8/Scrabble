@@ -28,26 +28,26 @@ describe "Scoring" do
   describe "self.highest_score_from(array_of_words)" do
     it "returns the word in the array with the highest score" do
       words = ["Cut", "Qqqqq"]
-      crabble::Scoring.highest_score_from(words).must_be_instance_of String
+      Scrabble::Scoring.highest_score_from(words).must_be_instance_of String
       Scrabble::Scoring.highest_score_from(words).must_equal "qqqqq"
     end
 
-    xit "returns the word in the array with fewer letters in a tie" do
+    it "returns the word in the array with fewer letters in a tie" do
       words = ["kfc", "xy", "fdfd"]
       Scrabble::Scoring.highest_score_from(words).must_equal "xy"
     end
 
-    xit "returns the word in the array with 7 letters as opposed to word with fewer letters" do
+    it "returns the word in the array with 7 letters as opposed to word with fewer letters" do
       words = ["qqqqqq", "qqqqqjg"]
       Scrabble::Scoring.highest_score_from(words).must_equal "qqqqqjg"
     end
 
-    xit "returns the first word in the array when all words have the same points and length" do
+    it "returns the first word in the array when all words have the same points and length" do
       words = ["dog", "dug", "dig", "God"]
       Scrabble::Scoring.highest_score_from(words).must_equal "dog"
     end
 
-    xit "raises an error if one of the words in the array is not composed of only letters" do
+    it "raises an error if one of the words in the array is not composed of only letters" do
       words1 = ["dog", "*@?;!^", ["b", "y", "e"], ""]
       words2 = ["*@?;!^", "apple", "!@%"]
       words3 = ["banana", "pine", nil]
