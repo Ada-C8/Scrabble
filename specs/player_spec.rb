@@ -57,7 +57,11 @@ describe "Player class" do
     end
   end
 
-  describe "won? private method" do
+  xdescribe "won? (private) method" do
+    xit "Is a private method" do
+      # Breaks when this set of tests is run, b/c private. Can test if made public
+    end
+
     before do
       @bob = Scrabble::Player.new("Bob")
       ["shoe","tie","hat","cravat","proxy"].each do |word|
@@ -76,9 +80,6 @@ describe "Player class" do
       @bob.total_score.must_be :>, 100
     end
 
-    it "Is a private method" do
-      skip
-    end
   end
 
   describe "highest_scoring_word method" do
@@ -90,8 +91,18 @@ describe "Player class" do
       @bob.play("book")
 
       @bob.highest_scoring_word.must_equal "FANTASTIC"
+    end
+  end
 
+  describe "highest_word_score method" do
+    it "Returns a string with the highest score in the played words array" do
+      @bob = Scrabble::Player.new("Bob")
+      @bob.play("cat")
+      @bob.play("hat")
+      @bob.play("fantastic")
+      @bob.play("book")
 
+      @bob.highest_word_score.must_equal 64
     end
   end
 

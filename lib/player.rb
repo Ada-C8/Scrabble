@@ -23,7 +23,12 @@ module Scrabble
     def highest_scoring_word
       return Scrabble::Scoring.highest_score_from_array(@plays)
     end
-    #private #begin private methods
+
+    def highest_word_score
+      return Scrabble::Scoring.score(highest_scoring_word)
+    end
+    
+    private #begin private methods
 
     def won?
       return @total_score > 100
