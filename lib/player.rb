@@ -36,7 +36,7 @@ module Scrabble
     private
     def won?
       # won?: If the player has over 100 points, returns true, otherwise returns false
-      return false
+      return total_score > 100
 
       # This should be a private method
     end
