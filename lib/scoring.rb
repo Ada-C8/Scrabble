@@ -36,15 +36,40 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
-      arrays_of_scores = []
+      hash_of_scores = {}
       array_of_words.each do |word|
-        arrays_of_scores << self.score(word)
+        hash_of_scores[word] = self.score(word)
+        #hash_of_scores.merge(word => self.score(word))
       end
-      highest_score = arrays_of_scores.max
-      index_of_highest_score = arrays_of_scores.index(highest_score)
+      highest_score = hash_of_scores.values.max
+      puts "highest_score #{highest_score}"
+      winning_hash = hash_of_scores.select {|word,score| score == highest_score}
+      puts "winning_hash #{winning_hash}"
 
-      return array_of_words[index_of_highest_score]
+
+      if winning_hash.length == 1
+        winning_hash.each do |word, score|
+          puts "word #{word}"
+          return word
+        end
+      elsif winning_hash.length > 1
+        puts "there's a tie"
+        seven_ltrs_wrd = winning_hash.select {|word, score| word.length == 7}
+        if seven_ltrs_wrd.empty?
+          tie_array = winning_hash.keys
+          puts "Tie_array: #{tie_array}"
+          winner = tie_array.min { |word1, word2| word1.length <=> word2.length }
+          #puts "winner: #{winner}"
+          return winner
+        elsif (seven_ltrs_wrd.empty?) == false
+          return seven_ltrs_wrd.keys[0]
+        else
+          raise ArgumentError.new("empty array")
+        end
+      else raise ArgumentError.new("empty winning hash")
+      end
     end
-
   end
+  #Scoring.highest_score_from(["KK", "Z"])
+
 end
