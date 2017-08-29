@@ -39,7 +39,7 @@ describe "Scoring" do
     end
 
     it "Raises an ArgumentError if input is not a String" do
-      proc { Scrabble::Scoring.score(123)}.must_raise ArgumentError
+      proc { Scrabble::Scoring.score(123) }.must_raise ArgumentError
       # test_class = Scrabble::Scoring.score("word")
       # test_class.must_be_instance_of String
       # test_class.must_equal "WORD"
@@ -61,18 +61,42 @@ describe "Scoring" do
   describe "highest_score_from_array method" do
 
     it "Can be called" do
-      test_class = Scrabble::Scoring
-      test_class.must_respond_to :highest_score_from_array
+      test_ob = Scrabble::Scoring
+      test_ob.must_respond_to :highest_score_from_array
+    end
+
+    it "Raises an error if parameter is not an Array" do
+      proc { Scrabble::Scoring.highest_score_from_array(123) }.must_raise ArgumentError
+    end
+
+    it "Returns a String" do
+      test_arr = ["A", "THE", "ZZZ"]
+      test_ob = Scrabble::Scoring.highest_score_from_array(test_arr)
+      test_ob.must_be_instance_of String
     end
 
     it "Returns the word in the array with the highest score" do
-
+      test_arr = ["A", "THE", "ZZZ"]
+      test_ob = Scrabble::Scoring.highest_score_from_array(test_arr)
+      test_ob.must_equal "ZZZ"
     end
 
+    it "Returns the word with the fewest letters in the case of a tie" do
+      test_arr = ["AEIO", "DG"] #both score to 4
+      test_ob = Scrabble::Scoring.highest_score_from_array(test_arr)
+      test_ob.must_equal "DG"
+    end
+
+    it "Returns the first word supplied, in the case of a tie with words of the same length and same score" do
+      test_arr = ["AE", "OU"] #both score to 2
+      test_ob = Scrabble::Scoring.highest_score_from_array(test_arr)
+      test_ob.must_equal "AE"
+    end
+
+    it "Returns the seven letter word, in the case of a tie" do
+      test_arr = ["AEIOULN", "KD"] #both score to 2
+      test_ob = Scrabble::Scoring.highest_score_from_array(test_arr)
+      test_ob.must_equal "AEIOULN"
+    end
   end
 end
-
-# self.highest_score_from(array_of_words): returns the word in the array with the highest score. In the case of tie, use these tiebreaking rules:
-# It’s better to use fewer tiles, in the case of a tie, prefer the word with the fewest letters.
-# There is a bonus for words that are seven letters. If the top score is tied between multiple words and one used all seven letters, choose the one with seven letters over the one with fewer tiles.
-# If the there are multiple words that are the same score and same length, pick the first one in the supplied list.
