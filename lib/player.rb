@@ -11,12 +11,24 @@ module Scrabble
     end
 
     def play(word)
+      return false if won?
+
       @plays << word
       word_score = Scrabble::Scoring.score(word)
       @total_score += word_score
-      
+
       return word_score
     end
+
+    def highest_scoring_word
+      return Scrabble::Scoring.highest_score_from_array(@plays)
+    end
+    #private #begin private methods
+
+    def won?
+      return @total_score > 100
+    end
+
 
   end #end of Player class
 

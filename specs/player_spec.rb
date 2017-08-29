@@ -48,19 +48,53 @@ describe "Player class" do
       @anna.play("pie")
       @anna.total_score.must_equal 10
     end
+
+    it "Returns false if a player's already won" do
+      @anna.play("fantastic")
+      @anna.play("scrabble")
+
+      @anna.play("dog").must_equal false
+    end
   end
 
+  describe "won? private method" do
+    before do
+      @bob = Scrabble::Player.new("Bob")
+      ["shoe","tie","hat","cravat","proxy"].each do |word|
+        @bob.play(word)
+      end
+    end
+
+    it "Returns false is a player has 100 points or less" do
+      @bob.won?.must_equal false
+    end
+
+    it "Returns true if a player has more than 100 points" do
+      @bob.play("fantastic")
+      @bob.won?.must_equal true
+
+      @bob.total_score.must_be :>, 100
+    end
+
+    it "Is a private method" do
+      skip
+    end
+  end
+
+  describe "highest_scoring_word method" do
+    it "Returns a string with the highest score in the played words array" do
+      @bob = Scrabble::Player.new("Bob")
+      @bob.play("cat")
+      @bob.play("hat")
+      @bob.play("fantastic")
+      @bob.play("book")
+
+      @bob.highest_scoring_word.must_equal "FANTASTIC"
 
 
-#TODO 11 tests!
+    end
+  end
 
-
-
-# TODO `#play(word)`: Adds the input word to the `plays` Array
-    # TODO Returns `false` if player has already won
-    # TODO Returns the score of the `word`
-
-# TODO `#total_score`: Returns the sum of scores of played words
 
 # TODO `#won?`: If the player has over 100 points, returns `true`, otherwise returns `false`
     # TODO  This should be a private method
