@@ -69,7 +69,7 @@ module Scrabble
       else raise ArgumentError.new("empty winning hash")
       end
     end
-  end
+  end #closes Class
   #Scoring.highest_score_from(["KK", "Z"])
 
-end
+end #end of Module

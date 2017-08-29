@@ -67,4 +67,12 @@ describe "The highest_score_from method" do
     Scrabble::Scoring.highest_score_from(["KK", "Z"]).must_equal "Z"
   end
 
+  it "If there is a tie between 7-letter words of equal scoring, it returns the first word in the array" do
+    Scrabble::Scoring.highest_score_from(["AAAAAAA", "EEEEEEE"]). must_equal "AAAAAAA"
+  end
+
+  # it "If there is a tie between less-than-7-letter words of equal scoring, it returns the first word in the array" do
+  #   Scrabble::Scoring.highest_score_from(["EEE", "AAA"]). must_equal "EEE"
+  # end
+
 end
