@@ -47,7 +47,15 @@ module Scrabble
       #
       # highest_scoring_word = ""
       scores = array_of_words.group_by {|word| score(word)}
-      puts "#{scores}"
+
+      max_score = scores.keys.max
+      #returns array of keys, calls .max to find highest value keys
+      #checks lenght of value(array of words) of key max_score
+      if scores[max_score].length == 1
+        scores[max_score].first
+      else
+      end
+      # puts "#{scores}"
       #map {|word| score(word)}
 
       array_of_words.inject {|memo, word| score(word) > score(memo) ? word : memo }
@@ -95,4 +103,4 @@ end
 # point_eight = ["J", "X"]
 # point_ten = ["Q", "Z"]
 
-ap Scrabble::Scoring.highest_score_from_array(["cat", "doge"])
+# ap Scrabble::Scoring.highest_score_from_array(["cat", "doge"])
