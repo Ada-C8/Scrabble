@@ -2,7 +2,7 @@ module Scrabble
   class Scoring
     attr_reader :values
 
-      @values = {
+      VALUES = {
         1 => ["A", "E", "I", "O", "L", "N", "R", "S", "T"],
         2 => ["D", "G"],
         3 => ["B", "C", "M", "P"],
