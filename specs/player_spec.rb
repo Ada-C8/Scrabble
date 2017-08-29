@@ -48,6 +48,19 @@ describe "Player" do
       @player.play("ylizzaj")
       @player.total_score.must_equal 170
     end
+
+    it "returns 0 if there are no words yet" do
+      @player.total_score.must_equal 0
+    end
+  end
+
+  describe 'highest_scoring_word' do
+    it "returns the highest scoring played word" do
+      @player.play("jazzily")
+      @player.play("cup")
+
+      @player.highest_scoring_word.must_equal "jazzily"
+    end
   end
 
 end

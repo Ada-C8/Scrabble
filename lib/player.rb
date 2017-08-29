@@ -17,6 +17,11 @@ module Scrabble
     end
 
     def total_score
+      total = 0
+      @plays.each do |word|
+        total += Scoring.score(word)
+      end
+      return total
       # total_score: Returns the sum of scores of played words
     end
 
