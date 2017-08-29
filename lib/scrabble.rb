@@ -25,8 +25,7 @@ module Scrabble
 
       input_letters = input_word.split("")
       input_letters.each do |letter|
-        # if !(letter.match(/[a-zA-Z]/))
-        #   raise ArgumentError.new "Invalid character in word"
+
         if VALUES[1].include? letter.upcase
           score += 1
         elsif VALUES[2].include? letter.upcase
@@ -52,7 +51,6 @@ module Scrabble
       word_scores = []
 
       input_array.each do |word|
-
         word_scores << self.score(word)
 
       end
@@ -86,7 +84,5 @@ module Scrabble
         raise ArgumentError.new "There are no tied words here"
       end
     end # => end of tie breaker
-
-
   end#end of scoring
 end # end of module
