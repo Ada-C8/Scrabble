@@ -18,16 +18,11 @@ module Scrabble
         10 => ["Q", "Z"]
       }
       total = 0
-      i = 0
-      while i < word.length
+      for i in 0..word.length
         score_chart.each do |number, letters|
-          letters.each do |l|
-            word.each_char do |ch|
-              if l == ch
-                total += number
-              else
-                i += 1
-              end
+          letters.find do |l|
+            if l == word[i]
+              total += number
             end
           end
         end

@@ -15,10 +15,20 @@ describe "Score" do
   end
 
   describe " self.score method" do
-    it " Check for the short word where the letters don't repeat" do
+    it " Check for the short word where the letter doesn't repeat" do
       my_class = Scrabble::Score
-      my_class.score("cat").must_equal 5
+      my_class.score("CAT").must_equal 5
     end
+
+    it " Check for the word where the letter repeats" do
+      my_class = Scrabble::Score
+      my_class.score("CATAN").must_equal 7
+    end
+
+    # it " Check for the 7 letter word " do
+    #   my_class = Scrabble::Score
+    #   my_class.score("BUBBLE").must_equal 62
+    # end
   end
 
 
