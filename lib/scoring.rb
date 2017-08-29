@@ -95,4 +95,4 @@ end
 # point_eight = ["J", "X"]
 # point_ten = ["Q", "Z"]
 
-ap Scrabble::Scoring.highest_score_from_array(["cat", "doge"])
+Scrabble::Scoring.highest_score_from_array(["cat", "doge"])
