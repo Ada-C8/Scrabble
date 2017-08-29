@@ -35,51 +35,25 @@ module Scrabble
     end
 
     def self.highest_score_from_array(array_of_words)
-      #IF there's a tie && word.lenghts ==
-      #take the first word
-      #If there's a tie and words !=, take the shortest one unless one of them has 7 tiles
-
-      # score_total = []
-      # array_of_words.each do |word|
-      #   score_total << score(word)
-      # end
-      # return score_total
-      #
-      # highest_scoring_word = ""
       scores = array_of_words.group_by {|word| score(word)}
-      puts "#{scores}"
-      #map {|word| score(word)}
+      #this returns a hash, where keys are scores, and value is an array of words
 
-      array_of_words.inject {|memo, word| score(word) > score(memo) ? word : memo }
-      # highest_score = 0
-      # array_of_words.each do |word|
-      #
-        # if score(word) > highest_score
-        #   highest_scoring_word = word
-        #   highest_score = score(word)
+      max_score = scores.keys.max
+      #returns array of keys, calls .max to find highest value keys
 
-        ##ESLIFS from yesterday
-      #   elsif score(word) == highest_score
-      #     #if highest_scoring_word.length != word.length && highest_scoring_word.length != 7 && word.length != 7
-      #     unless highest_scoring_word.length == 7 || word.length == 7
-      #       if highest_scoring_word.length <= word.length
-      #         highest_scoring_word = highest_scoring_word
-      #       else
-      #         highest_scoring_word = word
-      #       end
-      #     end
-      #   elsif highest_scoring_word.length == 7 && word.length != 7
-      #     highest_scoring_word = highest_scoring_word
-      #   elsif highest_scoring_word.length != 7 && word.length == 7
-      #     highest_scoring_word = word
-      #   end
-      #
-      #
-      #
-      # end
+      #checks length of value(array of words) of key(max_score)
+      if scores[max_score].length == 1
+        scores[max_score].first
+      else
+        seven_letters = scores[max_score].select {|word| word.length == 7} #this is an array
+        if seven_letters.length >= 1 #if there are any with 7 letters
+          return seven_letters.first #return the first one
+        else
+          fewest_letters = score[max_score].min_by {|word| word.length} #returns the first intance of (a word with) length F, where F is fewest number of letters.
 
-
-
+          return fewest_letters
+        end
+      end
 
     end
   end
@@ -94,5 +68,3 @@ end
 # point_five = ["K"]
 # point_eight = ["J", "X"]
 # point_ten = ["Q", "Z"]
-
-Scrabble::Scoring.highest_score_from_array(["cat", "doge"])
