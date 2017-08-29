@@ -25,28 +25,28 @@ describe 'Player' do
       it "must return an Array" do
         @new_player.plays.must_be_kind_of Array
       end
-
-      it "array must be an array of words played by that player" do
-        @new_player.play("APPLE")
-        @new_player.play("FRUIT")
-        @new_player.plays.must_equal ["APPLE, FRUIT"]
-      end
-
-###ADD MORE TESTS?
+#
+#       it "array must be an array of words played by that player" do
+#         @new_player.play("APPLE")
+#         @new_player.play("FRUIT")
+#         @new_player.plays.must_equal ["APPLE, FRUIT"]
+#       end
+#
+# ###ADD MORE TESTS?
     end
-
-    describe "plays(word)" do
-
-      it "adds input to plays array" do
-        @new_player.play("APPLE")
-        @new_player.play("FRUIT")
-        @new_player.plays.must_include? "FRUIT"
-      end
-
-      it do
-      end
-
-
-    end
+#
+#     describe "plays(word)" do
+#
+#       it "adds input to plays array" do
+#         @new_player.play("APPLE")
+#         @new_player.play("FRUIT")
+#         @new_player.plays.must_include? "FRUIT"
+#       end
+#
+#       it do
+#       end
+#
+#
+#     end
 
 end
