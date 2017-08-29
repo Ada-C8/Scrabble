@@ -12,8 +12,11 @@ module Scrabble
     }  #letter_arr , letter_score
 
     def self.score(word)
-
+      raise ArgumentError.new "Input must be a String class." if word.class != String
       word_score = 0
+
+      raise ArgumentError.new "Word must be one to seven letters long." if word.length == 0 || word.length > 7
+
       letters = word.upcase.split("")
       letters.each do |letter|
         raise ArgumentError.new "Word must contain only regular ASCII letters." if !letter.match(/^[A-Z]$/)
@@ -30,10 +33,26 @@ module Scrabble
       end
       return word_score
     end #end self.score
+
+    def self.highest_score_from(array_of_words)
+      raise ArgumentError.new "argument must be an Array" if array_of_words.class != Array
+
+      raise ArgumentError.new "input Array cannot be empty" if array_of_words.length == 0
+
+
+      words_hash = {}
+      array_of_words.each do |word|
+         words_hash[word] = Scrabble::Scoring.score(word)
+      end
+      words_hash.keys.sample
+    end
   end #end class
 end #end module
+# p Scrabble::Scoring.highest_score_from(["one", "eleven", "hundred"])
 
-puts Scrabble::Scoring.score("Shaunna") #works
+
+
+# puts Scrabble::Scoring.score("Shaunna") #works
 
 
 
