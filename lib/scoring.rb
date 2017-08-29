@@ -21,6 +21,9 @@ module Scrabble
     end # end of self.score
 
     def self.highest_score_from(array_of_words)
+      if array_of_words.length == 0
+        raise ArgumentError.new("Invalid empty array")
+      end
       best_word = array_of_words[0]
       array_of_words.each do |word|
         if self.score(word) == self.score(best_word)

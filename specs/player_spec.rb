@@ -63,7 +63,7 @@ describe "Player" do
     end
 
     it "returns Exception if called before words are played" do
-      @player.highest_scoring_word.must_raise Exception
+      proc{@player.highest_scoring_word}.must_raise ArgumentError
     end
   end
 
@@ -73,6 +73,24 @@ describe "Player" do
 
       @player.highest_word_score.must_equal 85
     end
+
+    it "raises ArgumentError if called before words are played" do
+      proc{@player.highest_word_score}.must_raise ArgumentError
+    end
+  end
+
+  describe "won?" do
+    it "defaults to false" do
+      @player.send(:won?).must_equal false
+    end
+
+    it "becomes 'true' when player's points are over 100" do
+      @player.play("jazzily")
+      @player.play("ylizzaj")
+      
+      @player.send(:won?).must_equal true
+    end
+
   end
 
 end
