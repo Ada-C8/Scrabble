@@ -34,19 +34,18 @@ describe 'Player' do
 #
 # ###ADD MORE TESTS?
     end
-#
-#     describe "plays(word)" do
-#
-#       it "adds input to plays array" do
-#         @new_player.play("APPLE")
-#         @new_player.play("FRUIT")
-#         @new_player.plays.must_include? "FRUIT"
-#       end
-#
-#       it do
-#       end
-#
-#
-#     end
+
+    describe "plays(word)" do
+
+      it "adds input to plays array" do
+        @new_player.play("APPLE")
+        @new_player.play("FRUIT")
+        @new_player.plays.must_include "FRUIT"
+      end
+
+      it do
+      end
+
+    end
 
 end
