@@ -14,7 +14,7 @@ module Scrabble
         @players.each do |player|
           puts "It is #{player.name}'s turn"
           player_word = get_word_for(player)
-          player_has_won = !player_word
+          player_has_won = !player_word # If it is a string it will evaluate to false. If false, evaluates to true
 
           if player_word
             print_score(player_word)
@@ -65,10 +65,11 @@ module Scrabble
       word = gets.chomp
       @words << word
 
+      # Returns a boolean true or false
       keep_playing = player.play(word)
 
       if keep_playing
-        return word
+        return word # Becomes player_word as a String in the play method
       else
         return false
       end
