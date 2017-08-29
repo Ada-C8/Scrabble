@@ -33,12 +33,12 @@ describe "scoring" do
       Scrabble::Scoring.score("HELLO").must_be_kind_of Integer
     end #it "will return an integer score"
 
-    it "will return the right score for a word" do
+    it "will return the right score for cat" do
       Scrabble::Scoring.score("CAT").must_equal 5
     end #it "will return the right score for a word" do
 
     it "will return the right score for elephant" do
-        Scrabble::Scoring.score("ELEPHANT").must_equal 13
+        Scrabble::Scoring.score("turkey").must_equal 13
     end #it "will return the right score for elephant" do
 
     it "will add 50 to a 7 letter word" do
@@ -55,18 +55,17 @@ describe "scoring" do
       Scrabble::Scoring.highest_score_from(["cat", "pony"]).must_equal "PONY"
     end #it "should pick the highest scoring word" do
 
-    it "should pick the word with 7 letters" do
+    it "if equal, should pick the word with 7 letters" do
       Scrabble::Scoring.highest_score_from(["cat", "pony", "animals"]).must_equal "ANIMALS"
-    end
+    end #it "if equal, should pick the word with 7 letters" do
 
     it "if equal, it should pick the word with least number of letters" do
       Scrabble::Scoring.highest_score_from(["dog", "train"]).must_equal "DOG"
-    end
+    end #it "if equal, should pick the word with 7 letters" do
 
     it "if equal in score and length, it should pick the first word in the list" do
-      #TODO:
-      # Scrabble::Scoring.highest_score_from(["dog", "train"]).must_equal "DOG"
-    end
+      Scrabble::Scoring.highest_score_from(["dog", "god"]).must_equal "DOG"
+    end #it "if equal in score and length, it should pick the first word in the list" do
 
   end # Describe
 
