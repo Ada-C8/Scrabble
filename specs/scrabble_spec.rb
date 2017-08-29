@@ -2,35 +2,35 @@ require_relative 'spec_helper'
 
 describe "Scoring class " do
   describe "values for letters" do
-  it "the values should be stored as a hash" do
-    output = Scrabble::Scoring::VALUES
-    output.must_be_instance_of Hash
-  end
-  it "Q and Z should have value of 10" do
-    output = Scrabble::Scoring::VALUES
-    # expected_value = 10
-    # values.each do |key,letters|
-    #   key.keys.include?(10)
+    it "the values should be stored as a hash" do
+      output = Scrabble::Scoring::VALUES
+      output.must_be_instance_of Hash
+    end
+    it "Q and Z should have value of 10" do
+      output = Scrabble::Scoring::VALUES
+      # expected_value = 10
+      # values.each do |key,letters|
+      #   key.keys.include?(10)
 
-    result = output[10].include? "Q"
-    result_z = output[10].include? "Z"
+      result = output[10].include? "Q"
+      result_z = output[10].include? "Z"
 
-    result.must_equal true
-    result_z.must_equal true
+      result.must_equal true
+      result_z.must_equal true
+    end
+    it "should not have the letter P associated with 10 points" do
+      output = Scrabble::Scoring::VALUES
+      result_p = output[10].include? "P"
+      result_p.must_equal false
+    end
   end
-  it "should not have the letter P associated with 10 points" do
-    output = Scrabble::Scoring::VALUES
-    result_p = output[10].include? "P"
-    result_p.must_equal false
-  end
-end
-#   it "all letters should be key for corresponding value" do
-#     # TODO some kind of loop
-#
-#     0.upto(@letter_array.length-1) {|index|
-#       if (@letter_array[index] == guess)
-#       @finished_guess[index] == guess
-#     end}
+  #   it "all letters should be key for corresponding value" do
+  #     # TODO some kind of loop
+  #
+  #     0.upto(@letter_array.length-1) {|index|
+  #       if (@letter_array[index] == guess)
+  #       @finished_guess[index] == guess
+  #     end}
   # end
 
 
@@ -63,6 +63,13 @@ end
       proc {Scrabble::Scoring.score(input2)}.must_raise ArgumentError
       input3 = "$three"
       proc {Scrabble::Scoring.score(input3)}.must_raise ArgumentError
+    end
+
+    it "Should return a score 57 for AAAAAAA" do
+      input = "AAAAAAA"
+      expected_output = 57
+      output  = Scrabble::Scoring.score(input)
+      output.must_equal expected_output
     end
   end
 

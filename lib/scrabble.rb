@@ -16,8 +16,14 @@ module Scrabble
       if !(input_word.to_s.match(/[a-zA-Z]/))
         raise ArgumentError.new "Invalid character in word"
       end
+
+      if input_word.length == 7
+        score = 50
+      else
+        score = 0
+      end
+
       input_letters = input_word.split("")
-      score = 0
       input_letters.each do |letter|
         # if !(letter.match(/[a-zA-Z]/))
         #   raise ArgumentError.new "Invalid character in word"
@@ -46,7 +52,9 @@ module Scrabble
       word_scores = []
 
       input_array.each do |word|
+
         word_scores << self.score(word)
+
       end
       highest_score = word_scores.sort![-1]
       highest_scoring_words = []
@@ -58,7 +66,7 @@ module Scrabble
       if highest_scoring_words.length == 1
         return highest_scoring_words[0]
       elsif highest_scoring_words.length > 1
-         self.tie_breaker(highest_scoring_words)
+        self.tie_breaker(highest_scoring_words)
       else
         raise ArgumentError.new "There are no words here"
       end
