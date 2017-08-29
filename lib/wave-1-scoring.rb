@@ -9,7 +9,7 @@ module Scrabble
       %w(K) => 5,
       %w(J X) => 8,
       %w(Q Z) => 10
-    }
+    }  #letter_arr , letter_score
 
     def self.score(word)
       raise ArgumentError.new "Input must be a String class."
@@ -19,7 +19,7 @@ module Scrabble
         if word == 0 && word > 7
         end
       end
-      
+
       total_score = 0
       word.upcase.each_char do |letter|
         SCORE_HASH.keys.each do |arr|
