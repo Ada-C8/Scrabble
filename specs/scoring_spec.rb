@@ -37,6 +37,10 @@ describe "scoring" do
       Scrabble::Scoring.score("CAT").must_equal 5
     end #it "will return the right score for a word" do
 
+    it "will return the right score for elephant" do
+        Scrabble::Scoring.score("ELEPHANT").must_equal 13
+    end #it "will return the right score for elephant" do
+
     it "will add 50 to a 7 letter word" do
       Scrabble::Scoring.score("CATTTTT").must_equal 59
     end
@@ -44,13 +48,12 @@ describe "scoring" do
 
   describe "self.highest_score_from(array_of_words)" do
     it "should return a string" do
-      Scrabble::Scoring.highest_score_from(["cat", "dog", "elephant"]).must_be_kind_of String
-    end
+      Scrabble::Scoring.highest_score_from(["cat", "dog", "pony"]).must_be_kind_of String
+    end #it "should return a string" do
 
     it "should pick the highest scoring word" do
-      Scrabble::Scoring.highest_score_from(["cat", "elephant"]).must_equal "ELEPHANT"
-    end
-
+      Scrabble::Scoring.highest_score_from(["cat", "pony"]).must_equal "PONY"
+    end #it "should pick the highest scoring word" do
 
   end # Describe
 
