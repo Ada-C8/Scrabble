@@ -27,10 +27,29 @@ describe "Scoring class" do
       Scrabble::Scoring.highest_score_from_array(words).must_equal "FANTASTICALLY"
     end
 
-    it "Breaks tie by choosing shorter word" do
-      words = ["fantastic", "cat", "scrabble", "peanuts", "spy"]
+    # xit "Breaks tie by choosing shorter word" do
+    #   words = ["fantastic", "cat", "scrabble", "peanuts", "spy"]
+    #
+    #   Scrabble::Scoring.highest_score_from_array(words).must_equal "SCRABBLE"
+    # end
 
-      Scrabble::Scoring.highest_score_from_array(words).must_equal "SCRABBLE"
+    # it "Breaks tie by choosing shorter word unless one of the words is 7 chars long" do
+    #   words = ["aaaaaad", "qqqqqj"]
+    #
+    #   Scrabble::Scoring.highest_score_from_array(words).must_equal "AAAAAAD"
+    #
+    # end
+
+    it "Breaks tie by choosing shorter word unless 7-letters long; picks first 7-letter word" do
+      words = ["iiiiiid", "aaaaaad", "qqqqqj"]
+
+      Scrabble::Scoring.highest_score_from_array(words).must_equal "IIIIIID"
+
+      words[0] = "aaaaaad"
+      words[1] = "iiiiiid"
+      Scrabble::Scoring.highest_score_from_array(words).wont_equal "IIIIIID"
+
+
     end
   end
 end

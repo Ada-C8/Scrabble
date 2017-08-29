@@ -26,9 +26,18 @@ module Scrabble
       high_score = self.score(high)
 
       array_of_words.each do |word|
-        if (self.score(word) == high_score) && (word.length < high.length)
-          high = word
+        if self.score(word) == high_score
+          if word.length == 7
+            return word
+          elsif word.length < high.length
+            high = word
+          end
         end
+
+        # else
+        #   (self.score(word) == high_score) && (word.length < high.length)
+        #   high = word
+        # end
       end
 
       return high
@@ -41,6 +50,8 @@ module Scrabble
 end
 
 # words = ["fantastically", "cat", "scrabble", "peanuts", "spy"]
+
+# words = ["scraped", "papered", "trapped"]
 #
 # words.each do |word|
 #   score = Scrabble::Scoring.score(word)
