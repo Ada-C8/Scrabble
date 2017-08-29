@@ -32,8 +32,19 @@ describe "Scoring Class" do
       it "Returns the score for 7 letter word with bonus" do
         Scrabble::ScoringClass.score("agmvJqk").must_equal 83
       end
+    end #end of self.score tests
 
+    describe "self.highest_score_from_array(array_of_words)" do
+      it "" do
+        #SET UP VARIABLES
+        array_of_words = ["adb", "kay", "jig"]
+        #CALL THE METHOD BEING TESTED
+        winning_word = Scrabble::ScoringClass.highest_score_from_array(array_of_words)
+        #CHECK RESULT OF THAT METHOD
+        winning_word.must_equal "jig"
+      end
     end
+
   end
 end
 #arrange

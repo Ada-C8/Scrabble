@@ -36,5 +36,17 @@ module Scrabble
       end
       return word_score
     end #end self.score
-  end
+
+    def self.highest_score_from_array(array_of_words)
+      scores_array = []
+      array_of_words.each do |word|
+        # nested array with word and its cooresponding
+        scores_array << [word, score(word)]
+      end
+
+      higest_score_word = scores_array.max_by { |word| word[1] }[0]
+      return higest_score_word
+    end
+
+  end # end of ScoringClass
 end
