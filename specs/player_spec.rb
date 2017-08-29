@@ -84,6 +84,12 @@ describe "Player" do
       @player.send(:won?).must_equal false
     end
 
+    it "is false before player's points are over 100" do
+      @player.play("jazzily")
+
+      @player.send(:won?).must_equal false
+    end
+
     it "becomes 'true' when player's points are over 100" do
       @player.play("jazzily")
       @player.play("ylizzaj")
