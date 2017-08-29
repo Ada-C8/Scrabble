@@ -25,14 +25,16 @@ module Scrabble
         when "Q", "Z"
           score += 10
         else
-          raise ArgumenError.new("Invalide Input !")
+          raise ArgumentError.new("Invalid Input!")
         end
       end
+
       if word.length == 7
         score += 50
       end
       return score
     end
+
 
     def self.highest_score_from_array(array_of_words)
       scores = array_of_words.group_by {|word| score(word)}

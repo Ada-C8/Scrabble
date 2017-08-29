@@ -19,11 +19,19 @@ describe "#Scrabble.score" do
     Scrabble::Scoring.score("t").must_equal 1
     Scrabble::Scoring.score("Q").must_equal 10
     Scrabble::Scoring.score("z").must_equal 10
-
   end
+
+  # it "Throws an argument error when given invalid output" do
+  #   Scrabble::Scoring.score("1").must_raise ArgumentError
+  #   Scrabble::Scoring.score(1).must_raise ArgumentError
+  #   Scrabble::Scoring.score("").must_raise ArgumentError
+  #   Scrabble::Scoring.score().must_raise ArgumentError
+  # end
+
  it "can handle multiple letters" do
    Scrabble::Scoring.score("ogmfkj").must_equal 23
  end
+
  it "can add 50 point bonus to seven letter word" do
    Scrabble::Scoring.score("ogmfkjz").must_equal 83
  end
