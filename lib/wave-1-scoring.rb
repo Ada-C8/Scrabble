@@ -12,19 +12,23 @@ module Scrabble
     }
 
     def self.score(word)
+      raise ArgumentError.new "Input must be a String class."
       if word.class != String
-        raise ArgumentError.new "Input must be a String class."
-      else
-        total_score = 0
-        word.upcase.each_char do |letter|
-          SCORE_HASH.keys.each do |arr|
-            if arr.include? letter
-              total_score += SCORE_HASH[arr]
-            end
+
+        raise ArgumentError.new "Word must be one to seven letters long."
+        if word == 0 && word > 7
+        end
+      end
+      
+      total_score = 0
+      word.upcase.each_char do |letter|
+        SCORE_HASH.keys.each do |arr|
+          if arr.include? letter
+            total_score += SCORE_HASH[arr]
           end
         end
       end
-      return total_score
     end
+    return total_score
   end
 end
