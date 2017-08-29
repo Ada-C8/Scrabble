@@ -9,5 +9,32 @@ module Scrabble
       8 => ["J", "X"],
       10 => ["Q", "Z"]
     }
+
+    def initialize
+
+    end
+
+    def self.score(word)
+      word_caps = word.upcase
+      word_arr = word_caps.split("")
+
+      total_score = 0
+
+      word_arr.each do |letter_from_user|
+        SCORE_CHART.each do |score, letter_arr|
+          letter_arr.each do |letter|
+            if letter_from_user == letter
+              total_score += score
+            end
+          end
+        end
+      end
+
+      if word_arr.length == 7
+        total_score += 50
+      end
+
+      return total_score
+    end
   end # class
 end # module
