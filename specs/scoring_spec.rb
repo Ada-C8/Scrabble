@@ -30,10 +30,14 @@ describe "#Scrabble.score" do
 describe "Testing highest_score_from" do
   it "returns an array of scores" do
     Scrabble::Scoring.highest_score_from_array(["cat", "doge"]).must_be_instance_of String
-    
-    Scrabble::Scoring.highest_score_from_array(["cat", "doge"]).must_equal 'doge'
 
+    Scrabble::Scoring.highest_score_from_array(["cat", "doge"]).must_equal 'doge'
   end
+
+   it "prioritizes word with seven letters as winner" do
+     Scrabble::Scoring.highest_score_from_array(["qqqzzx", "aeiouad"]).must_equal 'aeiouad'
+   end
+
 end
 
 
