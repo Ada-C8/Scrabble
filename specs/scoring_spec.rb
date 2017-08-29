@@ -3,7 +3,6 @@ require_relative 'spec_helper'
 
 describe "Scoring" do
   describe "self.score" do
-
     it "returns the total score for the given word" do
       Scrabble::Scoring.score("hello").must_equal 8
     end
@@ -24,5 +23,12 @@ describe "Scoring" do
       proc { Scrabble::Scoring.score("2384") }.must_raise ArgumentError
       proc { Scrabble::Scoring.score(["h", "e", "l", "l", "o"]) }.must_raise ArgumentError
     end
+  end
+
+  describe "self.highest_score_from(array_of_words)" do
+    it "returns word in the array with the highest points" do
+      Scrabble::Scoring.highest_score_from()
+    end
+
   end
 end
