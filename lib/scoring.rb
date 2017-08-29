@@ -48,10 +48,16 @@ module Scrabble
       else
         return score
       end
-
     end #end self.score
 
-
+    def self.highscore_from(array_of_words)
+      scores = []
+      array_of_words.each do |word|
+        scores << self.score(word)
+      end
+      return max = scores.max
+      #return scores
+    end
 
   end #class end
 
