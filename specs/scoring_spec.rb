@@ -31,22 +31,27 @@ describe "Wave 1 Scoring" do
     end
 
     it "Raises an argument error for strings longer than 7 characters" do
-      # proc{Scrabble::Scoring.calculate()}
+      proc{Scrabble::Scoring.score("toolongstring")}.must_raise ArgumentError
     end
+
     it "Gives a score of zero if an empty string is passed in" do
-
+      Scrabble::Scoring.score("").must_equal 0
     end
-    it "Adds a 50 point bonus if the string is exactly 7 characters long" do
 
+    it "Adds a 50 point bonus if the string is exactly 7 characters long" do
+      Scrabble::Scoring.score("seven**").must_equal 58
     end
   end
 
-  xdescribe "self.highest_score_from(array_of_words)" do
+  describe "self.highest_score_from(array_of_words)" do
     it "Raises an argument error unless passed an array" do
-
+      proc{Scrabble::Scoring.highest_score_from("string")}.must_raise ArgumentError
     end
     it "Raises an argument error unless given at least 2 elements to compare" do
-
+      proc{Scrabble::Scoring.highest_score_from(["one element"])}.must_raise ArgumentError
+    end
+    it "Raises an argument error of array elements are not strings" do
+      proc{Scrabble::Scoring.highest_score_from([1, 2, 3])}.must_raise ArgumentError
     end
     it "Returns the score of the highest scoring word" do
 
