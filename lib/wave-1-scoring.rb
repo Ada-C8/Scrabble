@@ -19,7 +19,7 @@ module Scrabble
         if word == 0 && word > 7
         end
       end
-      
+
       total_score = 0
       word.upcase.each_char do |letter|
         SCORE_HASH.keys.each do |arr|
