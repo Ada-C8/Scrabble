@@ -52,4 +52,9 @@ describe "method self.highest_score_from" do
   it "must return the word with the highest score (no-ties)" do
     Scrabble::Scoring.highest_score_from(@array_of_words).must_equal "letters"
   end
+  it "In case of a tie, chooses word with fewer letters" do
+    words = %w[a to the ok hi]
+    Scrabble::Scoring.highest_score_from(words).must_equal "ok"
+  end
+
 end

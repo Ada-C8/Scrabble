@@ -38,19 +38,26 @@ module Scrabble
       raise ArgumentError.new "argument must be an Array" if array_of_words.class != Array
       raise ArgumentError.new "input Array cannot be empty" if array_of_words.length == 0
 
-
       words_hash = {}
       array_of_words.each do |word|
-         words_hash[word] = Scrabble::Scoring.score(word)
+        words_hash[word] = Scrabble::Scoring.score(word)
       end
-    return words_hash.key(words_hash.values.max)
+      winners = words_hash.reject!{|word,value| value < (words_hash.values.max)}
+      case
+      when winners.length == 1
+        winner = winners.key
+      when winners.length > 1
+        
+      end
+
+
+
     end
+
   end #end class
 end #end module
-p Scrabble::Scoring.highest_score_from(["one", "eleven", "hundred"])
-
-
-
+p Scrabble::Scoring.highest_score_from(["one", "eleven", "hundreg", "hundred"])
+p words_hash
 # puts Scrabble::Scoring.score("Shaunna") #works
 
 
