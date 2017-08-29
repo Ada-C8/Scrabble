@@ -1,5 +1,3 @@
-
-
 module Scrabble
   class ScoringClass
     attr_reader :letter
@@ -12,7 +10,7 @@ module Scrabble
       score_arr = []
       letters = word.downcase.split('', word.length)
       word_score = 0
-      
+
       # if word.length == 7
         # word_score += 50
 
