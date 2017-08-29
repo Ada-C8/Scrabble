@@ -57,12 +57,36 @@ module Scrabble
         0
       end
     end
-    # self.highest_score_from(array_of_words): returns the word in the array with the highest score.
-    # In the case of tie, use these tiebreaking rules:
-    # 1. If the top score is tied between multiple words and one used all seven letters, choose the one with seven letters over the one with fewer tiles.
-    # 2. If the there are multiple words that are the same score and same length, pick the first one in the supplied list.
-    # 3. It’s better to use fewer tiles, in the case of a tie, prefer the word with the fewest letters.
 
+    # self.highest_score_from(array_of_words):
+    # returns the word in the array with the highest score.
+    # In the case of tie:
+    # 1. If the top score is tied between multiple words and is seven
+    #   letters long, choose the one with seven letters over the one with #  fewer tiles.
+    # 2. If the there are multiple words that are the same score and same
+    #   length, pick the first one in the supplied list.
+    # 3. It’s better to use fewer tiles, in the case of a tie, prefer the
+    #    word with the fewest letters.
+
+    def self.highest_score_from(array_of_words)
+      #if there is no tie return higest scoring word
+      #if there is a tie makes a string of the tieing words
+      #if none of the tieing words are seven letters long, returns the #first instance of the shortest_word
+      # If at least one word is seven letters long, returns the first
+      #seven lettered word
+      if tied(array_of_words) == 0
+        return return_higest(array_of_words)
+      end
+      tieing_words = isolate_tieing_words(array_of_words)
+      if seven_lettered(tieing_words) == ""
+        shortest_word(tieing_words)
+      else
+        seven_lettered(tieing_words)
+      end
+    end
+
+    #Takes an array of words and returns shortest word.
+    #If there is a tie, the first shortest word is returned.
     def self.shortest_word(words)
       shortest_word = words[0]
       shortest_length = words[0].length
@@ -75,6 +99,8 @@ module Scrabble
       return shortest_word
     end
 
+    # Takes an a array of words and returns a seven lettered word.
+    # If there are two seven-lettered, it returns the first one.
     def self.seven_lettered(words)
       seven_letters = ""
       words.each do |word|
@@ -86,6 +112,8 @@ module Scrabble
       return seven_letters
     end
 
+    # Takes an a array of words and returns an array of all the words
+    # that tie for the highest score.
     def self.isolate_tieing_words(words)
       scores = []
       tieing_words =[]
@@ -101,6 +129,8 @@ module Scrabble
       return tieing_words
     end
 
+    # Takes an array of of words and returns 1 if there is a tie, and
+    # zero if there is not.
     def self.tied(words)
       values = []
       words.each do |word|
@@ -114,6 +144,8 @@ module Scrabble
       return tie
     end
 
+    # Takes an array of words and returns the word with the highest score.
+    # If their are two words that tie, it returns the first.
     def self.return_higest(words)
       highest_score = scored(words[0])
       best_word = words[0]
@@ -125,26 +157,5 @@ module Scrabble
       end
       return best_word
     end
-
-    def self.highest_score_from(array_of_words)
-      #if there is no tie return higest scoring word
-      #if there is a tie returns a sting of the tieing words
-      if tied(array_of_words) == 0
-        return return_higest(array_of_words)
-      else
-        tieing_words = isolate_tieing_words(array_of_words)
-      end
-      
-    #if none of the tieing words are seven letters long, returns the #first instance of the shortest_word
-    # If at least one word is seven letters long, returns the first
-    #seven lettered word
-      if seven_lettered(tieing_words) == ""
-         shortest_word(tieing_words)
-       else
-         seven_lettered(tieing_words)
-      end
-    end
   end #self::Scoring
 end #Module End
-
-#
