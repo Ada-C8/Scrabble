@@ -32,29 +32,27 @@ module Scrabble
       def self.highest_score_from(array_of_words)
         highest_score = 0
         highest_score_word = nil
-        puts "___"
-        puts array_of_words
-        puts "___"
         array_of_words.each do |word|
           score = self.score(word)
-          puts "word #{word}"
-          puts "score #{score}"
 
           if score > highest_score
             highest_score = score
             highest_score_word = word.upcase
-            puts "#{highest_score} *** #{highest_score_word}"
-          elsif score == highest_score && word.length == 7 || highest_score_word.length == 7
-            if word.length == 7
+          elsif score == highest_score && word.length == 7
+            unless highest_score_word.length == 7
               highest_score_word = word.upcase
+            end
+            #word.length == 7 || highest_score_word.length == 7
+
+            # if word.length == 7
+            #   highest_score_word = word.upcase
             # elsif highest_score_word.length == 7
             #   highest_score_word == w
-      
-          end
+            #end
           elsif score == highest_score && word.length < highest_score_word.length
+            unless highest_score_word.length == 7
             highest_score_word = word.upcase
-            puts highest_score_word
-            puts "\n **"
+            end
           end
         end
         return highest_score_word
