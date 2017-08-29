@@ -54,3 +54,10 @@ describe 'Scrabble' do
 
   end #describe scoring
 end # describe scrabble
+
+
+
+# 1- How did writing tests help you approach writing the scoring logic?
+# we knew exactly when and from where the error resulted. We were able to work on each functionality. Although now we have a great deal of refactoring to tackle!
+
+# 2- We created a hash with key,value pairs so that we could use each character within the word as a key! We certainly could have used an array but it most likely would have added an extra step of always recalling the index of where the value lived. 
