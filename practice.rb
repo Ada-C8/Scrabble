@@ -19,7 +19,23 @@ def score(word)
       end
     end
   end
-  return total
+  if word.length == 7
+    return total + 50
+  else
+    return total
+  end
 end
 
-puts score("CAT")
+puts score("BUBBLES")
+
+
+ # word = "cat"
+ # count = 0
+ # number = 5
+ #
+ # if word.length == 3
+ #   count += number + 5
+ # else
+ #   count +=1
+ # end
+ # puts count

@@ -18,6 +18,7 @@ module Scrabble
         10 => ["Q", "Z"]
       }
       total = 0
+      # extra_point = 50
       for i in 0..word.length
         score_chart.each do |number, letters|
           letters.find do |l|
@@ -27,7 +28,11 @@ module Scrabble
           end
         end
       end
-      return total
+      if word.length == 7
+        return total + 50
+      else
+        return total
+      end
     end
   end
 end

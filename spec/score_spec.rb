@@ -25,10 +25,10 @@ describe "Score" do
       my_class.score("CATAN").must_equal 7
     end
 
-    # it " Check for the 7 letter word " do
-    #   my_class = Scrabble::Score
-    #   my_class.score("BUBBLE").must_equal 62
-    # end
+    it " Check for the 7 letter word " do
+      my_class = Scrabble::Score
+      my_class.score("BUBBLES").must_equal 63
+    end
   end
 
 
