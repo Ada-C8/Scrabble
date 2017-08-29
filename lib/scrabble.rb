@@ -53,14 +53,11 @@ module Scrabble
       if highest_scoring_words.length == 1
         return highest_scoring_words[0]
       elsif tie_breaker(highest_scoring_words)
-        
+
       end
     end
 
-    def tie_breaker(tie_array)
-      # same value different amount of letters
-      # prefers short words
-
+    def self.tie_breaker(tie_array)
       seven_letters = tie_array.select{|word| word.length == 7}
       if seven_letters.length >= 1
         return seven_letters[0] # => winning word, only 1 word with 7 letters
@@ -72,14 +69,9 @@ module Scrabble
           return shortest_word[0] # => winning word
           # => TODO: raise ArgumentError
         end
-        # tie_array.each do |word|
-        #   if word.length == 7 # => 7 letter word wins automatically
-        #     return word
-        #   elsif word
-        #     return tie_array[0] # =>
-        #
       end
+    end # => end of tie breaker
 
 
-    end#end of scoring
-  end # end of module
+  end#end of scoring
+end # end of module
