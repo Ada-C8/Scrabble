@@ -40,11 +40,15 @@ describe "ScoringClass" do
 
 
     it "returns the word that uses 7 tiles for bonus if there is a tie" do
-
+      array = ["bob", "zzzz", "zzkkkk","zzzdddf","billy"]
+      seven = Scrabble::Scoring.highest_scoring_word(array)
+      seven.must_equal "zzzdddf"
     end
 
     it "returns the first supplied word if there is a tie in score and in length" do
-
+      array = ["bob", "zzzz", "zzkkkk","zkkkkkk","zzzdddf","billy"]
+      first_tie = Scrabble::Scoring.highest_scoring_word(array)
+      first_tie.must_equal "zkkkkkk"
     end
   end
 end
