@@ -1,9 +1,11 @@
 require_relative 'spec_helper.rb'
 require_relative '../lib/scrabble-player'
+require_relative '../lib/scrabble-tilebag'
 
 describe "Scrabble:Player" do
   before do
     @averi = Scrabble::Player.new("Averi")
+    @tilebag = Scrabble::TileBag.new
   end
   it "Player can initialize" do
     Scrabble::Player.new("Averi").must_be_instance_of Scrabble::Player
@@ -27,6 +29,16 @@ describe "Scrabble:Player" do
 
   it "plays word returns correct score" do
     @averi.play("dog").must_equal 5
+  end
+
+  it "tiles returns a string of 7 letters" do
+    @averi.draw_tiles(@tilebag)
+    @averi.tiles.must_be_instance_of String
+    @averi.tiles.split(" ").length.must_equal 7
+  end
+
+  it "tilebag responds to draw_tiles" do
+    @averi.must_respond_to :draw_tiles
   end
 
   it "plays returns false if have already won" do

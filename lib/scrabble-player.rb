@@ -7,6 +7,19 @@ module Scrabble
     def initialize(name)
       @name = name
       @plays = []
+      @hand = []
+    end
+
+    def tiles
+      pretty_string = ""
+      @hand.each do |letter|
+        pretty_string << "#{letter} "
+      end
+      return pretty_string
+    end
+
+    def draw_tiles(tile_bag)
+      @hand.concat(tile_bag.draw_tiles(7-@hand.length))
     end
 
     def play(word)
