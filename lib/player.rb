@@ -11,6 +11,9 @@ module Scrabble
     end
 
     def play(word)
+      if won?
+        return false
+      end
       @plays << word
       Scoring.score(word)
       # Returns false if player has already won
@@ -35,10 +38,8 @@ module Scrabble
 
     private
     def won?
-      # won?: If the player has over 100 points, returns true, otherwise returns false
       return total_score > 100
 
-      # This should be a private method
     end
 
   end # end of Player class

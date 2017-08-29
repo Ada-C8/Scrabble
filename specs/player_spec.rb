@@ -29,7 +29,7 @@ describe "Player" do
       @player.plays.must_include "jazzily"
     end
 
-    xit "returns false if the player has already won" do
+    it "returns false if the player has already won" do
       @player.play("jazzily") # score => 85
       @player.play("jazzily") # score => 170
 
@@ -87,7 +87,7 @@ describe "Player" do
     it "becomes 'true' when player's points are over 100" do
       @player.play("jazzily")
       @player.play("ylizzaj")
-      
+
       @player.send(:won?).must_equal true
     end
 
