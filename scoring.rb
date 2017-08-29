@@ -1,5 +1,3 @@
-require 'pry'
-
 module Scrabble
   class Scoring
 
@@ -24,6 +22,12 @@ module Scrabble
           end
         end
       end
+
+      if word.length == 7
+        total += 50
+        # puts "great job, 50 extra points to Ravenclaw!"
+      end
+
       return total
     end
 
