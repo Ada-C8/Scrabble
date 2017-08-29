@@ -44,41 +44,46 @@ module Scrabble
       #   score_total << score(word)
       # end
       # return score_total
+      #
+      # highest_scoring_word = ""
+      scores = array_of_words.group_by {|word| score(word)}
+      puts "#{scores}"
+      #map {|word| score(word)}
 
-      highest_scoring_word = ""
+      array_of_words.inject {|memo, word| score(word) > score(memo) ? word : memo }
+      # highest_score = 0
+      # array_of_words.each do |word|
+      #
+        # if score(word) > highest_score
+        #   highest_scoring_word = word
+        #   highest_score = score(word)
 
-      highest_score = 0
-      array_of_words.each do |word|
-        if score(word) > highest_score
-          highest_scoring_word = word
-          highest_score = score(word)
-        elsif score(word) == highest_score
-            #if highest_scoring_word.length != word.length && highest_scoring_word.length != 7 && word.length != 7
-            unless highest_scoring_word.length == 7 || word.length == 7
-              if highest_scoring_word.length <= word.length
-                highest_scoring_word = highest_scoring_word
-              else
-                highest_scoring_word = word
-              end
-            end
-        elsif highest_scoring_word.length == 7 && word.length != 7
-            highest_scoring_word = highest_scoring_word
-        elsif highest_scoring_word.length != 7 && word.length == 7
-              highest_scoring_word = word
-        end
-     
-
-
-        end
+        ##ESLIFS from yesterday
+      #   elsif score(word) == highest_score
+      #     #if highest_scoring_word.length != word.length && highest_scoring_word.length != 7 && word.length != 7
+      #     unless highest_scoring_word.length == 7 || word.length == 7
+      #       if highest_scoring_word.length <= word.length
+      #         highest_scoring_word = highest_scoring_word
+      #       else
+      #         highest_scoring_word = word
+      #       end
+      #     end
+      #   elsif highest_scoring_word.length == 7 && word.length != 7
+      #     highest_scoring_word = highest_scoring_word
+      #   elsif highest_scoring_word.length != 7 && word.length == 7
+      #     highest_scoring_word = word
+      #   end
+      #
+      #
+      #
+      # end
 
 
 
 
-      end
-    highest_scoring_word
     end
-
   end
+
 end
 
 #
@@ -89,3 +94,5 @@ end
 # point_five = ["K"]
 # point_eight = ["J", "X"]
 # point_ten = ["Q", "Z"]
+
+ap Scrabble::Scoring.highest_score_from_array(["cat", "doge"])
