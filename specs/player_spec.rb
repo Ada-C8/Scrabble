@@ -1,14 +1,12 @@
 require_relative 'spec_helper'
 
-Describe "Player Class" do
-
-  Describe "initializing new Player" do
+describe "Player Class" do
+  describe "initializing new Player" do
     it "Should be instance of a new player" do
-
-      input_name = "Marisa"
-      output = Scrabble::Player.new(input_name)
-      output.must_be_instance_of Scrabble::Player
-
+      # input_name = "Marisa"
+      # output = Scrabble::Player.new("Marisa")
+      # output.must_be_instance_of Scrabble::Player
+      Scrabble::Player.new("Marisa").must_be_instance_of Scrabble::Player
     end
 
     it "Player should have name attribute" do
@@ -25,28 +23,28 @@ Describe "Player Class" do
 
   end
 
-  Describe "Player.plays" do
-
-  end
-
-  Describe "Player.play(input_word)" do
-
-  end
-
-  Describe "Player.total_score" do
-
-  end
-
-  Describe "Player.won?" do
-
-  end
-
-  Describe "Player.highest_scoring_word" do
-
-  end
-
-  Describe "Player.highest_word_score" do
-
-  end
+  # Describe "Player.plays" do
+  #
+  # end
+  #
+  # Describe "Player.play(input_word)" do
+  #
+  # end
+  #
+  # Describe "Player.total_score" do
+  #
+  # end
+  #
+  # Describe "Player.won?" do
+  #
+  # end
+  #
+  # Describe "Player.highest_scoring_word" do
+  #
+  # end
+  #
+  # Describe "Player.highest_word_score" do
+  #
+  # end
 
 end
