@@ -41,6 +41,7 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
+      raise ArgumentError.new("Input must be an Array") if !array_of_words.is_a? Array
       scored_words = array_of_words.map {|word| self.score(word)}
 
     end
