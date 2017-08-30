@@ -1,4 +1,4 @@
-require_relative 'lib/scoring'
+require_relative 'scoring'
 
 module Scrabble
   class Game
@@ -21,6 +21,7 @@ module Scrabble
           end
 
           if player_has_won
+              crown_winner(player)
             break
           end
         end
@@ -48,12 +49,12 @@ module Scrabble
 
     def continue?
       return true if @words.length == 0 # haven't started playing yet
-      @players.each do |player|
-        if player.won?
-          crown_winner(player)
-          return false
-        end
-      end
+      # @players.each do |player|
+      #   if player.won?
+      #     crown_winner(player)
+      #     return false
+      #   end
+      # end
 
       puts "Would you like to play another round? (Y/N)"
       continue = gets.chomp
