@@ -3,7 +3,11 @@ require_relative 'spec_helper'
 describe "PlayerClass" do
   describe "name instance variable" do
     it "Scrabble::Player responds to name" do
-      
+      # SET UP VARIABLES
+      player1 = Scrabble::PlayerClass.new("Sandy")
+      # CALL THE METHOD BEING TESTED
+      player1.must_respond_to :name
+      # CHECK RESULT OF THAT METHOD
     end
     it "returns player's name" do
     end
