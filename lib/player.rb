@@ -32,8 +32,6 @@ module Scrabble
       Scrabble::Scoring.score(highest_scoring_word)
     end
 
-    private
-
     def won?
       if @total_score > 100
         return true
