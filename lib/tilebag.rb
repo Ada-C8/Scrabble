@@ -17,7 +17,7 @@ module Scrabble
           @bag << letter
         end
       end
-      
+
     end
 
 
