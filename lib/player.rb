@@ -6,7 +6,7 @@
   # Returns false if player has already won
   # Returns the score of the word
 
-# total_score: Returns the sum of scores of played words
+
 
 # #won?: If the player has over 100 points, returns true, otherwise returns false
  # This should be a private method
@@ -24,5 +24,19 @@ module Scrabble
       @plays = ["dog", "kitten", "panda"]
     end
 
+    # total_score: Returns the sum of scores of played words
+    def total_score
+      running_score = 0
+      @plays.each do |word|
+        running_score += Scrabble::ScoringClass.score(word)
+      end
+      return running_score
+    end
   end
 end
+
+
+
+# def total_score(arr = nil)
+#   plays = arr || @plays
+# end

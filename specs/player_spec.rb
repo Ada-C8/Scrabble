@@ -7,7 +7,6 @@ describe "PlayerClass" do
   end
   describe "name instance variable" do
     it "Scrabble::Player responds to name" do
-
       @player1.must_respond_to :name
     end
     it "returns player's name" do
@@ -27,7 +26,17 @@ describe "PlayerClass" do
     end
   end
   describe "Total score method" do
-
+    it "Scrabble::Player responds to total_score" do
+      @player1.must_respond_to :total_score
+    end
+    it "return an array" do
+      # plays = ["dog", "kitten", "panda"]
+      @player1.total_score.must_be_kind_of Integer
+    end
+    it "returns the correct total score" do
+      # hard code @plays = ["dog", "kitten", "panda"] score = 23
+      @player1.total_score.must_equal 23
+    end
   end
 end
 
