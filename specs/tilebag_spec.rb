@@ -35,6 +35,24 @@ describe 'TileBag class' do
         @tilebag.draw_tiles(1)[0].must_be_kind_of String
       end
 
+      it "draw_tiles reduces by one the value of that letter" do
+        tilebag1 = Scrabble::TileBag.new
+        selection = @tilebag.draw_tiles(1)[0].to_sym
+        @tilebag.all_tiles[selection].must_equal tilebag1.all_tiles[selection] - 1
+      end
+
+      xit "won't select a tile for which the value is 0" do
+
+      end
     end
+
+    describe "tiles_remaining method" do
+      it "after choosing 1 tile it returns the total number of original tiles minus 1" do
+        @tilebag.tiles_remaining.must_equal 98
+        @tilebag.draw_tiles(1)
+        @tilebag.tiles_remaining.must_equal 97
+      end
+    end
+
   end
 end

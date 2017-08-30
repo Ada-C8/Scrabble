@@ -10,11 +10,16 @@ module Scrabble
       }
     end
 
+    def tiles_remaining
+      @all_tiles.values.reduce(:+)
+    end
+
     def draw_tiles(num)
       letters = []
       num.times do
-        letters << @all_tiles.keys.sample.to_s
-
+        choice = @all_tiles.keys.sample
+        letters << choice.to_s
+        @all_tiles[choice] -= 1
       end
       return letters
     end
