@@ -1,8 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/reporters'
-# require 'minitest/skipra_dsl'
-require_relative '../lib/scoring.rb'
-require_relative '../lib/player.rb'
+require_relative 'spec_helper.rb'
 
 describe "Class player" do
   describe "Initialize" do
