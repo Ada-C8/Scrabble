@@ -1,9 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/reporters'
-require 'minitest/skip_dsl'
-require_relative '../lib/scoring.rb'
 require_relative 'spec_helper'
-require 'pry'
 
 describe "Scoring Class" do
   describe "initialize scoring class" do
