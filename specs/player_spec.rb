@@ -1,5 +1,6 @@
 require_relative 'spec_helper'
 
+
 describe "PlayerClass" do
   it "initiates an instance of player" do
   player = Scrabble::Player.new("jan")
@@ -29,6 +30,79 @@ describe "Plays" do
     player = Scrabble::Player.new("Jan")
     player.play("cat").must_equal 5
   end
+
+  it "returns false if player has already won" do
+    player = Scrabble::Player.new("Jan")
+    player.play("zzzzzzz")
+    player.play("zzzz")
+    player.play("a").must_equal false
+  end
+end
+
+describe "total score method" do
+  it "returns the sum of played words" do
+    player = Scrabble::Player.new("Jan")
+    player.play("cat")
+    player.play("dog")
+    player.play("a")
+    player.total_score.must_equal 11
+  end
+  it "returns total score when only one word has been played" do
+    player = Scrabble::Player.new("Jan")
+    player.play("cat")
+    player.total_score.must_equal 5
+  end
+  it "returns 0 if no words have been played" do
+    player = Scrabble::Player.new("Jan")
+    player.total_score.must_equal 0
+  end
+
+  it "True if over 100 points" do
+    player = Scrabble::Player.new("Jan")
+    player.play("zzzzzzz")
+    player.play("dogzzzz")
+    player.play("a")
+    player.won?.must_equal true
+  end
+
+  it "returns the highest score of a played word" do
+    player = Scrabble::Player.new("Jan")
+    player.play("cat")
+    player.play("dog")
+    player.play("zzz")
+    player.highest_word_score.must_equal 30
+  end
+
+  it "returns the highest scoring played word" do
+    player = Scrabble::Player.new("Jan")
+    player.play("cat")
+    player.play("dog")
+    player.play("zzz")
+    player.highest_scoring_word.must_equal "zzz"
+  end
+
+  it "returns the word of shorter length if there is a tie" do
+    player = Scrabble::Player.new("Jan")
+    player.play("z")
+    player.play("mpy")
+    player.highest_scoring_word.must_equal "z"
+  end
+
+  it "returns the word of 7 letters if there is a tie in points" do
+    player = Scrabble::Player.new("Jan")
+    player.play("zzzz")
+    player.play("zzzdddf")
+    player.play("zzkkkk")
+    player.highest_scoring_word.must_equal "zzzdddf"
+  end
+
+    it "returns the first played word if there is a tie in score and length" do
+      player = Scrabble::Player.new("Jan")
+      player.play("cat")
+      player.play("dog")
+      player.play("a")
+      player.highest_scoring_word.must_equal "cat"
+    end
 
 
 end
