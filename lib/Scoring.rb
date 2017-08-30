@@ -32,7 +32,6 @@ module Scrabble
       def self.highest_score_from(array_of_words)
         highest_score = 0
         highest_score_word = nil
-        puts array_of_words
 
         array_of_words.each do |word|
           word_score = self.score(word)

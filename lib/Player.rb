@@ -2,7 +2,7 @@ require_relative 'Scoring'
 
 module Scrabble
   class Player
-    attr_reader :name, :plays
+    attr_reader :name, :plays, :total_score
 
     def initialize(name)
       @name = name
@@ -12,21 +12,15 @@ module Scrabble
 
 
     #plays returns an Array of the words played by the player
-
     def play(word)
-      #adds input word to plays Array
+      if won? == false #adds input word to plays Array
       @plays << word
-
+      @total_score += Scoring.score(word)
+      else
+      return false
+      end
       #returns false if the player has already won
       #won?
-
-      #returns score of the word
-      #Scoring.score(word)
-      #total_score(score)
-    end
-
-    def total_score(score)
-      #@total_score += score
     end
 
     def highest_word_score
@@ -38,10 +32,11 @@ module Scrabble
 
     private
     def won?
-      #if score >100
-        #return true
-      #else
-        #return false
+      if @total_score > 100
+        return true
+      else
+        return false
+      end
     end
 
 
