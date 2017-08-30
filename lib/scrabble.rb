@@ -47,13 +47,16 @@ module Scrabble
         end
       end
 
+      winner = ""
       tie_breaker.each do |word|
+        p word.length
         if word.length == 7
-          return word
+          winner = word
         else
-          return tie_breaker.min{|a,b| a.size <=> b.size}
+          winner = tie_breaker.min{|a,b| a.size <=> b.size}
         end
       end
+      return winner
 
     end
   end

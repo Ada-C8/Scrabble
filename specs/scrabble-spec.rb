@@ -52,7 +52,7 @@ describe "Scoring class" do
     end
 
     it "Returns the 7 letter word, if tie" do
-      word_list = ["a", "aa", "aeio", "dg", "aeioulg", "zzzzzj"]
+      word_list = ["a", "aa", "aeio", "dg", "zzzzzj", "aeioulg"]
       Scrabble::Scoring.highest_score_from(word_list).must_equal "aeioulg"
     end
   end

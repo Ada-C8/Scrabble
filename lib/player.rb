@@ -10,20 +10,30 @@ module Scrabble
     end
 
     def play(word)
+      # if won? return false
       plays << word
-      return word
+      return Scrabble::Scoring.score(word) # new instance of score
     end
 
     def total_score
-      return true
+      sum_of_scores = []
+      @plays.each do |word|
+        sum_of_scores << Scrabble::Scoring.score(word)
+      end
+      return sum_of_scores.inject(:+)
     end
 
     def highest_word_score
-      return true
+      num_hash = {}
+      @plays.each do |word|
+        num_hash[word] = Scrabble::Scoring.score(word)
+      end
+
+      return num_hash.values.max
     end
 
     def highest_scoring_word
-      return true
+      return Scrabble::Scoring.highest_score_from(@plays)
     end
 
     private
