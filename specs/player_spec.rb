@@ -72,6 +72,7 @@ describe "#Scrabble::Player" do
       check_won.must_equal true
     end
 
+    #11
     it "RESPOND TO" do
       @carlisle.must_respond_to :name
       @carlisle.must_respond_to :word_scores
