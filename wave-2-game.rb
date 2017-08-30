@@ -66,7 +66,7 @@ module Scrabble
       @words << word
 
       # Returns a boolean true or false
-      keep_playing = player.play(word)
+      keep_playing = player.play(word) #will return a score or false
 
       if keep_playing
         return word # Becomes player_word as a String in the play method
