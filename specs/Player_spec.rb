@@ -27,89 +27,113 @@ describe "Scrabble::Player class " do
     before do
       @player = Scrabble::Player.new("Ada")
     end
+    
+    #TODO: create dynamic testing for letters in the players @tiles array
+    # xit "adds the input word to the plays array" do
+    #   word = "hello"
+    #   @player.play(word)
+    #   @player.plays.must_include word
+    # end
+    #
+    # xit "returns false if the game won? = true" do
+    #   words = ["quizzed", "zippers"]
+    #   words.each_with_index do |word, index|
+    #     @player.play(word)
+    #   end
+    #   @player.play("hello").must_equal false
+    # end
+    #
+    # xit "returns the score of the word if won? = false" do
+    #   @player.play("quizzed").must_equal 85
+    # end
 
-    it "adds the input word to the plays array" do
-      word = "hello"
-      @player.play(word)
-      @player.plays.must_include word
+    it "removes played tiles from @tiles" do
+      tilebag = Scrabble::TileBag.new
+      @player.draw_tiles(tilebag)
+      letter = @player.tiles.sample
+      before = @player.tiles.count(letter)
+      @player.play(letter)
+      @player.tiles.length.must_equal 6
+      after = @player.tiles.count(letter)
+      before.must_equal (after + 1)
     end
 
-    it "returns false if the game won? = true" do
-      words = ["quizzed", "zippers"]
-      words.each_with_index do |word, index|
-        @player.play(word)
+    it "only allows player to play with tiles they have" do
+      tilebag = Scrabble::TileBag.new
+      @player.draw_tiles(tilebag)
+      letter = ""
+      until letter != ""
+        sample = ("a".."z").to_a.sample
+        letter = sample if @player.tiles.include?(sample) == false
       end
-      @player.play("hello").must_equal false
-    end
-
-    it "returns the score of the word if won? = false" do
-      @player.play("quizzed").must_equal 85
+      proc{@player.play(letter)}.must_raise Exception
     end
   end
+  #TODO: create dynamic testing for letters in the players @tiles array
+  # xdescribe "total_score" do
+  #   before do
+  #     @player = Scrabble::Player.new("Ada")
+  #     @words = ["apple", "hello", "zoo", "ufo"]
+  #   end
+  #
+  #   it "returns the sum of all played words" do
+  #     @words.each do |word|
+  #       @player.play(word)
+  #     end
+  #     @player.total_score.must_be_instance_of Integer
+  #     @player.total_score.must_equal 35
+  #   end
+  #
+  #   it "initializes with value of 0" do
+  #     @player.total_score.must_equal 0
+  #   end
+  #
+  #   it "updates after every valid play" do
+  #     @words.each do |word|
+  #       x = @player.total_score
+  #       @player.play(word)
+  #       @player.total_score.must_be :>, x
+  #     end
+  #   end
+  #
+  #   it "does not update after the game has been won " do
+  #     words = ["quizzed", "zippers"]
+  #     words.each do |word|
+  #       @player.play(word)
+  #     end
+  #     x = @player.total_score
+  #     @player.play("another")
+  #     x.must_equal @player.total_score
+  #   end
+  # end
 
-  describe "total_score" do
-    before do
-      @player = Scrabble::Player.new("Ada")
-      @words = ["apple", "hello", "zoo", "ufo"]
-    end
-
-    it "returns the sum of all played words" do
-      @words.each do |word|
-        @player.play(word)
-      end
-      @player.total_score.must_be_instance_of Integer
-      @player.total_score.must_equal 35
-    end
-
-    it "initializes with value of 0" do
-      @player.total_score.must_equal 0
-    end
-
-    it "updates after every valid play" do
-      @words.each do |word|
-        x = @player.total_score
-        @player.play(word)
-        @player.total_score.must_be :>, x
-      end
-    end
-
-    it "does not update after the game has been won " do
-      words = ["quizzed", "zippers"]
-      words.each do |word|
-        @player.play(word)
-      end
-      x = @player.total_score
-      @player.play("another")
-      x.must_equal @player.total_score
-    end
-  end
-
-  describe "high score variables" do
-    before do
-      @player = Scrabble::Player.new("Ada")
-      @words = ["quizzed", "zippers"]
-      @words.each do |word|
-        @player.play(word)
-      end
-    end
-
-    describe "highest_scoring_word" do
-      it "returns the word with the highest score" do
-        @player.highest_scoring_word.must_be_instance_of String
-        @player.highest_scoring_word.must_equal "quizzed"
-      end
-    end
-
-    describe "highest_word_score" do
-      it "it is a number" do
-        @player.highest_word_score.must_be_instance_of Integer
-      end
-
-      it "is the highest score of any word the player has played" do
-        @player.highest_word_score.must_equal 85
-      end
-    end
-  end
+  #TODO: create dynamic testing for letters in the players @tiles array
+  # xdescribe "high score variables" do
+  #   before do
+  #     @player = Scrabble::Player.new("Ada")
+  #     @words = ["quizzed", "zippers"]
+  #     @words.each do |word|
+  #       @player.play(word)
+  #     end
+  #   end
+  #
+  #   describe "highest_scoring_word" do
+  #     it "returns the word with the highest score" do
+  #       @player.highest_scoring_word.must_be_instance_of String
+  #       @player.highest_scoring_word.must_equal "quizzed"
+  #     end
+  #   end
+  #
+  #   describe "highest_word_score" do
+  #     it "it is a number" do
+  #       @player.highest_word_score.must_be_instance_of Integer
+  #     end
+  #
+  #     it "is the highest score of any word the player has played" do
+  #       @player.highest_word_score.must_equal 85
+  #     end
+  #   end
+  # end
 
   describe "tiles" do
     it "returns an array of letters" do
@@ -121,8 +145,11 @@ describe "Scrabble::Player class " do
 
     it "must have seven or less letters" do
       player = Scrabble::Player.new("Ada")
-      #TODO: test after we define draw_tiles(tilebag) method for Player
+      tilebag = Scrabble::TileBag.new
       player.tiles.length.must_be :<, 8
+      player.draw_tiles(tilebag)
+      player.tiles.length.must_equal 7
+      #TODO: test to verify that play removes tiles from @tiles
     end
 
   end

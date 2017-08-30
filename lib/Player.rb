@@ -12,7 +12,17 @@ module Scrabble
     end
 
     def play(word)
+      #TODO: remove tiles from @tiles when word is played
       return false if won?
+      letters = word.split("")
+      letters.each do |letter|
+        raise ArgumentError if @tiles.count(letter) < letters.count(letter)
+      end
+
+      letters.each do |letter|
+        @tiles.delete_at(@tiles.index(letter))
+      end 
+
       @total_score += Scoring.score(word)
       @plays << word
       @highest_scoring_word = Scoring.highest_score_from(@plays)
