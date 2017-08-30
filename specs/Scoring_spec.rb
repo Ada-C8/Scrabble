@@ -1,9 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/reporters'
-require 'minitest/skip_dsl'
-require 'simplecov'
-SimpleCov.start
-require_relative '../lib/Scoring'
+require_relative 'spec_helper'
 
 describe "Scrabble::Scoring" do
   describe "self.score" do
