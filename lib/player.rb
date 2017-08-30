@@ -1,4 +1,4 @@
-require_relative "scrabble"
+require_relative "scoring"
 
 
 module Scrabble

@@ -7,7 +7,7 @@ require 'minitest/pride'
 
 
 
-require_relative '../lib/scrabble'
+require_relative '../lib/scoring'
 require_relative '../lib/player'
 
 
