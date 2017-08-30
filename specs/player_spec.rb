@@ -55,7 +55,7 @@ describe "Player" do
 
       @test_player.player_words.length.must_equal 1
       array = @test_player.player_words
-      array[0].must_equal "hello"
+      array[0].must_equal "HELLO"
     end #it "will add the word to the @player_words array" do
 
     it "should add word score to @total_score" do
@@ -70,27 +70,49 @@ describe "Player" do
       expect(@test_player.send(:won?)).to eq(true)
     end
 
-    xit "if won is true, should return false" do
-
+    it "if won is true, should return false" do
+    #if we exclude words over seven letter we will have to change this
+      @test_player.play("zzzzzzzzzz")
+      @test_player.play("hello").must_equal false
     end
 
-    xit "if won is false, should return score as Integer" do
-
+    it "if won is false, should return score as Integer" do
+      @test_player.play("z")
+      @test_player.play("hello").must_equal 8
+      @test_player.play("hello").must_be_kind_of Integer
     end
-
   end #describe "#play(word)" do
 
-  xdescribe "won?" do
-
+  describe "won?" do
+    #TODO: Q: do we need to test the won? private method since we test this functionaly already in the play(word) method tests?
     xit "should return true if @total_score > 100" do
-      # @total_score = 150
+      #This doesn't work because you can't call a private method
+      # @test_player.play("zzzzzzzzzz")
       # @test_player.won?.must_equal true
     end # It
 
     xit "should return false if @total_score < 100" do
-
+      #This doesn't work because you can't call a private method
+      # @test_player.play("z")
+      # @test_player.won?.must_equal false
     end # It
 
-  end # Describe
+    #TODO: should we test that the play(word) method respond to the won? method? If so, how do we test if a method responds to a private method?
+  end # Describe won?
+
+  describe "#highest_scoring_word" do
+    it "will return a string" do
+      @test_player.play("hello")
+      @test_player.highest_scoring_word(@player_words).must_be_kind_of String
+    end #it "will return a string" do
+
+    it "will return the highest scoring word" do
+      @test_player.play("a")
+      @test_player.play("aa")
+      @test_player.play("aaa")
+      @test_player.highest_scoring_word(@player_words).must_equal "AAA"
+    end #it "will return the highest scoring word" do
+
+  end # describe "#highest_scoring_word" do
 
 end # Describe

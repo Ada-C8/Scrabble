@@ -23,7 +23,7 @@ module Scrabble
     end #plays
 
     def play(word)
-      @player_words << word
+      @player_words << word.upcase
       result = Scrabble::Scoring.score(word)
       @total_score += result
       if won?
@@ -32,6 +32,10 @@ module Scrabble
         return result # Score of the word
       end
     end #play
+
+    def highest_scoring_word(word_array)
+      Scrabble::Scoring.highest_score_from_array(@player_words)
+    end #def highest_score_word(word_array)
 
     #TODO: calculate score of word and add to @total_score (use @total_score in won? method to determine if they have > 100 points)
     #TODO: return false if player has already won (won? == true)
