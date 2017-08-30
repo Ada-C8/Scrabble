@@ -10,7 +10,6 @@ describe "The Player class" do
   describe "Initialising Player" do
 
     it "Player is a class of the Scrabble" do
-
       @player.must_be_instance_of Scrabble::Player
     end
 
