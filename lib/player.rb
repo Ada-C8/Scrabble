@@ -6,11 +6,6 @@
   # Returns false if player has already won
   # Returns the score of the word
 
-
-
-# #won?: If the player has over 100 points, returns true, otherwise returns false
- # This should be a private method
-
 # #highest_scoring_word: Returns the highest scoring played word
 
 # #highest_word_score: Returns the highest_scoring_word score
@@ -32,6 +27,16 @@ module Scrabble
       end
       return running_score
     end
+
+    private
+
+    # #won?: If the player has over 100 points, returns true, otherwise returns false
+     # This should be a private method
+    def won?
+      total_score >= 100 ? (return true) : (return false)
+      # total_score >= 100
+    end
+
   end
 end
 

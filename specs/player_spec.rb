@@ -38,6 +38,22 @@ describe "PlayerClass" do
       @player1.total_score.must_equal 23
     end
   end
+
+  # describe "Won? method" do
+  #   it "Scrabble::Player responds to won" do
+  #     @player1.must_respond_to :won?
+  #   end
+  #
+  #   it "returns true if equals 100 or more" do
+  #     @player1.won?.must_equal true
+  #   end
+  #
+  #   it "returns false if equals less than 100" do
+  #     @player1.won?.must_equal false
+  #   end
+
+  end
+
 end
 
 # SET UP VARIABLES
