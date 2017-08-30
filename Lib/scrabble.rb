@@ -28,11 +28,6 @@ module Scrabble
     "Y" => 4,
     "Z" => 10
   }
-  #DOES THIS HAVE TO BE SELF.?
-  def self.high_score_array(array)
-    array.group_by{|word| Scrabble::Scoring.scored(word)}.max.last
-  end
-
 
   class Scoring
     attr_accessor :word, :score
@@ -55,7 +50,12 @@ module Scrabble
         points += POINT_PER_VARIABLE[letter.upcase]
       end
       word.length >= 7 ? points += 50 : points
-      points
+    end
+
+    #DOES THIS HAVE TO BE SELF.?
+    def self.high_score_array(array)
+      raise ArgumentError.new("No Plays") if array == []
+      array.group_by{|word| Scoring.scored(word)}.max.last
     end
 
 
@@ -70,7 +70,7 @@ module Scrabble
     #    word with the fewest letters.
 
     def self.highest_score_from(array_of_words)
-      highest_score_array = Scrabble.high_score_array(array_of_words)
+      highest_score_array = Scoring.high_score_array(array_of_words)
 
       if highest_score_array.length == 1
         return highest_score_array[0]
