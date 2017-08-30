@@ -40,6 +40,10 @@ describe 'Scrabble' do
         Scrabble::Scoring.highest_score_from(array_of_words).must_equal "laurend"
       end # 7 letter tie
 
+      it "tie 7 letter word win" do
+        array_of_words = [ "dog", "cat", "zzzzzx", "laurend", "sit"]
+        Scrabble::Scoring.highest_score_from(array_of_words).must_equal "laurend"
+      end # 7 letter tie
 
       it "equal scores and length will make first one win" do
         array_of_words = ["cat", "it", "be", "bat", "sit"]

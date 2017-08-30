@@ -52,11 +52,32 @@ module Scrabble
 
     #to rebecca: OMG can we use ternary operator to make things cleaner??
     def self.tie(word, max_word)
+      binding pry
       if (word.length == 7 && max_word.length != 7) || (word.length < max_word.length)
         max_word = word
         return max_word.downcase
       end
     end
+    # # from old code:
+    # # def self.redefine_max(max_word, max_score)
+    # #   max_word = word
+    # #   max_score = score(word)
+    # #   return max_word.downcase
+    # # end
+    #
+    # def self.tie(word, max_word)
+    #   if word.length != 7 || max_word.length != 7
+    #     if word.length == 7
+    #       max_word = word
+    #       max_score = score(word)
+    #       return max_word.downcase
+    #     end
+    #   elsif word.length < max_word.length
+    #     max_word = word
+    #     max_score = score(word)
+    #     return max_word.downcase
+    #   end
+    # end
 
     def self.highest_score_from(array_of_words)
       max_score = 0
@@ -77,3 +98,6 @@ end #module
 
 # puts Scrabble::Scoring.highest_score_from(["cat", "be", "bat", "pat"])
 # puts Scrabble::Scoring.tie("cat", "bat")
+array_of_words = [ "dog", "cat", "zzzzzx", "laurend", "sit"]
+# 
+# Scrabble::Scoring.highest_score_from(array_of_words)
