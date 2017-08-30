@@ -2,12 +2,14 @@ require_relative 'Scoring'
 
 module Scrabble
   class Player
-    attr_reader :name, :plays, :total_score
+    attr_reader :name, :plays, :total_score, :highest_scoring_word, :highest_word_score
 
     def initialize(name)
       @name = name
       @plays = []
       @total_score = 0
+      @highest_scoring_word = nil
+      @highest_word_score = 0
     end
 
 
@@ -23,10 +25,16 @@ module Scrabble
       #won?
     end
 
+    def highest_scoring_word
+      @highest_scoring_word = Scoring.highest_score_from(@plays)
+      return @highest_scoring_word
+    end
+
     def highest_word_score
-      #@plays.each do |play|
-        #if play.score
-        #...
+      highest_scoring_word
+      @highest_word_score = Scoring.score(@highest_scoring_word)
+
+      return @highest_word_score
     end
 
 
