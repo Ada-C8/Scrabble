@@ -18,15 +18,24 @@ module Scrabble
       hand = []
 
       num.times do
+        # pick a random letter
         letter = ('A'..'Z').to_a.sample
 
-        if LETTER_FREQUENCY[letter.to_sym] > 0
-          hand << letter
-          @tiles[letter.to_sym] -=1
+        # if letter not avail, pick another letter
+        while @tiles[letter.to_sym] == 0
+          letter = ('A'..'Z').to_a.sample
         end
+
+        # add letter to hand; remove from @tiles
+        hand << letter
+        @tiles[letter.to_sym] -=1
       end
 
       return hand
+    end
+
+    def tiles_remaining
+      return @tiles.values.sum
     end
   end # end of TileBag class
 

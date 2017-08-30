@@ -31,5 +31,26 @@ describe "TileBag class" do
       @new_tile_bag.tiles.values.sum.must_equal (Scrabble::TileBag::LETTER_FREQUENCY.values.sum - 21)
     end
 
+    it "Won't pick more than 4 Ds and 1 Z when all tiles are picked" do
+      new_bag = Scrabble::TileBag.new
+
+      test_hand = new_bag.draw_tiles(98)
+      test_hand.count('D').must_equal 4
+      test_hand.count('Z').must_equal 1
+    end
+
   end
+
+  describe "tiles_remaining method" do
+      it "Returns the number of tiles left in the tile bag" do
+        new_bag = Scrabble::TileBag.new
+
+        new_bag.draw_tiles(10)
+        new_bag.tiles_remaining.must_equal 88
+
+        new_bag.draw_tiles(88)
+        new_bag.tiles_remaining.must_equal 0
+      end
+  end
+
 end
