@@ -9,16 +9,10 @@ module Scrabble
     }
 
     def self.score(string)
-      if string.length > 7
-        raise ArgumentError.new("Seven letter maximum.")
-      end
-      if string.length == 7
-        total_score = 50
-      else
-        total_score = 0
-      end
+      raise ArgumentError.new("Seven letter maximum.") if string.length > 7
+      string.length == 7 ? total_score = 50 : total_score = 0
       string.each_char do |letter|
-        if @point_values.key?(letter.upcase.to_sym) == true
+        if @point_values.key?(letter.upcase.to_sym)
           total_score += @point_values[letter.upcase.to_sym]
         end
       end
@@ -26,35 +20,21 @@ module Scrabble
     end
 
     def self.highest_score_from(array)
-      if array.class != Array
-        raise ArgumentError.new("Must pass an array.")
-      end
-      unless array.length > 1 #Should it just return the one?
-        raise ArgumentError.new("Needs at least two words to compare")
-      end
-      array.each do |i|
-        if i.class != String
-          raise ArgumentError.new("Can only compare strings")
-        end
-      end
+      raise ArgumentError.new("Must pass an array.") if array.class != Array
+      raise ArgumentError.new("Needs at least two words to compare") unless array.length > 1 #Should it just return the one?
+      raise ArgumentError.new("Can only compare strings") if array.any? {|element| element.class != String}
 
       scores = array.map { |word| score(word) }
-      if scores.length == scores.uniq.length
-        array.inject("") do|winner, element|
-          score(winner) >= score(element) ? winner : element
+      if scores.length == scores.uniq.length # Indicates no score ties
+        array.inject do|winner, word|
+          score(winner) >= score(word) ? winner : word # Return highest scoring word
         end
-      else
-        high_score_word = array.max_by {|word| score(word)}
-        array.reject! {|word| score(word) < score(high_score_word)}
-        array.each do |word|
-          if word.length == 7
-            return word
-          end
-        end
-        return array.min_by {|word| word.length}
+      else # In case of ties:
+        high_score = scores.max
+        array.reject! {|word| score(word) < high_score} # Remove lower scoring words from collection
+        array.each { |word|return word if word.length == 7 } # First 7-letter high-scorer wins
+        return array.min_by {|word| word.length} # If no 7-letter high-scorer, shortest high-scorer wins
       end
     end
   end
 end
-
-Scrabble::Scoring.highest_score_from(['qqq', 'eee', 'zzz'])
