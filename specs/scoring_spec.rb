@@ -1,9 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/reporters'
-require 'minitest/skip_dsl'
-require_relative '../lib/scoring'
-
-Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
+require_relative 'spec_helper'
 
 describe "scoring" do
 
@@ -22,7 +17,7 @@ describe "scoring" do
       end #.each
     end #it "@score_chart must include ("A".."z")" do
 
-    
+
   end #describe "initialize" do
 
   describe "self.score(word)" do
