@@ -29,20 +29,22 @@ describe "Scoring" do
 
   describe "self#highest_score_from(array_of_words)" do
     it "returns a string in the array" do
-      Scrabble::Scoring.highest_score_from(["animals"]).class.must_equal Array
+      Scrabble::Scoring.highest_score_from(["apple"]).class.must_equal String
     end
 
     it "ensures that the input is an array" do
       proc { Scrabble::Scoring.highest_score_from(12) }.must_raise ArgumentError
     end
 
-    # it "ensures elements in the inputted array are strings" do
-    #   array_of_words = [ "apple", "banana", 12, "tomato"]
-    #   proc { Scrabble::Scoring.highest_score_from(array_of_words) }.must_raise ArgumentError
-    # end
-    # it "returns the word in the array with the highest score" do
-    #     array_of_words = [ "apple", "kiwi", "tomato"]
-    # end
+    it "ensures elements in the inputted array are strings" do
+      array_of_words = [ "apple", "banana", 12, "tomato"]
+      proc { Scrabble::Scoring.highest_score_from(array_of_words) }.must_raise ArgumentError
+    end
+
+    it "returns the word in the array with the highest score" do
+      array_of_words = [ "apple", "kiwi", "tomato"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "kiwi"
+    end
 
 
 
