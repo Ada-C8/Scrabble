@@ -4,7 +4,7 @@ require 'scoring'
 
 module Scrabble
   class Player
-  attr_reader :name, :plays, :word_score
+  attr_reader :name, :plays, :word_scores
     def initialize(name)
       @name = name
       @word_scores = []
