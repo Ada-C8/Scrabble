@@ -40,9 +40,7 @@ describe "Player" do
     end #it "will return an array" do
 
     it "will return an array of strings" do
-
 ######TODO: Use an Enumerable here
-
       @test_player.plays.each do |word|
         word.must_be_kind_of String
       end #.each
