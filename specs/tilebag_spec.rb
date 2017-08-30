@@ -2,11 +2,12 @@ require_relative 'spec_helper'
 
 describe 'TileBag' do
   before do
+    @test_bag = Scrabble::TileBag.new
     @tilebag = Scrabble::TileBag
   end
 
-  describe 'initialize' do
-    it 'creates a Hash of toal tiles' do
+  describe 'TILES_COUNT' do
+    it 'creates a Hash of total tiles' do
       @tilebag::TILES_COUNT.must_be_kind_of Hash
     end
 
@@ -15,19 +16,32 @@ describe 'TileBag' do
     end
   end
 
-  xdescribe 'draw_tiles' do
+  describe 'initialize' do
+    it 'has instance variable @bag which is an array' do
+      @test_bag.bag.must_be_kind_of Array
+    end
+
+    it 'generates @bag array with correct number of each tile' do
+      @test_bag.bag.length.must_equal 98
+      @test_bag.bag.must_include 'A'
+      @test_bag.bag.must_include 'Z'
+    end
+  end
+
+  describe 'draw_tiles' do
     it 'draws 7 tiles' do
-      @tilebag.draw_tiles(7)
+      @test_bag.draw_tiles(7)
+      @test_bag.bag.length.must_equal 91
     end
 
     it 'draws random tiles' do
-      @tilebag.draw_tiles(7)
-      @tilebag.must_equal rand(TILES)
+      tiles_1 = @test_bag.draw_tiles(7)
+      tiles_2 = @test_bag.draw_tiles(7)
+      tiles_1.must_not_equal tiles_2
     end
 
-    it 'does not draw more tiles than exist' do
-      @tilebag.draw_tiles(num)
-      num.must_not_be_greater_than 7
+    xit 'does not draw more tiles than exist' do
+      @test_bag.draw_tiles(99)
     end
   end
 
