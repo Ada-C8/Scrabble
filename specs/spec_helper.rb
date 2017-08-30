@@ -7,6 +7,7 @@ require 'minitest/skip_dsl'
 require 'minitest/pride'
 require_relative '../lib/scoring'
 require_relative '../lib/player'
+require_relative '../lib/tilebag.rb'
 #
 #
 #
