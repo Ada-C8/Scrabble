@@ -33,7 +33,6 @@ module Scrabble
 
     def self.highest_scoring_word(words)
 
-      # words = words
       scores = words.map {|word| Scrabble::Scoring.score(word)}
       word_scores = Hash[words.zip(scores)]
 
@@ -53,26 +52,13 @@ module Scrabble
           return word
         end
       end
-      #
-      # if tie_words.length > 1
-      #
-      # else
+
+      if tie_words[0].to_s.length == tie_words[1].to_s.length
+        overlap = tie_words & words
+        return overlap[-1]
+      else
         return tie_words[0]
-      # end
-
-
-      # if tie_words[0].length == tie_words[1].length
-      #   words.each do |word|
-      #     if word.length == tie_words[0].length
-      #       return word
-      #     end
-      #   end
-      # else
-      #   return tie_words[0]
-      # end
-
-
-
+      end
     end
 
 

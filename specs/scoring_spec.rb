@@ -1,7 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/skip_dsl'
-require 'minitest/reporters'
-require_relative 'scoring'
+require_relative 'spec_helper'
 
 describe "ScoringClass" do
   describe 'initiate scoring class' do
@@ -46,9 +43,13 @@ describe "ScoringClass" do
     end
 
     it "returns the first supplied word if there is a tie in score and in length" do
-      array = ["bob", "zzzz", "zzkkkk","zkkkkkk","zzzdddf","billy"]
+      array = ["dog", "cat"]
       first_tie = Scrabble::Scoring.highest_scoring_word(array)
-      first_tie.must_equal "zkkkkkk"
+      first_tie.must_equal "dog"
+
+      array = ["a", "cat", "b", "dog", "e"]
+      first_tie = Scrabble::Scoring.highest_scoring_word(array)
+      first_tie.must_equal "cat"
     end
   end
 end
