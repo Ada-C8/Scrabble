@@ -7,6 +7,7 @@ module Scrabble
     end
 
     def self.score(word)
+	  word = word.upcase
       score_chart =
       {
         1 => ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
