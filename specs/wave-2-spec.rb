@@ -45,21 +45,64 @@ describe "method play(word)" do
 
     @tanja.plays.pop.must_equal "code"
   end
-  # it "returns false if player has already won" do
-  #   score = 100
-  #
-  #   @tanja.play.won?.must_equal false
-  #
-  # end
+  it "returns false if player has already won" do
+    @tanja.play("ZZZZZZZ")
+
+    @tanja.play("winner").must_equal false
+  end
   it "returns the score of the word" do
     @tanja.play("code").must_equal 7
   end
 end
+
+
 describe "total_score"do
-before do
-  
+  before do
+    @chris = Scrabble::Player.new("CheezItMan")
+  end
+  it "returns the score of zero if the Array is empty" do
+    @chris.total_score.must_equal 0
+  end
+
+  it "returns the sum when 2 words are played" do
+    @chris.play("hello")
+    @chris.play("goodbye")
+
+
+    @chris.total_score.must_equal 72
+  end
 end
-  it "returns sum scores of all words played" do
+
+describe "method won?" do
+  before do
+    @dee = Scrabble::Player.new("Tildee")
+  end
+  it "returns true if score is over 100" do
+    @dee.play("Waluigi")
+    @dee.play("Letzzgo")
+    @dee.won?.must_equal true
+  end
+
+  it "returns false for scores =< 100." do
+    @dee.play("Waluigi")
+    @dee.play("Letsgo")
+    @dee.won?.must_equal false
+  end
+end
+
+describe "method highest_scoring_word" do
+  before do
+    @ada = Scrabble::Player.new("Countess Lovelace")
+  end
+  it "returns a message if no words were played" do
+    @ada.highest_scoring_word.must_equal "none, because #{@ada.name} did not play any words"
+  end
+  it "returns the highest scoring played word" do
+    ["I", "love", "codingg"].each do |word|
+      @ada.play(word)
+    end
+
+    @ada.highest_scoring_word.must_equal "codingg"
 
   end
 end
