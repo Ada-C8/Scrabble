@@ -32,4 +32,11 @@ describe "Score" do
   end
 
 
+  describe " self.highest_score_from_array method" do
+    it " Check for the longest word without a tie" do
+      my_class = Scrabble::Score
+      my_class.highest_score_from_array(["CAT", "CATAN", "BUBBLES"]).must_equal "BUBBLES"
+    end
+    
+  end
 end

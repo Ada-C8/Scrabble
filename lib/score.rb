@@ -34,5 +34,12 @@ module Scrabble
         return total
       end
     end
+
+
+    def self.highest_score_from_array(array_of_words)
+      longest = array_of_words.max_by{|word| Score.score(word) }
+    end
+
+
   end
 end
