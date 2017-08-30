@@ -30,6 +30,11 @@ describe "Scrabble::Scoring" do
     it "doesn't accept empty strings as words" do
       proc{Scrabble::Scoring.score("")}.must_raise ArgumentError
     end
+
+    it "doesn't accept strings with numbers or characters" do
+      proc{Scrabble::Scoring.score("word1")}.must_raise ArgumentError
+      proc{Scrabble::Scoring.score("word!")}.must_raise ArgumentError
+    end
   end
 
   describe "self.highest_score_from method" do
