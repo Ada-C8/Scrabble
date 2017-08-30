@@ -35,47 +35,43 @@ module Scrabble
       end
     end
 
-
     def self.highest_score_from_array(array_of_words)
-      #longest = array_of_words.max_by{|word| Score.score(word) }
       tie = []
       max_so_far = -1
 
       array_of_words.each do |i|
+        
         current_high_score = Scrabble::Score.score(i)
-        if current_high_score > max_so_far do
+        if current_high_score > max_so_far
           tie = []
           tie << i
           max_so_far = current_high_score
-        end
-
-        if current_high_score == max_so_far do
+        elsif current_high_score == max_so_far 
           tie << i
+        else
+          
         end
-
-
       end
-        #insert item with highest Score here
-        #will need method from partner or other input here?
-
+      
+      
         if tie.length == 1
           return tie[0]
         else
-          winner_winner = ""
+          winner = ""
+          min_length = 100
           tie.each do |i|
-
-
-        
-
-        if #here is the case for 7 letter words, trumps other cases
-          #bonus would be added in other (score?) method
-
-        elsif #here is the case for fewest tiles winning the tie
-
-        else #otherwise the first thing passed into the array
-      end
-    end
-
-
+            if i.length == 7
+              return i
+            else
+              puts 'current is ' + i + " and min length is #{min_length}"
+              if i.length < min_length 
+                winner = i
+                min_length = i.length
+              end
+            end
+          end
+          return winner
+        end
+      end   
   end
 end
