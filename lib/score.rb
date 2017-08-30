@@ -6,6 +6,7 @@ module Scrabble
       @words = []
     end
 
+ # calculates the score of a given word
     def self.score(word)
       score_chart =
       {
@@ -20,8 +21,8 @@ module Scrabble
       total = 0
       # extra_point = 50
       for i in 0..word.length
-        score_chart.each do |number, letters|
-          letters.find do |l|
+        score_chart.each do |number, letters| # Loops through hash
+          letters.find do |l| # Iterates through letters of an array
             if l == word[i]
               total += number
             end
@@ -35,8 +36,9 @@ module Scrabble
       end
     end
 
-
+# returns the word with the highest score
     def self.highest_score_from_array(array_of_words)
+<<<<<<< HEAD
       #longest = array_of_words.max_by{|word| Score.score(word) }
       tie = []
       
@@ -54,8 +56,37 @@ module Scrabble
 
         else #otherwise the first thing passed into the array 
       end 
+=======
+      longest_string = ""
+      array_of_words.each do |word|
+        if is_better_choice(longest_string, word)
+          longest_string = word
+        end
+      end
+      return longest_string
+>>>>>>> fdb939fb016252bbec284c3fd1bc377f6c1749c1
     end
 
-
+    # returns true if word2 is better choice.
+    def self.is_better_choice(word1, word2)
+      score1 = score(word1)
+      score2 = score(word2)
+      if (score1 > score2)
+        return false
+      elsif (score2 > score1)
+        return true
+      else
+        if (word1.length == 7)
+          return false
+        end
+        if (word2.length == 7)
+          return true
+        end
+        if (word2.length < word1.length)
+          return true
+        end
+        return false
+      end
+    end
   end
 end
