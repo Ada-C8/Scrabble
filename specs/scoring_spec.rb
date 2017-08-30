@@ -57,6 +57,8 @@ describe 'Scoring' do
     it 'it returns 7-letter word rather than short word' do
       words = %w[aeadaea zzzzzj]
       @scrabble.highest_score_from(words).must_equal 'aeadaea'
+      words = %w[zzzzzj aeadaea]
+      @scrabble.highest_score_from(words).must_equal 'aeadaea'
     end
 
     it 'returns first word in event of an absolute tie' do
