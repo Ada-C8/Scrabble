@@ -9,39 +9,34 @@ class Scoring
     def self.score(word)
       value = 0
       word.upcase.each_char do |letter|
-        value += TILES[letter] 
+        value += TILES[letter]
       end
       if word.length == 7
-       value += 50
-     end
-     return value
-   end
+        value += 50
+      end
+      return value
+    end
 
-   def self.highest_score_from(array_of_words)
-    max = 0
-    empty = ''
-    fewer_tiles = ''
-    array_of_words.each do |words|
-      if self.score(words) > max
-        max = self.score(words) 
-        empty = words
-      elsif self.score(words) == max 
-        if words.length < empty.length  
-          empty = words          
+    def self.highest_score_from(array_of_words)
+      max = 0
+      empty = ''
+      array_of_words.each do |words|
+        if self.score(words) > max
+          max = self.score(words)
+          empty = words
+        elsif self.score(words) == max
+          if words.length < empty.length
+            empty = words
+          end
         end
       end
+      return empty
     end
-     return empty  
-    end
-
-
 end #end of class
-# end #end of module
+  # end #end of module
 
-#Scoring.highest_score_from(["cat", "eggs", "bread", "rank"])
+  #Scoring.highest_score_from(["cat", "eggs", "bread", "rank"])
 
-# Scoring.score("cat")
+  # Scoring.score("cat")
 
-# Hash[score_array.map {|words| [v,v.upcase]}]
-
-
+  # Hash[score_array.map {|words| [v,v.upcase]}]
