@@ -48,10 +48,16 @@ describe "Scoring class" do
   end
 
   describe "highest_score_from_array" do
-    it "Returns the highest score from an array of words" do
+    it "Returns the highest score from an array of words with a 7-letter workd" do
       words = ["fantastically", "cat", "scrabble", "peanuts", "spy"]
 
       Scrabble::Scoring.highest_score_from_array(words).must_equal "FANTASTICALLY"
+    end
+
+    it "Returns the highest score from an array of words with no 7-letter words" do
+      words = ["pie", "qqqjkk", "qqqqj"]
+
+      Scrabble::Scoring.highest_score_from_array(words).must_equal "QQQQJ"
     end
 
     # xit "Breaks tie by choosing shorter word" do
