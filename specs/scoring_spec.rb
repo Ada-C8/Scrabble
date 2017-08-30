@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
@@ -21,12 +23,16 @@ describe "#Scrabble.score" do
     Scrabble::Scoring.score("z").must_equal 10
   end
 
-  # it "Throws an argument error when given invalid output" do
-  #   Scrabble::Scoring.score("1").must_raise ArgumentError
-  #   Scrabble::Scoring.score(1).must_raise ArgumentError
-  #   Scrabble::Scoring.score("").must_raise ArgumentError
-  #   Scrabble::Scoring.score().must_raise ArgumentError
-  # end
+  it "Throws an argument error when given invalid output" do
+    proc {Scrabble::Scoring.score("1")}.must_raise ArgumentError
+
+    proc {Scrabble::Scoring.score(1)}.must_raise ArgumentError
+
+    proc {Scrabble::Scoring.score("")}.must_raise ArgumentError
+
+    proc {Scrabble::Scoring.score()}.must_raise ArgumentError
+
+  end
 
  it "can handle multiple letters" do
    Scrabble::Scoring.score("ogmfkj").must_equal 23

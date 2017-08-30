@@ -6,26 +6,27 @@ module Scrabble
     end
 
     def self.score(word)
-      word = word.upcase.split("") #array
+      word = word.split("") #array
       score = 0
       word.each do |letter|
         case letter
-        when "A", "E", "I", "O", "U", "L", "N", "R", "S", "T"
+        when "A", "a","E", "e", "I", "i", "O", "o", "U", "u", "L", "l", "N", "n", "R", "r", "S", "s", "T", "t"
           score += 1
-        when "D", "G"
+        when "D", "d", "G", "g"
           score += 2
-        when "B", "C", "M", "P"
+        when "B", "b", "C", "c", "M", "m", "P", "p"
           score += 3
-        when "F", "H", "V", "W", "Y"
+        when "F", "f", "H", "h", "V", "v", "W", "w", "Y", "y"
           score += 4
-        when "K"
+        when "K", "k"
           score += 5
-        when "J", "X"
+        when "J", "j", "X", "x"
           score += 8
-        when "Q", "Z"
+        when "Q", "q", "Z", "z"
           score += 10
         else
-          raise ArgumentError.new("Invalid Input!")
+          raise ArgumentError.new("Invalid Input for string!")
+
         end
       end
 
@@ -34,7 +35,6 @@ module Scrabble
       end
       return score
     end
-
 
     def self.highest_score_from_array(array_of_words)
       scores = array_of_words.group_by {|word| score(word)}
