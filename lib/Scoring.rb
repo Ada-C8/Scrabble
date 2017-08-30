@@ -32,9 +32,7 @@ module Scrabble
       highest_score = array_of_words[0]
       array_of_words[1..-1].each do |word|
         highest_score = word if self.score(word) > self.score(highest_score)
-        if self.tie?(word, highest_score)
-          highest_score = self.tiebreaker(word, highest_score)
-        end
+        highest_score = self.tiebreaker(word, highest_score) if self.tie?(word, highest_score)
       end
       return highest_score
     end
