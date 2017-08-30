@@ -42,7 +42,9 @@ module Scrabble
       array_of_words.each do |word|
         words_hash[word] = Scrabble::Scoring.score(word)
       end
+
       winners = words_hash.reject!{|word,value| value < (words_hash.values.max)}
+
       if  winners.length == 1
         winner = winners.key(words_hash.values.max)
       else
@@ -52,6 +54,7 @@ module Scrabble
             return winner
           end
         end
+
         winner = winners.keys.min_by{|word| word.length}
       end
     end
@@ -59,24 +62,3 @@ module Scrabble
 end #end module
 winner = Scrabble::Scoring.highest_score_from(%w(qzzzzj to the ok hi aaaaaad))
 p winner
-# puts Scrabble::Scoring.score("Shaunna") #works
-
-
-
-#     raise ArgumentError.new "Input must be a String class."
-#     if word.class != String
-#
-#       raise ArgumentError.new "Word must be one to seven letters long."
-#       if word == 0 && word > 7
-#       end
-#     end
-#
-#     total_score = 0
-#     word.upcase.each_char do |letter|
-#       SCORE_HASH.keys.each do |arr|
-#         if arr.include? letter
-#           total_score += SCORE_HASH[arr]
-#         end
-#       end
-#     end
-#   end
