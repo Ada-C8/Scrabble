@@ -1,12 +1,13 @@
 # specs/spec_helper.rb
+require 'simplecov'
+SimpleCov.start
 require 'minitest'
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/pride'
 require 'minitest/skip_dsl'
 require 'pry'
-require 'simplecov'
-SimpleCov.start
+
 
 # Require any classes
 require_relative '../lib/scoring'
