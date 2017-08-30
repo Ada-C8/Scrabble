@@ -1,7 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/reporters'
-require 'minitest/skip_dsl'
-require_relative '../lib/scrabble.rb'
+require_relative "spec_helper"
 
 describe "Scoring class" do
   describe "initialize" do
@@ -42,14 +39,14 @@ describe "Scoring class" do
     end
   end
 
-  describe "Self.highest_score_from" do
-    it "Gets the highest scoring word" do
+  xdescribe "Self.highest_score_from" do
+    xit "Gets the highest scoring word" do
       word_list = ['One', 'Two', 'Three']
       Scrabble::Scoring.highest_score_from(word_list).must_be_instance_of String
       Scrabble::Scoring.highest_score_from(word_list).must_equal "Three"
     end
 
-    it "Checks for ties" do
+    xit "Checks for ties" do
       word_list = ['a', 'dg', 'aeio']
       Scrabble::Scoring.highest_score_from(word_list).must_equal "dg"
     end
