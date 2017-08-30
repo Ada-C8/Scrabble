@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
-require_relative '../lib/scrabble'
+require_relative '../lib/scoring'
 
 describe "Scoring" do
   # Placeholder maybe create test for module presence

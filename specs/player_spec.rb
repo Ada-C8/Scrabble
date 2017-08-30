@@ -64,7 +64,38 @@ describe "Player" do
     end
   end#play method
 
+describe "highest_scoring_word method" do
+  it "Can be called" do
+    test_ob = Scrabble::Player.new("name")
+    test_ob.must_respond_to :highest_scoring_word
+  end
 
+  it "Returns the highest scoring played word" do
+    test_ob = Scrabble::Player.new("name")
+    test_words = ["jazz", "as", "bad"]
+    test_words.each do |word|
+      test_ob.play(word)
+    end
+    test_ob.highest_scoring_word.must_equal "jazz"
+  end
+
+end
+
+describe "highest_word_score method" do
+  it "Can be called" do
+    test_ob = Scrabble::Player.new("name")
+      test_ob.must_respond_to :highest_word_score
+  end
+
+  it "Returns the highest_scoring_word score" do
+    test_ob = Scrabble::Player.new("name")
+    test_words = ["jazz", "as", "bad"]
+    test_words.each do |word|
+      test_ob.play(word)
+    end
+    test_ob.highest_word_score.must_equal 29
+  end
+end
 
 end#Player
 
