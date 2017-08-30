@@ -24,6 +24,13 @@ module Scrabble
       @hand.concat(tile_bag.draw_tiles(7-@hand.length))
     end
 
+    def skip_turn(tile_bag)
+      3.times do
+        @hand.delete_at(rand(@hand.length))
+      end
+      draw_tiles(tile_bag)
+    end
+
     def check_word(word)
 
       word.upcase!

@@ -25,14 +25,18 @@ module Scrabble
           puts "#{player.name} has the following tiles: #{player.tiles}"
 
           player_word = get_word_for(player)
-          player_has_won = !player_word
+          if player_word == "skip!"
+            player.skip_turn(@tilebag)
+          else
+            player_has_won = !player_word
 
-          if player_word
-            print_score(player_word)
-          end
+            if player_word
+              print_score(player_word)
+            end
 
-          if player_has_won
-            break
+            if player_has_won
+              break
+            end
           end
         end
       end
@@ -76,28 +80,32 @@ module Scrabble
       unless !try_again
         puts "Enter a word to score:"
         word = gets.chomp
-        good_word = player.play(word)
+        if word == "skip!"
+          good_word = "skip!"
+        else
+          good_word = player.play(word)
 
-        col_index = @board.size
-        until col_index < @board.size && col_index >= 0
-          puts "Enter a column index: "
-          col_index = gets.chomp.to_i
-        end
-        row_index = @board.size
-        until row_index < @board.size && row_index >= 0
-          puts "Enter a row index: "
-          row_index = gets.chomp.to_i
-        end
-        direction = ""
-        until [:down, :right].include? direction
-          puts "What direction should your word be played? (down or right)"
-          direction = gets.chomp.to_sym
-        end
+          col_index = @board.size
+          until col_index < @board.size && col_index >= 0
+            puts "Enter a column index: "
+            col_index = gets.chomp.to_i
+          end
+          row_index = @board.size
+          until row_index < @board.size && row_index >= 0
+            puts "Enter a row index: "
+            row_index = gets.chomp.to_i
+          end
+          direction = ""
+          until [:down, :right].include? direction
+            puts "What direction should your word be played? (down or right)"
+            direction = gets.chomp.to_sym
+          end
 
 
-        try_again = @board.check_placement(good_word,[row_index,col_index],direction)
-        if !try_again
-          puts "Oops! That doesn't seem to work"
+          try_again = @board.check_placement(good_word,[row_index,col_index],direction)
+          if !try_again
+            puts "Oops! That doesn't seem to work"
+          end
         end
       end
       @words << good_word
