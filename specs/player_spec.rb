@@ -8,7 +8,7 @@ describe "#Scrabble::Player" do
   @carlisle.play("granny")
   end
 
-  xit "Can initialize with a name" do
+  it "Can initialize with a name" do
     @carlisle.must_be_instance_of Scrabble::Player
   end
 
