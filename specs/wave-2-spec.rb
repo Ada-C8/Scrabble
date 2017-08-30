@@ -26,14 +26,16 @@ describe "Player class " do
   ######How to check this array against words played in Scoring class
 
 end
-
+#edge cases for correct input are in the scoring spec file in form of /^[A-Z]$/
 describe "method play(word)" do
   before do
     @tanja = Scrabble::Player.new("Tanja")
   end
+
   it "raises an ArguentError if input is not a String" do
     proc{@tanja.play(20)}.must_raise ArgumentError
   end
+
   it "adds the input word to the plays Array" do
     before = @tanja.plays.length
     @tanja.play("code")
@@ -43,11 +45,21 @@ describe "method play(word)" do
 
     @tanja.plays.pop.must_equal "code"
   end
-  it "returns false if player has already won" do
-
-  end
+  # it "returns false if player has already won" do
+  #   score = 100
+  #
+  #   @tanja.play.won?.must_equal false
+  #
+  # end
   it "returns the score of the word" do
+    @tanja.play("code").must_equal 7
+  end
+end
+describe "total_score"do
+before do
+  
+end
+  it "returns sum scores of all words played" do
 
   end
-
 end

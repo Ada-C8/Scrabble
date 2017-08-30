@@ -1,3 +1,5 @@
+require_relative 'wave-1-scoring'
+
 module Scrabble
   class Player
     attr_reader :name, :plays
@@ -11,6 +13,7 @@ module Scrabble
     def play(word)
       raise ArgumentError.new "input must be a String" if word.class != String
       @plays << word
+      word_score = Scrabble::Scoring.score(word)
     end
 
     def total_score
