@@ -21,19 +21,23 @@ module Scrabble
 
     def self.highest_score_from(array)
       raise ArgumentError.new("Must pass an array.") if array.class != Array
-      raise ArgumentError.new("Needs at least two words to compare") unless array.length > 1 #Should it just return the one?
+      raise ArgumentError.new("Needs at least one word to evaluate") unless array.length > 0 #Should it just return the one?
       raise ArgumentError.new("Can only compare strings") if array.any? {|element| element.class != String}
 
       scores = array.map { |word| score(word) }
       if scores.length == scores.uniq.length # Indicates no score ties
-        array.inject do|winner, word|
+        array.inject do |winner, word|
           score(winner) >= score(word) ? winner : word # Return highest scoring word
         end
       else # In case of ties:
         high_score = scores.max
-        array.reject! {|word| score(word) < high_score} # Remove lower scoring words from collection
-        array.each { |word|return word if word.length == 7 } # First 7-letter high-scorer wins
-        return array.min_by {|word| word.length} # If no 7-letter high-scorer, shortest high-scorer wins
+        array.reject! { |word| score(word) < high_score } # Remove lower scoring words from collection
+        array.each do |word|
+          if word.length == 7 # First 7-letter high-scorer wins
+            return word
+          end
+        end
+        return array.min_by { |word| word.length } # If no 7-letter high-scorer, shortest high-scorer wins
       end
     end
   end

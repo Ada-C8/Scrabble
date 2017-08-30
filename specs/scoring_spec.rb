@@ -50,8 +50,8 @@ describe "Wave 1 Scoring" do
     it "Raises an argument error unless passed an array" do
       proc{Scrabble::Scoring.highest_score_from("string")}.must_raise ArgumentError
     end
-    it "Raises an argument error unless given at least 2 elements to compare" do
-      proc{Scrabble::Scoring.highest_score_from(["one element"])}.must_raise ArgumentError
+    it "Raises an argument error unless given at least 1 element to evaluate" do
+      proc{Scrabble::Scoring.highest_score_from([])}.must_raise ArgumentError
     end
     it "Raises an argument error if array elements are not strings" do
       proc{Scrabble::Scoring.highest_score_from([1, 2, 3])}.must_raise ArgumentError
