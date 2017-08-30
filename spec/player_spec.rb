@@ -18,10 +18,9 @@ describe "class Player"  do
     end
   end
 
-  describe "play method" do
+  describe "plays method" do
     it "returns an array of word played by the player" do
-
-
+      @player.plays.must_be_kind_of Array
     end
   end
 
