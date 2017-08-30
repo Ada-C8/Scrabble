@@ -9,5 +9,11 @@ describe "Class player" do
     it "Return to name" do
       Scrabble::Player.must_respond_to :name
     end
+    it "Rspond to new person name" do
+      bianca = Scrabble::Player.new("Bianca")
+      bianca.name.must_equal "Bianca"
+    end
+
+
   end#describe initialize
 end #describe class player

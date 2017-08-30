@@ -1,8 +1,9 @@
 module Scrabble
   class Player
-    #attr_reader :name
-    def initialize#(name)
-      #name = name
+    attr_reader :name
+    def initialize(name)
+    @name = name
+    @plays = []
     end#initialize
 
 
