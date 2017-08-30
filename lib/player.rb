@@ -17,10 +17,11 @@
 
 module Scrabble
   class PlayerClass
-    attr_reader :name
+    attr_reader :name, :plays
 
     def initialize(name)
       @name = name
+      @plays = ["dog", "kitten", "panda"]
     end
 
   end
