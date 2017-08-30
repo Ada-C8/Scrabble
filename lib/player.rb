@@ -14,6 +14,15 @@ module Scrabble
       return Scrabble::Scoring.score(word)
     end
 
+    def total_score
+      #sum = 0
+      #plays.each { |a| sum+=a }
+      sum = plays.inject(0, :+)
+      return sum
+
+
+
+
 
 
 
