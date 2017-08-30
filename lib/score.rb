@@ -6,6 +6,7 @@ module Scrabble
       @words = []
     end
 
+ # calculates the score of a given word
     def self.score(word)
       score_chart =
       {
@@ -20,8 +21,8 @@ module Scrabble
       total = 0
       # extra_point = 50
       for i in 0..word.length
-        score_chart.each do |number, letters|
-          letters.find do |l|
+        score_chart.each do |number, letters| # Loops through hash
+          letters.find do |l| # Iterates through letters of an array
             if l == word[i]
               total += number
             end
@@ -35,6 +36,7 @@ module Scrabble
       end
     end
 
+# returns the word with the highest score
     def self.highest_score_from_array(array_of_words)
       longest_string = ""
       array_of_words.each do |word|

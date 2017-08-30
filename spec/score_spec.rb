@@ -7,13 +7,12 @@ require_relative '../lib/score'
 describe "Score" do
   describe "#initialize" do
     it " should give you an empty array" do
-      # words = []
       my_class = Scrabble::Score.new
-      # my_class.must_respond_to :words
       my_class.words.must_be_empty
     end
   end
 
+#self.score method
   describe " self.score method" do
     it " Check for the short word where the letter doesn't repeat" do
       my_class = Scrabble::Score
@@ -31,7 +30,7 @@ describe "Score" do
     end
   end
 
-
+# self.highest_score_from_array method
   describe " self.highest_score_from_array method" do
     it " Check for the longest word without a tie" do
       my_class = Scrabble::Score
