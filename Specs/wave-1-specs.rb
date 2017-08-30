@@ -1,8 +1,4 @@
-require_relative '../lib/Scoring'
-require 'minitest/autorun'
-require 'minitest/reporters'
-require 'minitest/skip_dsl'
-require 'pry'
+require_relative 'spec_helper'
 
 describe "Scoring" do
 
