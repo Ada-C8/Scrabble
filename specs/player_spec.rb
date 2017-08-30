@@ -24,6 +24,17 @@ describe "Player" do
       @player.play(word)
       @player.plays.include?(word).must_equal true
     end
+
+    it "returns the score of the word" do
+      @player.play("hello").must_equal 8
+    end
+
+    it "returns false if the player has already won" do
+      @player.play("quest")
+      @player.play("favored")
+      @player.play("pizzaz")
+      @player.play("hello").must_equal false
+    end
   end
 
 end
