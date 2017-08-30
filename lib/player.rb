@@ -7,7 +7,7 @@ module Scrabble
   attr_reader :name, :plays, :word_score
     def initialize(name)
       @name = name
-      @word_score = []
+      @word_scores = []
       @plays = []
     end
 
@@ -18,24 +18,24 @@ module Scrabble
 
       @plays << word
       @score = Scrabble::Scoring.score(word)
-      @word_score << @score
+      @word_scores << @score
       return @score
     end
 
     def total_score
-      if @word_score.empty?
+      if @word_scores.empty?
         return 0
       else
-        return @word_score.reduce(:+)
+        return @word_scores.reduce(:+)
       end
     end
 
     def highest_scoring_word
-      return Scrabble::Scoring.highest_scoring_word(@plays)
+      return Scrabble::Scoring.highest_score_from_array(@plays)
     end
 
     def highest_word_score
-      return Scrabble::Scoring.score(highest_scoring_word) 
+      return Scrabble::Scoring.score(highest_scoring_word)
     end
 
 private
