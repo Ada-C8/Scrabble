@@ -2,6 +2,7 @@ require_relative 'spec_helper.rb'
 require_relative '../lib/scrabble-player'
 require_relative '../lib/scrabble-tilebag'
 
+
 describe "Scrabble:Player" do
   before do
     @averi = Scrabble::Player.new("Averi")
