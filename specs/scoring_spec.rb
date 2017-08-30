@@ -25,14 +25,16 @@ describe "Scoring" do
       Scrabble::Scoring.score("animals").must_equal 59
 
     end
+  end#_of_self#score
 
-  end
+  describe "self#highest_score_from(array_of_words)" do
+    it "returns a string in the array" do
+      Scrabble::Scoring.highest_score_from(["animals"]).class.must_equal Array
+    end
 
-end
 
-describe "self#highest_score_from(array_of_words)" do
-  it "returns a string in the array" do
-    Scrabble::Scoring.highest_score_from(["animals"]).class.must_equal Array
-  end
+
+
+  end#of_self#highest_score_from
 
 end
