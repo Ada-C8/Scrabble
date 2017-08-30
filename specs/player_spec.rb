@@ -48,8 +48,8 @@ describe "Class player" do
         @jugador.play("Food")
       end
 
-      it "Returns false or true" do
-        @jugador.won?.must_equal false 
+      it "Returns false (under 100 )" do
+        @jugador.won?.must_equal false
       end
 
       it "Returns true if over 100" do
