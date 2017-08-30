@@ -27,8 +27,8 @@ describe "Player" do
       test_ob = Scrabble::Player.new("name")
       test_ob.must_respond_to :play
     end
-
-    it "Returns an array" do
+    # change this
+    xit "Returns an array" do
       test_ob = Scrabble::Player.new("name")
       test_ob.play("word").must_be_instance_of Array
     end
@@ -37,6 +37,18 @@ describe "Player" do
       test_ob = Scrabble::Player.new("name")
       test_ob.play("word")
       test_ob.plays.must_equal ["word"]
+    end
+
+    it "Returns false if player has already won" do
+      test_ob = Scrabble::Player.new("name")
+      test_ob.play("zzzzzzz")
+      test_ob.play("word").must_equal false
+    end
+
+    it "returns score of word" do
+      word = "A"
+      player_instance = Scrabble::Player.new("name")
+      player_instance.play(word).must_equal 1
     end
   end#play method
 
