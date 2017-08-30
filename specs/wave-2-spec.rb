@@ -94,15 +94,28 @@ describe "method highest_scoring_word" do
   before do
     @ada = Scrabble::Player.new("Countess Lovelace")
   end
+
   it "returns a message if no words were played" do
     @ada.highest_scoring_word.must_equal "none, because #{@ada.name} did not play any words"
   end
+
   it "returns the highest scoring played word" do
-    ["I", "love", "codingg"].each do |word|
+    ["I", "love", "coding"].each do |word|
       @ada.play(word)
     end
+    @ada.highest_scoring_word.must_equal "coding"
+  end
+end
 
-    @ada.highest_scoring_word.must_equal "codingg"
+describe "highest_word_score" do
+  before do
+    @ada = Scrabble::Player.new("Countess Lovelace")
+  end
 
+  it "returns the score of the highest scoring word"do
+    ["I", "love", "coding"].each do |word|
+      @ada.play(word)
+    end
+    @ada.highest_word_score.must_equal 10
   end
 end
