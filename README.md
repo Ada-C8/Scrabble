@@ -97,7 +97,7 @@ player.name #=> "Ada"
 ### Wave 2 Comprehension Questions
 These comprehension questions are optional, and do not need to be answered/submitted with the project. They are simply here to help you check for understanding after each wave.
 - What kinds of edge cases did you test for in Scoring and Player behavior?
--->
+
 
 
 ## Wave 3

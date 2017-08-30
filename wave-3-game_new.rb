@@ -74,8 +74,26 @@ module Scrabble
     def get_word_for(player)
       puts "Enter a word to score:"
       word = gets.chomp
+      good_word = player.play(word)
 
-      keep_playing = player.play(word)
+      col_index = @size
+      until col_index < @size && col_index >= 0
+        puts "Enter a column index: "
+        col_index = gets.chomp.to_i
+      end
+      row_index = @size
+      until row_index < @size && row_index >= 0
+        puts "Enter a column index: "
+        row_index = gets.chomp.to_i
+      end
+      direction = ""
+      until [:down, :right].include? direction
+        puts "What direction should your word be played? (down or right)"
+        direction = gets.chomp.to_sym
+      end
+
+
+      @board.check_placement(good_word,[row,col],)
       @words << keep_playing
 
       if keep_playing
