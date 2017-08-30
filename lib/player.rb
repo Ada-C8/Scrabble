@@ -30,11 +30,18 @@ module Scrabble
       end
     end #won end
 
-    def highest_scoring_word
+    def highest_scoring_word_score
+      if @score_array  == []
+        raise ArgumentError.new("No words to compare")
+      else
+        index = @score_array.index(@score_array.max)
+        max_word = @plays[index]
+        max_score = @score_array.max
+        return max_word, max_score
+      end
     end
 
-    def highest_word_score
-    end
+
 
     # private :won?
 

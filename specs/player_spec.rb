@@ -39,6 +39,15 @@ describe "Class player" do
       it "returns the total score" do
         @jugador.total_score.must_equal 25
       end
+
+      it "Responds to an empty array" do
+        @jugador.play("").must_equal 0
+      end
+
+      it "Total score  0 for a non played game" do
+        fantasma = Scrabble::Player.new("Fantasma")
+        fantasma.total_score.must_equal 0
+      end
     end #descrieb total_score
 
     describe "Won? method" do
@@ -57,8 +66,27 @@ describe "Class player" do
         @jugador.play("zzzzzzz")
         @jugador.won?.must_equal true
       end
-
     end #describe
+
+    describe "highest score with word" do
+      before do
+        @jugador = Scrabble::Player.new("Morsa")
+        @jugador.play("Pereza")
+        @jugador.play("Food")
+      end
+      it "Returns an array" do
+        @jugador.highest_scoring_word_score.must_be_instance_of Array
+      end
+
+      it "Retuns the highest score" do
+        @jugador.highest_scoring_word_score.must_equal ["PEREZA", 17]
+      end
+
+      it "Returns empty array and 0 score for 0 word played" do
+        fantasma = Scrabble::Player.new("Fantasma")
+        proc{fantasma.highest_scoring_word_score}.must_raise ArgumentError
+      end
+    end #describe highest
 
 
   end#describe initialize
