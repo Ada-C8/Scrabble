@@ -6,23 +6,26 @@ module Scrabble
     end
 
     def self.score(word)
-      word = word.split("") #array
+      raise ArgumentError.new("Invalid word!") unless /[a-zA-Z]/.match(word.to_s)
+
+      word = word.upcase.split("") #array
+
       score = 0
       word.each do |letter|
         case letter
-        when "A", "a","E", "e", "I", "i", "O", "o", "U", "u", "L", "l", "N", "n", "R", "r", "S", "s", "T", "t"
+        when "A","E", "I", "O", "U", "L", "N", "R", "S", "T"
           score += 1
-        when "D", "d", "G", "g"
+        when "D", "G"
           score += 2
-        when "B", "b", "C", "c", "M", "m", "P", "p"
+        when "B", "C", "M", "P"
           score += 3
-        when "F", "f", "H", "h", "V", "v", "W", "w", "Y", "y"
+        when "F", "H", "V", "W", "Y"
           score += 4
-        when "K", "k"
+        when "K"
           score += 5
-        when "J", "j", "X", "x"
+        when "J", "X"
           score += 8
-        when "Q", "q", "Z", "z"
+        when "Q", "Z"
           score += 10
         else
           raise ArgumentError.new("Invalid Input for string!")

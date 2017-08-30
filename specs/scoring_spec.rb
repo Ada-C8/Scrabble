@@ -22,7 +22,7 @@ describe "#Scrabble.score" do
   it "Throws an argument error when given invalid output" do
     proc {Scrabble::Scoring.score("1")}.must_raise ArgumentError
 
-    proc {Scrabble::Scoring.score(1)}.must_raise ArgumentError
+    proc {Scrabble::Scoring.score("z43st")}.must_raise ArgumentError
 
     proc {Scrabble::Scoring.score("")}.must_raise ArgumentError
 
