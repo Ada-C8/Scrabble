@@ -1,16 +1,17 @@
 require_relative 'spec_helper'
 
 xdescribe "Scoring Class" do
-  xdescribe "initialize scoring class" do
+  describe "initialize scoring class" do
     it "ScoringClass.new is an instance of scrabble module" do
       #arrange
+      skip
       scoring = Scrabble::ScoringClass.new
       #act
       #assert
       scoring.must_be_instance_of Scrabble::ScoringClass
     end
   end
-  xdescribe "self.score method" do
+  describe "self.score method" do
     it "A single letter in the alphabet returns the correct score" do
       Scrabble::ScoringClass.score("a").must_equal 1
       Scrabble::ScoringClass.score("d").must_equal 2
