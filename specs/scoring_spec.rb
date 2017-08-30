@@ -1,7 +1,10 @@
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
 require_relative '../lib/scoring'
+
 
 describe "Wave 1 Scoring" do
   describe "self.score(letter)" do
