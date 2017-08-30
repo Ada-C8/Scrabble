@@ -1,6 +1,6 @@
 require 'pry'
 module Scrabble
-  POINTPERVARIABLE = {
+  POINT_PER_VARIABLE = {
     "A" => 1,
     "B" => 3,
     "C" => 3,
@@ -28,15 +28,21 @@ module Scrabble
     "Y" => 4,
     "Z" => 10
   }
+#DOES THIS HAVE TO BE SELF.?
+  def self.high_score_array(array)
+    array.group_by{|word| Scrabble::Scoring.scored(word)}.max.last
+  end
+
 
   class Scoring
-
     attr_accessor :word, :score
 
     def initialize(word = "")
       @word =  word
       # @score = score
     end
+
+
 
     # self.score(word):
     #1. returns the total score for the given word.
@@ -45,7 +51,7 @@ module Scrabble
     def self.scored(word)
       points = word_has_7?(word)
       word.each_char do |letter|
-        points += POINTPERVARIABLE[letter.upcase]
+        points += POINT_PER_VARIABLE[letter.upcase]
       end
       points
     end
@@ -69,7 +75,7 @@ module Scrabble
     #    word with the fewest letters.
 
     def self.highest_score_from(array_of_words)
-      highest_score_array = array_of_words.group_by{|word| scored(word)}.max.last
+      highest_score_array = Scrabble.high_score_array(array_of_words)
 
       if highest_score_array.length == 1
         return highest_score_array[0]
