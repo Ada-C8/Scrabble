@@ -111,5 +111,61 @@ describe "Scrabble::Player class " do
     end
   end
 
+  describe "tiles" do
+    it "returns an array of letters" do
+      player = Scrabble::Player.new("Ada")
+
+      player.tiles.must_be_instance_of Array
+      player.tiles.all? {|letter| /^[a-z]$/.match?(letter) }
+    end
+
+    it "must have seven or less letters" do
+      player = Scrabble::Player.new("Ada")
+      #TODO: test after we define draw_tiles(tilebag) method for Player
+      player.tiles.length.must_be :<, 8
+    end
+
+  end
+
+  describe "player instance method of draw_tiles(tilebag)" do
+    it "draws the appropriate number of tiles" do
+      player = Scrabble::Player.new("Ada")
+      tilebag = Scrabble::TileBag.new
+      player.tiles.length.must_equal 0
+      player.draw_tiles(tilebag)
+      player.tiles.length.must_equal 7
+
+      #TODO: check that it refills tiles array appropriately after multiple draws
+    end
+
+    it "impacts tiles remaining of TileBag" do
+      tilebag = Scrabble::TileBag.new
+      player = Scrabble::Player.new("Ada")
+
+      tilebag.tiles_remaining.must_equal 98
+
+      player.draw_tiles(tilebag)
+
+      tilebag.tiles_remaining.must_equal 91
+
+      #TODO: updates correctly for subsequent draws
+
+    end
+
+    it "fills the player's tiles array with letters " do
+      player = Scrabble::Player.new("Ada")
+      tilebag = Scrabble::TileBag.new
+      player.draw_tiles(tilebag)
+      player.tiles.all? {|letter| /^[a-z]$/.match?(letter) }
+
+    end
+  end
+
+
+
+
+
+
+
 
 end
