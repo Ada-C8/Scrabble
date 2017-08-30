@@ -5,5 +5,6 @@ require 'minitest/reporters'
 require 'minitest/skip_dsl'
 require_relative '../lib/Scoring'
 require_relative '../lib/Player'
+require_relative '../lib/TileBag'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
