@@ -129,6 +129,11 @@ describe "Player class" do
       @edie.tiles.length.must_equal 7
     end
 
+    it "Draws 4 tiles is Edie has 3 tiles" do #reqs attr_writer in tile_bag.rb
+      @edie.tiles = ["A", "B", "D"]
+      @edie.draw_tiles(@tile_bag)
+      @edie.tiles.length.must_equal 7
+    end
   end
 
 
