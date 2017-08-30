@@ -28,7 +28,7 @@ describe "The Player class" do
       @player.must_respond_to :play
     end
 
-    it "stores the words that you input in theplay method inside @plays" do
+    it "stores the words that you input in the play method inside @plays" do
       @player.play("word")
       @player.plays.must_equal ["WORD"]
 

@@ -1,3 +1,4 @@
+require_relative 'scoring'
 module Scrabble
   class Player
     attr_reader :name, :plays
@@ -9,6 +10,7 @@ module Scrabble
 
     def play(word)
       @plays << word.upcase
+      # word = Scoring.new
 
 
     end
