@@ -37,6 +37,20 @@ describe "Score" do
       my_class = Scrabble::Score
       my_class.highest_score_from_array(["CAT", "CATAN", "BUBBLES"]).must_equal "BUBBLES"
     end
-    
+
+    it " if tie, should return the word with fewer letters" do
+      my_class = Scrabble::Score
+      my_class.highest_score_from_array(["DOLLAR", "HALL"]).must_equal "HALL"
+    end
+
+    it " if tie, 7 letter word should be returned" do
+      my_class = Scrabble::Score
+      my_class.highest_score_from_array(["DOLLAR", "HALL","LETTERS"]).must_equal "LETTERS"
+    end
+
+    it " If 2 words with 7 letters in tie, first word should be returned" do
+      my_class = Scrabble::Score
+      my_class.highest_score_from_array(["QUICKLY", "SQUEEZE","LETTERS"]).must_equal "QUICKLY"
+    end
   end
 end
