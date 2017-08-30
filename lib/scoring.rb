@@ -59,7 +59,6 @@ module Scrabble
       array_of_words.each do |word|
         if score(word) == max_score
           max_word = tie(word, max_word)
-          puts "#{max_word}"
           max_score = score(max_word)
         elsif score(word) > max_score
           max_score = score(word)
