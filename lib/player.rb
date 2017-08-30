@@ -11,13 +11,12 @@ module Scrabble
 
     def play(word)
       @plays << word.upcase
-      # word = Scoring.new
       @total_score += Scoring.score(word)
       return Scoring.score(word)
     end
 
     def won?
-
+      @total_score > 100 ? true : false
     end
 
   end
