@@ -15,9 +15,6 @@ describe "Player" do
     it "will respond to .name" do
       @test_player.name.must_equal "Mira"
       @test_player.must_respond_to :name
-
-######TODO: should we test if @name is a string?
-
     end #it "will despond to .name" do
 
     it "will respond to .player_words" do
@@ -40,10 +37,7 @@ describe "Player" do
     end #it "will return an array" do
 
     it "will return an array of strings" do
-######TODO: Use an Enumerable here
-      @test_player.plays.each do |word|
-        word.must_be_kind_of String
-      end #.each
+      @test_player.plays.all? { |x| x.must_be_kind_of String }
     end #it "will return an array of strings" do
 
   end #describe "#plays" do
@@ -81,6 +75,7 @@ describe "Player" do
       @test_player.play("hello").must_equal 8
       @test_player.play("hello").must_be_kind_of Integer
     end
+    
   end #describe "#play(word)" do
 
   describe "won?" do
@@ -101,18 +96,37 @@ describe "Player" do
   end # Describe won?
 
   describe "#highest_scoring_word" do
+
     it "will return a string" do
       @test_player.play("hello")
-      @test_player.highest_scoring_word(@player_words).must_be_kind_of String
+      @test_player.highest_scoring_word.must_be_kind_of String
     end #it "will return a string" do
 
     it "will return the highest scoring word" do
-      @test_player.play("a")
-      @test_player.play("aa")
-      @test_player.play("aaa")
-      @test_player.highest_scoring_word(@player_words).must_equal "AAA"
+      ["a", "aa", "aaa"].each do |string|
+        @test_player.play(string)
+      end
+      @test_player.highest_scoring_word.must_equal "AAA"
     end #it "will return the highest scoring word" do
 
   end # describe "#highest_scoring_word" do
+
+  describe "#highest_word_score" do
+
+    it "should return an Integer" do
+      ["hello", "jukebox"].each do |string|
+        @test_player.play(string)
+      end
+      @test_player.highest_word_score.must_be_kind_of Integer
+    end
+
+    it "should return the actual score" do
+      ["hello", "jukebox"].each do |string|
+        @test_player.play(string)
+      end
+      @test_player.highest_word_score.must_equal 77
+    end
+
+  end # Describe
 
 end # Describe
