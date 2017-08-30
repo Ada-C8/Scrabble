@@ -47,7 +47,7 @@ describe 'TileBag' do
 
   describe 'tiles_remaining' do
     it 'returns the number of tiles remaining in the bag' do
-
+      @test_bag.tiles_remaining.must_equal 98
     end
   end
 end
