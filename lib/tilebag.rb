@@ -8,6 +8,7 @@ module Scrabble
              'Y' => 2, 'Z' => 1}
 
     def initialize
+
     end
 
     #initialize Should set up the instance with a collection of all default tiles

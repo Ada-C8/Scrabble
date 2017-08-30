@@ -2,11 +2,11 @@ require_relative 'spec_helper'
 
 describe 'TileBag' do
   before do
-    @tilebag = Scrabble::TileBag.new
+    @tilebag = Scrabble::TileBag
   end
   describe 'initialize' do
     it 'initializes with a hash of all default tiles' do
-      @tilebag.TILES.must_be_kind_of Hash
+      @tilebag::TILES.must_be_kind_of Hash
     end
   end
 
