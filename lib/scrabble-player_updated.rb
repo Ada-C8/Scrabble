@@ -1,5 +1,5 @@
 require_relative "scrabble-scoring"
-require 'pry'
+require_relative 'scrabble-dictionary'
 
 module Scrabble
   class Player
@@ -9,6 +9,7 @@ module Scrabble
       @name = name
       @plays = []
       @hand = []
+      @dictionary = Scrabble::Dictionary.new
     end
 
     def tiles
@@ -24,6 +25,7 @@ module Scrabble
     end
 
     def check_word(word)
+
       word.upcase!
       temp_hand = @hand.clone
       bad_word = false
@@ -37,6 +39,10 @@ module Scrabble
       end
       if bad_word
         puts "Oops! You don't have those tiles to play"
+        puts "Enter a word to score:"
+        word = check_word(gets.chomp)
+      elsif !@dictionary.find_in_dictionary(word)
+        puts "Oops! That's not a word!"
         puts "Enter a word to score:"
         word = check_word(gets.chomp)
       else

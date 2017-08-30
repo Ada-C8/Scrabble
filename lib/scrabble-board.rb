@@ -3,7 +3,7 @@ require 'awesome_print'
 
 module Scrabble
   class Board
-    attr_reader :board_spaces
+    attr_reader :board_spaces, :size
     def initialize(size)
       @size = size
       @board_spaces = []
@@ -39,7 +39,6 @@ module Scrabble
       @size.times do |i|
         board[i] = @board_spaces[i].clone
       end
-      ap board
       case direction
       when :down
         word.length.times do |i|
@@ -72,7 +71,7 @@ module Scrabble
       new_words2.flatten.each do |word|
         # puts "#{word} #{word == ""}"
         if word != "" && !@dictionary.find_in_dictionary(word)
-          puts "#{word} not in dict"
+          puts "#{word} isn't in our dictionary"
           return false
         end
       end
