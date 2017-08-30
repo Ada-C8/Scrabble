@@ -24,7 +24,7 @@ describe "#Scrabble.score" do
 
     proc {Scrabble::Scoring.score("z43st")}.must_raise ArgumentError
 
-    proc {Scrabble::Scoring.score("")}.must_raise ArgumentError
+    proc {Scrabble::Scoring.score("waddletime")}.must_raise ArgumentError
 
     proc {Scrabble::Scoring.score()}.must_raise ArgumentError
 
@@ -53,10 +53,5 @@ describe "Testing highest_score_from" do
      Scrabble::Scoring.highest_score_from_array(["qaz", "zokk"]).must_equal 'qaz'
      Scrabble::Scoring.highest_score_from_array(["kin", "qaz", "zokk", "cat", "doge"]).must_equal 'qaz'
    end
-
-
-
 end
-
-
 end

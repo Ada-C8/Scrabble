@@ -17,7 +17,7 @@ module Scrabble
       @plays << word
       @word_score = Scrabble::Scoring.score(word)
       total_score
-      end
+    end
 
     def total_score
       total_scores = []

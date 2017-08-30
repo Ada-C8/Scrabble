@@ -6,7 +6,7 @@ module Scrabble
     end
 
     def self.score(word)
-      raise ArgumentError.new("Invalid word!") unless /[a-zA-Z]/.match(word.to_s)
+      raise ArgumentError.new("Invalid word!") unless /^([a-zA-Z]){1,7}$/.match(word.to_s)
 
       word = word.upcase.split("") #array
 
