@@ -4,6 +4,7 @@ module Scrabble
     def initialize(name)
       @name = name
       @plays = []
+      @score_array = []
     end#initialize
 
     def play(word)
@@ -11,11 +12,15 @@ module Scrabble
         return false
       else
         @plays << word.upcase
-        return Scrabble::Scoring.score(word)
+        word_score = Scrabble::Scoring.score(word)
+        @score_array << word_score
+        return word_score
       end
     end #play word end
 
     def total_score
+      return @score_array.inject(0){|sum, x| sum + x}
+
     end #total score end
 
     def won?

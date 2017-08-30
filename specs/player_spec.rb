@@ -26,6 +26,21 @@ describe "Class player" do
       end
     end
 
+    describe "total_score" do
+      before do
+        @jugador = Scrabble::Player.new("Morsa")
+        @jugador.play("Pereza")
+        @jugador.play("Food")
+      end
+      it "returns an integer" do
+        @jugador.total_score.must_be_instance_of Fixnum
+      end
+
+      it "returns the total score" do
+        @jugador.total_score.must_equal 25
+      end
+    end #descrieb total_score
+
 
   end#describe initialize
 end #describe class player
