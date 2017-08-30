@@ -75,7 +75,7 @@ describe "Player" do
       @test_player.play("hello").must_equal 8
       @test_player.play("hello").must_be_kind_of Integer
     end
-    
+
   end #describe "#play(word)" do
 
   describe "won?" do
