@@ -1,6 +1,8 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
+require 'simplecov'
+SimpleCov.start
 require_relative '../lib/Scoring'
 
 describe "Scrabble::Scoring" do
