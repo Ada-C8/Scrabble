@@ -56,5 +56,15 @@ describe "method self.highest_score_from" do
     words = %w[a to the ok hi]
     Scrabble::Scoring.highest_score_from(words).must_equal "ok"
   end
+  it "in case of a tie, a word with 7 letters wins" do
+    words = %w[qzzzzj to the ok hi aaaaaad]
+    Scrabble::Scoring.highest_score_from(words).must_equal "aaaaaad"
+  end
+  it "in case of an entire tie, the first word entered wins" do
+    words = %w[aeiouad to the ok hi aaaaaad]
+    Scrabble::Scoring.highest_score_from(words).must_equal "aeiouad"
+  end
+
+
 
 end

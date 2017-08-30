@@ -43,21 +43,22 @@ module Scrabble
         words_hash[word] = Scrabble::Scoring.score(word)
       end
       winners = words_hash.reject!{|word,value| value < (words_hash.values.max)}
-      case
-      when winners.length == 1
-        winner = winners.key
-      when winners.length > 1
-        
+      if  winners.length == 1
+        winner = winners.key(words_hash.values.max)
+      else
+        winners.each do |word, value|
+          if word.length == 7
+            winner = word
+            return winner
+          end
+        end
+        winner = winners.keys.min_by{|word| word.length}
       end
-
-
-
     end
-
   end #end class
 end #end module
-p Scrabble::Scoring.highest_score_from(["one", "eleven", "hundreg", "hundred"])
-p words_hash
+winner = Scrabble::Scoring.highest_score_from(%w(qzzzzj to the ok hi aaaaaad))
+p winner
 # puts Scrabble::Scoring.score("Shaunna") #works
 
 
