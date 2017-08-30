@@ -22,7 +22,7 @@ describe 'TileBag' do
     end
 
     it 'generates @bag array with correct number of each tile' do
-      @test_bag.bag.length.must_equal 98
+      @test_bag.tiles_remaining.must_equal 98
       @test_bag.bag.must_include 'A'
       @test_bag.bag.must_include 'Z'
     end
@@ -31,17 +31,17 @@ describe 'TileBag' do
   describe 'draw_tiles' do
     it 'draws 7 tiles' do
       @test_bag.draw_tiles(7)
-      @test_bag.bag.length.must_equal 91
+      @test_bag.tiles_remaining.must_equal 91
     end
 
     it 'draws random tiles' do
       tiles_1 = @test_bag.draw_tiles(7)
       tiles_2 = @test_bag.draw_tiles(7)
-      tiles_1.must_not_equal tiles_2
+      tiles_1.wont_equal tiles_2
     end
 
-    xit 'does not draw more tiles than exist' do
-      @test_bag.draw_tiles(99)
+    it 'does not draw more tiles than exist' do
+      proc{@test_bag.draw_tiles(99)}.must_raise ArgumentError
     end
   end
 

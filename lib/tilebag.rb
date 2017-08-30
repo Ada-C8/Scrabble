@@ -10,7 +10,13 @@ module Scrabble
 
     def initialize
       @bag = []
-      
+
+      TILES_COUNT.each do |letter, count|
+        count.times do
+          @bag << letter
+        end
+      end
+
     end
 
     #initialize Should set up the instance with a collection of all default tiles
@@ -29,7 +35,7 @@ module Scrabble
     #draw_tiles(num) returns a collection of random tiles, removes the tiles from the default set
 
     def tiles_remaining
-      # @bag.length
+      @bag.length
     end
     #tiles_remaining returns the number of tiles remaining in the bag
 
