@@ -41,6 +41,25 @@ describe "Class player" do
       end
     end #descrieb total_score
 
+    describe "Won? method" do
+      before do
+        @jugador = Scrabble::Player.new("Morsa")
+        @jugador.play("Pereza")
+        @jugador.play("Food")
+      end
+
+      it "Returns false or true" do
+        @jugador.won?.must_equal false 
+      end
+
+      it "Returns true if over 100" do
+        @jugador.play("zorro")
+        @jugador.play("zzzzzzz")
+        @jugador.won?.must_equal true
+      end
+
+    end #describe
+
 
   end#describe initialize
 end #describe class player

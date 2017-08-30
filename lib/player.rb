@@ -9,7 +9,7 @@ module Scrabble
 
     def play(word)
       if won?
-        return false
+        false
       else
         @plays << word.upcase
         word_score = Scrabble::Scoring.score(word)
@@ -20,11 +20,14 @@ module Scrabble
 
     def total_score
       return @score_array.inject(0){|sum, x| sum + x}
-
     end #total score end
 
     def won?
-      false
+      if total_score > 100
+        return true
+      else
+        return false
+      end
     end #won end
 
     def highest_scoring_word
@@ -32,6 +35,8 @@ module Scrabble
 
     def highest_word_score
     end
+
+    # private :won?
 
   end # class
 
