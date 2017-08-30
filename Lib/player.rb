@@ -43,12 +43,6 @@ module Scrabble
     end
 
 
-    #won?: If the player has over 100 points, returns true, otherwise returns false
-    #this is a private method
-    def won?
-      @total_score >= 100
-    end
-
     # highest_scoring_word: Returns the highest scoring played word
     def highest_scoring_word
       #call mixin high_score_array and take index 0
@@ -57,6 +51,13 @@ module Scrabble
     #highest_word_score: Returns the highest_scoring_word score
     def highest_word_score
       #call mixin high_score_array and take scored(index 0)
+    end
+
+    private
+    #won?: If the player has over 100 points, returns true, otherwise returns false
+    #this is a private method
+    def won?
+      @total_score >= 100
     end
 
   end

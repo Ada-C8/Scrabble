@@ -99,3 +99,7 @@ module Scrabble
 
   end #self::Scoring
 end #Module End
+
+words = ["looking", "pizza", "macaroni", "leech", "sniff"]
+
+puts Scrabble::Scoring.highest_score_from(words)
