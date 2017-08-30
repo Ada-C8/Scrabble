@@ -4,7 +4,7 @@ require 'scoring'
 
 module Scrabble
   class Player
-  attr_reader :name, :plays
+  attr_reader :name, :plays, :word_score
     def initialize(name)
       @name = name
       @word_score = []
@@ -15,6 +15,7 @@ module Scrabble
       if won? == true
         return false
       end
+
       @plays << word
       @score = Scrabble::Scoring.score(word)
       @word_score << @score
@@ -27,6 +28,14 @@ module Scrabble
       else
         return @word_score.reduce(:+)
       end
+    end
+
+    def highest_scoring_word
+      return Scrabble::Scoring.highest_scoring_word(@plays)
+    end
+
+    def highest_word_score
+      return Scrabble::Scoring.score(highest_scoring_word) 
     end
 
 private
