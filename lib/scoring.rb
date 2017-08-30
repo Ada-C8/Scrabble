@@ -40,16 +40,18 @@ module Scrabble
 
       scores = array.map { |word| score(word) }
       if scores.length == scores.uniq.length
-
-
         array.inject("") do|winner, element|
-              score(winner) >= score(element) ? winner : element
-
+          score(winner) >= score(element) ? winner : element
         end
-
       else
-        sorted_array = array.sort_by { |word| score(word) }
-        puts sorted_array
+        high_score_word = array.max_by {|word| score(word)}
+        array.reject! {|word| score(word) < score(high_score_word)}
+        array.each do |word|
+          if word.length == 7
+            return word
+          end
+        end
+        return array.min_by {|word| word.length}
       end
     end
   end

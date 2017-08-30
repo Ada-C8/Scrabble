@@ -4,7 +4,7 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
 require_relative '../lib/scoring'
-
+#consider making a spec_helper file later
 
 describe "Wave 1 Scoring" do
   describe "self.score(letter)" do
@@ -63,10 +63,10 @@ describe "Wave 1 Scoring" do
       Scrabble::Scoring.highest_score_from(["zzzzzz", "haaaaaa"]).must_equal "haaaaaa"
     end
     it "Returns the score of the shortest word if 2 words have the same score" do
-
+      Scrabble::Scoring.highest_score_from(["zz", "kkkk"]).must_equal "zz"
     end
     it "Returns the first word in a list of words with same score and length" do
-
+      Scrabble::Scoring.highest_score_from(["aaa", "eee", "iii", "ooo"]).must_equal "aaa"
     end
   end
 end
