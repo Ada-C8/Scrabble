@@ -20,6 +20,11 @@ describe "Player class" do
       @amy.plays.must_be_kind_of Array
       @amy.plays.must_be_empty
     end
+
+    it 'draws 7 new tiles' do
+      @amy.tiles.must_be_kind_of Array
+      @amy.tiles.length.must_equal 7
+    end
   end
 
   describe "play method" do

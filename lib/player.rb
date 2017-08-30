@@ -1,11 +1,16 @@
-module Scrabble
-  class Player
+require 'scrabble'
 
-    attr_reader :name, :plays
+module Scrabble
+
+  class Player
+    @@tilebag = TileBag.new
+
+    attr_reader :name, :plays, :tiles
 
     def initialize(name)
       @name = name
       @plays = []
+      @tiles = @@tilebag.draw_tiles(7)
     end
 
     def play(word)
@@ -29,6 +34,8 @@ module Scrabble
     def highest_word_score
       return Scoring.score(highest_scoring_word)
     end
+
+
 
     private
 
