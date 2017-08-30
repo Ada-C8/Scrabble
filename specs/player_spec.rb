@@ -22,11 +22,20 @@ describe "The Player class" do
     end
   end
 
-  describe "the player method" do
+  describe "the play method" do
 
     it "Responds to the play method" do
-    @player.must_respond_to :play
+      @player.must_respond_to :play
     end
+
+    it "stores the words that you input in theplay method inside @plays" do
+      @player.play("word")
+      @player.plays.must_equal ["WORD"]
+
+    end
+    # it "Returns false if the player has already won " do
+    #   proc {@player.play("WORD")}.must_output false if @player.won?
+    # end
 
   end
 end
