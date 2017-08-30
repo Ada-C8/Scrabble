@@ -6,7 +6,6 @@ module Scrabble
       @words = []
     end
 
- # calculates the score of a given word
     def self.score(word)
       score_chart =
       {
@@ -21,8 +20,8 @@ module Scrabble
       total = 0
       # extra_point = 50
       for i in 0..word.length
-        score_chart.each do |number, letters| # Loops through hash
-          letters.find do |l| # Iterates through letters of an array
+        score_chart.each do |number, letters|
+          letters.find do |l|
             if l == word[i]
               total += number
             end
@@ -36,57 +35,47 @@ module Scrabble
       end
     end
 
-# returns the word with the highest score
+
     def self.highest_score_from_array(array_of_words)
-<<<<<<< HEAD
       #longest = array_of_words.max_by{|word| Score.score(word) }
       tie = []
-      
-      array_of_words.each do 
-        #insert item with highest Score here 
+      max_so_far = -1
+
+      array_of_words.each do |i|
+        current_high_score = Scrabble::Score.score(i)
+        if current_high_score > max_so_far do
+          tie = []
+          tie << i
+          max_so_far = current_high_score
+        end
+
+        if current_high_score == max_so_far do
+          tie << i
+        end
+
+
+      end
+        #insert item with highest Score here
         #will need method from partner or other input here?
-        
-        
-        
-        
-        if #here is the case for 7 letter words, trumps other cases 
-          #bonus would be added in other (score?) method 
 
-        elsif #here is the case for fewest tiles winning the tie 
+        if tie.length == 1
+          return tie[0]
+        else
+          winner_winner = ""
+          tie.each do |i|
 
-        else #otherwise the first thing passed into the array 
-      end 
-=======
-      longest_string = ""
-      array_of_words.each do |word|
-        if is_better_choice(longest_string, word)
-          longest_string = word
-        end
-      end
-      return longest_string
->>>>>>> fdb939fb016252bbec284c3fd1bc377f6c1749c1
-    end
 
-    # returns true if word2 is better choice.
-    def self.is_better_choice(word1, word2)
-      score1 = score(word1)
-      score2 = score(word2)
-      if (score1 > score2)
-        return false
-      elsif (score2 > score1)
-        return true
-      else
-        if (word1.length == 7)
-          return false
-        end
-        if (word2.length == 7)
-          return true
-        end
-        if (word2.length < word1.length)
-          return true
-        end
-        return false
+        
+
+        if #here is the case for 7 letter words, trumps other cases
+          #bonus would be added in other (score?) method
+
+        elsif #here is the case for fewest tiles winning the tie
+
+        else #otherwise the first thing passed into the array
       end
     end
+
+
   end
 end
