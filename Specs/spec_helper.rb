@@ -9,3 +9,5 @@ require 'pry'
 
 require_relative '../lib/Player.rb'
 require_relative '../lib/Scoring.rb'
+
+require_relative('../lib/TileBag.rb')
