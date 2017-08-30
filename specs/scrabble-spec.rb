@@ -39,16 +39,21 @@ describe "Scoring class" do
     end
   end
 
-  xdescribe "Self.highest_score_from" do
-    xit "Gets the highest scoring word" do
+  describe "Self.highest_score_from" do
+    it "Gets the highest scoring word" do
       word_list = ['One', 'Two', 'Three']
       Scrabble::Scoring.highest_score_from(word_list).must_be_instance_of String
       Scrabble::Scoring.highest_score_from(word_list).must_equal "Three"
     end
 
-    xit "Checks for ties" do
+    it "Checks for ties" do
       word_list = ['a', 'dg', 'aeio']
       Scrabble::Scoring.highest_score_from(word_list).must_equal "dg"
+    end
+
+    it "Returns the 7 letter word, if tie" do
+      word_list = ["a", "aa", "aeio", "dg", "aeioulg", "zzzzzj"]
+      Scrabble::Scoring.highest_score_from(word_list).must_equal "aeioulg"
     end
   end
 end

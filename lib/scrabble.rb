@@ -32,20 +32,29 @@ module Scrabble
       end
     end
 
-    # def self.highest_score_from(array_of_words)
-    #   words_array = array_of_words
-    #   num_array = []
-    #   array_of_words.each do |word|
-    #     num_array << self.score(word)
-    #   end
-    #
-    #   # highest_score_index = num_array.each_with_index.max[1]
-    #   highest_score = num_array.each_with_index.max[0]
-    #
-    #   highest_array = num_array.each_with_index.select { |num, index| num == highest_score}.map {|pair| pair[1]}
-    #
-    #
-    #   #return words_array[highest_score_index]
-    # end
+    def self.highest_score_from(array_of_words)
+      num_hash = {}
+      array_of_words.each do |word|
+        num_hash[word] = self.score(word)
+      end
+
+      highest_score = num_hash.values.max
+
+      tie_breaker = []
+      num_hash.each do |key, value|
+        if value == highest_score
+          tie_breaker.push(key)
+        end
+      end
+
+      tie_breaker.each do |word|
+        if word.length == 7
+          return word
+        else
+          return tie_breaker.min{|a,b| a.size <=> b.size}
+        end
+      end
+
+    end
   end
 end
