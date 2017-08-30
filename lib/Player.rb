@@ -1,4 +1,5 @@
 require_relative 'Scoring'
+require_relative 'TileBag'
 
 module Scrabble
   class Player
@@ -21,7 +22,7 @@ module Scrabble
 
       letters.each do |letter|
         @tiles.delete_at(@tiles.index(letter))
-      end 
+      end
 
       @total_score += Scoring.score(word)
       @plays << word
