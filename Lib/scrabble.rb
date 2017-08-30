@@ -28,7 +28,7 @@ module Scrabble
     "Y" => 4,
     "Z" => 10
   }
-#DOES THIS HAVE TO BE SELF.?
+  #DOES THIS HAVE TO BE SELF.?
   def self.high_score_array(array)
     array.group_by{|word| Scrabble::Scoring.scored(word)}.max.last
   end
@@ -49,20 +49,15 @@ module Scrabble
     #2. The word is input as a string (case insensitive).
     #3..  Seven letter words receive a 50 point bonus.
     def self.scored(word)
-      points = word_has_7?(word)
+      # word_has_7?(word, points)
+      points = 0
       word.each_char do |letter|
         points += POINT_PER_VARIABLE[letter.upcase]
       end
+      word.length >= 7 ? points += 50 : points
       points
     end
 
-    def self.word_has_7?(word)
-      if word.length >= 7
-        50
-      else
-        0
-      end
-    end
 
     # self.highest_score_from(array_of_words):
     # returns the word in the array with the highest score.
@@ -99,7 +94,3 @@ module Scrabble
 
   end #self::Scoring
 end #Module End
-
-words = ["looking", "pizza", "macaroni", "leech", "sniff"]
-
-puts Scrabble::Scoring.highest_score_from(words)
