@@ -39,17 +39,13 @@ describe "The Player class" do
       ourscore = score1 + score2
       @player.total_score.must_equal ourscore
     end
-  end
 
-  describe "the won? method" do
-
-    it "Returns false if the player has already won " do
+    it "Returns false if the player has already won" do
       @player.play("zzebras")
       @player.play("azaleas")
-      @player.won?.must_equal true
+      @player.play("hello").must_equal false
     end
   end
 
-    # it "Returns false if the player has already won " do
-    #   proc {@player.play("WORD")}.must_output false if @player.won?
+
 end
