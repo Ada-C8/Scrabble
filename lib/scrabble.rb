@@ -4,9 +4,12 @@ module Scrabble
     def self.score(word)
       if word.is_a? String
         if /[\d]/.match(word) == nil
-          word = word.downcase
-          split_word = word.split(//)
-          value = 0
+        #if /[a-zA-Z]/.match(word) == nil
+        value = 0
+          if word.length == 7
+            value = 50
+          end
+          split_word = word.downcase.split(//)
           split_word.each do |letter|
             case letter
             when "a", "e", "i", "o", "u", "l", "n", "r", "s", "t"
@@ -44,8 +47,13 @@ module Scrabble
         num_array << self.score(word)
       end
 
-      highest_score_index = num_array.each_with_index.max[1]
-      return words_array[highest_score_index]
+      # highest_score_index = num_array.each_with_index.max[1]
+      highest_score = num_array.each_with_index.max[0]
+
+      new_s = num_array.each_with_index.select { |num, index| num == highest_score}.map {|pair| pair[1]}
+        return new_s
+
+      #return words_array[highest_score_index]
     end
   end
 end

@@ -18,14 +18,28 @@ describe "Scoring class" do
 
     it "raises an argument when word is not a string" do
       not_a_string = 1234
-      string_with_numbers = "mne4pl"
-      string_with_symbol = "me%^&p"
       proc { Scrabble::Scoring.score(not_a_string)}.must_raise ArgumentError
-      proc { Scrabble::Scoring.score(string_with_numbers)}.must_raise ArgumentError
-      proc { Scrabble::Scoring.score(string_with_symbol)}.must_raise ArgumentError
-
     end
 
+    it "raises an argument when string contains numbers" do
+      string_with_numbers = "mne4pl"
+      proc { Scrabble::Scoring.score(string_with_numbers)}.must_raise ArgumentError
+    end
+
+    it "raises an argument when string contains symbols" do
+      string_with_symbol = "me%^&p"
+      proc { Scrabble::Scoring.score(string_with_symbol)}.must_raise ArgumentError
+    end
+
+    it "seven-letter words return a 50 point bonus" do
+      string_bonus = "abcdefg"
+      Scrabble::Scoring.score(string_bonus).must_equal 66
+    end
+
+    it "doesn't return the 50 point bonus" do
+      string_bonus = "abcdef"
+      Scrabble::Scoring.score(string_bonus).wont_equal 64
+    end
   end
 
   describe "Self.highest_score_from" do
@@ -33,6 +47,11 @@ describe "Scoring class" do
       word_list = ['One', 'Two', 'Three']
       Scrabble::Scoring.highest_score_from(word_list).must_be_instance_of String
       Scrabble::Scoring.highest_score_from(word_list).must_equal "Three"
+    end
+
+    it "Checks for ties" do
+      word_list = ['a', 'dg', 'aeio']
+      Scrabble::Scoring.highest_score_from(word_list).must_equal "dg"
     end
   end
 end
