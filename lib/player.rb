@@ -24,23 +24,22 @@ module Scrabble
       @plays.each do |word|
         total += Scoring.score(word)
       end
-      return total
+      total
       # total_score: Returns the sum of scores of played words
     end
 
     def highest_scoring_word
-      return Scoring.highest_score_from(@plays)
+      Scoring.highest_score_from(@plays)
     end
 
     def highest_word_score
-      return Scoring.score(highest_scoring_word)
+      Scoring.score(highest_scoring_word)
     end
 
     private
+
     def won?
-      return total_score > 100
-
+      total_score > 100
     end
-
   end # end of Player class
 end # end of Scrabble module
