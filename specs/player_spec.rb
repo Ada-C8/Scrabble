@@ -37,4 +37,48 @@ describe "Player" do
     end
   end
 
+  describe "total_score" do
+    it "has a total_score method that returns an integer" do
+      @player.must_respond_to :total_score
+      @player.total_score.must_be_instance_of Integer
+    end
+
+    it "Returns the sums of scores of played words" do
+      @player.play("quest")
+      @player.play("favored")
+      @player.total_score.must_equal 28
+    end
+  end
+
+  describe "highest_scoring_word" do
+    it "has a highest_scoring_word method that returns a string from the plays" do
+      @player.must_respond_to :highest_scoring_word
+      @player.highest_scoring_word.must_be_instance_of String
+      @player.plays.include?(@player.highest_scoring_word).must_equal true
+    end
+
+    it "Returns the highest scoring word among the Player's plays" do
+        @player.play("bench") #Should be 12
+        @player.play("worry") #Should be 12
+        @player.play("clocks") #Should be 14
+        @player.highest_scoring_word.must_equal "clocks"
+    end
+  end
+
+  describe "highest_word_score" do
+    it "has a highest_word_score method that returns an integer from the plays" do
+      @player.must_respond_to :highest_word_score
+      @player.highest_scoring_word.must_be_instance_of Integer
+    end
+
+    it "returns the score of the highest scoring word among the player's plays" do
+        @player.play("bench") #Should be 12
+        @player.play("worry") #Should be 12
+        @player.play("clocks") #Should be 14
+        @player.highest_scoring_word.must_equal 14
+    end
+  end
+
+
+
 end
