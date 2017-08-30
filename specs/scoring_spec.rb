@@ -7,7 +7,7 @@ describe "Scoring" do
   # Placeholder maybe create test for module presence
   describe "Score Chart" do
 
-    it "Letteer chart is a constant, empty hash" do
+    it "Letter chart is a constant, empty hash" do
       Scrabble::Scoring::SCORE_CHART.must_be_instance_of Hash
     end
 

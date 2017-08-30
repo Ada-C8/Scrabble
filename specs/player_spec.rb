@@ -20,6 +20,18 @@ describe "Player" do
       test_ob = Scrabble::Player.new("name")
       test_ob.plays.must_be_instance_of Array
     end
+
+    it "Has an instrance variable @total_score, which is an Integer" do
+      test_ob = Scrabble::Player.new("name")
+      test_ob.total_score.must_be_instance_of Integer
+    end
+
+    it "Has an instrance variable @total_score, that returns the current total score" do
+      test_ob = Scrabble::Player.new("name")
+      test_ob.play("aa")
+      test_ob.total_score.must_equal 2
+    end
+
   end#initialize
 
   describe "play method" do
@@ -27,10 +39,10 @@ describe "Player" do
       test_ob = Scrabble::Player.new("name")
       test_ob.must_respond_to :play
     end
-    # change this
-    xit "Returns an array" do
-      test_ob = Scrabble::Player.new("name")
-      test_ob.play("word").must_be_instance_of Array
+
+    it "Raises an ArgumentError if input is not a String" do
+        test_ob = Scrabble::Player.new("name")
+        proc { test_ob.play(123)}.must_raise ArgumentError
     end
 
     it "Adds the word input to the @plays instance variable" do
@@ -51,6 +63,7 @@ describe "Player" do
       player_instance.play(word).must_equal 1
     end
   end#play method
+
 
 
 end#Player

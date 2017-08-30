@@ -10,6 +10,10 @@ module Scrabble
 
     def play(word)
 
+      unless word.class == String
+        raise ArgumentError.new("Input must be a String")
+      end
+
       if won?
         return false
       end
