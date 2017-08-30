@@ -31,8 +31,15 @@ describe "The Player class" do
     it "stores the words that you input in the play method inside @plays" do
       @player.play("word")
       @player.plays.must_equal ["WORD"]
-
     end
+
+    it "increases the total_score as you add new words" do
+      score1 = @player.play("word")
+      score2 = @player.play("hello")
+      ourscore = score1 + score2
+      @player.total_score.must_equal ourscore
+    end
+
     # it "Returns false if the player has already won " do
     #   proc {@player.play("WORD")}.must_output false if @player.won?
     # end

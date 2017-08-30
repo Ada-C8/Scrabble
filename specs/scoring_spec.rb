@@ -54,6 +54,10 @@ describe "The Score method" do
     Scrabble::Scoring.score("aZ").must_be :==,11
     Scrabble::Scoring.score("k").must_be :==,5
   end
+
+  it "total score is equal to zero must raise a" do
+    proc {Scrabble::Scoring.score("")}.must_raise ArgumentError
+  end
 end
 
 describe "The highest_score_from method" do

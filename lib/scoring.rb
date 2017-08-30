@@ -13,6 +13,8 @@ module Scrabble
 
       if word.class != String
         raise ArgumentError.new("You did not enter a string for the word being scored.")
+      elsif word.length == 0
+        raise ArgumentError.new("You did not enter a word")
       elsif word.length > 7
         raise ArgumentError.new("You cannot enter a word greater than 7 letters!")
       else
