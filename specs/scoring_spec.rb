@@ -29,19 +29,19 @@ describe "Scoring Class" do
     end
   end #end of self.score tests
 
-  describe "self.highest_score_from_array(array_of_words)" do
+  describe "self.highest_score_from(array_of_words)" do
     it "returns word with highest score" do
       #SET UP VARIABLES
       array_of_words = ["adb", "kay", "jig"]
       #CALL THE METHOD BEING TESTED
-      winning_word = Scrabble::ScoringClass.highest_score_from_array(array_of_words)
+      winning_word = Scrabble::ScoringClass.highest_score_from(array_of_words)
       #CHECK RESULT OF THAT METHOD
       winning_word.must_equal "jig"
     end
 
     it "return winning word if there's a tie" do
        array_of_words =["dca", "gcn", "hii", "aaaag"]
-       winning_word = Scrabble::ScoringClass.highest_score_from_array(array_of_words)
+       winning_word = Scrabble::ScoringClass.highest_score_from(array_of_words)
        winning_word.must_equal "dca"
     end
   end

@@ -37,7 +37,7 @@ module Scrabble
       return word_score
     end #end self.score
 
-    def self.highest_score_from_array(array_of_words)
+    def self.highest_score_from(array_of_words)
       scores_array = []
       array_of_words.each do |word|
         # nested array with word and its cooresponding score
