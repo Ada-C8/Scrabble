@@ -10,6 +10,7 @@ require_relative '../lib/scoring'
 require_relative '../lib/player'
 require_relative '../lib/tile_bag'
 
-# reporter_options = { color:true}
-# Minitest::Reporters.use! Minitest::Reporters::DefaultReporter.new(reporter_options)
-Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
+reporter_options = { color:true}
+Minitest::Reporters.use! Minitest::Reporters::DefaultReporter.new(reporter_options)
+
+# Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new

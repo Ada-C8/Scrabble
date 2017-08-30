@@ -14,22 +14,21 @@ describe "TileBag class" do
   describe "draw_tiles method" do
     before do
       @new_tile_bag = Scrabble::TileBag.new
+      @tiles1 = @new_tile_bag.draw_tiles(7)
+      @tiles2 = @new_tile_bag.draw_tiles(7)
+      @tiles3 = @new_tile_bag.draw_tiles(7)
     end
 
     it "Returns a collection of random tiles " do
-      tiles1 = @new_tile_bag.draw_tiles(7)
-      tiles2 = @new_tile_bag.draw_tiles(7)
-      tiles3 = @new_tile_bag.draw_tiles(7)
+      @tiles1.must_be_kind_of Array
+      @tiles1.length.must_equal 7
 
-      tiles1.must_be_kind_of Array
-      tiles1.length.must_equal 7
-
-      tiles1.wont_equal (tiles2 || tiles3) #as good as random is going to get
+      @tiles1.wont_equal (@tiles2 || @tiles3) #as good as random is going to get
 
     end
 
     it "Removes the tiles from Tile Bag" do
-
+      @new_tile_bag.tiles.values.sum.must_equal (Scrabble::TileBag::LETTER_FREQUENCY.values.sum - 21)
     end
 
   end
