@@ -21,6 +21,12 @@ describe "Player class" do
     it "Creates a player with a total score initialized to 0" do
       @anna.total_score.must_equal 0
     end
+
+    it "Creates a player with an array of tiles (init to empty)" do
+      @anna.tiles.must_be_instance_of Array
+      @anna.tiles.must_equal []
+    end
+
   end
 
   describe "play(word) method" do
@@ -106,12 +112,24 @@ describe "Player class" do
     end
   end
 
+  describe "draw_tiles method" do
+    before do
+      @edie = Scrabble::Player.new("Edie")
+      @tile_bag = Scrabble::TileBag.new
+    end
 
-# TODO `#won?`: If the player has over 100 points, returns `true`, otherwise returns `false`
-    # TODO  This should be a private method
+    it "Draws 7 tiles if Edie has no tiles" do
+      @edie.draw_tiles(@tile_bag)
+      @edie.tiles.length.must_equal 7
+    end
 
-# TODO  `#highest_scoring_word`: Returns the highest scoring played word
+    it "Draws no tiles if Edie already has 7 tiles" do
+      @edie.draw_tiles(@tile_bag)
+      @edie.draw_tiles(@tile_bag)
+      @edie.tiles.length.must_equal 7
+    end
 
-# TODO `#highest_word_score`: Returns the `highest_scoring_word` score
+  end
+
 
 end
