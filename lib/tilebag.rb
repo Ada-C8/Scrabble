@@ -18,6 +18,16 @@ module Scrabble
       end
     end
 
+    def draw_tiles(num)
+      num.times do
+        tiles_array << @tiles.sample
+      end
+
+    end
+
+
+    ##draw_tiles(num) returns a collection of random tiles, removes the tiles from the default set
+
 
 
 
