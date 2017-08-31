@@ -17,6 +17,9 @@ module Scrabble
     def draw_tiles(num)
       hand = []
 
+      # check that tile bag isn't empty
+      num = tiles_remaining if num > tiles_remaining
+
       num.times do
         # pick a random letter
         letter = ('A'..'Z').to_a.sample
