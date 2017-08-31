@@ -63,8 +63,8 @@ describe "The Player class" do
     #   @player.play("word")
     #   @player.play("hello")
     #   @player.play("apple")
-    #   @player.play("zzzzzzz")
-    #   @player.my_word.must_equal "zzzzzzz"
+    #   @player.play("zzzzzz")
+    #   @player.must_equal "zzzzzz"
     #   # @player.return_highest_word_score.must_equal 120
     # end
   end
