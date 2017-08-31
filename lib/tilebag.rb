@@ -1,7 +1,7 @@
 module Scrabble
   class TileBag
 
-    attr_reader #:tilebag
+    attr_reader #:tiles
 
      def initialize
        @tiles = {
@@ -35,8 +35,16 @@ module Scrabble
      end
 
      def draw_tiles(num)
-       @tiles.to_a.sample(num).to_h.keys
+       letters = @tiles.to_a.sample(num).to_h.keys
+      #  print "Letters 1: #{letters}"
 
+       letters.each do |letter|
+         @tiles[letter] -= 1
+       end
+        @tiles.delete_if {|letter, quantity| quantity == 0}
+        # print "Letters 2: #{letters}"
+        return @tiles
      end
+
   end
 end

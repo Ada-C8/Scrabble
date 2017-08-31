@@ -34,9 +34,10 @@ describe "The TileBag class" do
       drawn_tiles = @tilebag.draw_tiles(3)
       drawn_tiles[0].must_be_kind_of String
     end
-    # it "Removes tiles from the original set" do
-    #
-    # end
+    it "Removes tiles from the original set" do
+      # @tilebag.draw_tiles(3)
+      # @tilebag.tiles.values.inject(:+).must_be :==,95
+    end
 
   end
   #
