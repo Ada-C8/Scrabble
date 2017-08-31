@@ -32,7 +32,6 @@ class Player
 
   def highest_word_score
     Scoring.score(highest_scoring_word)
-    # Scoring.highest_score_from(highest_scoring_word)
   end
 
   private
