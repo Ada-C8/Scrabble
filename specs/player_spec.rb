@@ -46,14 +46,15 @@ describe "Player Class" do
       test_player = Scrabble::Player.new("Guille")
       test_player.must_respond_to :play
     end
-    # it "should return false if player won" do
-    #   test_player = Scrabble::Player.new("Guillermina")
-    #   # TODO: make player get 100points
-    #   test_player.won? = true
-    #   output = test_player.play("dog")
-    #   expected_output = false
-    #   output.must_equal expected_output
-    # end
+    it "should return false if player won" do
+      test_player = Scrabble::Player.new("Guillermina")
+
+      test_player.play("aaaaaaa")
+      test_player.play("eeeeeee")
+      output = test_player.play("dog")
+      expected_output = false
+      output.must_equal expected_output
+    end
     it "should return score of word" do
       test_player = Scrabble::Player.new("Guille")
       output = test_player.play("aaa")
@@ -86,31 +87,37 @@ describe "Player Class" do
       output.must_equal expected_output
     end
   end
-  #
-  describe "Player.won?" do
-
-    it "Should respond to .won" do
-      test_player = Scrabble::Player.new("Marisa")
-      test_player.must_respond_to :won?
 
 
+  describe "Player.highest_scoring_word" do
+    it "should respond to highest_scoring_word" do
+      test_player = Scrabble::Player.new("Guille")
+      test_player.must_respond_to :highest_scoring_word
     end
 
-    it "SHould return if false if player has a score less than 100" do
-
+    it "should not be empty after a word is played" do
+      test_player = Scrabble::Player.new("Guille")
+      before_play = test_player.highest_scoring_word
+      test_player.play("aaa")
+      after_play = test_player.highest_scoring_word
+      after_play.must_be :!=, before_play
     end
 
-    it "Should return true if player score is greater that or equal to 100" do
-
-    end
   end
-  #
-  # describe "Player.highest_scoring_word" do
-  #
-  # end
-  #
-  # describe "Player.highest_word_score" do
-  #
-  # end
+
+  describe "Player.highest_word_score" do
+    it "should respond to highest_scoring_word" do
+      test_player = Scrabble::Player.new("Guille")
+      test_player.must_respond_to :highest_scoring_word
+    end
+    it "should be empty after a word is played" do
+      test_player = Scrabble::Player.new("Guille")
+      before_play = test_player.highest_word_score
+      test_player.play("aaa")
+      after_play = test_player.highest_word_score
+      after_play.must_be :!=, before_play
+    end
+    
+  end
 
 end

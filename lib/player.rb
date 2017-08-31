@@ -10,23 +10,27 @@ module Scrabble
     end
 
     def play(input_word)
+      total_score
        if won? == true
          return false
-      end
+       end
       score = Scrabble::Scoring.score(input_word)
       @plays << input_word
       return score
     end
 
     def total_score
+      return 0 if @plays.length == 0
       scores = @plays.map{ |word| Scrabble::Scoring.score(word) }
       @total = scores.inject(:+)
     end
 
+    def highest_scoring_word
+    end
+
     private
     def won?
-      total_score
-      @total >= 100 ? true : false
+      @total > 99 ? true : false
     end
 
   end # => end of class
