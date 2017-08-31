@@ -33,5 +33,9 @@ module Scrabble
          "Z" => 1
        }
      end
+
+     def draw_tiles(num)
+       @tiles.to_a.sample(3).to_h.keys
+     end
   end
 end

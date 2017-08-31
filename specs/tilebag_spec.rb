@@ -18,13 +18,21 @@ describe "The TileBag class" do
 
   end
 
-  # describe "The draw_tiles method" do
-  #
-  #   it "Responds to the draw_tiles method" do
-  #
-  #   end
-  #
-  # end
+  describe "The draw_tiles method" do
+
+    it "Responds to the draw_tiles method" do
+      @tilebag.must_respond_to :draw_tiles
+    end
+
+    it "Returns an array" do
+      @tilebag.draw_tiles(3).must_be_kind_of Array
+    end
+
+    # it "Removes tiles from the original set" do
+    #
+    # end
+
+  end
   #
   # describe "The tiles_remaining method" do
   #
