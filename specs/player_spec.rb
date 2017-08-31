@@ -67,6 +67,15 @@ describe "highest_scoring_word method" do
     test_ob.must_respond_to :highest_scoring_word
   end
 
+  it "Returns a string" do
+    test_ob = Scrabble::Player.new("name")
+    test_words = ["jazz", "as", "bad"]
+    test_words.each do |word|
+      test_ob.play(word)
+    end
+    test_ob.highest_scoring_word.must_be_instance_of String
+  end
+
   it "Returns the highest scoring played word" do
     test_ob = Scrabble::Player.new("name")
     test_words = ["jazz", "as", "bad"]
@@ -84,7 +93,16 @@ describe "highest_word_score method" do
       test_ob.must_respond_to :highest_word_score
   end
 
-  it "Returns the highest_scoring_word score" do
+  it "Returns a string" do
+    test_ob = Scrabble::Player.new("name")
+    test_words = ["jazz", "as", "bad"]
+    test_words.each do |word|
+      test_ob.play(word)
+    end
+    test_ob.highest_word_score.must_be_instance_of Integer
+  end
+
+  it "Returns the highest_word_score" do
     test_ob = Scrabble::Player.new("name")
     test_words = ["jazz", "as", "bad"]
     test_words.each do |word|
