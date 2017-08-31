@@ -1,4 +1,4 @@
-# module Scrabble
+module Scrabble
 class Scoring
 
   TILES = {"A" => 1, "E" =>1, "I"=> 1, "O"=>1, "L" => 1, "N" => 1, "R" => 1, "U" => 1,
@@ -34,7 +34,7 @@ class Scoring
       return hsw
     end
 end #end of class
-  # end #end of module
+end #end of module
 
   #Scoring.highest_score_from(["cat", "eggs", "bread", "rank"])
 

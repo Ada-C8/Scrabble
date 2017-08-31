@@ -1,5 +1,6 @@
 ## Don't forget to commit
 require_relative 'scoring'
+module Scrabble
 
 class Player
   attr_accessor :name
@@ -19,7 +20,7 @@ class Player
     @plays.each do |played_word|
       total_score += Scoring.score(played_word)
     end
-    if total_score >= 100
+    if won?(total_score)
       false
     else
       return total_score
@@ -46,6 +47,7 @@ class Player
 
 
 end # end of the class
+end
 
 ######TESTING######
 # bob = Player.new("bob")

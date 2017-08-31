@@ -1,4 +1,6 @@
-require_relative "../lib/scoring.rb"
+require_relative "scoring.rb"
+require_relative "player.rb"
+
 
 module Scrabble
 
