@@ -1,68 +1,121 @@
-equire 'minitest/autorun'
+
+require 'minitest/autorun'
 require 'minitest/reporters'
+require 'minitest/skip_dsl'
 require_relative '../lib/player'
+require_relative '../lib/score'
 
 describe "Player" do
   describe "#initialize" do
-    it "is a kind of object" do
-      my_class = Scrabble::Player.new(player1)
-      my_class.must_be_kind_of Scrabble:: Player
+    it "Takes a name" do
+	  name = 'John'
+      player = Scrabble::Player.new(name)
+
+      player.must_respond_to :name
+      player.name.must_equal name
+      player.name.must_be_kind_of String
+
+	  player.must_respond_to :plays
+	  player.plays.must_equal []
+	  player.plays.must_be_kind_of Array
     end
   end
 
+  describe "total_score" do
+	it "Sums one word" do
+	  name = 'John'
+      player = Scrabble::Player.new(name)
+	  player.play('hello')
 
-  #play(word): Adds the input word to the plays Array
-  # Returns false if player has already won
-  # Returns the score of the word
-  describe " self.play(word)" do
-    it "should add the input word to the plays array" do
-      plays = ["BUBBLE","BOAT"]
-      my_class = Scrabble::Player.new(player1)
-      my_class.play("SQUEEZE")
-      my_class.plays.include?("SQUEEZE").must_equal true
-    end
-    it "should return false if player has already won" do
-      # plays = ["BUBBLE","BOAT"]
-      my_class = Scrabble::Player.new(player1)
-      my_class.won?.must_equal false
-    end
+	  total = player.total_score
+	  total.must_equal 8
+	  player.plays.length.must_equal 1
+	end
 
-    it "should return the score of the word" do
-      # plays = ["BUBBLE","BOAT"]
-      my_class = Scrabble::Player.new(player1)
-      my_class.play("SQUEEZE").must_equal 25
-    end
+	it "Sums multiple words" do
+	  name = 'John'
+      player = Scrabble::Player.new(name)
+	  player.play('hello')
+	  player.play('bubbles')
+	  player.play('wave')
+	  total = player.total_score
+	  total.must_equal 81
+	end
+
+	it "sums when no words have been played"  do
+	  name = 'John'
+      player = Scrabble::Player.new(name)
+	  count = player.total_score
+	  count.must_equal 0
+	end
   end
-end
 
-# def self.play(word)
-#   if @plays.include? word
-#     return false
-#   else
-#   @plays << word
-#   return word.Scrabble::Score.score
-# end
-#
-# def total_score
-#   total = 0
-#   @plays.each do |word|
-#     total += word.Scrabble::Score.score
-#   end
-#   return total
-# end
+  describe "play" do
+	it "plays word" do
+	  name = 'John'
+      player = Scrabble::Player.new(name)
+	  value = player.play('hello')
 
+	  player.plays.length.must_equal 1
+	  value.must_equal 8
+	end
 
-  # describe "Order Wave 1" do
-  #   describe "#initialize" do
-  #     it "Takes an ID and collection of products" do
-  #       id = 1337
-  #       order = Grocery::Order.new(id, {})
-  #
-  #       order.must_respond_to :id
-  #       order.id.must_equal id
-  #       order.id.must_be_kind_of Integer
-  #
-  #       order.must_respond_to :products
-  #       order.products.length.must_equal 0
-  #     end
-  #   end
+	it "plays after a player has won" do
+	  name = 'John'
+      player = Scrabble::Player.new(name)
+	  player.play('bubbles')
+	  player.play('bubbles')
+	  value = player.play('bubbles')
+	  value.must_equal false
+	end
+
+	it "play with blank string" do
+	  name = 'John'
+      player = Scrabble::Player.new(name)
+	  player.play('')
+	  player.plays.length.must_equal 1
+	end
+  end
+
+  describe "highest_scoring_word" do
+	it "highest scoring word with only 1 word" do
+	  name = 'John'
+      player = Scrabble::Player.new(name)
+	  player.play('hello')
+	  word = player.highest_scoring_word
+	  word.must_equal 'hello'
+	end
+
+	it "highest scoring word with multiple words" do
+	  name = 'John'
+      player = Scrabble::Player.new(name)
+	  player.play('hello')
+	  player.play('bubbles')
+	  player.play('wave')
+	  word = player.highest_scoring_word
+	  word.must_equal 'bubbles'
+	end
+  end
+
+  describe "highest word score" do
+	it "highest word score with 1 word" do
+	  name = 'John'
+      player = Scrabble::Player.new(name)
+	  player.play('hello')
+
+	  count = player.highest_word_score
+	  count.must_equal 8
+	end
+
+	it "highest word score with multiple words" do
+	  name = 'John'
+      player = Scrabble::Player.new(name)
+	  player.play('hello')
+	  player.play('bubbles')
+	  player.play('wave')
+
+	  count = player.highest_word_score
+	  count.must_equal 63
+	end
+  end
+ end
