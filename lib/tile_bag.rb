@@ -1,3 +1,4 @@
+module Scrabble
 class TileBag
   attr_reader :tiles
 
@@ -15,3 +16,4 @@ class TileBag
 
 
 end #end of class
+end #end of module
