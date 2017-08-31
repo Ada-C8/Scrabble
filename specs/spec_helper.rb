@@ -10,6 +10,7 @@ SimpleCov.start
 # ex require_relative 'lib/foo.rb'
 require_relative '../lib/player.rb'
 require_relative '../lib/scrabble.rb'
+require_relative '../lib/tilebag.rb'
 
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
