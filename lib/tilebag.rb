@@ -1,7 +1,7 @@
 module Scrabble
   class TileBag
 
-    attr_reader #:tiles
+    attr_reader :tiles
 
      def initialize
        @tiles = {
@@ -43,7 +43,7 @@ module Scrabble
        end
         @tiles.delete_if {|letter, quantity| quantity == 0}
         # print "Letters 2: #{letters}"
-        return @tiles
+        return letters
      end
 
   end
