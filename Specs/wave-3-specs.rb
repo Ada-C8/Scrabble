@@ -96,11 +96,12 @@ describe "Player" do
       @player.tiles.length.must_equal 7
     end
 
-    it "will only draw tiles until correct number in hand" do
-        @player.tiles = ["A", "P", "Q"]
-        print @player.tiles
-        @player.draw_tiles(@tile_bag)
-        print @player.tiles
-    end
+#USED THIS TEST TEMPORARILY WITH ATTR WRITER FOR TILES so that we could make sure what it does
+    # it "will only draw tiles until correct number in hand" do
+    #     @player.tiles = ["A", "P", "Q"]
+    #     print @player.tiles
+    #     @player.draw_tiles(@tile_bag)
+    #     print @player.tiles
+    # end
   end
 end

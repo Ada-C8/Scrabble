@@ -4,7 +4,6 @@ module Scrabble
   class Player
     attr_reader :name, :plays, :total_score, :highest_scoring_word,
                 :highest_word_score, :tiles
-    attr_writer :tiles
     def initialize(name)
       @name = name
       @plays = []
