@@ -68,22 +68,22 @@ describe 'Player' do
   end
 
   ## These do not work. Not sure you can test directly on private methods
-  # describe "won?" do
-  #   it "must return true if score is over 100" do
-  #     @new_player.play("APPLE")
-  #     @new_player.play("FRUIT")
-  #     @new_player.play("DANCERS")
-  #     @new_player.play("QUIZZES")
-  #     @new_player.won?.must_equal true
-  #   end
-  #
-  #   it "must return false if score is under 100" do
-  #     @new_player.play("APPLE")
-  #     @new_player.play("FRUIT")
-  #     @new_player.play("DANCERS")
-  #     @new_player.won?.must_equal false
-  #   end
-  # end
+  describe "won?" do
+    it "must return true if score is over 100" do
+      @new_player.play("APPLE")
+      @new_player.play("FRUIT")
+      @new_player.play("DANCERS")
+      @new_player.play("QUIZZES")
+      @new_player.send(:won?).must_equal true
+    end
+
+    it "must return false if score is under 100" do
+      @new_player.play("APPLE")
+      @new_player.play("FRUIT")
+      @new_player.play("DANCERS")
+      @new_player.send(:won?).must_equal false
+    end
+  end
 
   describe "total_score" do
 
