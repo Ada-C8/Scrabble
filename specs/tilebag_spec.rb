@@ -21,38 +21,43 @@ describe 'TileBag class' do
       tilebag1.all_tiles[:Z].must_equal 1
     end
 
-    describe 'draw_tiles method' do
-      it 'tilebag responds to draw_tiles' do
-        @tilebag.must_respond_to :draw_tiles
-      end
 
-      it "returns one random tile in and array" do
-        @tilebag.draw_tiles(1).must_be_kind_of Array
-        @tilebag.draw_tiles(1).length.must_equal 1
-      end
 
-      it "each letter returned is a string" do
-        @tilebag.draw_tiles(1)[0].must_be_kind_of String
-      end
-
-      it "draw_tiles reduces by one the value of that letter" do
-        tilebag1 = Scrabble::TileBag.new
-        selection = @tilebag.draw_tiles(1)[0].to_sym
-        @tilebag.all_tiles[selection].must_equal tilebag1.all_tiles[selection] - 1
-      end
-
-      xit "won't select a tile for which the value is 0" do
-
-      end
+  end
+  describe 'draw_tiles method' do
+    it 'tilebag responds to draw_tiles' do
+      @tilebag.must_respond_to :draw_tiles
     end
 
-    describe "tiles_remaining method" do
-      it "after choosing 1 tile it returns the total number of original tiles minus 1" do
-        @tilebag.tiles_remaining.must_equal 98
-        @tilebag.draw_tiles(1)
-        @tilebag.tiles_remaining.must_equal 97
-      end
+    it "returns one random tile in and array" do
+      @tilebag.draw_tiles(1).must_be_kind_of Array
+      @tilebag.draw_tiles(1).length.must_equal 1
     end
 
+    it "each letter returned is a string" do
+      @tilebag.draw_tiles(1)[0].must_be_kind_of String
+    end
+
+    it "draw_tiles reduces by one the value of that letter" do
+      tilebag1 = Scrabble::TileBag.new
+      selection = @tilebag.draw_tiles(1)[0].to_sym
+      @tilebag.all_tiles[selection].must_equal tilebag1.all_tiles[selection] - 1
+    end
+
+    it "won't select more tiles than are in the bag" do
+      @tilebag.draw_tiles(97)
+      @tilebag.tiles_remaining.must_equal 1
+      @tilebag.draw_tiles(3).length.must_equal 1
+      @tilebag.draw_tiles(1).must_equal false
+
+
+    end
+  end
+  describe "tiles_remaining method" do
+    it "after choosing 1 tile it returns the total number of original tiles minus 1" do
+      @tilebag.tiles_remaining.must_equal 98
+      @tilebag.draw_tiles(1)
+      @tilebag.tiles_remaining.must_equal 97
+    end
   end
 end

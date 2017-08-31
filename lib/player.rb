@@ -1,16 +1,16 @@
-require 'scrabble'
+require_relative 'tilebag'
 
 module Scrabble
 
   class Player
-    @@tilebag = TileBag.new
+    @@gamebag = TileBag.new
 
     attr_reader :name, :plays, :tiles
 
     def initialize(name)
       @name = name
       @plays = []
-      @tiles = @@tilebag.draw_tiles(7)
+      @tiles = @@gamebag.draw_tiles(7)
     end
 
     def play(word)
