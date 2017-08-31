@@ -6,5 +6,6 @@ require 'minitest/reporters'
 require 'minitest/skip_dsl'
 require_relative '../lib/scrabble.rb'
 require_relative '../lib/player.rb'
+require_relative '../lib/tilebag.rb'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
