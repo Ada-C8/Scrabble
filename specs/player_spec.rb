@@ -49,8 +49,8 @@ describe "Class player" do
     describe "Won? method" do
       before do
         @jugador = Scrabble::Player.new("Morsa")
-        @jugador.play("Pereza")
-        @jugador.play("Food")
+        @jugador.play("PEREZA")
+        @jugador.play("FOOD")
       end
 
       it "Returns false (under 100 )" do
@@ -58,8 +58,8 @@ describe "Class player" do
       end
 
       it "Returns true if over 100" do
-        @jugador.play("zorro")
-        @jugador.play("zzzzzzz")
+        @jugador.play("ZORRO")
+        @jugador.play("ZZZZZZZ")
         @jugador.won?.must_equal true
       end
     end #describe
@@ -67,8 +67,8 @@ describe "Class player" do
     describe "highest score with word" do
       before do
         @jugador = Scrabble::Player.new("Morsa")
-        @jugador.play("Pereza")
-        @jugador.play("Food")
+        @jugador.play("PEREZA")
+        @jugador.play("FOOD")
       end
       it "Returns an array" do
         @jugador.highest_scoring_word_score.must_be_instance_of Array
@@ -83,6 +83,10 @@ describe "Class player" do
         proc{fantasma.highest_scoring_word_score}.must_raise ArgumentError
       end
     end #describe highest
+
+    # describe "draw_tiles" do
+    #   it ""
+    # end
 
 
   end#describe initialize

@@ -44,12 +44,14 @@ module Scrabble
 
     def draw_tiles(num)
       @tile_array.shuffle!
-      return tiles_draw = @tile_array.shift(num)
+      # if num >@tile_array.length
+      #   raise ArgumentError.new("We don't have that amount of letters")
+      # else
+         return @tile_array.shift(num)
+      # end
     end
 
 
   end #class
 
 end #module
-
-print

@@ -1,10 +1,13 @@
+require_relative '../lib/tilebag'
+
 module Scrabble
   class Player
-    attr_reader :name, :plays
+    attr_reader :name, :plays, :tiles
     def initialize(name)
       @name = name
       @plays = []
       @score_array = []
+      @tiles = []
     end#initialize
 
     def play(word)
@@ -12,6 +15,10 @@ module Scrabble
         false
       else
         @plays << word.upcase
+        word = word.upcase
+        word.split("").each do |letter|
+           @tiles.slice!(@tiles.index(letter))
+        end
         word_score = Scrabble::Scoring.score(word)
         @score_array << word_score
         return word_score
@@ -40,6 +47,19 @@ module Scrabble
         return max_word, max_score
       end
     end
+
+
+    # def draw_tiles(tile_bag)
+    #   # tile_bag.draw_tiles(amount_of_tiles_i_want)
+    #   if @tiles.length < 7
+    #     tiles_drawn = draw_tiles(7 - @tiles.length)
+    #     tiles_drawn.each do |letter|
+    #       @tiles << letter
+    #     end
+    #   end
+    # end
+
+
 
 
 

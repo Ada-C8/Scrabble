@@ -89,6 +89,6 @@ module Scrabble
 
 end #module end
 
-array_words = ["house", "mama", "flan", "dulce"]
+#array_words = ["house", "mama", "flan", "dulce"]
 
-puts Scrabble::Scoring.highscore_from(array_words)
+#puts Scrabble::Scoring.highscore_from(array_words)
