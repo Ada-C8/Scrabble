@@ -13,9 +13,15 @@ module Scrabble
     end #plays
 
     def play(word)
-      @player_words << word.upcase
+      @player_words << word.upcase!
       result = Scrabble::Scoring.score(word)
       @total_score += result
+      word_array = word.split(//)
+      # Will remove tiles from the @tiles_in_hand instance
+      word_array.each do |letter|
+        @tiles_in_hand.delete_at(@tiles_in_hand.index(letter) || @tiles_in_hand.length)
+      end
+
       if won?
         return false
       else
@@ -45,6 +51,7 @@ module Scrabble
       num_to_draw = 7 - @tiles_in_hand.length
       tiles_to_add = tile_bag.draw_tiles(num_to_draw)
       tiles_to_add.each do |tile|
+        # Returns an array of tiles
         @tiles_in_hand << tile
       end
     end #def draw_tiles(tile_bag)

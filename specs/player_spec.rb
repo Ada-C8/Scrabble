@@ -57,13 +57,6 @@ describe "Player" do
       @test_player.total_score.must_equal 8
     end
 
-    xit "should respond to won? private method" do
-
-      ######TODO: Figure out how to test a private method won? after play(word) is ran
-      @test_player.play("hello")
-      expect(@test_player.send(:won?)).to eq(true)
-    end
-
     it "if won is true, should return false" do
       #if we exclude words over seven letter we will have to change this
       @test_player.play("zzzzzzzzzz")
@@ -74,6 +67,14 @@ describe "Player" do
       @test_player.play("z")
       @test_player.play("hello").must_equal 8
       @test_player.play("hello").must_be_kind_of Integer
+    end
+
+    it "should remove tiles that were played from tiles in hand" do
+      test_tile_bag = Scrabble::Tilebag.new
+      @test_player.draw_tiles(test_tile_bag)
+      @test_player.tiles_in_hand.length.must_equal 7
+      @test_player.play(@test_player.tiles_in_hand[0])
+      @test_player.tiles_in_hand.length.must_equal 6
     end
 
   end #describe "#play(word)" do

@@ -29,9 +29,9 @@ describe "Tilebag" do
       picked_tiles.length.must_equal 98
     end
 
-    it "should return an arugment error if number input is 0 or less" do
-      proc { @tilebag.draw_tiles(0) }.must_raise ArgumentError
-    end
+    # it "should return an arugment error if number input is 0 or less" do
+    #   proc { @tilebag.draw_tiles(0) }.must_raise ArgumentError
+    # end
 
     it "should remove each tile from the @tile" do
       starting_tiles = @tilebag.tiles.length
