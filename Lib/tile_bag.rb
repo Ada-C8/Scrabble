@@ -1,5 +1,4 @@
-require_relative 'scrabble'
-require 'pry'
+
 module Scrabble
   class TileBag
 
@@ -35,23 +34,25 @@ module Scrabble
         ["Y"] * 2,
         ["Z"] * 1
       ].flat_map{|tile_array| tile_array}.shuffle
-      @tiles = draw_tiles
+      # @tiles = draw_tiles
 
-      puts "remaining_tiles", @remaining_tiles.nil?
-
+      puts @remaining_tiles
     end #end initialize
 
-    def draw_tiles
+    def draw_tiles(num)
       tile_hand = []
-      raise ArgumentError.new("Not Enough Tiles!") if @remaining_tiles.length < 7
+      # raise ArgumentError.new("Not Enough Tiles!") if @remaining_tiles.length < 7
+      puts @remaining_tiles.class
+      puts @remaining_tiles.length
+      num.times{  tile_hand << @remaining_tiles.delete_at(0) }
 
-      7.times { tile_hand << @remaining_tiles.delete_at(0) }
-
-      tile_hand
       # binding.pry
-
+      tile_hand
     end#end draw_tiles
+
+    def tiles_remaining
+      @remaining_tiles.length
+    end
+
   end #end class
 end #end module
-
-spaghetti = Scrabble::TileBag.new

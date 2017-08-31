@@ -13,8 +13,6 @@ describe "TileBag" do
       # can instatiate tiles and remaining tiles
       it "TileBag can instantiate tiles" do
         new_game = Scrabble::TileBag.new
-        new_game.tiles.wont_be_nil
-        new_game.tiles.must_be_kind_of Array
         new_game.remaining_tiles.wont_be_nil
         new_game.remaining_tiles.must_be_kind_of Array
       end

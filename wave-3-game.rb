@@ -1,11 +1,13 @@
-require_relative 'lib/scrabble'
+require_relative 'Lib/scrabble'
+require_relative 'Lib/player'
+require_relative 'Lib/tile_bag'
 
 module Scrabble
   class Game
     def initialize
       @words = []
       @players = setup_players
-      @tilebag = Tilebag.new
+      @tilebag = TileBag.new
     end
 
     def play
