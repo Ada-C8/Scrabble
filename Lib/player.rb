@@ -19,7 +19,7 @@ module Scrabble
       @total_score += word_score
       case
       when won?
-        true
+        false
       when !won?
         word_score
       end
@@ -36,10 +36,17 @@ module Scrabble
     end
 
     def draw_tiles(tilebag)
-    num = 7 - @tiles.length
-    # tilebag << Scrabble::TileBag.remaining_tiles
-    @tiles << tilebag.draw_tiles(num)
-
+      num = 7
+      if @plays == []
+      else
+        num = @plays[-1].length
+      end
+      # tilebag << Scrabble::TileBag.remaining_tiles
+      new_tiles = tilebag.draw_tiles(num)
+      new_tiles.each do |tile|
+        @tiles << tile
+      end
+      # @tiles =@tiles[0]
     end# end draw tiles
     private
     #won?: If the player has over 100 points returns true.

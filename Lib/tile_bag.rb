@@ -1,4 +1,3 @@
-
 module Scrabble
   class TileBag
 
@@ -35,15 +34,11 @@ module Scrabble
         ["Z"] * 1
       ].flat_map{|tile_array| tile_array}.shuffle
       # @tiles = draw_tiles
-
-      puts @remaining_tiles
     end #end initialize
 
     def draw_tiles(num)
       tile_hand = []
       # raise ArgumentError.new("Not Enough Tiles!") if @remaining_tiles.length < 7
-      puts @remaining_tiles.class
-      puts @remaining_tiles.length
       num.times{  tile_hand << @remaining_tiles.delete_at(0) }
 
       # binding.pry
