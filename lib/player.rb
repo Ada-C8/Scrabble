@@ -7,11 +7,17 @@ module Scrabble
     def initialize(name)
       @name = name
       @plays = []
+      @won = false
+      @total_score = 0
     end
 
     def play(word)
-      # if won? return false
+      if @won
+        return false
+      end
+
       plays << word
+      total_score
       return Scrabble::Scoring.score(word) # new instance of score
     end
 
@@ -20,10 +26,13 @@ module Scrabble
       @plays.each do |word|
         sum_of_scores << Scrabble::Scoring.score(word)
       end
-      return sum_of_scores.inject(:+)
+      @total_score = sum_of_scores.inject(:+)
+      #puts "Your score is #{@total_score}"
+      won?
+      return @total_score
     end
 
-    def highest_word_score
+    def highest_word_score #returns score
       num_hash = {}
       @plays.each do |word|
         num_hash[word] = Scrabble::Scoring.score(word)
@@ -32,20 +41,26 @@ module Scrabble
       return num_hash.values.max
     end
 
-    def highest_scoring_word
+    def highest_scoring_word #returns word
       return Scrabble::Scoring.highest_score_from(@plays)
     end
 
     private
 
-    def won
-      return true
-      # if total_score > 99
-      #   return true
-      # else
-      #   return false
-      # end
+    def won?
+      if @total_score > 99
+        @won = true
+        # puts "You win!"
+      end
     end
 
   end # end of class
 end #end of module
+
+# patty = Scrabble::Player.new("Patty")
+# patty.play("october")
+# patty.play("happiness")
+# patty.play("xyz")
+# patty.play("happiness")
+# # patty.play("xyz")
+# # patty.total_score

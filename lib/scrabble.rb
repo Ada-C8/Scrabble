@@ -49,7 +49,6 @@ module Scrabble
 
       winner = ""
       tie_breaker.each do |word|
-        p word.length
         if word.length == 7
           winner = word
         else
