@@ -7,6 +7,7 @@ module Scrabble
     end
 
     def draw_tiles(num)
+      # TODO: do we need to add a second parameter that is the Tilebag instance that we want to draw from? 
       raise ArgumentError.new("You must draw 1 or more tiles") if num < 1
 
       picked_tiles = []
@@ -18,6 +19,12 @@ module Scrabble
       # delete_at(index) with delete from the @tiles and it will also return the value
 
       return picked_tiles
-    end
+    end # draw_tiles(num)
+
+    def tiles_remaining
+      return @tiles.length
+    end # tiles_remaining
+
+
   end # Class
 end # Scrabble

@@ -63,7 +63,7 @@ module Scrabble
 
     def get_word_for(player)
       puts "Enter a word to score:"
-      word = gets.chomp
+      word = gets.chomp.upcase
       @words << word
 
       # Returns a boolean true or false

@@ -1,10 +1,11 @@
 module Scrabble
   class Player
-    attr_reader :name, :player_words, :total_score
+    attr_reader :name, :player_words, :total_score, :tiles_in_hand
     def initialize(name)
       @name = name
       @player_words = []
       @total_score = 0
+      @tiles_in_hand = []
     end
 
     def plays
@@ -39,6 +40,14 @@ module Scrabble
         return false
       end
     end # DEF
+
+    def draw_tiles(tile_bag)
+      num_to_draw = 7 - @tiles_in_hand.length
+      tiles_to_add = tile_bag.draw_tiles(num_to_draw)
+      tiles_to_add.each do |tile|
+        @tiles_in_hand << tile
+      end
+    end #def draw_tiles(tile_bag)
 
   end # Player
 end # Scrabble

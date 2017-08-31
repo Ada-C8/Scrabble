@@ -59,13 +59,13 @@ describe "Player" do
 
     xit "should respond to won? private method" do
 
-######TODO: Figure out how to test a private method won? after play(word) is ran
+      ######TODO: Figure out how to test a private method won? after play(word) is ran
       @test_player.play("hello")
       expect(@test_player.send(:won?)).to eq(true)
     end
 
     it "if won is true, should return false" do
-    #if we exclude words over seven letter we will have to change this
+      #if we exclude words over seven letter we will have to change this
       @test_player.play("zzzzzzzzzz")
       @test_player.play("hello").must_equal false
     end
@@ -128,5 +128,17 @@ describe "Player" do
     end
 
   end # Describe
+
+  describe "draw_tiles(tile_bag)" do
+    #tiles a collection of letters that the player can play (max 7)
+    #draw_tiles(tile_bag) fills tiles array until it has 7 letters from the given tile bag
+    #It is not in the primary requirements to modify the existing #play(word) to use #tiles or check against the player's tiles
+    it "should only draw tiles till player had seven tiles" do
+      test_tile_bag = Scrabble::Tilebag.new
+      @test_player.tiles_in_hand.length.must_equal 0
+      @test_player.draw_tiles(test_tile_bag)
+      @test_player.tiles_in_hand.length.must_equal 7
+    end #it "should only draw tiles till player had seven tiles"
+  end #describe "draw_tiles(tile_bag)" do
 
 end # Describe
