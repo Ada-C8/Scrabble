@@ -2,6 +2,8 @@ require_relative 'spec_helper'
 
 describe "Tilebag" do
 
+i_suck_and_my_tests_are_order_dependent!()
+
   before do
     @tilebag = Scrabble::Tilebag.new
   end
@@ -15,6 +17,10 @@ describe "Tilebag" do
   end
 
   describe "#draw_tiles" do
+    it "should return an array of picked _tiles" do
+      @tilebag.draw_tiles(7).must_be_kind_of Array
+    end
+
     it "when drawing one tile should return one tile" do
       picked_tiles = @tilebag.draw_tiles(1)
       picked_tiles.length.must_equal 1
@@ -35,5 +41,6 @@ describe "Tilebag" do
       @tilebag.draw_tiles(num)
       @tilebag.tiles.length.must_equal starting_tiles - num
     end
+
   end
 end #Describe
