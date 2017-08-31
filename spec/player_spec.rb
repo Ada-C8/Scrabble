@@ -13,7 +13,6 @@ describe "class Player"  do
     end
 
     it "returns the value of the instance variable" do
-
       @player.must_respond_to :name
     end
   end
@@ -37,19 +36,29 @@ describe "class Player"  do
       @player.play("monkey")
       @player.play("food").must_equal 29
     end
+    it "returns zero if array is empty" do
+      @player.play("").must_equal 0
+    end
   end
 
-  describe "highest_scoring_word" do
+  describe "highest scoring word" do
     it "returns the word with the highest score" do
       @player.play("darts")
       @player.play("pizza")
       @player.play("food")
       @player.play("monkey")
-     
-
       @player.highest_scoring_word.must_equal "pizza"
     end
   end
 
-end #end of describe
+    describe "highest word score" do
+      it "returns the highest scoring word score" do
+        @player.play("darts")
+        @player.play("pizza")
+        @player.play("food")
+        @player.play("monkey")
+        @player.highest_word_score.must_equal 25
+      end
+    end
 
+  end #end of describe

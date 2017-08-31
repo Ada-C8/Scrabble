@@ -21,13 +21,28 @@ class Player
     end
     if total_score >= 100
       false
-    else 
+    else
       return total_score
     end
   end
 
   def highest_scoring_word
     Scoring.highest_score_from(@plays)
+  end
+
+  def highest_word_score
+    Scoring.score(highest_scoring_word)
+    # Scoring.highest_score_from(highest_scoring_word)
+  end
+
+  private
+
+  def won?
+    if total_score < 100
+      return @won = false
+    else
+      return @won = true
+    end
   end
 
 
