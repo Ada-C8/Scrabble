@@ -27,17 +27,16 @@ describe 'Scrabble' do
 
     ### TODO: uncomment below and comment out private to test
 
-    # it "if total_score has over 100 points, they win" do
-    #
-    #   @player.play("zzzzzzz")
-    #   @player.public_send.won?.must_equal true
-    # end
-    #
-    # it "doesn't win if less than 100" do
-    #
-    #   @player.play("zzzz")
-    #   @player.won?.public_send.must_equal false
-    # end
+    it "if total_score has over 100 points, they win" do
+      @player.play("zzzzzzz")
+      @player.won?.must_equal true
+    end
+
+    it "doesn't win if less than 100" do
+
+      @player.play("zzzz")
+      @player.won?.must_equal false
+    end
 
     it "returns highest scoring word" do
       @player.play("zzzzzx")
