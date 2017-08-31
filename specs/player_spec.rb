@@ -21,6 +21,10 @@ describe 'Player' do
     it 'creates an empty array called @plays' do
       @player.plays.must_equal []
     end
+
+    it 'creates an empty array called @tiles' do
+      @player.tiles.must_equal []
+    end
   end
 
   describe 'play(word)' do
@@ -75,6 +79,24 @@ describe 'Player' do
 
     it 'raises ArgumentError if called before words are played' do
       proc { @player.highest_word_score }.must_raise ArgumentError
+    end
+  end
+
+  describe 'draw_tiles' do
+    it 'draws tiles until player has 7' do
+
+    end
+
+    it 'will not draw if the player already has 7 tiles' do
+
+    end
+
+    it 'removes tiles from tilebag' do
+
+    end
+
+    it 'raises ArgumentError if passed anything but TileBag object' do
+      
     end
   end
 

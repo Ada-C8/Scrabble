@@ -2,6 +2,7 @@ module Scrabble
   class Player
     # name: returns the value of the @name instance variable
     # plays: returns an Array of the words played by the player
+    # tiles: a collection of letters that the player can play (max 7)
 
     attr_reader :name, :plays
 
@@ -35,6 +36,8 @@ module Scrabble
     def highest_word_score
       Scoring.score(highest_scoring_word)
     end
+
+    #draw_tiles(tile_bag) fills tiles array until it has 7 letters from the given tile bag
 
     private
 
