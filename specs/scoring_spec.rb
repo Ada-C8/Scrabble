@@ -1,10 +1,9 @@
 require_relative 'spec_helper'
 
-xdescribe "Scoring Class" do
+describe "Scoring Class" do
   describe "initialize scoring class" do
     it "ScoringClass.new is an instance of scrabble module" do
       #arrange
-      skip
       scoring = Scrabble::ScoringClass.new
       #act
       #assert
@@ -30,7 +29,7 @@ xdescribe "Scoring Class" do
     end
   end #end of self.score tests
 
-  xdescribe "self.highest_score_from(array_of_words)" do
+  describe "self.highest_score_from(array_of_words)" do
     it "returns word with highest score" do
       #SET UP VARIABLES
       array_of_words = ["adb", "kay", "jig"]
@@ -47,7 +46,7 @@ xdescribe "Scoring Class" do
     end
   end
 
-  xdescribe "tie" do
+  describe "tie" do
     it "returns word with fewest letters to break tie" do
       #SET UP VARIABLES
       words_and_scores = [["bbbxph", 24],["jjj", 24],["jig", 11]]

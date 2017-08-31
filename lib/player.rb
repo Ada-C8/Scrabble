@@ -1,10 +1,5 @@
 # #name: returns the value of the @name instance variable
-
 # #plays: returns an Array of the words played by the player
-
-# #play(word): Adds the input word to the plays Array
-  # Returns false if player has already won
-  # Returns the score of the word
 
 # #highest_scoring_word: Returns the highest scoring played word
 
@@ -26,6 +21,21 @@ module Scrabble
         running_score += Scrabble::ScoringClass.score(word)
       end
       return running_score
+    end
+
+    # #play(word): Adds the input word to the plays Array
+      # Returns false if player has already won
+      # Returns the score of the word
+    def play(word)
+
+    end
+
+    def highest_scoring_word
+      # self.highest_from_array = highest_scoring_word
+    end
+
+    def highest_word_score
+      Scrabble::ScoringClass.max_score
     end
 
     private

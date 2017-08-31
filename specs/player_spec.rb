@@ -39,21 +39,22 @@ describe "PlayerClass" do
     end
   end
 
-  # describe "Won? method" do
-  #   it "Scrabble::Player responds to won" do
-  #     @player1.must_respond_to :won?
-  #   end
-  #
-  #   it "returns true if equals 100 or more" do
-  #     @player1.won?.must_equal true
-  #   end
-  #
-  #   it "returns false if equals less than 100" do
-  #     @player1.won?.must_equal false
-  #   end
+  describe "Play method" do
+    word = "otter"
+    it "Scrabble::Player responds to play method" do
+      @player1.must_respond_to :play
+    end
+    it "adds an input word to plays array" do
+      # @player1.play(word)
+    end
+    it "returns false is the player has won" do
+      @player1.play(word).must_equal false
+    end
 
+    it "returns the score of the word" do
+
+    end
   end
-
 end
 
 # SET UP VARIABLES

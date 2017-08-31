@@ -43,6 +43,7 @@ module Scrabble
         # nested array with word and its cooresponding score
         scores_array << [word, score(word)]
       end
+      # returns highest scoring word 
       return tie(scores_array)
     end
 
