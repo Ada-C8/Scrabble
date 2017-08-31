@@ -15,6 +15,8 @@ module Scrabble
     end
 
     def draw_tiles(num)
+      # TODO check if tile bag empty && player has empty hand; if true, end game
+      
       hand = []
 
       # check that tile bag isn't empty

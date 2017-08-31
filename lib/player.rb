@@ -18,6 +18,23 @@ module Scrabble
     def play(word)
       return false if won?
 
+      # word_array = word.chars
+      word.upcase!
+
+      trial_word = []
+
+      # loop through word array; if char in @tiles, pop off tiles and move to trial_word
+
+      #TODO preserve order of word
+      word.each_char do |char|
+        if @tiles.include? char
+          trial_word << @tiles.delete_at(@tiles.index(char))
+        else
+          @tiles.concat(trial_word)
+          return nil
+        end
+      end
+
       @plays << word
       word_score = Scrabble::Scoring.score(word)
       @total_score += word_score
