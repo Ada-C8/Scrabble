@@ -33,7 +33,7 @@ module Scrabble
       Scoring.score(highest_scoring_word)
     end
 
-    # private
+    private
     #won?: If the player has over 100 points returns true.
     # otherwise returns false
     def won?
