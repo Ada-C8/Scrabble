@@ -4,12 +4,12 @@ require_relative 'spec_helper'
 describe "class Player"  do
 
   before do
-    @player = Player.new(name)
+    @player = Scrabble::Player.new(name)
   end
 
   describe "instance of Player class" do
     it "creates an instance of Player" do
-      @player.must_be_instance_of Player
+      @player.must_be_instance_of Scrabble::Player
     end
 
     it "returns the value of the instance variable" do
