@@ -12,7 +12,16 @@ module Scrabble
     end
 
     def draw_tiles(num)
+      num = num.to_i
+      drawn_tiles = []
+      shuffled = @bag_of_tiles.shuffle
+      num.times do
+        drawn_tiles << @bag_of_tiles[0]
+        @bag_of_tiles[0].delete
+      end
+      return @bag_of_tiles
     end
+
 
 
   end
