@@ -36,6 +36,15 @@ describe "method play(word)" do
     proc{@tanja.play(20)}.must_raise ArgumentError
   end
 
+  it 'raises an ArgumentError if a word has more than seven chars or less than 0' do
+    proc{@tanja.play("supercalifrag")}.must_raise ArgumentError
+    proc{@tanja.play("")}.must_raise ArgumentError
+  end
+
+  it 'raises an Argument Error if input word is not composed of valid letters' do
+    proc{@tanja.play(15)}.must_raise ArgumentError
+  end
+
   it "adds the input word to the plays Array" do
     before = @tanja.plays.length
     @tanja.play("code")
