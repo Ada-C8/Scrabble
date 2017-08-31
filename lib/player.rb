@@ -22,15 +22,13 @@ module Scrabble
     end
 
     # highest_scoring_word: Returns the highest scoring played word
-    # Isaac: "Might probably use 'plays'?"
     def highest_scoring_word
       Scoring.highest_score_from(plays)
     end
 
     # highest_word_score: Returns the highest_scoring_word score
-    # Isaac: "Can we call highest_scoring_word method from Scrabble::Scoring?"
     def highest_word_score
-
+      Scoring.score(highest_scoring_word)
     end
 
     private
