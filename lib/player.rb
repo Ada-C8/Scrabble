@@ -1,14 +1,8 @@
-# #name: returns the value of the @name instance variable
-# #plays: returns an Array of the words played by the player
-
-# #highest_scoring_word: Returns the highest scoring played word
-
-# #highest_word_score: Returns the highest_scoring_word score
-
 module Scrabble
   class PlayerClass
     attr_reader :name, :plays
-
+    #name: returns the value of the @name instance variable
+    #plays: returns an Array of the words played by the player
     def initialize(name)
       @name = name
       @plays = ["dog", "kitten", "panda"]
@@ -32,11 +26,13 @@ module Scrabble
     end
 
     def highest_scoring_word
-      # self.highest_from_array = highest_scoring_word
+      #highest_scoring_word: Returns the highest scoring played word
+      return Scrabble::ScoringClass.highest_score_from(@plays)
     end
 
     def highest_word_score
-      Scrabble::ScoringClass.max_score
+      #highest_word_score: Returns the highest_scoring_word score
+
       # score highest scoring word
     end
 

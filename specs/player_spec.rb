@@ -62,6 +62,21 @@ describe "PlayerClass" do
       @player1.play(word).must_equal 5
     end
   end
+
+  describe "highest scoring word" do
+    it "Player 1 must respond to highest scoring word" do
+      @player1.must_respond_to :highest_scoring_word
+    end
+
+    it "highest scoring word must return object of type string " do
+      @player1.highest_scoring_word.must_be_kind_of String
+    end
+
+    it "highest_scoring_word must return the actual highest scoring word" do
+      @player1.play("zzz")
+      @player1.highest_scoring_word.must_equal "zzz"
+    end
+  end
 end
 
 # SET UP VARIABLES
