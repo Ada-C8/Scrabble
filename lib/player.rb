@@ -70,6 +70,7 @@ a.play('hello')
 a.play('bubbles')
 a.play('hello')
 
+
 puts a.name
 puts a.highest_scoring_word
 puts a.highest_word_score
