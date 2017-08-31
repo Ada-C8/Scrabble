@@ -80,21 +80,27 @@ describe 'TileBag' do
   end
 end
 
-describe 'Player' do
+describe "Player" do
   before do
     @tile_bag = Scrabble::TileBag.new
+    @player = Scrabble::Player.new("Diane")
   end
-  describe 'Draw tiles method' do
-    it 'returns an array' do
-      player = Scrabble::Player.new("Diane")
-      player.draw_tiles(@tile_bag)
-      player.tiles.must_be_instance_of Array
+  describe "Draw tiles method" do
+    it "returns an array" do
+      @player.draw_tiles(@tile_bag)
+      @player.tiles.must_be_instance_of Array
     end
 
-    it 'returns an array of the right length' do
-      player = Scrabble::Player.new("Diane")
-      player.draw_tiles(@tile_bag)
-      player.tiles.length.must_equal 7
+    it "returns an array of the right length" do
+      @player.draw_tiles(@tile_bag)
+      @player.tiles.length.must_equal 7
+    end
+
+    it "will only draw tiles until correct number in hand" do
+        @player.tiles = ["A", "P", "Q"]
+        print @player.tiles
+        @player.draw_tiles(@tile_bag)
+        print @player.tiles
     end
   end
 end

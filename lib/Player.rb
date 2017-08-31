@@ -4,7 +4,7 @@ module Scrabble
   class Player
     attr_reader :name, :plays, :total_score, :highest_scoring_word,
                 :highest_word_score, :tiles
-
+    attr_writer :tiles
     def initialize(name)
       @name = name
       @plays = []
@@ -33,8 +33,8 @@ module Scrabble
     end
 
     def draw_tiles(tile_bag)
-      until @tiles.length == 7
-        @tiles << tile_bag.draw_tiles(1)
+      tile_bag.draw_tiles(7 - @tiles.length).each do |tile|
+        @tiles << tile
       end
     end
 
