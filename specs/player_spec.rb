@@ -77,6 +77,22 @@ describe "PlayerClass" do
       @player1.highest_scoring_word.must_equal "zzz"
     end
   end
+
+  describe "Highest Word Score method" do
+    it "Responds to highest_word_score" do
+      @player1.must_respond_to :highest_word_score
+    end
+
+    it "should be an integer" do
+      @player1.highest_word_score.must_be_kind_of Integer
+    end
+
+    it "return actual highest word score" do
+      @player1.play("zzz")
+      @player1.highest_word_score.must_equal 30
+    end
+
+  end
 end
 
 # SET UP VARIABLES

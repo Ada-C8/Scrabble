@@ -32,8 +32,9 @@ module Scrabble
 
     def highest_word_score
       #highest_word_score: Returns the highest_scoring_word score
-
       # score highest scoring word
+      Scrabble::ScoringClass.score(highest_scoring_word)
+
     end
 
     private
