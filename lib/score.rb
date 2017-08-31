@@ -1,6 +1,6 @@
 # require_relative 'wave-1-game'
 module Scrabble
-  class Scoring
+  class Score
     attr_reader :words
     def initialize
       @words = []
@@ -39,22 +39,19 @@ module Scrabble
     def self.highest_score_from_array(array_of_words)
       tie = []
       max_so_far = -1
-
       array_of_words.each do |i|
-        
-        current_high_score = Scrabble::Scoring.score(i)
+        current_high_score = Scrabble::Score.score(i)
         if current_high_score > max_so_far
           tie = []
           tie << i
           max_so_far = current_high_score
-        elsif current_high_score == max_so_far 
+        elsif current_high_score == max_so_far
           tie << i
-        else
-          
+        # else
         end
       end
-      
-      
+
+
         if tie.length == 1
           return tie[0]
         else
@@ -64,8 +61,8 @@ module Scrabble
             if i.length == 7
               return i
             else
-              puts 'current is ' + i + " and min length is #{min_length}"
-              if i.length < min_length 
+              # puts 'current is ' + i + " and min length is #{min_length}"
+              if i.length < min_length
                 winner = i
                 min_length = i.length
               end
@@ -73,6 +70,6 @@ module Scrabble
           end
           return winner
         end
-      end   
+    end
   end
 end
