@@ -39,5 +39,17 @@ describe "class Player"  do
     end
   end
 
+  describe "highest_scoring_word" do
+    it "returns the word with the highest score" do
+      @player.play("darts")
+      @player.play("pizza")
+      @player.play("food")
+      @player.play("monkey")
+     
+
+      @player.highest_scoring_word.must_equal "pizza"
+    end
+  end
+
 end #end of describe
 

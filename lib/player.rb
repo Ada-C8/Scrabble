@@ -1,4 +1,5 @@
 ## Don't forget to commit
+require_relative 'scoring'
 
 class Player
   attr_accessor :name
@@ -22,8 +23,31 @@ class Player
       false
     else 
       return total_score
+    end
   end
-end
+
+  def highest_scoring_word
+    Scoring.highest_score_from(@plays)
+  end
 
 
 end # end of the class
+
+######TESTING######
+# bob = Player.new("bob")
+# puts bob.play("cats")
+# puts
+# puts bob.plays
+# puts
+# puts bob.play("dots")
+# puts
+# print bob.plays
+# puts
+# puts bob.play("books")
+# puts
+# print bob.plays
+# puts bob.play("trouble")
+# puts
+# print bob.plays
+# puts
+# puts bob.highest_scoring_word
