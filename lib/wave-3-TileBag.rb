@@ -32,13 +32,34 @@ module Scrabble
     }
 
     def initialize
-      @original_tile_bag = TILE_SET
+      @original_tile_bag = TILE_SET.clone
     end
 
     def draw_tiles(num)
+      if @original_tile_bag.values.inject(&:+) < num
+        raise ArgumentError.new "not enough tiles"
+      end
+      tiles = []
+      num.times do
+        tiles << draw_tile
+      end
+      return tiles
+    end
+
+    def draw_tile
+      letter_qty = 0
+
+      while letter_qty < 1
+        letter = original_tile_bag.keys.sample
+        letter_qty = @original_tile_bag[letter]
+      end
+
+      @original_tile_bag[letter] -= 1
+      return letter
     end
 
     def tiles_remaining
+      @original_tile_bag.values.inject(&:+)
     end
 
   end
