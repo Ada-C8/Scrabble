@@ -3,33 +3,41 @@ require_relative "scoring"
 require 'pry'
 module Scrabble
   class Player
-    attr_reader :name, :plays
+    attr_reader :name, :plays, :total_score
 
     def initialize(name)
+      raise ArgumentError.new("name string cannot be empty") if name == ""
+      raise ArgumentError.new("name must be a string") if name.class != String
       @name = name
+      @total_score = 0
       @plays = []
     end
 
 
 
     def play(word)
+      return false if won?
+      score = Scoring.score(word)
       @plays << word
+      @total_score += score
+      return score
     end
 
-    def total_score
-      total_score = 0
-      @plays.each do |word|
-      total_score += Scrabble::Scoring.score(word)
-      end
-      return total_score
-    end
+    #deleted this total_score and added it to play(word method)
+    # def total_score
+    #   @total_score = 0
+    #   @plays.each do |word|
+    #   @total_score += Scrabble::Scoring.score(word)
+    #   end
+    #   return @total_score
+    # end
 
     def highest_scoring_word
-      return Scrabble::Scoring.highest_score_from(@plays)
+      return Scoring.highest_score_from(@plays)
     end
 
     def highest_word_score
-      return Scrabble::Scoring.score(highest_scoring_word)
+      return Scoring.score(highest_scoring_word)
     end
 
     # private
@@ -40,11 +48,13 @@ module Scrabble
   end
 end
 
+# Manual tests to be deleted before final push:
 # test = Scrabble::Player.new("Ada")
-
-# test.play("zzzzzx")
+#
+# test.play("zzzzzzz")
 # test.play("z")
-# puts test.highest_word_score
+# test.play("z")
+# puts test.total_score
 # # test.play("zzzzz")
 #
 # test.play("zzzzzx")

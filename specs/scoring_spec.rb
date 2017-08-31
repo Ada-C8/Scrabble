@@ -20,7 +20,6 @@ describe 'Scrabble' do
       it "7 letter words receive 50 point bonus" do # probably a more interesting way to test this... score + 50
         Scrabble::Scoring.score("laurenl").must_equal 57
       end #50 point bonus
-
     end # self.score
 
     describe "self.highest_score_from(array_of_words)" do
