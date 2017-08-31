@@ -6,7 +6,6 @@ describe "Player Class" do
       input_name = "Marisa"
       output = Scrabble::Player.new(input_name)
       output.must_be_instance_of Scrabble::Player
-      # Scrabble::Player.new("Marisa").must_be_instance_of Scrabble::Player
     end
 
     it "Player should have name attribute" do
@@ -97,10 +96,6 @@ describe "Player Class" do
 
     it "should read initialized scoring word" do
       test_player = Scrabble::Player.new("Guille")
-      # # before_play = test_player.highest_scoring_word
-      # test_player.play("aaa")
-      # after_play = test_player.highest_scoring_word
-      # after_play.must_equal "marisa"
       test_player.highest_scoring_word.must_equal "marisa"
     end
 
@@ -108,6 +103,12 @@ describe "Player Class" do
       test_player = Scrabble::Player.new("Marisa")
       test_player.play("aaa")
       (test_player.highest_scoring_word).must_equal "aaa"
+    end
+    it "should return zzz as the highest_scoring_word" do
+      test_player = Scrabble::Player.new("Marisa")
+      test_player.play("aaa")
+      test_player.play("zzz")
+      (test_player.highest_scoring_word).must_equal "zzz"
     end
 
   end
@@ -119,10 +120,16 @@ describe "Player Class" do
     end
     it "should not be empty after a word is played" do
       test_player = Scrabble::Player.new("Guille")
-      before_play = test_player.highest_word_score
       test_player.play("aaa")
       after_play = test_player.highest_word_score
       after_play.must_equal 3
+    end
+    it "should return 30 as highest score after playing zzz" do
+      test_player = Scrabble::Player.new("Guille")
+      test_player.play("aaa")
+      test_player.play("eeee")
+      test_player.play("zzz")
+      (test_player.highest_word_score).must_equal 30
     end
 
   end
