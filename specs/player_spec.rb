@@ -134,6 +134,15 @@ describe "Player class" do
       @edie.draw_tiles(@tile_bag)
       @edie.tiles.length.must_equal 7
     end
+
+    it "Draws only the number of tiles remaining in bag" do
+      # if there are no tiles, draw 0, check for end_game
+      @tile_bag.draw_tiles(98)
+      @edie.draw_tiles(@tile_bag)
+      @edie.tiles.must_equal []
+      # if there are fewer tiles than 7
+
+    end
   end
 
 

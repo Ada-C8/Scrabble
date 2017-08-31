@@ -36,6 +36,7 @@ module Scrabble
     def draw_tiles(tile_bag)
       # For Game Wave 3
       num_to_draw = MAX_TILES - @tiles.length
+
       @tiles.concat(tile_bag.draw_tiles(num_to_draw)) if num_to_draw > 0
     end
 
