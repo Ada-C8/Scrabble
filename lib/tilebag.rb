@@ -37,7 +37,9 @@ module Scrabble
 
      def draw_tiles(num)
        #Raise argument error if num > 7
+       raise ArgumentError.new("cannot take more than 7 letters at a time") if num > 7
        #Raise argument error if num > @tiles_remaining
+       raise ArgumentError.new("you have requested more tiles than there are in the bag. There are #{@tiles_remaining} tiles remaining in the bag.") if num > @tiles_remaining
 
        letters = @tiles.to_a.sample(num).to_h.keys
       #  print "Letters 1: #{letters}"

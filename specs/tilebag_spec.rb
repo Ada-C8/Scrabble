@@ -44,12 +44,17 @@ describe "The TileBag class" do
 
   end
 
-  describe "The tiles_remaining variable returns the correct number" do
+  describe "tiles_remaining and draw_tiles edge cases" do
 
-    it "Responds to the tiles_remaining method" do
+    it "The tiles_remaining variable returns the correct number" do
       @tilebag.draw_tiles(3)
       @tilebag.tiles_remaining.must_equal 95
     end
+
+    it "Raises error if user requests more than 7 tiles" do
+      proc {@tilebag.draw_tiles(8)}.must_raise ArgumentError
+    end
+
 
   end
 
