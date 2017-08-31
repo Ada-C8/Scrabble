@@ -86,17 +86,21 @@ describe 'Player' do
     it 'draws tiles until player has 7' do
       bag = Scrabble::TileBag.new
       @player.draw_tiles(bag)
-
       @player.tiles.length.must_equal 7
-
     end
 
     it 'will not draw if the player already has 7 tiles' do
-
+      bag = Scrabble::TileBag.new
+      @player.draw_tiles(bag)
+      @player.draw_tiles(bag)
+      @player.tiles.length.must_equal 7
     end
 
     it 'removes tiles from tilebag' do
-
+      bag = Scrabble::TileBag.new
+      @player.draw_tiles(bag)
+      @player.tiles.length.must_equal 7
+      bag.tiles_remaining.must_equal 91
     end
 
     it 'raises ArgumentError if passed anything but TileBag object' do

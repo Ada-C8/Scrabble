@@ -4,11 +4,12 @@ module Scrabble
     # plays: returns an Array of the words played by the player
     # tiles: a collection of letters that the player can play (max 7)
 
-    attr_reader :name, :plays
+    attr_reader :name, :plays, :tiles
 
     def initialize(name)
       @name = name.to_s
       @plays = []
+      @tiles = []
     end
 
     def play(word)
@@ -37,7 +38,11 @@ module Scrabble
       Scoring.score(highest_scoring_word)
     end
 
-    #draw_tiles(tile_bag) fills tiles array until it has 7 letters from the given tile bag
+    def draw_tiles(tilebag)
+      #draw_tiles(tile_bag) fills tiles array until it has 7 letters from the given tile bag
+      num_tiles = 7 - @tiles.length
+      @tiles += tilebag.draw_tiles(num_tiles)
+    end
 
     private
 
