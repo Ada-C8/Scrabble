@@ -32,7 +32,8 @@ module Scrabble
     end
 
     def draw_tiles(num)
-      @tiles = Scrabble::Tilebag.draw_tiles(num)
+      tile_bag = Scrabble::TileBag.new
+      @tiles = tile_bag.draw_tiles(num)
     end
 
     private
