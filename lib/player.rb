@@ -27,7 +27,8 @@ module Scrabble
       # Returns false if player has already won
       # Returns the score of the word
     def play(word)
-
+      @plays << word
+      won? ? (return false) : (return Scrabble::ScoringClass.score(word))
     end
 
     def highest_scoring_word
@@ -36,7 +37,7 @@ module Scrabble
 
     def highest_word_score
       Scrabble::ScoringClass.max_score
-      # score highest scoring word 
+      # score highest scoring word
     end
 
     private

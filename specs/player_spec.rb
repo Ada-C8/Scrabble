@@ -45,14 +45,21 @@ describe "PlayerClass" do
       @player1.must_respond_to :play
     end
     it "adds an input word to plays array" do
-      # @player1.play(word)
+      @player1.play(word)
+      @player1.plays.must_include "otter"
     end
-    it "returns false is the player has won" do
-      @player1.play(word).must_equal false
+    it "returns false if the player has won" do
+      @player1.play("jxqzbvx").must_equal false
+    end
+
+    it "plays array should increase by 1" do
+      @player1.play(word)
+      played = @player1.plays.length
+      played.must_equal 4
     end
 
     it "returns the score of the word" do
-
+      @player1.play(word).must_equal 5
     end
   end
 end
