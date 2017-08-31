@@ -42,7 +42,7 @@ module Scrabble
       return total_score
     end
 
-    def self.highest_score_from_array(arr_of_words)
+    def self.highest_score_from(arr_of_words)
 
       unless arr_of_words.class == Array
         raise ArgumentError.new("Input must be an Array")
@@ -76,10 +76,6 @@ module Scrabble
 
   end # class
 end # module
-
-tester = Scrabble::Scoring.highest_score_from_array(["A", "ZZZZ", "THE"])
-print tester
-
 # a <=> b :=
 #   if a < b then return -1
 #   if a = b then return  0

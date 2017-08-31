@@ -52,44 +52,44 @@ describe "Scoring" do
     end
   end
 
-  describe "highest_score_from_array method" do
+  describe "highest_score_from method" do
 
     it "Can be called" do
       test_ob = Scrabble::Scoring
-      test_ob.must_respond_to :highest_score_from_array
+      test_ob.must_respond_to :highest_score_from
     end
 
     it "Raises an error if parameter is not an Array" do
-      proc { Scrabble::Scoring.highest_score_from_array(123) }.must_raise ArgumentError
+      proc { Scrabble::Scoring.highest_score_from(123) }.must_raise ArgumentError
     end
 
     it "Returns a String" do
       test_arr = ["A", "THE", "ZZZ"]
-      test_ob = Scrabble::Scoring.highest_score_from_array(test_arr)
+      test_ob = Scrabble::Scoring.highest_score_from(test_arr)
       test_ob.must_be_instance_of String
     end
 
     it "Returns the word in the array with the highest score" do
       test_arr = ["A", "THE", "ZZZ"]
-      test_ob = Scrabble::Scoring.highest_score_from_array(test_arr)
+      test_ob = Scrabble::Scoring.highest_score_from(test_arr)
       test_ob.must_equal "ZZZ"
     end
 
     it "Returns the word with the fewest letters in the case of a tie" do
       test_arr = ["AEIO", "DG"] #both score to 4
-      test_ob = Scrabble::Scoring.highest_score_from_array(test_arr)
+      test_ob = Scrabble::Scoring.highest_score_from(test_arr)
       test_ob.must_equal "DG"
     end
 
     it "Returns the first word supplied, in the case of a tie with words of the same length and same score" do
       test_arr = ["AE", "OU"] #both score to 2
-      test_ob = Scrabble::Scoring.highest_score_from_array(test_arr)
+      test_ob = Scrabble::Scoring.highest_score_from(test_arr)
       test_ob.must_equal "AE"
     end
 
     it "Returns the seven letter word, in the case of a tie" do
       test_arr = ["AEIOULN", "KD"] #both score to 7
-      test_ob = Scrabble::Scoring.highest_score_from_array(test_arr)
+      test_ob = Scrabble::Scoring.highest_score_from(test_arr)
       test_ob.must_equal "AEIOULN"
     end
   end
