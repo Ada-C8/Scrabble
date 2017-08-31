@@ -1,7 +1,7 @@
 module Scrabble
   class TileBag
 
-    attr_reader :tiles
+    attr_reader :tiles, :tiles_remaining
 
      def initialize
        @tiles = {
@@ -32,9 +32,13 @@ module Scrabble
          "Y" => 2,
          "Z" => 1
        }
+       @tiles_remaining = 0
      end
 
      def draw_tiles(num)
+       #Raise argument error if num > 7
+       #Raise argument error if num > @tiles_remaining
+
        letters = @tiles.to_a.sample(num).to_h.keys
       #  print "Letters 1: #{letters}"
 
@@ -43,8 +47,12 @@ module Scrabble
        end
         @tiles.delete_if {|letter, quantity| quantity == 0}
         # print "Letters 2: #{letters}"
+
+        @tiles_remaining = tiles.values.inject(:+)
+
         return letters
      end
+
 
   end
 end
