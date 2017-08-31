@@ -33,8 +33,8 @@ describe "The TileBag class" do
     end
 
     it "Returns an array of letters" do
-      drawn_tiles = @tilebag.draw_tiles(3)
-      drawn_tiles[0].must_be_kind_of String
+      test_drawn_tiles = @tilebag.draw_tiles(3)
+      test_drawn_tiles[0].must_be_kind_of String
     end
 
     it "Removes tiles from the original set" do
@@ -55,6 +55,13 @@ describe "The TileBag class" do
       proc {@tilebag.draw_tiles(8)}.must_raise ArgumentError
     end
 
+    it "Raises error if user requests more tiles than are in the bag" do
+      @tilebag = Scrabble::TileBag.new
+      14.times do
+        @tilebag.draw_tiles(7)
+      end
+      proc {@tilebag.draw_tiles(2)}.must_raise ArgumentError
+    end
 
   end
 
