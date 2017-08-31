@@ -1,4 +1,5 @@
 require_relative 'scoring'
+require_relative 'player'
 
 module Scrabble
   class Game
@@ -49,12 +50,6 @@ module Scrabble
 
     def continue?
       return true if @words.length == 0 # haven't started playing yet
-      # @players.each do |player|
-      #   if player.won?
-      #     crown_winner(player)
-      #     return false
-      #   end
-      # end
 
       puts "Would you like to play another round? (Y/N)"
       continue = gets.chomp
@@ -104,6 +99,8 @@ module Scrabble
 
     def get_player_name(player_number)
       puts "What is the name of Player \##{player_number + 1}?"
+      raise ArgumentError.new("Please provide a name") if gets.chomp.class != String
+
       return gets.chomp
     end
   end
