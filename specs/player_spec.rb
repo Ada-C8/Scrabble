@@ -26,7 +26,8 @@ describe "Player" do
     end
     it "adds the input word to plays array" do
       player1 = Scrabble::Player.new("player1")
-      player1.play("Gale").must_equal ["Gale"]
+      player1.play("Gale")
+      player1.played_words.must_equal ["Gale"]
     end
     it "returns false if player has already won" do #total_score had to be called in order for it to incrememnt anything!
       player1 = Scrabble::Player.new("player1")
@@ -36,35 +37,38 @@ describe "Player" do
       player1.play("word").must_equal false
     end
     it "returns the score of input word" do
-
+      player1 = Scrabble::Player.new("player1")
+      player1.play("aaaaa").must_equal 5
     end
   end
   describe "#plays" do
     it "returns an array of words played" do
-
+      player1 = Scrabble::Player.new("player1")
+      player1.play("Hedwig")
+      player1.plays.must_equal ["Hedwig"]
     end
   end
   describe "#total_score" do
     it "returns the sum of played words' scores" do
-
+      player1 = Scrabble::Player.new("player1")
+      player1.play("Hedwig")
+      player1.total_score.must_equal 14
     end
   end
-  # describe "won" do
-  #   it "returns true if player has >= 100 points" do
-  #
-  #   end
-  #   it "returns false if the player has < 100 points" do
-  #
-  #   end
-  # end
   describe "highest_scoring_word" do
     it "returns the highest scoring played word" do
-
+      player1 = Scrabble::Player.new("player1")
+      player1.play("Hedwig") #14
+      player1.play("Bijous") #15
+      player1.highest_scoring_word.must_equal "Bijous"
     end
   end
   describe "highest_word_score" do
     it "returns the highest_scoring_word score" do
-
+      player1 = Scrabble::Player.new("player1")
+      player1.play("Hedwig") #14
+      player1.play("Bijous") #15
+      player1.highest_word_score.must_equal 15
     end
   end
 end

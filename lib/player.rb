@@ -27,19 +27,27 @@ module Scrabble
 
       if self.total_score >= 100 #total_score is called every time player plays a word
         return false
-      else
-        @played_words << word
       end
+      @played_words << word
+      Scrabble::Scoring.score(word)
+    end
+
+    def plays
+      return @played_words
+    end
+
+    def highest_scoring_word
+      Scrabble::Scoring.highest_score_from(@played_words)
+    end
+
+    def highest_word_score
+      Scrabble::Scoring.score(self.highest_scoring_word)
     end
 
     private
 
     def won?
-      if @total_score >= 100
-        return true
-      else
-        return false
-      end
+      @total_score >= 100 ? true : false
     end
   end
 end
