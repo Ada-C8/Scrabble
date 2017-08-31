@@ -19,7 +19,7 @@ module Scrabble
       elsif word.length > 7
         raise ArgumentError.new("You cannot enter a word greater than 7 letters!")
       else
-        word.upcase!
+        word = word.upcase
         this_score = 0
         word.length.times do |index|
           score_chart.each do |point, score_letters|

@@ -54,12 +54,16 @@ describe "The Player class" do
       @player.play("hello")
       @player.play("apple")
       @player.play("zzzzzzz")
-      @player.return_highest_scoring_word.must_equal "ZZZZZZZ"
-      @player.return_highest_scoring_word.class.must_equal String
+      @player.highest_scoring_word.must_equal "ZZZZZZZ"
+       @player.highest_scoring_word.class.must_equal String
     end
 
-    it "Returns the highest score" do
-    @player.return_highest_word_score("ZZZZZZZ").must_equal 120
+    it "Returns the highest scoring word score" do
+      @player.play("word")
+      @player.play("hello")
+      @player.play("apple")
+      @player.play("zzzzzzz")
+      @player.highest_word_score.must_equal 120
     end
   end
 
