@@ -14,8 +14,9 @@ module Scrabble
       raise ArgumentError.new("Number must be an integer less than 8.") unless /^[0-7]$/.match(num)
 
       letter = @tilebag.keys.sample
-      @tilebag[letter] -= 1
 
+      @tilebag[letter] -= 1
+      @tilebag.delete_if {|key,value| value == 0}
     end
 
 
