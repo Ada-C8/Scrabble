@@ -8,6 +8,7 @@ module Scrabble
 
 
     def draw_tiles(num)
+      # TODO: do we need to add a second parameter that is the Tilebag instance that we want to draw from? 
       raise ArgumentError.new("You must draw 1 or more tiles") if num < 1
 
       picked_tiles = []

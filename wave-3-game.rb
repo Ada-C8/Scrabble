@@ -1,5 +1,7 @@
 require_relative 'lib/scoring'
 require_relative 'lib/player'
+require_relative 'lib/tilebag'
+
 
 module Scrabble
   class Game
@@ -18,7 +20,7 @@ module Scrabble
 
           player.draw_tiles(@tilebag)
 
-          puts "#{player.name} has the following tiles: #{player.tiles}"
+          puts "#{player.name} has the following tiles: #{player.tiles_in_hand}"
 
           player_word = get_word_for(player)
           player_has_won = !player_word
@@ -63,7 +65,7 @@ module Scrabble
       end
 
       puts "Would you like to play another round? (Y/N)"
-      continue = gets.chomp
+      continue = gets.chomp.upcase
       (continue == "Y") ? true : false
     end
 
