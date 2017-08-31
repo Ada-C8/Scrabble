@@ -1,30 +1,38 @@
 require_relative 'spec_helper.rb'
 
-describe "The Tilebag class" do
+describe "The TileBag class" do
 
   before do
-    @tilebag = Scrabble::Tilebag.new
+    @tilebag = Scrabble::TileBag.new
   end
 
-  describe "Initializing Tilebag" do
+  describe "Initializing TileBag" do
 
-  end
+    it "Tilebag must be instance of Scrabble::TileBag" do
+      @tilebag.must_be_instance_of Scrabble::TileBag
+    end
 
-  describe "The draw_tiles method" do
-
-    it "Responds to the draw_tiles method" do
-
+    it "Tilebag is a class of the Scrabble" do
+      @tilebag.class.must_be_kind_of Class
     end
 
   end
 
-  describe "The tiles_remaining method" do
-
-    it "Responds to the tiles_remaining method" do
-
-    end
-
-  end
+  # describe "The draw_tiles method" do
+  #
+  #   it "Responds to the draw_tiles method" do
+  #
+  #   end
+  #
+  # end
+  #
+  # describe "The tiles_remaining method" do
+  #
+  #   it "Responds to the tiles_remaining method" do
+  #
+  #   end
+  #
+  # end
 
 
 end
