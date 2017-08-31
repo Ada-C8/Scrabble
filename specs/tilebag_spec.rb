@@ -36,7 +36,14 @@ describe "TileBag" do
   end
 
   describe "tiles_remaining" do
+    it "Returns the remaining number of tiles in the tilebag" do
+    # Test code goes here
+      @tilebag.tiles_remaining.must_be_instance_of Integer
+      @tilebag.tiles_remaining.must_match @tilebag.tiles.values.inject(0, :+)
 
+      @tilebag.draw_tiles(4)
+      @tilebag.tiles_remaining.must_equal 94
+    end
   end
 
 end
