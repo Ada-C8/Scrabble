@@ -28,6 +28,11 @@ describe "Score" do
       my_class = Scrabble::Score
       my_class.score("BUBBLES").must_equal 63
     end
+
+	it " Check for case sensitivity " do
+      my_class = Scrabble::Score
+      my_class.score("bubbles").must_equal 63
+    end
   end
 
 # self.highest_score_from_array method
