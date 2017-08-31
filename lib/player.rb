@@ -1,5 +1,5 @@
-require_relative "scoring"
-require_relative "tilebag"
+# require_relative "scoring"
+# require_relative "tilebag"
 
 require 'pry'
 module Scrabble

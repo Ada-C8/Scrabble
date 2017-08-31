@@ -1,5 +1,5 @@
-# require "player"
-# require "scoring"
+# require_relative "player"
+# require_relative "scoring"
 
 module Scrabble
   class TileBag
@@ -48,11 +48,11 @@ module Scrabble
       @tiles_remaining -= tiles_drawn.length
       return tiles_drawn
     end
-
-
   end
-
 end
+
+
+
 
 # test = Scrabble::TileBag.new
 # puts test.draw_tiles(7)
