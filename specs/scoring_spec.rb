@@ -46,7 +46,10 @@ describe "Scoring" do
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal "kiwi"
     end
 
-
+    it "returns a word (as a string) with length of 7 or returns highest scoring word" do
+      array_of_words = [ "animals", "frog", "zoo"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "animals"
+    end
 
 
   end#of_self#highest_score_from
