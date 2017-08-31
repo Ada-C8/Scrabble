@@ -19,6 +19,12 @@ module Scrabble
       # delete_at(index) with delete from the @tiles and it will also return the value
 
       return picked_tiles
-    end
+    end # draw_tiles(num)
+
+    def tiles_remaining
+      return @tiles.length
+    end # tiles_remaining
+
+
   end # Class
 end # Scrabble
