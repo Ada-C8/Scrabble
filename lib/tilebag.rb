@@ -51,6 +51,10 @@ module Scrabble
       # end
     end
 
+    def tiles_remaining
+      return @tile_array.length
+    end
+
 
   end #class
 
