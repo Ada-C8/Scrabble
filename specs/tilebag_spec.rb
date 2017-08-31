@@ -48,7 +48,7 @@ describe 'TileBag class' do
       @tilebag.draw_tiles(97)
       @tilebag.tiles_remaining.must_equal 1
       @tilebag.draw_tiles(3).length.must_equal 1
-      @tilebag.draw_tiles(1).must_equal false
+      @tilebag.draw_tiles(1).must_equal []
 
 
     end

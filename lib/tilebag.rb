@@ -16,7 +16,7 @@ module Scrabble
 
     def draw_tiles(num)
       if tiles_remaining == 0
-        return false
+        return []
       elsif tiles_remaining < num
         num = tiles_remaining
       end

@@ -45,6 +45,20 @@ describe "Player class" do
 
   end
 
+  describe "draw_tiles method" do
+    it "player responds to draw_tiles" do
+      @bennett.must_respond_to :draw_tiles
+    end
+
+    it "returns three tiles if played 3 tiles" do
+      @bennett.tiles = ["A", "B", "C", "D"]
+      @bennett.draw_tiles
+      @bennett.tiles.length.must_equal 7
+    end
+
+
+  end
+
   describe "total_score method" do
     it "returns sum of all played words" do
       @bennett.play("swift")

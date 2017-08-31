@@ -7,6 +7,8 @@ module Scrabble
 
     attr_reader :name, :plays, :tiles
 
+    attr_writer :tiles
+
     def initialize(name)
       @name = name
       @plays = []
@@ -19,6 +21,14 @@ module Scrabble
       else
         @plays << word.upcase
         return Scoring.score(word)
+      end
+    end
+
+    def draw_tiles
+      num = 7 - @tiles.length
+      replacement = @@gamebag.draw_tiles(num)
+      replacement.each do |letter|
+        @tiles << letter
       end
     end
 
