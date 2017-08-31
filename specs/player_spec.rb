@@ -97,10 +97,11 @@ describe "Player Class" do
 
     it "should not be empty after a word is played" do
       test_player = Scrabble::Player.new("Guille")
-      before_play = test_player.highest_scoring_word
-      test_player.play("aaa")
-      after_play = test_player.highest_scoring_word
-      after_play.must_be :!=, before_play
+      # # before_play = test_player.highest_scoring_word
+      # test_player.play("aaa")
+      # after_play = test_player.highest_scoring_word
+      # after_play.must_equal "marisa"
+      (test_player.highest_scoring_word).must_equal "marisa"
     end
 
   end
@@ -110,14 +111,14 @@ describe "Player Class" do
       test_player = Scrabble::Player.new("Guille")
       test_player.must_respond_to :highest_scoring_word
     end
-    it "should be empty after a word is played" do
+    it "should not be empty after a word is played" do
       test_player = Scrabble::Player.new("Guille")
       before_play = test_player.highest_word_score
       test_player.play("aaa")
       after_play = test_player.highest_word_score
-      after_play.must_be :!=, before_play
+      after_play.must_equal 3
     end
-    
+
   end
 
 end
