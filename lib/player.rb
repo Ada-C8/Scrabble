@@ -25,7 +25,7 @@ module Scrabble
 
 
     def won?
-       total_score > 100 ? true:false 
+       total_score > 100 ? true:false
     end
 
 
