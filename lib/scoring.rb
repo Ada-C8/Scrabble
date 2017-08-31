@@ -2,9 +2,8 @@ module Scrabble
   class ScoringClass
     attr_reader :letter
 
-    def initialize
-      @letter = letter
-    end
+    # def initialize
+    # end
 
     def self.score(word)
       score_arr = []
@@ -43,7 +42,7 @@ module Scrabble
         # nested array with word and its cooresponding score
         scores_array << [word, score(word)]
       end
-      # returns highest scoring word 
+      # returns highest scoring word
       return tie(scores_array)
     end
 
