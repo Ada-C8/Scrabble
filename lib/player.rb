@@ -5,11 +5,11 @@ module Scrabble
     #plays: returns an Array of the words played by the player
     def initialize(name)
       @name = name
-      @plays = ["dog", "kitten", "panda"]
+      @plays = []
     end
 
-    # total_score: Returns the sum of scores of played words
     def total_score
+      # total_score: Returns the sum of scores of played words
       running_score = 0
       @plays.each do |word|
         running_score += Scrabble::ScoringClass.score(word)
@@ -17,10 +17,9 @@ module Scrabble
       return running_score
     end
 
-    # #play(word): Adds the input word to the plays Array
+    def play(word)
       # Returns false if player has already won
       # Returns the score of the word
-    def play(word)
       @plays << word
       won? ? (return false) : (return Scrabble::ScoringClass.score(word))
     end
@@ -34,23 +33,14 @@ module Scrabble
       #highest_word_score: Returns the highest_scoring_word score
       # score highest scoring word
       Scrabble::ScoringClass.score(highest_scoring_word)
-
     end
 
     private
 
-    # #won?: If the player has over 100 points, returns true, otherwise returns false
-     # This should be a private method
     def won?
+      # won?: If the player has over 100 points, returns true, otherwise returns false
+      # This should be a private method
       total_score >= 100 ? (return true) : (return false)
-      # total_score >= 100
     end
-
   end
 end
-
-
-
-# def total_score(arr = nil)
-#   plays = arr || @plays
-# end
