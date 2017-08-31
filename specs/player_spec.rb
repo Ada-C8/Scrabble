@@ -84,6 +84,10 @@ describe 'Player' do
 
   describe 'draw_tiles' do
     it 'draws tiles until player has 7' do
+      bag = Scrabble::TileBag.new
+      @player.draw_tiles(bag)
+
+      @player.tiles.length.must_equal 7
 
     end
 
@@ -96,7 +100,7 @@ describe 'Player' do
     end
 
     it 'raises ArgumentError if passed anything but TileBag object' do
-      
+
     end
   end
 
