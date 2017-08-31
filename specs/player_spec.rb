@@ -97,4 +97,15 @@ describe "The Player class" do
       @player.highest_word_score.must_equal 120
     end
   end
+
+  describe "The tile method" do
+    it "Tile should be an array" do
+      @player.draw_tiles(Scrabble::TileBag.new)
+      @player.tiles.must_be_kind_of Array
+    end
+    it "Tile should be an array of letters" do
+      @player.draw_tiles(Scrabble::TileBag.new)
+      @player.tiles[0].must_be_kind_of String
+    end
+  end
 end
