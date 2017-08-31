@@ -18,8 +18,6 @@ module Scrabble
     end
 
     def self.score(word)
-      raise ArgumentError.new("All words must be between 1 and 7 letters long.") if (word.length > 7 || word.length == 0)
-      raise ArgumentError.new("All input must be letters between a & z.") if /^[A-Z]{1,7}$/i.match?(word) == false
       letters = word.downcase.chars
       total = letters.inject(0) { |sum, letter| sum + @letter_attributes[letter][:value] }
       total += 50 if word.length == 7

@@ -68,6 +68,8 @@ describe "Scrabble::Player class " do
       end
       proc{@player.play(letter)}.must_raise Exception
     end
+
+
   end
   #TODO: create dynamic testing for letters in the players @tiles array
   # describe "total_score" do
@@ -149,7 +151,7 @@ describe "Scrabble::Player class " do
       player.tiles.length.must_be :<, 8
       player.draw_tiles(tilebag)
       player.tiles.length.must_equal 7
-      #TODO: test to verify that play removes tiles from @tiles
+
     end
 
   end
