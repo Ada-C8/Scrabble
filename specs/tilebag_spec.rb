@@ -27,7 +27,13 @@ describe "The TileBag class" do
     it "Returns an array" do
       @tilebag.draw_tiles(3).must_be_kind_of Array
     end
-
+    it "Returns the correct number of tiles in the array" do
+      @tilebag.draw_tiles(3).length.must_be :==,3
+    end
+    it "Returns an array of letters" do
+      drawn_tiles = @tilebag.draw_tiles(3)
+      drawn_tiles[0].must_be_kind_of String
+    end
     # it "Removes tiles from the original set" do
     #
     # end

@@ -35,7 +35,8 @@ module Scrabble
      end
 
      def draw_tiles(num)
-       @tiles.to_a.sample(3).to_h.keys
+       @tiles.to_a.sample(num).to_h.keys
+
      end
   end
 end
