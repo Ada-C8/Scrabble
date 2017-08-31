@@ -134,4 +134,62 @@ describe "Player Class" do
 
   end
 
+  describe "Tiles" do
+
+    it "Should respond to tiles" do
+      input = Scrabble::Player.new("Marisa")
+      input.must_respond_to :tiles
+    end
+
+    # it "Every player should start with 7 tiles" do
+    #   input = Scrabble::Player.new("Marisa")
+    #   output = input.tiles
+    #   output.length.must_equal 7
+    # end
+
+    # it "Every player should have no more than 7 tiles" do
+    #
+    # end
+
+    it "Every tile must be a letter " do
+      input = Scrabble::Player.new("Marisa")
+      output = input.tiles
+      output.each do |letter|
+        letter.must_be_instance_of String
+      end
+    end
+
+    # TODO add a test to check that tiles are letters only
+
+    it "Player tile collection should be an array" do
+      input = Scrabble::Player.new("Marisa")
+      output = input.tiles
+      output.must_be_instance_of Array
+    end
+  end
+
+  describe "draw tiles(Tilebag)" do
+
+    it "Should respond to draw tiles" do
+      input = Scrabble::Player.new("Marisa")
+      input.must_respond_to :draw_tiles
+    end
+    # TODO
+    # it "If the bag is not an instance of tile_bag, raise an error " do
+    #   input = Scrabble::Player.new("Marisa")
+    #   proc {input.draw_tiles(0)}.must_raise ArgumentError
+    # end
+
+    it "If tiles collection is less than 7 draw_tiles should draw until 7" do
+      input_bag = Scrabble::Tilebag.new
+      new_player = Scrabble::Player.new("Marisa")
+      new_player.draw_tiles(input_bag)
+      new_player.tiles.length.must_equal 7
+
+    end
+
+    it "Return false if player tile collection is 7" do
+
+    end
+  end
 end

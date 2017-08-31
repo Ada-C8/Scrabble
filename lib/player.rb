@@ -1,6 +1,6 @@
 module Scrabble
   class Player
-    attr_reader :name, :plays, :total, :highest_scoring_word, :highest_word_score
+    attr_reader :name, :plays, :total, :highest_scoring_word, :highest_word_score, :tiles
 
     def initialize(input_name)
       @name = input_name
@@ -8,6 +8,7 @@ module Scrabble
       @total = 0
       @highest_word_score = 0
       @highest_scoring_word = "marisa"
+      @tiles = []
     end
 
     def play(input_word)
@@ -37,6 +38,20 @@ module Scrabble
 
     end
 
+    def draw_tiles(input_bag)
+      tiles_needed = 7 - @tiles.length
+      if tiles_needed <= 7
+        grab = input_bag.draw_tiles(tiles_needed)
+        grab.each {|letter| @tiles << letter}
+      end
+      # grab = []
+      # while @tiles < 7
+      #   grab.push(input_bag.draw_tiles)
+      # end
+      # grab.each do |letter|
+      #   @tiles << letter
+      # end
+    end
 
     private
     def won?
