@@ -32,6 +32,11 @@ describe "class Player"  do
       @player.play("ZZZZZZZ")
       @player.play("hi").must_equal false
     end
+    it "returns the total score of played words" do
+      @player.play("darts")
+      @player.play("monkey")
+      @player.play("food").must_equal 29
+    end
   end
 
 end #end of describe
