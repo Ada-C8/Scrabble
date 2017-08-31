@@ -2,7 +2,7 @@ require_relative 'scrabble'
 
 module Scrabble
   class Player
-    attr_reader :name, :plays
+    attr_reader :name, :plays, :won
 
     def initialize(name)
       @name = name
