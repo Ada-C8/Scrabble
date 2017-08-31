@@ -37,7 +37,7 @@ module Scrabble
 
       players = []
       num_of_players.times do |player|
-        players << Player.new(get_player_name(player))
+        players << Scrabble::Player.new(get_player_name(player))
       end
       return players
     end
