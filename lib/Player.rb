@@ -13,7 +13,7 @@ module Scrabble
     end
 
     def play(word)
-      #TODO: remove tiles from @tiles when word is played
+
       return false if won?
       letters = word.split("")
       letters.each do |letter|
@@ -35,6 +35,8 @@ module Scrabble
       num = 7 - @tiles.length
       @tiles.concat(tilebag.draw_tiles(num))
     end
+
+    private
 
     def won?
       return @total_score >= 100

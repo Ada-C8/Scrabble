@@ -27,7 +27,7 @@ describe "Scrabble::Player class " do
     before do
       @player = Scrabble::Player.new("Ada")
     end
-    
+
     #TODO: create dynamic testing for letters in the players @tiles array
     # xit "adds the input word to the plays array" do
     #   word = "hello"
@@ -70,7 +70,7 @@ describe "Scrabble::Player class " do
     end
   end
   #TODO: create dynamic testing for letters in the players @tiles array
-  # xdescribe "total_score" do
+  # describe "total_score" do
   #   before do
   #     @player = Scrabble::Player.new("Ada")
   #     @words = ["apple", "hello", "zoo", "ufo"]
