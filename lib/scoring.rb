@@ -17,20 +17,21 @@ class Scoring
       return value
     end
 
+    # highest score word acronym = hsw
     def self.highest_score_from(array_of_words)
       max = 0
-      empty = ''
-      array_of_words.each do |words|
-        if self.score(words) > max
-          max = self.score(words)
-          empty = words
-        elsif self.score(words) == max
-          if words.length < empty.length
-            empty = words
+      hsw = ''
+      array_of_words.each do |word|
+        if self.score(word) > max
+          max = self.score(word)
+          hsw = word
+        elsif self.score(word) == max
+          if word.length < hsw.length
+            hsw = word
           end
         end
       end
-      return empty
+      return hsw
     end
 end #end of class
   # end #end of module
