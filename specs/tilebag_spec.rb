@@ -15,12 +15,25 @@ describe "TileBag class" do
     end
 
     it "Allows access to tile array (attr reader)" do
+      Scrabble::TileBag.new.must_respond_to :tile_array
+    end
+  end
 
+  describe "draw_tiles" do
+    before do
+      @new_test = Scrabble::TileBag.new
+    end
+    it "Returns an array " do
+      @new_test.draw_tiles(3).must_be_instance_of Array
+    end
+    it "Returns num tiles from tiles bag" do
+      @new_test.draw_tiles(3).length.must_equal 3
     end
 
-
-
-
+    it "Delete num tiles from tiles bag" do
+      @new_test.draw_tiles(5)
+      @new_test.tile_array.length.must_equal 93
+    end
   end
 
 end

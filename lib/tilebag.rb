@@ -42,7 +42,14 @@ module Scrabble
       @tile_array
     end #initialize
 
+    def draw_tiles(num)
+      @tile_array.shuffle!
+      return tiles_draw = @tile_array.shift(num)
+    end
+
 
   end #class
 
 end #module
+
+print
