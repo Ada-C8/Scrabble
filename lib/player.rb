@@ -1,4 +1,5 @@
 require 'scoring'
+require 'tilebag'
 
 
 
