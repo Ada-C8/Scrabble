@@ -36,4 +36,20 @@ describe "TileBag class" do
     end
   end
 
+  describe "tiles remaining method" do
+    before do
+      @new_test = Scrabble::TileBag.new
+    end
+
+    it "must return number" do
+      @new_test.tiles_remaining.must_be_instance_of Fixnum
+    end
+
+    it "must return the new value after drawing tiles" do
+      @new_test.draw_tiles(3)
+      @new_test.tiles_remaining.must_equal 95
+    end
+
+  end
+
 end

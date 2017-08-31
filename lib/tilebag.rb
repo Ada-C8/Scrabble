@@ -47,6 +47,10 @@ module Scrabble
       return tiles_draw = @tile_array.shift(num)
     end
 
+    def tiles_remaining
+      return @tile_array.length
+    end
+
 
   end #class
 
