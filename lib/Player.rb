@@ -32,9 +32,9 @@ module Scrabble
       @highest_word_score = Scoring.score(@highest_scoring_word)
     end
 
-    def player_draw_tiles
+    def draw_tiles(tile_bag)
       until @tiles.length == 7
-        @tiles << TileBag.draw_tiles(1)
+        @tiles << tile_bag.draw_tiles(1)
       end
     end
 

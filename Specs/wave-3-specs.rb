@@ -82,18 +82,18 @@ end
 
 describe 'Player' do
   before do
-    @new_tile_bag = Scrabble::TileBag.new
+    @tile_bag = Scrabble::TileBag.new
   end
   describe 'Draw tiles method' do
     it 'returns an array' do
       player = Scrabble::Player.new("Diane")
-      player.player_draw_tiles
+      player.draw_tiles(@tile_bag)
       player.tiles.must_be_instance_of Array
     end
 
     it 'returns an array of the right length' do
       player = Scrabble::Player.new("Diane")
-      player.player_draw_tiles
+      player.draw_tiles(@tile_bag)
       player.tiles.length.must_equal 7
     end
   end
