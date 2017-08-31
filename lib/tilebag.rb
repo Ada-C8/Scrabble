@@ -8,17 +8,36 @@ module Scrabble
 
     def draw_tiles(num)
       raise ArgumentError.new("You must draw 1 or more tiles") if num < 1
+      index_array = []
       picked_tiles = []
+
       num.times do
-        picked_tiles << @tiles.sample
+        last_index = 1 - @tiles.length
+        #TODO: need to find a way to generate a random number between 0 and the last index of the @tiles array
+        #index_array <<  #@tiles.sample.index #rand(0..10)
       end
+
+      index_array.each do |index|
+        picked_tiles << @tiles[index]
+      end
+
+      index_array.each do |index|
+        @tiles.delete_at(index)
+      end
+
+
+
+      # picked_tiles = []
+      # num.times do
+      #   picked_tiles << @tiles.sample
+      # end
       # num.times do
       #   picked_tiles << @tiles.delete(@tiles.sample)
       # end
-      picked_tiles.each do |tile|
-        @tiles.delete_at(@tiles.index(tile))
-      end
-      return picked_tiles
+      # picked_tiles.each do |tile|
+      #   @tiles.delete_at(@tiles.index(tile))
+      # end
+      # return picked_tiles
     end
   end
 end
