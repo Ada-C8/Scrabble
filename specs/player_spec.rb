@@ -70,14 +70,17 @@ describe "Player" do
   describe "highest_word_score" do
     it "has a highest_word_score method that returns an integer from the plays" do
       @player.must_respond_to :highest_word_score
-      @player.highest_scoring_word.must_be_instance_of Integer
+      @player.play("atom") # score must be 6
+      @player.play("sausage") # score must be 8
+      @player.highest_word_score.must_be_instance_of Integer
+      @player.highest_word_score.must_equal 58
     end
 
     it "returns the score of the highest scoring word among the player's plays" do
         @player.play("bench") #Should be 12
         @player.play("worry") #Should be 12
         @player.play("clocks") #Should be 14
-        @player.highest_scoring_word.must_equal 14
+        @player.highest_word_score.must_equal 14
     end
   end
 
