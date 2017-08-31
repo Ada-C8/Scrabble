@@ -3,8 +3,8 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/pride'
 
-require 'simplecov'
-SimpleCov.start
+# require 'simplecov'
+# SimpleCov.start
 
 # require_relative '../lib/wave-1-game'
 require_relative '../lib/wave-2-player'
