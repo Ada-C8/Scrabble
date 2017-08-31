@@ -9,21 +9,13 @@ describe "Tilebag" do
       test_ob.must_be_instance_of Scrabble::Tilebag
     end
 
-    it "Should initialize with collection of default tiles" do
+    it "Should initialize as an array of default tiles" do
       test_ob = Scrabble::Tilebag.new
-      test_ob.default_tiles.must_be_instance_of Hash
+      test_ob.default_tiles.must_be_instance_of Array
     end
 
-    it "Should have 26 key-value pairs" do
-      test_ob = Scrabble::Tilebag.new
-      test_ob.default_tiles.length.must_equal 26
-    end
 
-    it "Returns the correct value for the first and last key" do
-      test_ob = Scrabble::Tilebag.new
-      test_ob.default_tiles[:A].must_equal 9
-      test_ob.default_tiles[:Z].must_equal 1
-    end
+
   end#initialize
 
   describe "draw_tiles(num) method" do

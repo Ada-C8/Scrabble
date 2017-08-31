@@ -3,7 +3,7 @@ module Scrabble
     attr_reader :default_tiles, :tiles_remaining
 
     def initialize
-      @default_tiles = {
+      hash_tiles = {
         A: 9,
         B: 2,
         C: 2,
@@ -31,35 +31,57 @@ module Scrabble
         Y: 2,
         Z: 1
       }
-
-      total_tiles = 0
-      @default_tiles.each_value do |value|
-        total_tiles += value
+      # Flattens hash into one array filled with all the letters.
+      @default_tiles = []
+      hash_tiles.keys.each do |key|
+        hash_tiles[key].times do
+          @default_tiles << key
+        end
       end
 
-      @tiles_remaining = total_tiles
+      # outputs the number of tiles left in bag
+      @tiles_remaining = @default_tiles.length
     end
 
     def draw_tiles(num)
       #take num and remove that num from random key-value pairs, if value in pair is equal or greater to that num
-      drawn_tiles = []
-
-      num.times do |i|
-        draw = @default_tiles.to_a.sample(1)
-        drawn_tiles << draw[0][0]
-
-        @default_tiles.each_key do |letter|
-          if letter == draw[0][0]
-            @default_tiles[letter] -= 1
-            @default_tiles.delete_if {|key, value| value == 0}
-          end
-        end
+      sample_tiles = @default_tiles.sample(num)
+      sample_tiles.each do |letter|
+        @default_tiles.delete(letter)
       end
-
-
       @tiles_remaining -= num
+      return sample_tiles
 
-      return drawn_tiles
+      # Option 2: for default_tiles
+#       5.times do |i|
+#   letter = hash.keys.sample
+#   draw = letter
+#   # draw = hash.to_a.sample.to_h
+#   print "The draw is #{draw}"
+#   puts
+#
+#   # if a has value decrement by 1 and add to drawn tiles
+#  if hash[draw] > 0
+#   drawn_tiles << draw
+#   hash[draw] -= 1
+# end
+  # otherwise a does not have value ask user to draw again.
+  #sample = h.keys.sample
+  #h.select { |k,v| k == sample }
+
+
+      # Anders code, we may use later.
+      # num.times do |i|
+      #   draw = @default_tiles.to_a.sample(1)
+      #   drawn_tiles << draw[0][0]
+      #
+      #   @default_tiles.each_key do |letter|
+      #     if letter == draw[0][0]
+      #       @default_tiles[letter] -= 1
+      #       @default_tiles.delete_if {|key, value| value == 0}
+      #     end
+      #   end
+      # end
 
     end
 

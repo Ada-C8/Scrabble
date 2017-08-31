@@ -20,7 +20,7 @@ describe "Player" do
 
     it "Has an instrance variable @total_score, which is an Integer" do
       test_ob = Scrabble::Player.new("name")
-      test_ob.total_score.must_be_instance_of Integer
+      test_ob.total_score.must_be_instance_of Fixnum
     end
 
     it "Has an instrance variable @total_score, that returns the current total score" do
