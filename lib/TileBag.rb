@@ -10,8 +10,8 @@ module Scrabble
         "O","O","O","O","O","O","O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S","S","S","T", "T",
         "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W", "W", "X", "Y", "Y", "Z"]
 
-      @tiles_remaining = @bag_of_tiles.length
-    end
+        @tiles_remaining = @bag_of_tiles.length
+      end
 
       def draw_tiles(num)
         num = num.to_i
@@ -25,6 +25,6 @@ module Scrabble
         return drawn_tiles
       end
 
-  end
+    end
 
-end
+  end

@@ -8,6 +8,7 @@ module Scrabble
     def initialize(name)
       @name = name
       @plays = []
+      @tiles = []
       @total_score = 0
       @highest_scoring_word = nil
       @highest_word_score = 0
@@ -31,9 +32,10 @@ module Scrabble
       @highest_word_score = Scoring.score(@highest_scoring_word)
     end
 
-    def draw_tiles(num)
-      tile_bag = Scrabble::TileBag.new
-      @tiles = tile_bag.draw_tiles(num)
+    def player_draw_tiles
+      until @tiles.length == 7
+        @tiles << TileBag.draw_tiles(1)
+      end
     end
 
     private
