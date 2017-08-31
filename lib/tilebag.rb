@@ -4,7 +4,7 @@
 module Scrabble
   class TileBag
 
-    attr_reader :default_tiles, :tiles_remaining, :tilebag
+    attr_reader :default_tiles, :tiles_remaining, :tile_bag
 
 
     def initialize
@@ -37,17 +37,15 @@ module Scrabble
         'z' => 1
       }
       @tiles_remaining = 98
-      @tilebag = @default_tiles
     end
 
 
     def draw_tiles(num)
       tiles_drawn = @default_tiles.keys.sample(num)
       tiles_drawn.each do |drawn_tile|
-        @tilebag[drawn_tile] -= 1
+        @default_tiles[drawn_tile] -= 1
       end
       @tiles_remaining -= tiles_drawn.length
-
       return tiles_drawn
     end
 
@@ -58,5 +56,5 @@ end
 
 # test = Scrabble::TileBag.new
 # puts test.draw_tiles(7)
-#
+
 # puts test.tilebag
