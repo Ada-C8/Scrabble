@@ -36,7 +36,7 @@ describe 'TileBag' do
     end
   end
 
-  describe "#draw_tiles" do
+  describe "draw_tiles" do
 
     it "must be a method of TileBag" do
       @new_tile_bag.must_respond_to :draw_tiles
@@ -50,7 +50,7 @@ describe 'TileBag' do
       @new_tile_bag2 = Scrabble::TileBag.new
       bag_one_tiles_drawn = @new_tile_bag.draw_tiles(7)
       bag_two_tiles_drawn = @new_tile_bag2.draw_tiles(7)
-      bag_two_tiles_drawn.wont_equal bag_one_tiles_drawn
+      bag_two_tiles_drawn.wont_equal bag_one_tiles_drawn  ## I think this test wont work, and we'll need a do loop instead
     end
     #Check that it removed the tiles from the tile bag
     it "must remove the tiles from the tile bag array once drawn" do
@@ -63,7 +63,19 @@ describe 'TileBag' do
     # it "must accept a number input" do
     #   assert_send([@new_tile_bag, :draw_tiles, 3])
     # end
+  end
 
+  describe "tiles_remaining" do
 
+    it "must be an Integer" do
+      @new_tile_bag.tiles_remaining.must_be_kind_of Integer
+    end
+
+    it "must return the correct number of tiles remaining in the bag" do
+      starting_length = @new_tile_bag.bag_of_tiles.length
+      @new_tile_bag.draw_tiles(3)
+      @new_tile_bag.draw_tiles(2)
+      @new_tile_bag.tiles_remaining.must_equal (starting_length - 5)
+    end
   end
 end
