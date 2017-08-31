@@ -30,12 +30,9 @@ describe "Tilebag" do
     end
 
     it "should remove each tile from the @tile" do
-      puts "**************"
       starting_tiles = @tilebag.tiles.length
-      puts starting_tiles
       num = 10
       @tilebag.draw_tiles(num)
-      puts num
       @tilebag.tiles.length.must_equal starting_tiles - num
     end
   end

@@ -11,19 +11,28 @@ module Scrabble
       index_array = []
       picked_tiles = []
 
+      # Takes the number of letters from the player
       num.times do
-        last_index = 1 - @tiles.length
-        #TODO: need to find a way to generate a random number between 0 and the last index of the @tiles array
-        #index_array <<  #@tiles.sample.index #rand(0..10)
+        # index_array << @tiles.index(@tiles.sample)
       end
 
       index_array.each do |index|
+        # Puts the value of each index into the picked tiles
         picked_tiles << @tiles[index]
       end
 
       index_array.each do |index|
         @tiles.delete_at(index)
       end
+
+        # last_index = 1 - @tiles.length
+        #TODO: need to find a way to generate a random number between 0 and the last index of the @tiles array
+        #index_array <<  #@tiles.sample.index #rand(0..10)
+      # end
+
+
+
+
 
 
 
