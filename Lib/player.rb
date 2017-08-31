@@ -39,6 +39,7 @@ module Scrabble
       num = 7
       if @plays == []
       else
+        remove_tiles(@plays[-1])
         num = @plays[-1].length
       end
       # tilebag << Scrabble::TileBag.remaining_tiles
@@ -46,6 +47,13 @@ module Scrabble
       new_tiles.each do |tile|
         @tiles << tile
       end
+
+      def remove_tiles(word)
+        word.each_char do |letter|
+          @tiles.delete(letter)
+        end
+      end
+
       # @tiles =@tiles[0]
     end# end draw tiles
     private

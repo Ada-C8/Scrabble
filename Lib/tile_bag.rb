@@ -40,7 +40,6 @@ module Scrabble
       tile_hand = []
       # raise ArgumentError.new("Not Enough Tiles!") if @remaining_tiles.length < 7
       num.times{  tile_hand << @remaining_tiles.delete_at(0) }
-
       # binding.pry
       tile_hand
     end#end draw_tiles

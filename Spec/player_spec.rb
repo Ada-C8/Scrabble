@@ -81,6 +81,14 @@ describe "Scrabble::Player" do
       larry.highest_word_score.must_equal 74
     end
 
+    # describe "Remove used tiles"
+    # #it "takes outs used tiles" from @tiles
+    # #it doesn't take out tiles that were not used
+    # #if given nothing it takes out nothing
+    # #if given too many tiles it raises an error? returns []?
+    # #end
+
+
   end #end player
 end
 
