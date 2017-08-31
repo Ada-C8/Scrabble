@@ -104,7 +104,7 @@ describe 'Player' do
     end
 
     it 'raises ArgumentError if passed anything but TileBag object' do
-
+      proc{ draw_tiles("hello") }.must_raise Exception
     end
   end
 
