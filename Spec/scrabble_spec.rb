@@ -23,13 +23,13 @@ describe "Scrabble" do
 
     it "Can add the letters from a word" do
       word = "apples"
-      Scrabble::Scoring.scored(word).must_equal 10
+      Scrabble::Scoring.score(word).must_equal 10
       #instance.score.must_equal 10
     end
 
     it "adds 50 to any word with 7 letters" do
       word = "bananas"
-      Scrabble::Scoring.scored(word).must_equal 59
+      Scrabble::Scoring.score(word).must_equal 59
     end
     #
   end

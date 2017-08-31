@@ -1,4 +1,6 @@
 require 'pry'
+# require_relative 'player'
+
 module Scrabble
   POINT_PER_VARIABLE = {
     "A" => 1,
@@ -37,13 +39,11 @@ module Scrabble
       # @score = score
     end
 
-
-
     # self.score(word):
     #1. returns the total score for the given word.
     #2. The word is input as a string (case insensitive).
-    #3..  Seven letter words receive a 50 point bonus.
-    def self.scored(word)
+    #3.  Seven letter words receive a 50 point bonus.
+    def self.score(word)
       # word_has_7?(word, points)
       points = 0
       word.each_char do |letter|
@@ -55,7 +55,7 @@ module Scrabble
     #DOES THIS HAVE TO BE SELF.?
     def self.high_score_array(array)
       raise ArgumentError.new("No Plays") if array == []
-      array.group_by{|word| Scoring.scored(word)}.max.last
+      array.group_by{|word| Scoring.score(word)}.max.last
     end
 
 
