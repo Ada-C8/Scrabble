@@ -20,7 +20,7 @@ class Player
     @plays.each do |played_word|
       total_score += Scoring.score(played_word)
     end
-    if won?(total_score)
+    if total_score >= 100
       false
     else
       return total_score
@@ -37,15 +37,15 @@ class Player
 
   private
 
-  def won?
-    if total_score < 100
-      return @won = false
-    else
-      return @won = true
-    end
-  end
-
-
+#   def won?
+#     if total_score < 100
+#       return @won = false
+#     else
+#       return @won = true
+#     end
+#   end
+#
+#
 end # end of the class
 end
 
