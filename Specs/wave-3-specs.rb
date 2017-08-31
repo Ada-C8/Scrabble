@@ -43,18 +43,18 @@ describe 'TileBag' do
     end
 
     it "must return an array of tiles drawn" do
-      @new_tile_bag.draw_tiles.must_be_kind_of Array
+      @new_tile_bag.draw_tiles(1).must_be_kind_of Array
     end
     #Check tiles are randomly drawn (Create 2-3 bags of tiles and draw tiles, see if they are same tiles)
     it "must randomly draw tiles" do
       @new_tile_bag2 = Scrabble::TileBag.new
       bag_one_tiles_drawn = @new_tile_bag.draw_tiles(7)
       bag_two_tiles_drawn = @new_tile_bag2.draw_tiles(7)
-      bag_two_tiles_drawn.must_not_equal bag_one_tiles_drawn
+      bag_two_tiles_drawn.wont_equal bag_one_tiles_drawn
     end
     #Check that it removed the tiles from the tile bag
     it "must remove the tiles from the tile bag array once drawn" do
-      starting_length = @new_tile_bag.length
+      starting_length = @new_tile_bag.bag_of_tiles.length
       @new_tile_bag.draw_tiles(3)
       @new_tile_bag.bag_of_tiles.length.must_equal (starting_length - 3)
     end
