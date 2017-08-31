@@ -1,9 +1,5 @@
 module Scrabble
   class Player
-    # name: returns the value of the @name instance variable
-    # plays: returns an Array of the words played by the player
-    # tiles: a collection of letters that the player can play (max 7)
-
     attr_reader :name, :plays, :tiles
 
     def initialize(name)
@@ -13,12 +9,9 @@ module Scrabble
     end
 
     def play(word)
-      if won?
-        return false
-      end
+      return false if won?
       @plays << word
       Scoring.score(word)
-      # Returns false if player has already won
     end
 
     def total_score
@@ -27,7 +20,6 @@ module Scrabble
         total += Scoring.score(word)
       end
       total
-      # total_score: Returns the sum of scores of played words
     end
 
     def highest_scoring_word
@@ -39,7 +31,6 @@ module Scrabble
     end
 
     def draw_tiles(tilebag)
-      #draw_tiles(tile_bag) fills tiles array until it has 7 letters from the given tile bag
       num_tiles = 7 - @tiles.length
       @tiles += tilebag.draw_tiles(num_tiles)
     end
