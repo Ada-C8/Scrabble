@@ -1,5 +1,7 @@
 module Scrabble
   class TileBag
+    attr_reader :remaining_tiles
+
     def initialize
       tile_distribution = {
         "A" => 9,
@@ -34,8 +36,8 @@ module Scrabble
       tile_distribution.each do |letter, quantity|
         quantity.times do
           @remaining_tiles << letter
+        end
       end
-
     end
 
     def draw_tiles(num)
@@ -50,3 +52,5 @@ module Scrabble
     def tiles_remaining
       return @remaining_tiles.length
     end
+  end
+end
