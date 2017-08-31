@@ -1,6 +1,6 @@
 module Scrabble
   class Player
-    attr_reader :name, :plays, :total, :highest_word_score, :highest_scoring_word
+    attr_reader :name, :plays, :total, :highest_scoring_word, :highest_word_score
 
     def initialize(input_name)
       @name = input_name
@@ -29,18 +29,14 @@ module Scrabble
       @total = scores.inject(:+)
 
       @highest_word_score = scores.max
-
-      @highest_scoring_word = @plays.max_by do |word|
-        Scrabble::Scoring.score(word)
+      @highest_scoring_word = @plays.inject do |memo, word|
+        Scrabble::Scoring.score(memo) >= Scrabble::Scoring.score(word) ? memo : word
       end
 
       return @total
 
     end
 
-    def highest_scoring_word
-
-    end
 
     private
     def won?

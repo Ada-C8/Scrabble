@@ -95,13 +95,19 @@ describe "Player Class" do
       test_player.must_respond_to :highest_scoring_word
     end
 
-    it "should not be empty after a word is played" do
+    it "should read initialized scoring word" do
       test_player = Scrabble::Player.new("Guille")
       # # before_play = test_player.highest_scoring_word
       # test_player.play("aaa")
       # after_play = test_player.highest_scoring_word
       # after_play.must_equal "marisa"
-      (test_player.highest_scoring_word).must_equal "marisa"
+      test_player.highest_scoring_word.must_equal "marisa"
+    end
+
+    it "should have aaa as highest_scoring_word after playing only aaa" do
+      test_player = Scrabble::Player.new("Marisa")
+      test_player.play("aaa")
+      (test_player.highest_scoring_word).must_equal "aaa"
     end
 
   end
