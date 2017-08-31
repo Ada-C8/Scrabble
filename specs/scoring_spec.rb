@@ -9,7 +9,6 @@ describe 'Scrabble' do
 
     it "Scoring.new is a new instance of the Scoring class" do
       @game1.must_be_instance_of Scrabble::Scoring
-
     end # new instance of scoring
 
     describe "self.score " do

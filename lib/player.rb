@@ -6,21 +6,18 @@ module Scrabble
     attr_reader :name, :plays, :total_score
 
     def initialize(name)
-      raise ArgumentError.new("name string cannot be empty") if name == ""
-      raise ArgumentError.new("name must be a string") if name.class != String
       @name = name
       @total_score = 0
       @plays = []
+      raise ArgumentError.new("name must be a string") if (@name.class != String || @name.empty?)
     end
 
 
 
     def play(word)
       return false if won?
-      score = Scoring.score(word)
       @plays << word
-      @total_score += score
-      return score
+      @total_score += Scrabble::Scoring.score(word)
     end
 
     #deleted this total_score and added it to play(word method)
@@ -40,9 +37,9 @@ module Scrabble
       return Scoring.score(highest_scoring_word)
     end
 
-    # private
+    private
     def won?
-      return (total_score > 100) ? true : false
+      return (total_score > 100) #? true : false
     end
 
   end

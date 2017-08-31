@@ -34,7 +34,7 @@ module Scrabble
     # later in code we should ensure that we only pass out 7 tiles
 
     def self.score(word)
-      raise ArgumentError.new "max word length is 7" if word.length > 7 # weird that this broke if I moved this down below other argument errors
+      raise ArgumentError.new "max word length is 7" if word.length > 7 
       raise ArgumentError.new "use atleast one letter" if word.length == 0
       raise ArgumentError.new("input must be string") if word.class != String
       # raise ArgumentError.new("Words must only have letters.") if word.match(/^(\d)+$/)

@@ -6,7 +6,7 @@ module Scrabble
       @words = []
       @players = setup_players
       @tilebag = Scrabble::TileBag.new
-     end
+    end
 
     def play
       start
