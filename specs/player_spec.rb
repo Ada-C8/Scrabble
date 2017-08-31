@@ -46,12 +46,14 @@ describe "Player" do
     it "Returns the sums of scores of played words" do
       @player.play("quest")
       @player.play("favored")
-      @player.total_score.must_equal 28
+      @player.total_score.must_equal 78
     end
   end
 
   describe "highest_scoring_word" do
     it "has a highest_scoring_word method that returns a string from the plays" do
+      @player.play("quest")
+      @player.play("favored")
       @player.must_respond_to :highest_scoring_word
       @player.highest_scoring_word.must_be_instance_of String
       @player.plays.include?(@player.highest_scoring_word).must_equal true
@@ -78,7 +80,6 @@ describe "Player" do
         @player.highest_scoring_word.must_equal 14
     end
   end
-
 
 
 end

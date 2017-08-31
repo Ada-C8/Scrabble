@@ -24,7 +24,7 @@ module Scrabble
     # highest_scoring_word: Returns the highest scoring played word
     # Isaac: "Might probably use 'plays'?"
     def highest_scoring_word
-
+      Scoring.highest_score_from(plays)
     end
 
     # highest_word_score: Returns the highest_scoring_word score
