@@ -1,14 +1,16 @@
 require_relative 'scrabble'
+require_relative 'tile_bag'
 require 'pry'
 module Scrabble
   class Player
 
-    attr_accessor :name, :plays, :total_score
+    attr_accessor :name, :plays, :total_score, :tiles
 
     def initialize(name = "Pipes")
       @name = name
       @plays =[] #words played
-      @total_score = 0 #will add all instances of Scoring class which are also each word in plays
+      @total_score = 0
+      @tiles = [] #will add all instances of Scoring class which are also each word in plays
     end
 
     def play(word)
@@ -33,6 +35,12 @@ module Scrabble
       Scoring.score(highest_scoring_word)
     end
 
+    def draw_tiles(tilebag)
+    num = 7 - @tiles.length
+    # tilebag << Scrabble::TileBag.remaining_tiles
+    @tiles << tilebag.draw_tiles(num)
+
+    end# end draw tiles
     private
     #won?: If the player has over 100 points returns true.
     # otherwise returns false
