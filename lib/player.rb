@@ -37,6 +37,10 @@ module Scrabble
       return Scoring.score(highest_scoring_word)
     end
 
+    def tiles
+      Scrabble::TileBag.draw_tiles(7)
+    end
+
     private
     def won?
       return (total_score > 100) #? true : false
