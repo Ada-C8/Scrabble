@@ -24,4 +24,15 @@ describe "class Player"  do
     end
   end
 
+  describe "play method" do
+    it "adds the word to the plays array" do
+      @player.must_respond_to :play
+    end
+    it "returns false if player already won" do
+      @player.play("ZZZZZZZ")
+      @player.play("hi").must_equal false
+    end
+  end
+
 end #end of describe
+
