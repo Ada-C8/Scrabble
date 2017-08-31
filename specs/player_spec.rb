@@ -4,7 +4,6 @@ describe "The Player class" do
 
   before do
     @player = Scrabble::Player.new('Peter')
-    # @class = Scrabble::Player
   end
 
   describe "Initialising Player" do
