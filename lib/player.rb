@@ -46,7 +46,12 @@ module Scrabble
     def highest_word_score
       return Scrabble::Scoring.score(highest_scoring_word)
     end
-
+	
     #private :won?
+	#I think there might be a bug in wave-2-game.rb or in the spec.
+	#The spec says won? should be a private method.
+	#If won? is made private then line 54 in wave-2-game.rb shouldn't 
+	#work because the method is private. I'm not sure if I'm missing
+	#something, but this doesn't seem possible.
   end
 end
