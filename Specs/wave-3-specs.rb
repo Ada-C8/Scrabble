@@ -30,9 +30,9 @@ describe 'TileBag' do
           w += 1
         end
       end
-        o.must_equal 8
-        d.must_equal 4
-        w.must_equal 2
+      o.must_equal 8
+      d.must_equal 4
+      w.must_equal 2
     end
   end
 
@@ -76,6 +76,22 @@ describe 'TileBag' do
       @new_tile_bag.draw_tiles(3)
       @new_tile_bag.draw_tiles(2)
       @new_tile_bag.tiles_remaining.must_equal (starting_length - 5)
+    end
+  end
+end
+
+describe 'Player' do
+  describe 'Draw tiles method' do
+    it 'returns an array' do
+      player = Scrabble::Player.new("Diane")
+      player.draw_tiles(7)
+      player.tiles.must_be_instance_of Array
+    end
+
+    it 'returns an array of the right length' do
+      player = Scrabble::Player.new("Diane")
+      player.draw_tiles(7)
+      player.tiles.length.must_equal 7 
     end
   end
 end
