@@ -3,7 +3,8 @@ require_relative '../lib/player'
 
 describe "#Scrabble::Player" do
   before do
-    @carlisle = Scrabble::Player.new("Carlisle")
+    @tilebaggins = Scrabble::Tilebag.new
+    @carlisle = Scrabble::Player.new("Carlisle", @tilebaggins)
     @carlisle.play("schmuck")
     @carlisle.play("granny")
   end
@@ -48,7 +49,8 @@ describe "#Scrabble::Player" do
     end
     #7
     it "Returns false if a player attempts to #play another word after scoring 100 points" do
-      @carlislejr = Scrabble::Player.new("Carlisle, Jr.")
+      @tilebagginsjr = Scrabble::Tilebag.new
+      @carlislejr = Scrabble::Player.new("Carlisle, Jr.", @tilebagginsjr)
       @carlislejr.play("QQQQQQQ")
 
       @carlislejr.play("hi").must_equal false
@@ -79,4 +81,23 @@ describe "#Scrabble::Player" do
       @carlisle.must_respond_to :play
     end
   end
+
+  describe "check draw tiles method" do
+
+    it "draws number of tiles player requires" do
+      @carlisle.draw_tiles
+      @carlisle.hand.length.must_equal 7
+      @carlisle.draw_tiles
+      @carlisle.hand.length.must_equal 7
+    end
+
+    it "bag is low" do
+    end
+
+    it "bag is empty" do
+
+    end
+
+  end
+
 end

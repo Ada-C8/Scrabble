@@ -5,7 +5,7 @@ require 'tilebag'
 
 module Scrabble
   class Player
-  attr_reader :name, :plays, :word_scores
+  attr_reader :name, :plays, :word_scores, :hand
     def initialize(name, tile_bag)
       @name = name
       @tile_bag = tile_bag
@@ -54,16 +54,7 @@ module Scrabble
       push_to_hand(@tile_bag.draw_tiles(num))
     end
 
-    def bag_empty?
-      if @tilebag.num_tiles_remaining == 0
-        return true
-      end
-    end
 
-    def push_to_hand(tiles_you_drew)
-      @hand.push(tiles_you_drew)
-      @hand.flatten
-    end
 
 private
     def won?
@@ -72,6 +63,17 @@ private
       else
         return false
       end
+    end
+
+    def bag_empty?
+      if @tile_bag.num_tiles_remaining == 0
+        return true
+      end
+    end
+
+    def push_to_hand(tiles_you_drew)
+      @hand.push(tiles_you_drew)
+      @hand = @hand.flatten!
     end
 
 

@@ -23,13 +23,13 @@ module Scrabble
     end
 
     def can_draw(num)
-      unless /[1-7]/.match(num.to_s)
-        raise ArgumentError.new("Please choose an integer between 1 and 7.")
+      unless /^[0-7]$/.match(num.to_s)
+        raise ArgumentError.new("Please choose an integer between 0 and 7.")
       end
 
-      unless @num_tiles_remaining > num
-        raise ArgumentError.new("There are only #{@num_tiles_remaining}. remaining. Please draw #{@num_tiles_remaining} or fewer.")
-      end
+      # unless @num_tiles_remaining > num
+      #   raise ArgumentError.new("There are only #{@num_tiles_remaining}. remaining. Please draw #{@num_tiles_remaining} or fewer.")
+      # end
 
     end
   end

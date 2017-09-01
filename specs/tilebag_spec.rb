@@ -28,7 +28,7 @@ describe "WAVE 3" do
       it "Raises an ArgumentError if the number of tiles drawn is not an integer less than 8." do
         proc {@tilebaggins.draw_tiles(8)}.must_raise ArgumentError
         proc {@tilebaggins.draw_tiles("A")}.must_raise ArgumentError
-        proc {@tilebaggins.draw_tiles(0)}.must_raise ArgumentError
+        proc {@tilebaggins.draw_tiles(-1)}.must_raise ArgumentError
       end
 
       it "drawn_tiles array has correct number of tiles" do
