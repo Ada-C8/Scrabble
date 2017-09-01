@@ -36,6 +36,7 @@ module Scrabble
 
     def draw_tiles(num)
       drawn = []
+      num = @available_tiles.values.sum if @available_tiles.values.sum < num
       until drawn.length == num
         letter = @available_tiles.keys.sample
         if @available_tiles[letter] > 0
