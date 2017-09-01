@@ -13,6 +13,15 @@ describe "Player" do
       @player.must_respond_to :plays
       @player.plays.must_be_instance_of Array
     end
+
+    it "has an instance variable tiles that returns an array" do
+      @player.must_respond_to :tiles
+      @player.tiles.must_be_instance_of Array
+    end
+
+    it "gives Player 7 tiles to start" do
+      @player.tiles.length.must_equal 7
+    end
   end
 
   describe "play(word)" do
