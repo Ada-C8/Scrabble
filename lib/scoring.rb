@@ -86,7 +86,3 @@ module Scrabble
 
   end # class
 end # module
-# a <=> b :=
-#   if a < b then return -1
-#   if a = b then return  0
-#   if a > b then return  1
