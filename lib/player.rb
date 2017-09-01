@@ -13,6 +13,12 @@ module Scrabble
 
     def play(word)
       ap "Played word = #{word}"
+
+      # if Dictionary.new(word) == false
+      #   raise ArgumentError.new("That word is not in the dictionary!")
+      # end
+
+
       tiles_copy = @tiles
 
       #if all the letters in word are present in the player's hand, then it will pass through this loop without raising an error.
