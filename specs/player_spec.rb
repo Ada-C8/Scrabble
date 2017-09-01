@@ -128,3 +128,26 @@ describe "highest_word_score" do
     @ada.highest_word_score.must_equal 10
   end
 end
+
+describe "tiles" do
+  before do
+    @ada = Scrabble::Player.new("Countess Lovelace")
+  end
+
+  it "tiles must be an array" do
+    @ada.tiles.must_be_kind_of Array
+  end
+
+  it "when a certain number of tiles are drawn, the tiles array reflects the qty" do
+
+  end
+end
+
+describe "draw_tiles(tile_bag)" do
+  it "fills the tiles array to seven letters" do
+    @ada = Scrabble::Player.new("Countess Lovelace")
+    @ada.draw_tiles(Scrabble::TileBag.new)
+    @ada.tiles.length.must_equal 7
+  end
+
+end
