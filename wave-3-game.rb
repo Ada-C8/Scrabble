@@ -1,11 +1,13 @@
-require_relative 'lib/scrabble'
+require_relative 'Lib/scrabble'
+require_relative 'Lib/player'
+require_relative 'Lib/tile_bag'
 
 module Scrabble
   class Game
     def initialize
       @words = []
       @players = setup_players
-      @tilebag = Tilebag.new
+      @tilebag = TileBag.new
     end
 
     def play
@@ -27,7 +29,10 @@ module Scrabble
           end
 
           if player_has_won
-            break
+            crown_winner(player)
+            conclude
+            exit
+            #break
           end
         end
       end
@@ -54,22 +59,30 @@ module Scrabble
 
     def continue?
       return true if @words.length == 0 # haven't started playing yet
-      @players.each do |player|
-        if player.won?
-          crown_winner(player)
-          return false
-        end
-      end
+      # @players.each do |player|
+      #   if player.won?
+      #     crown_winner(player)
+      #     return false
+      #   end
+      # end
 
       puts "Would you like to play another round? (Y/N)"
-      continue = gets.chomp
+      continue = gets.chomp.upcase
       (continue == "Y") ? true : false
     end
 
     def get_word_for(player)
+
       puts "Enter a word to score:"
-      word = gets.chomp
+      word = gets.chomp.upcase
       @words << word
+      while !player.word_uses_tiles?(word)
+        puts "You do not have the tiles to play that word."
+        puts "Please enter another word."
+        word = gets.chomp.upcase
+        @words << word
+        word
+      end
 
       keep_playing = player.play(word)
 
@@ -90,7 +103,7 @@ module Scrabble
     end
 
     def conclude
-      highest_word = Scrabble::Scoring.highest_score_from_array(@words)
+      highest_word = Scrabble::Scoring.highest_score_from(@words)
       puts "The final highest scoring word for all players is #{ highest_word }"
 
       @players.each do |player|
