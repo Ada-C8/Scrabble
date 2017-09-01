@@ -1,6 +1,3 @@
-require 'pry'
-require 'awesome_print'
-
 module Scrabble
   class Scoring
 
@@ -36,38 +33,41 @@ module Scrabble
     }
 
 
-    def self.score(word)
-      raise ArgumentError.new("Word argument must be a string") if !word.is_a? String
-      word = word.upcase.split("")
-      score = word.map {|letter| LETTER_VALUES[letter.to_sym]}.reduce(:+)
-      word.length == 7 ? score += 50 : score
-    end
-
-    def self.highest_score_from(array_of_words)
-      raise ArgumentError.new("Input must be an Array") if !array_of_words.is_a? Array
-      raise ArgumentError.new("elements inside array must be strings") if !array_of_words.all? { |word| word.is_a? String}
-      word_score_hash = {}
-      array_of_words.each do |word|
-        word_score_hash[word] = self.score(word)
+      def self.score(word)
+        raise ArgumentError.new("Word argument must be a string") if !word.is_a? String
+        word = word.upcase.split("")
+        score = word.map {|letter| LETTER_VALUES[letter.to_sym]}.reduce(:+)
+        word.length == 7 ? score += 50 : score
       end
 
-      words_with_length_7 = array_of_words.find_all{ |word| word.length == 7}
+      def self.highest_score_from(array_of_words)
+        raise ArgumentError.new("Input must be an Array") if !array_of_words.is_a? Array
+        raise ArgumentError.new("elements inside array must be strings") if !array_of_words.all? { |word| word.is_a? String}
+        array_of_words.reduce do |best, word|
+          best_word(word, best)
+        end
+      end
 
-      # puts words_with_length_7
+      def self.best_word(left, right) #returns left if the left-hand word is better than the right-hand, otherwise return right
+        score_left = self.score(left)
+        score_right = self.score(right)
+        if score_left > score_right
+          return left
+        elsif score_right > score_left
+          return right
+        end
 
-      # max_word_pair = word_score_hash.max_by{ |word, score| score }
-      # max_word_pair[0]
-      #
-      # shortest_length_pair = word_score_hash.min_by{ |word, score| word.length }
-      # shortest_length_pair[0]
+        if right.length == 7
+          return right
+        elsif left.length == 7
+          return left
+        end
 
-
-    end
-
+        if left.length < right.length
+          return left
+        else
+          return right
+        end
+      end
   end #end of class
-
 end #end of module
-
-# array_of_words = [ "animals", "frog", "zoo", "quizzes"]
-#
-# ap Scrabble::Scoring.highest_score_from(array_of_words)

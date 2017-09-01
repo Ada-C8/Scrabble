@@ -50,12 +50,26 @@ describe "Scoring" do
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal "animals"
     end
 
-    it "returns the shortest word out of 2 words with the same score" do
-      array_of_words = ["frog", "strands"]
-      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "frog"
-    end
+    describe "self#best_word" do
+      it "returns the higher scoring word when score is not equal" do
+        Scrabble::Scoring.best_word("cat", "dogs").must_equal "dogs"
+      end
 
+      it "returns the shortest word when score is equal" do
+        Scrabble::Scoring.best_word("maps", "animal").must_equal "maps"
+      end
 
+      it "returns the 7-letter word if the score is equal" do
+        Scrabble::Scoring.best_word("qqqqqx", "ssssssd").must_equal "ssssssd"
+      end
+
+      it "returns the second word if both words are equal" do
+        Scrabble::Scoring.best_word("cat", "dog").must_equal "dog"
+        Scrabble::Scoring.best_word("dog", "cat").must_equal "cat"
+        Scrabble::Scoring.best_word("ssssssd", "ssssssg").must_equal "ssssssg"
+        Scrabble::Scoring.best_word("ssssssg", "ssssssd").must_equal "ssssssd"
+      end
+  end
   end#of_self#highest_score_from
 
 end
