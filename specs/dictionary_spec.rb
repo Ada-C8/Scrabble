@@ -1,11 +1,30 @@
 require_relative 'spec_helper'
 
 describe "Dictionary" do
-  it "Can create a Dictionary hash with first letter as key and values as arrays of words beginning with key" do
-    dict = Scrabble::Dictionary.new
+ before do
+   @dict = Scrabble::Dictionary.new
+ end
 
-    dict.must_be_instance_of Scrabble::Dictionary
-    dict.dictionary_hash.must_be_kind_of Hash
+  it "Can create a Dictionary hash with first letter as key and values as arrays of words beginning with key" do
+    @dict.must_be_instance_of Scrabble::Dictionary
+    @dict.all_words.must_be_kind_of Hash
 
   end
+
+  it "Finds the word 'azotic'" do
+    @dict.is_word?("azotic").must_equal true
+  end
+
+  it "Doesn't find the word 'qqrjk'" do
+    @dict.is_word?("qqrjk").must_equal false
+  end
+
+  it "Doesn't find an empty string" do
+    @dict.is_word?("").must_equal false
+  end
+
+  it "Doesn't find a string with no letters (all whitespace)" do
+    @dict.is_word?("  ").must_equal false
+  end
+
 end
