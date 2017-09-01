@@ -41,6 +41,7 @@ describe "Player" do
     end
 
     it "Adds the word input to the @plays instance variable" do
+      # @test_ob.draw_tiles(@test_tile_bag)
       @test_ob.play("WORD")
       @test_ob.plays.must_equal ["WORD"]
     end
@@ -50,10 +51,10 @@ describe "Player" do
       @test_ob.play("word").must_equal false
     end
 
-    it "returns score of word" do
-    word = "A"
-    @test_ob.draw_tiles(@test_tile_bag)
-    @test_ob.play(word).must_equal 1
+    it "returns an Integer" do
+      word = "A"
+      @test_ob.draw_tiles(@test_tile_bag)
+      @test_ob.play(word).must_be_instance_of Integer
     end
   end#play method
 
@@ -71,11 +72,11 @@ describe "Player" do
     end
 
     it "Returns the highest scoring played word" do
-      test_words = ["jazz", "as", "bad"]
+      test_words = ["JAZZ", "AS", "BAD"]
       test_words.each do |word|
         @test_ob.play(word)
       end
-      @test_ob.highest_scoring_word.must_equal "jazz"
+      @test_ob.highest_scoring_word.must_equal "JAZZ"
     end
 
   end
@@ -85,8 +86,8 @@ describe "Player" do
       @test_ob.must_respond_to :highest_word_score
     end
 
-    it "Returns a string" do
-      test_words = ["jazz", "as", "bad"]
+    it "Returns an integer" do
+      test_words = ["JAZZ", "AS", "BAD"]
       test_words.each do |word|
         @test_ob.play(word)
       end
@@ -94,7 +95,7 @@ describe "Player" do
     end
 
     it "Returns the highest_word_score" do
-      test_words = ["jazz", "as", "bad"]
+      test_words = ["JAZZ", "AS", "BAD"]
       test_words.each do |word|
         @test_ob.play(word)
       end
