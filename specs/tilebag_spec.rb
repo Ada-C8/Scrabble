@@ -33,6 +33,7 @@ describe "WAVE 3" do
 
       it "drawn_tiles array has correct number of tiles" do
         @tilebaggins.draw_tiles(7).length.must_equal 7
+        @tilebaggins.draw_tiles(7).must_be_instance_of Array
       end
 
 
