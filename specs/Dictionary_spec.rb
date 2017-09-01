@@ -1,5 +1,7 @@
 require_relative 'spec_helper'
 
+# using an API limited the number of tests we implemented
+
 describe "Dictionary class"do
   describe "self.valid? method" do
     before do

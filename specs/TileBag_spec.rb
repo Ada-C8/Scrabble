@@ -13,34 +13,36 @@ describe "TileBag" do
   end
 
   describe "draw_tiles(num)" do
+    before do
+      @game = Scrabble::TileBag.new
+    end
     it "returns an array with the correct number of tiles" do
-      game = Scrabble::TileBag.new
       num = 7
-      game.draw_tiles(num).must_be_instance_of Array
-      game.draw_tiles(num).length.must_equal num
+      @game.draw_tiles(num).must_be_instance_of Array
+      @game.draw_tiles(num).length.must_equal num
     end
 
     it "can not draw more tiles than are available for each letter" do
-      game = game = Scrabble::TileBag.new
       num = 99
-      proc{game.draw_tiles(num)}.must_raise Exception
+      @game.draw_tiles(num).length < num
     end
   end
 
   describe "tiles_remaining" do
+    before do
+      @game = Scrabble::TileBag.new
+    end
     it "returns an integer" do
-      game = Scrabble::TileBag.new
-      game.tiles_remaining.must_be_instance_of Integer
+      @game.tiles_remaining.must_be_instance_of Integer
     end
 
     it "returns the accurate number of remaining tiles" do
-      game = Scrabble::TileBag.new
-      game.tiles_remaining.must_equal 98
-      game.draw_tiles(7)
-      game.tiles_remaining.must_equal 91
-      game.draw_tiles(91)
-      game.tiles_remaining.must_equal 0
-      proc{game.draw_tiles(1)}.must_raise Exception
+      @game.tiles_remaining.must_equal 98
+      @game.draw_tiles(7)
+      @game.tiles_remaining.must_equal 91
+      @game.draw_tiles(91)
+      @game.tiles_remaining.must_equal 0
+      @game.draw_tiles(1).must_equal []
     end
   end
 

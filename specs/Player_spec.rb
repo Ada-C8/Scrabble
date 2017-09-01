@@ -1,5 +1,6 @@
 require_relative 'spec_helper'
 
+#provide writer access to Player tiles and tilebag, and Tilebag available tiles to allow proper testing
 module Scrabble
   class Player
     attr_writer :tiles, :tilebag
@@ -93,7 +94,7 @@ describe "Scrabble::Player class " do
 
 
   end
-  #TODO: create dynamic testing for letters in the players @tiles array
+  
   describe "total_score" do
     before do
       @player = Scrabble::Player.new("Ada")
@@ -163,19 +164,19 @@ describe "Scrabble::Player class " do
   end
 
   describe "tiles" do
+    before do
+      @player = Scrabble::Player.new("Ada")
+    end
     it "returns an array of letters" do
-      player = Scrabble::Player.new("Ada")
-
-      player.tiles.must_be_instance_of Array
-      player.tiles.all? {|letter| /^[a-z]$/.match?(letter) }
+      @player.tiles.must_be_instance_of Array
+      @player.tiles.all? {|letter| /^[a-z]$/.match?(letter) }
     end
 
     it "must have seven or less letters" do
-      player = Scrabble::Player.new("Ada")
       tilebag = Scrabble::TileBag.new
-      player.tiles.length.must_be :<, 8
-      player.draw_tiles(tilebag)
-      player.tiles.length.must_equal 7
+      @player.tiles.length.must_be :<, 8
+      @player.draw_tiles(tilebag)
+      @player.tiles.length.must_equal 7
 
     end
 
@@ -198,17 +199,12 @@ describe "Scrabble::Player class " do
       @player.tiles.length.must_equal 1
       @player.draw_tiles(@tilebag)
       @player.tiles.length.must_equal 2
-      @tilebag.available_tiles.values.sum.must_equal 0
     end
 
     it "impacts tiles remaining of TileBag" do
-
       @tilebag.tiles_remaining.must_equal 98
-
       @player.draw_tiles(@tilebag)
-
       @tilebag.tiles_remaining.must_equal 91
-
     end
 
     it "fills the player's tiles array with letters " do
@@ -216,12 +212,5 @@ describe "Scrabble::Player class " do
       @player.tiles.all? {|letter| /^[a-z]$/.match?(letter) }
     end
   end
-
-
-
-
-
-
-
 
 end
