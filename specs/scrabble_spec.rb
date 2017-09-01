@@ -26,6 +26,15 @@ describe "Scoring class " do
     it "should respond to score" do
       (Scrabble::Scoring).must_respond_to :score
     end
+    it "should score single letter words correctly" do
+      Scrabble::Scoring.score("a").must_equal 1
+      Scrabble::Scoring.score("d").must_equal 2
+      Scrabble::Scoring.score("b").must_equal 3
+      Scrabble::Scoring.score("h").must_equal 4
+      Scrabble::Scoring.score("k").must_equal 5
+      Scrabble::Scoring.score("j").must_equal 8
+      Scrabble::Scoring.score("z").must_equal 10
+    end
     it "should return a total score for the word" do
       output = Scrabble::Scoring.score("dog")
       expected_output = 5
@@ -52,7 +61,7 @@ describe "Scoring class " do
       proc {Scrabble::Scoring.score(input3)}.must_raise ArgumentError
     end
 
-    it "Should return a score 57 for AAAAAAA" do
+    it "Should score 7 letter words with a bonus 50 points" do
       input = "AAAAAAA"
       expected_output = 57
       output  = Scrabble::Scoring.score(input)
@@ -65,6 +74,15 @@ describe "Scoring class " do
       (Scrabble::Scoring).must_respond_to :highest_score_from
     end
 
+    it "should raise error if array is empty" do
+      words = []
+      proc {Scrabble::Scoring.highest_score_from(words)}.must_raise ArgumentError
+    end
+
+    it "should raise error if words are an array" do
+      words = ""
+      proc {Scrabble::Scoring.highest_score_from(words)}.must_raise ArgumentError
+    end
     it "Should select highest_score_from Array" do
       words = ["dog", "cat", "technical"]
       expected_output = "technical"
@@ -82,6 +100,13 @@ describe "Scoring class " do
     it "When multiple words are tied, pick word with 7 letters" do
       words = ["drinkin", "dddddd","bbbb"]
       expected_output = "drinkin"
+      output = Scrabble::Scoring.highest_score_from(words)
+      output.must_equal expected_output
+    end
+
+    it "Should return first word in array when tied between words with same word length" do
+      words = ["aaa", "eee"]
+      expected_output = "aaa"
       output = Scrabble::Scoring.highest_score_from(words)
       output.must_equal expected_output
     end

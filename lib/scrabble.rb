@@ -48,6 +48,7 @@ module Scrabble
     end
 
     def self.highest_score_from(input_array)
+      raise ArgumentError.new "Input is not an array" if !(input_array.is_a? Array)
       word_scores = []
 
       input_array.each do |word|
@@ -80,8 +81,6 @@ module Scrabble
       end
       if shortest_word.length >= 1
         return shortest_word # => winning word
-      else
-        raise ArgumentError.new "There are no tied words here"
       end
     end # => end of tie breaker
   end#end of scoring

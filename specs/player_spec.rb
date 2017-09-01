@@ -60,6 +60,22 @@ describe "Player Class" do
       expected_output = 3
       output.must_equal expected_output
     end
+    it "should raise error if input is empty string" do
+      input = ""
+      test_player = Scrabble::Player.new("Guille")
+      proc {test_player.play(input)}.must_raise ArgumentError
+    end
+
+    it "should raise error if numeric" do
+      input = 50
+      test_player = Scrabble::Player.new("Guille")
+      proc {test_player.play(input)}.must_raise ArgumentError
+    end
+    it "should raise error if input contains numbers" do
+      input = "friends4ever"
+      test_player = Scrabble::Player.new("Guille")
+      proc {test_player.play(input)}.must_raise ArgumentError
+    end
   end
 
   describe "Player.total_score" do
