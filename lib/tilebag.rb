@@ -39,7 +39,7 @@ module Scrabble
         end
       end
     end
-    
+
     def draw_tiles(num)
       tiles = []
       num.times do

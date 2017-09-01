@@ -1,9 +1,5 @@
+require_relative 'spec_helper'
 
-require 'minitest/autorun'
-require 'minitest/reporters'
-require 'minitest/skip_dsl'
-require_relative '../lib/player'
-require_relative '../lib/score'
 
 describe "Player" do
   describe "#initialize" do
@@ -18,6 +14,14 @@ describe "Player" do
       player.must_respond_to :plays
       player.plays.must_equal []
       player.plays.must_be_kind_of Array
+    end
+
+    it " should give you an empty array" do
+        player = Scrabble::Player.new(name)
+        player.must_respond_to :tiles
+        player.tiles.must_equal []
+        player.tiles.must_be_kind_of Array
+
     end
   end
 
@@ -116,6 +120,19 @@ describe "Player" do
 
       count = player.highest_word_score
       count.must_equal 63
+    end
+  end
+  describe "draw_tiles(tile_bag)" do
+    it "Checking tiles array after adding new tile to it with this method " do
+      player = Scrabble::Player.new(name)
+      tile_bag = Scrabble::TileBag.new
+      player.draw_tiles(tile_bag)
+      player.tiles.length.must_equal 7
+      player.tiles.pop(2)
+      player.tiles.length.must_equal 5
+      player.draw_tiles(tile_bag)
+      player.tiles.length.must_equal 7
+
     end
   end
 end

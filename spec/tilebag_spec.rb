@@ -1,7 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/reporters'
-require_relative '../lib/tilebag'
-# require_relative 'wave-1-game.rb'
+require_relative 'spec_helper'
 
 describe "TileBag" do
   describe "#initialize" do

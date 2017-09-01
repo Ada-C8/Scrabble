@@ -1,9 +1,4 @@
-
-require 'minitest/autorun'
-require 'minitest/reporters'
-require_relative '../lib/score'
-# require_relative 'wave-1-game.rb'
-
+require_relative 'spec_helper'
 describe "Score" do
   describe "#initialize" do
     it " should give you an empty array" do
