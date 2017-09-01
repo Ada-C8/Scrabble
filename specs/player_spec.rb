@@ -1,6 +1,5 @@
 require_relative 'spec_helper'
 
-
 describe 'Scrabble' do
   describe 'Player' do
 
@@ -68,16 +67,9 @@ describe 'Scrabble' do
             @player.total_score.must_equal 18
           end
 
-          # not sure that this is being tested... it is longer than 7 letters and  thus it fails
           it "makes the player play only a word" do
             proc{ @player.play("two words") }.must_raise ArgumentError
           end
-
-          # this doesn't work!!!!! need help with regex
-          # error message is written in scoring.rb
-          # it "raises error if tried to play a number" do
-          #   proc{@player.play(123)}.must_raise ArgumentError
-          # end
 
           it "words with more than 7 letters can't be player" do
             proc {@player.play("zazazaza")}.must_raise ArgumentError
@@ -87,8 +79,6 @@ describe 'Scrabble' do
             proc {@player.play("")}.must_raise ArgumentError
           end
 
-
-          # how to test if game is over??
           it "returns false if score is over 100" do
             @player.play("zzzzz")
             @player.play("zzzzzz")

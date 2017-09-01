@@ -16,7 +16,7 @@ describe 'Scrabble' do
         Scrabble::Scoring.score("cAt").must_equal 5
       end # CAT logic
 
-      it "7 letter words receive 50 point bonus" do # probably a more interesting way to test this... score + 50
+      it "7 letter words receive 50 point bonus" do 
         Scrabble::Scoring.score("laurenl").must_equal 57
       end #50 point bonus
     end # self.score

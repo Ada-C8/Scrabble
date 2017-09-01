@@ -31,15 +31,11 @@ module Scrabble
       'y' => 4,
       'z' => 10
     }
-    # later in code we should ensure that we only pass out 7 tiles
 
     def self.score(word)
-      raise ArgumentError.new "max word length is 7" if word.length > 7 
+      raise ArgumentError.new "max word length is 7" if word.length > 7
       raise ArgumentError.new "use atleast one letter" if word.length == 0
       raise ArgumentError.new("input must be string") if word.class != String
-      # raise ArgumentError.new("Words must only have letters.") if word.match(/^(\d)+$/)
-      # / ^\d /.match word
-      # (word =~ /^[a-zA-Z]+$/) != 0
 
       score = 0
       word.chars.each do |char|
@@ -75,9 +71,3 @@ module Scrabble
 
   end #scoring
 end #module
-
-# puts Scrabble::Scoring.highest_score_from(["cat", "be", "bat", "pat"])
-# puts Scrabble::Scoring.tie("cat", "bat")
-# array_of_words = [ "dog", "cat",  "laurend", "zzzzzx", "sit"]
-# #
-# puts Scrabble::Scoring.highest_score_from(array_of_words)

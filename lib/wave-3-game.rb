@@ -19,7 +19,6 @@ module Scrabble
           puts "It is #{player.name}'s turn"
 
           player.draw_tiles(@tilebag)
-          # print @tilebag.default_tiles
 
           puts "#{player.name} has the following tiles: #{player.tiles}"
 
