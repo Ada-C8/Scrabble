@@ -2,10 +2,14 @@ module Scrabble
   class Player
     attr_reader :name, :plays, :tiles
 
-    def initialize(name)
+    def initialize(name, debug = false)
       @name = name.to_s
       @plays = []
-      @tiles = []
+      if debug == :debug
+        @tiles = ['C','A','T','T','Y','C','D']
+      else
+        @tiles = []
+      end
     end
 
     def play(word)
