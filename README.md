@@ -1,6 +1,7 @@
 # In order to run
 - Install the mw_dictionary_api gem.
-- Run in terminal with ```ruby
+- Run in terminal with
+```ruby
 ruby -W0 filepath
 ```
 
