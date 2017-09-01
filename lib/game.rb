@@ -46,14 +46,104 @@ module Scrabble
     def play
       # while not game over, loop through players, show them tiles, ask for word and where to play, play word
 
-      while !game_over
+      while !game_over?
         @players.each do |player|
+          player.draw_tiles(@tile_bag)
           show_tiles(player)
-
+          takes_turn(player)
         end
       end
     end
 
+
+    def show_tiles(player)
+      tiles = player.tiles.join(" ")
+      puts "#{player.name}, these are your tiles!: #{tiles}"
+    end
+
+    def takes_turn(player)
+      # get a word or pass
+
+      puts "Play a word? y/n"
+      answer = y_or_n
+
+      if answer == 'n'
+        puts "Passing your turn to next player"
+        return
+      else
+        puts "What word do you want to play?"
+        word = gets.chomp
+
+        # check if a valid word
+        while !@dictionary.is_word?(word)
+          puts "Not a valid word. Do you want to play another word?"
+          answer = y_or_n
+          if answer == y
+            puts "What word do you want to play?"
+            word = gets.chomp
+          else
+            puts "Passing your turn to next player"
+            return
+          end
+        end
+
+        player.play(word)
+      end
+
+    end
+
+    def y_or_n
+      answer = gets.chomp.downcase
+      while answer != "y" && answer != "n"
+        puts "Y or N"
+        answer = gets.chomp.downcase
+      end
+
+      return answer
+    end
+
+    def location
+      puts "Which row do you want to play your first tile? (1 for top row, #{Scrabble::BOARD_SIZE} for bottom row):"
+      row = gets.chomp.to_i
+
+      while row < 1
+        puts "Choose a row from 1 to #{Scrabble::BOARD_SIZE}:"
+        row = gets.chomp.to_i
+      end
+
+      puts "Which column do you want to play your first tile? (1 for left-most column, #{Scrabble::BOARD_SIZE} for right-most row):"
+      col = gets.chomp.to_i
+
+      while col < 1
+        puts "Choose a column from 1 to #{Scrabble::BOARD_SIZE}:"
+        col = gets.chomp.to_i
+      end
+
+      #TODO : Check if there's a letter to play off of in an ideal Scrabblicious world
+
+      puts "Would you like to play across or down? (A or D)?:"
+      dir = gets.chomp.upcase
+
+      while dir != "A" && dir != "D"
+        puts "Please pick a valid direction (A or D): "
+        dir = gets.chomp.upcase
+      end
+
+      if dir == "A"
+        check_space(word,col)
+      else
+        check_space(word,row)
+      end
+
+      # TODO Check whatever letters exist there- Scrabblicious land again
+
+    end
+
+    def check_space(word,index)
+      if word.length + index > Scrabble::BOARD_SIZE
+        #pick another spot...
+      end
+    end
     private
 
     def game_over?
@@ -63,42 +153,11 @@ module Scrabble
         end
       end
 
-    # TODO if both players pass
+      return false
+
+      # TODO if both players pass
 
     end
-
-    def show_tiles(player)
-      tiles = player.tiles.join(" ")
-      puts "These are your tiles: #{tiles}"
-    end
-
-    def takes_turn(player)
-      # get a word or pass
-      puts "Play a word? y/n"
-
-      answer = gets.chomp.downcase!
-      while answer != "y" || answer != "n"
-        puts "Y or N"
-        answer = gets.chomp.downcase!
-      end
-
-      if answer == 'n'
-        puts "Passing your turn to next player"
-        break
-      else
-        puts "What word do you want to play?"
-        word = gets.chomp
-
-        # check if a valid word
-        while !@dictionary.is_word?(word)
-          puts "Not a valid word. "
-          # need to put pass and word into separate methods so that player can pass if put in not valid word
-        end
-      end
-
-    end
-
-
 
   end #end of Game class
 
@@ -106,7 +165,7 @@ module Scrabble
   #
   new_game = Game.new
   new_game.start
-
+  new_game.play
 
 
 

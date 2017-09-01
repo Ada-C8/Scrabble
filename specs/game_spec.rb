@@ -1,5 +1,7 @@
 require_relative 'spec_helper'
 
+##Testing becomes really hard, mocking might be nice? You might want to test via running the Game.rb
+
 describe "Game" do
   describe "initialize" do
     it "Has a board, tile bag, dictionary and empty array of players" do
