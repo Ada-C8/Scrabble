@@ -30,5 +30,11 @@ describe "WAVE 3" do
         proc {@tilebaggins.draw_tiles("A")}.must_raise ArgumentError
         proc {@tilebaggins.draw_tiles(0)}.must_raise ArgumentError
       end
+
+      it "drawn_tiles array has correct number of tiles" do
+        @tilebaggins.draw_tiles(7).length.must_equal 7
+      end
+
+
     end
 end

@@ -11,11 +11,15 @@ module Scrabble
 
     def draw_tiles(num)
       can_draw(num)
-
-      letter = @tilebag.keys.sample
-      @tilebag[letter] -= 1
-      @tilebag.delete_if {|key,value| value == 0}
+      drawn_tiles = []
+      num.times do
+        letter = @tilebag.keys.sample
+        @tilebag[letter] -= 1
+        @tilebag.delete_if {|key,value| value == 0}
+        drawn_tiles << letter
+      end
       @num_tiles_remaining -= num
+      return drawn_tiles
     end
 
     def can_draw(num)
