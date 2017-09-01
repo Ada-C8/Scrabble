@@ -63,13 +63,11 @@ module Scrabble
 
     def get_word_for(player)
       puts "Enter a word to score:"
-      puts player.tiles.length
       word = gets.chomp
       @words << word
 
 
       keep_playing = player.play(word)
-      puts player.tiles.length
 
       if keep_playing
         return word

@@ -38,7 +38,11 @@ module Scrabble
       drawn = []
       num = @available_tiles.values.sum if @available_tiles.values.sum < num
       until drawn.length == num
-        letter = @available_tiles.keys.sample
+        all_tiles = []
+        @available_tiles.each do |tile, number|
+          number.times { all_tiles.push(tile) }
+        end
+        letter = all_tiles.sample
         if @available_tiles[letter] > 0
           drawn << letter
           @available_tiles[letter] -= 1
