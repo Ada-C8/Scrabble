@@ -35,13 +35,13 @@ describe 'TileBag' do
     end
 
     it 'draws random tiles' do
-      tiles_1 = @test_bag.draw_tiles(7)
-      tiles_2 = @test_bag.draw_tiles(7)
-      tiles_1.wont_equal tiles_2
+      tiles1 = @test_bag.draw_tiles(7)
+      tiles2 = @test_bag.draw_tiles(7)
+      tiles1.wont_equal tiles2
     end
 
     it 'does not draw more tiles than exist' do
-      proc{@test_bag.draw_tiles(99)}.must_raise ArgumentError
+      proc { @test_bag.draw_tiles(99) }.must_raise ArgumentError
     end
   end
 
