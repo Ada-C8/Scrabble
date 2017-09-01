@@ -19,6 +19,7 @@ module Scrabble
           puts "It is #{player.name}'s turn"
 
           player.draw_tiles(@tilebag)
+          # print @tilebag.default_tiles
 
           puts "#{player.name} has the following tiles: #{player.tiles}"
 
@@ -71,11 +72,18 @@ module Scrabble
     end
 
     def get_word_for(player)
-      puts "Enter a word to score:"
-      word = gets.chomp
+      begin
+        puts "Enter a word to score:"
+        word = gets.chomp
+        keep_playing = player.play(word)
+      rescue ArgumentError => error
+        puts error.message
+        retry
+      end
       @words << word
 
-      keep_playing = player.play(word)
+
+      # keep_playing = player.play(word)
 
       if keep_playing
         return word

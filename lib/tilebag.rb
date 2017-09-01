@@ -44,10 +44,10 @@ module Scrabble
       @default_tiles.delete_if {|k, v| v == 0}
       tiles_drawn = @default_tiles.keys.sample(num)
       tiles_drawn.each do |drawn_tile|
-        @default_tiles[drawn_tile] -= 1
+      @default_tiles[drawn_tile] -= 1
       end
       @tiles_remaining -= tiles_drawn.length
-      return tiles_drawn
+      return tiles_drawn[0] 
     end
   end
 end

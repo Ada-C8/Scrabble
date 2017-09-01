@@ -18,10 +18,30 @@ module Scrabble
 
     def play(word)
       return false if won?
-      #consider making it only possibl to play tiles provided in @tiles 
+      # check that its possible from @tiles
+      # check if it's an English Oxford word
+      # how to add more tiles and delete the played tiles
+
+      word.chars.each do |char|
+        unless @tiles.include?(char)
+          raise ArgumentError.new ("Error: Play the tiles you have")
+        end
+      end
+
       @plays << word
       @total_score += Scrabble::Scoring.score(word)
+
+      # subtract word characters from @tiles AND call draw_tiles method
+      word.chars.each do |char|
+        to_delete = @tiles.index(char)
+        @tiles.delete_at(to_delete)
+        # p @tiles
+      end
+
+      # subtract tiles from @tiles (and hopefully @tiles gets refilled)
+      # end
     end
+
 
     #deleted this total_score and added it to play(word method)
     # def total_score
@@ -41,13 +61,14 @@ module Scrabble
     end
     #
     def tiles
-    Scrabble::TileBag.new.draw_tiles(7)
+      @tiles
     end
 
     def draw_tiles(tilebag)
       until @tiles.length == 7
         @tiles << tilebag.draw_tiles(1)
       end
+      return @tiles
     end
 
     # fills tiles array until it has 7 letters from the given tile bag
@@ -67,7 +88,6 @@ module Scrabble
 
   end
 end
-
 # Manual tests to be deleted before final push:
 # test = Scrabble::Player.new("Ada")
 # puts test.tiles
