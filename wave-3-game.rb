@@ -1,4 +1,7 @@
-require_relative 'lib/scrabble'
+require_relative 'lib/scoring'
+require_relative 'lib/player'
+require_relative 'lib/tilebag'
+
 
 module Scrabble
   class Game
@@ -17,9 +20,9 @@ module Scrabble
 
           player.draw_tiles(@tilebag)
 
-          puts "#{player.name} has the following tiles: #{player.tiles}"
+          puts "#{player.name} has the following tiles: #{player.tiles_in_hand}"
 
-          player_word = get_word_for(player)
+          player_word = get_word_for(player) #still waiting for some kind of return from get_word
           player_has_won = !player_word
 
           if player_word
@@ -62,22 +65,26 @@ module Scrabble
       end
 
       puts "Would you like to play another round? (Y/N)"
-      continue = gets.chomp
+      continue = gets.chomp.upcase
       (continue == "Y") ? true : false
     end
 
     def get_word_for(player)
       puts "Enter a word to score:"
-      word = gets.chomp
-      @words << word
+      word = gets.chomp.upcase
 
-      keep_playing = player.play(word)
+      keep_playing = player.play(word) # RETURNS AN INTEGER
+      @words << word
 
       if keep_playing
         return word
       else
         return false
       end
+
+    rescue ArgumentError
+      puts "Word is not included in your tiles"
+      retry
     end
 
     def print_score(word)
@@ -113,9 +120,6 @@ module Scrabble
     end
   end
 end
-
-
-
 
 game = Scrabble::Game.new
 game.play

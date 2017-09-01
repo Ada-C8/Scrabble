@@ -1,4 +1,5 @@
-require_relative 'lib/scrabble'
+require_relative 'lib/scoring'
+require_relative 'lib/player'
 
 module Scrabble
   class Game
@@ -14,7 +15,7 @@ module Scrabble
         @players.each do |player|
           puts "It is #{player.name}'s turn"
           player_word = get_word_for(player)
-          player_has_won = !player_word
+          player_has_won = !player_word # If it is a string it will evaluate to false. If false, evaluates to true
 
           if player_word
             print_score(player_word)
@@ -56,19 +57,20 @@ module Scrabble
       end
 
       puts "Would you like to play another round? (Y/N)"
-      continue = gets.chomp
+      continue = gets.chomp.upcase
       (continue == "Y") ? true : false
     end
 
     def get_word_for(player)
       puts "Enter a word to score:"
-      word = gets.chomp
+      word = gets.chomp.upcase
       @words << word
 
-      keep_playing = player.play(word)
+      # Returns a boolean true or false
+      keep_playing = player.play(word) #will return a score or false
 
       if keep_playing
-        return word
+        return word # Becomes player_word as a String in the play method
       else
         return false
       end
