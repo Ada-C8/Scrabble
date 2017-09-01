@@ -16,8 +16,8 @@ module Scrabble
     def play
       start
       while continue?
-        @board.print_board
         @players.each do |player|
+          @board.print_board
           puts "It is #{player.name}'s turn"
 
           player.draw_tiles(@tilebag)

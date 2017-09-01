@@ -34,13 +34,21 @@ module Scrabble
     end
 
     def check_placement(word,start,direction)
-      #TODO: argument error for start and direction!
+      unless [:down,:right].include? direction
+        raise ArgumentError.new "Not a correct direction"
+      end
+      if start[0] >= @size || start[1] >= @size || start[0] < 0 || start[1] < 0
+        raise ArgumentError.new "Not on the board"
+      end
       board = []
       @size.times do |i|
         board[i] = @board_spaces[i].clone
       end
       case direction
       when :down
+        if start[0]+word.length > @size - 1
+          return false
+        end
         word.length.times do |i|
           if board[start[0]+i][start[1]].nil?
             board[start[0]+i][start[1]] = word[i]
@@ -49,6 +57,9 @@ module Scrabble
           end
         end
       when :right
+        if start[1]+word.length > @size - 1
+          return false
+        end
         word.length.times do |i|
           if board[start[0]][start[1]+i].nil?
             board[start[0]][start[1]+i] = word[i]
