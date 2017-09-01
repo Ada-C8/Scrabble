@@ -3,7 +3,8 @@ require_relative '../lib/player'
 
 describe "#Scrabble::Player" do
   before do
-    @carlisle = Scrabble::Player.new("Carlisle")
+    @tilebaggins = Scrabble::Tilebag.new
+    @carlisle = Scrabble::Player.new("Carlisle", @tilebaggins)
     @carlisle.play("schmuck")
     @carlisle.play("granny")
   end
@@ -48,7 +49,8 @@ describe "#Scrabble::Player" do
     end
     #7
     it "Returns false if a player attempts to #play another word after scoring 100 points" do
-      @carlislejr = Scrabble::Player.new("Carlisle, Jr.")
+      @tilebagginsjr = Scrabble::Tilebag.new
+      @carlislejr = Scrabble::Player.new("Carlisle, Jr.", @tilebagginsjr)
       @carlislejr.play("QQQQQQQ")
 
       @carlislejr.play("hi").must_equal false
@@ -79,8 +81,38 @@ describe "#Scrabble::Player" do
       @carlisle.must_respond_to :play
     end
   end
+
+  describe "check draw tiles method" do
+    before do
+    @tilebagginsIII = Scrabble::Tilebag.new
+    @carlisleIII = Scrabble::Player.new("Carlisle, III", @tilebagginsIII)
+    end
+
+
+    it "draws number of tiles player requires" do
+      @carlisle.draw_tiles
+      @carlisle.hand.length.must_equal 7
+      @carlisle.draw_tiles
+      @carlisle.hand.length.must_equal 7
+      @carlisle.tile_bag.num_tiles_remaining.must_equal 91
+      @carlisle.play(@carlisle.hand[0..6])
+      @carlisle.hand.length.must_equal 0
+    end
+
+    it "bag is low" do
+      2.times do
+        @carlisleIII.draw_tiles
+
+        @carlisleIII.play(@carlisleIII.hand[0..4].join(""))
+      end
+
+
+      @carlisleIII.tile_bag.num_tiles_remaining.must_equal 85
+    end
+
+    it "bag is empty" do
+
+    end
+
+  end
 end
-
-##need draw_tiles method that takes tiles from the bag and puts them in the player's hand--automatically fills the hand to 7 unless the number of tiles in the bag is less than the number of tiles needed to fill the hand.
-
-##a collection of tiles that they've drawn (starts off as 7 at the start of the game)

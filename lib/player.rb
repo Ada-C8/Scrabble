@@ -1,11 +1,11 @@
-require 'scoring'
-require 'tilebag'
+require_relative 'scoring'
+require_relative 'tilebag'
 
 
 
 module Scrabble
   class Player
-  attr_reader :name, :plays, :word_scores, :hand
+  attr_reader :name, :plays, :word_scores, :hand, :tile_bag
     def initialize(name, tile_bag)
       @name = name
       @tile_bag = tile_bag
@@ -21,6 +21,7 @@ module Scrabble
 
       @plays << word
       @score = Scrabble::Scoring.score(word)
+      #thinking we need to delete letters from the hand
       @word_scores << @score
       return @score
     end
@@ -79,3 +80,13 @@ private
 
   end
 end
+
+bag = Scrabble::Tilebag.new
+new_player = Scrabble::Player.new("Carli", bag)
+new_player.draw_tiles
+
+hand = new_player.hand
+puts "#{hand}"
+hand = new_player.hand[0..1].join("")
+puts "#{hand}"
+new_player.play(hand)

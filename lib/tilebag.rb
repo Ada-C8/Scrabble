@@ -16,7 +16,7 @@ module Scrabble
         letter = @tilebag.keys.sample
         @tilebag[letter] -= 1
         @tilebag.delete_if {|key,value| value == 0}
-        drawn_tiles << letter
+        drawn_tiles << letter.to_s
       end
       @num_tiles_remaining -= num
       return drawn_tiles
