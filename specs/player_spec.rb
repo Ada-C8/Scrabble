@@ -65,22 +65,19 @@ describe "PlayerClass" do
     @player1.tiles.must_be_kind_of Array
     end
     it "Draw_tiles takes tiles from tile bag" do
-      @player1.draw_tiles(1)
-      @bag_o_tiles.tiles_remaining.must_equal 97
+      @player1.draw_tiles(@bag_o_tiles)
+      @bag_o_tiles.tiles_remaining.must_equal 91
     end
     it "Draw_tiles adds to tiles array instance variable" do
-      @player1.draw_tiles(1)
-      @player1.tiles.length.must_equal 1
+      @player1.draw_tiles(@bag_o_tiles)
+      @player1.tiles.length.must_equal 7
     end
     it "draw_tiles will not add a tile to tiles array if it already has 7 tiles." do
-      @player1.draw_tiles(7)
+      @player1.draw_tiles(@bag_o_tiles)
       @player1.tiles.length.must_equal 7
-      @player1.draw_tiles(1)
+      @player1.draw_tiles(@bag_o_tiles)
       @player1.tiles.length.must_equal 7
     end
-    # it "Edgecase draw_tiles(num)" do
-    #   #edge case draw_tiles(num) so that it only accepts integers
-    # end
   end
   xdescribe "highest scoring word" do
     it "Player 1 must respond to highest scoring word" do
