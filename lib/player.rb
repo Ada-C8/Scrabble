@@ -3,16 +3,12 @@ require_relative 'scoring'
 
 module Scrabble
   class Player
-    attr_reader :name, :played_words, :total_score
+    attr_reader :name, :played_words #need to not have a reader that is the same as a method name
     def initialize(name)
       raise ArgumentError.new("Name must be a string") if name.class != String
       @name = name
       @played_words = []
       @total_score = 0
-    end
-
-    def name
-      return @name
     end
 
     def total_score
