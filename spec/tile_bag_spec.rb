@@ -13,11 +13,23 @@ describe "class TileBag" do
     it "returns nil if input is more than tilebag" do
       @tile_bag.draw_tiles(100).must_equal nil
     end
+
     it "returns an array of tiles to user" do
       @tile_bag.draw_tiles(3).must_be_kind_of Array
     end
+
+    # it "return an empty array of tiles to user" do
+    #   @tile_bag.draw_tile
+    # end
+
   end
 
+  describe "tiles_remaining" do
+    it "subtracts from the values of letter quantity and returns remaining tiles" do
+      @tile_bag.draw_tiles(5)
+      @tile_bag.tiles_remaining.must_equal 93
+    end
+  end
 
     # it "removes the tiles from the default set" do
     #
