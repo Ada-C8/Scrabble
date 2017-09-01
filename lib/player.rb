@@ -55,7 +55,7 @@ module Scrabble
     def draw_tiles(tile_bag)
       # fills tiles array until it has 7 letters from the given tile bag
       count = 7 - @tiles.length
-      @tiles.concat(tile_bag.draw_tiles(count))
+      @tiles.concat(tile_bag.draw_tiles(count))# when used push, it pushes array inside of an array
     end
 
     #private :won?

@@ -1,7 +1,5 @@
 module Scrabble
   class TileBag
-    attr_reader :remaining_tiles
-
     def initialize
       tile_distribution = {
         "A" => 9,
@@ -32,6 +30,9 @@ module Scrabble
         "Z" => 1
       }
 
+      #  Here we push each letter as many times as it is
+      #  in their value into an array called remaining_tiles
+      # Example: A 9 times, B 2 times
       @remaining_tiles = []
       tile_distribution.each do |letter, quantity|
         quantity.times do

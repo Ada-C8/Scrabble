@@ -12,8 +12,7 @@ describe "TileBag" do
 
     it "Should create a collection default tiles" do
       tilebag = Scrabble::TileBag.new
-      tilebag.remaining_tiles.must_be_kind_of Array
-      (tilebag.remaining_tiles.length > 0).must_equal true
+      tilebag.tiles_remaining.must_equal 98
     end
 
   end
@@ -27,7 +26,7 @@ describe "TileBag" do
   describe "#tiles_remaining" do
     it "should return amount of tiles in the bag" do
       tilebag = Scrabble::TileBag.new
-      tilebag.tiles_remaining.must_equal tilebag.remaining_tiles.length
+      tilebag.tiles_remaining.must_equal 98
     end
 
     it "should remain correct after tiles are drawn" do
