@@ -47,8 +47,15 @@ describe "draw tiles method" do
     tilebag = Scrabble::TileBag.new
     tilebag.draw_tiles(4)
     tilebag.tiles.count.must_equal 94
-    # new_tilebag.draw_tiles(6)
-    # new_tilebag.tiles.count.must_equal 88
+    tilebag.draw_tiles(6)
+    tilebag.tiles.count.must_equal 88
+  end
+
+  it "returns the number of tiles remaining in the bag" do
+    tilebag = Scrabble::TileBag.new
+    tilebag.tiles_remaining.must_equal 98
+    tilebag.draw_tiles(4)
+    tilebag.tiles_remaining.must_equal 94
   end
 
 

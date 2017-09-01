@@ -34,6 +34,10 @@ module Scrabble
     return tiles_array
     end
 
+    def tiles_remaining
+      return @tiles.count
+    end
+
 
 
 

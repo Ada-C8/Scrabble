@@ -1,19 +1,23 @@
 require_relative 'scoring'
+# require_relative 'tilebag'
+require 'pry'
+
 module Scrabble
   class Player
 
-  attr_accessor :name, :plays
-  attr_reader :total_score
+  attr_accessor :name, :plays, :tiles
 
     def initialize(name)
       @name = name
       @plays = []
+      @tiles = []
     end
 
     def play(word)
       return false if won?
       plays << word
       return Scrabble::Scoring.score(word)
+      
     end
 
     def total_score
@@ -36,6 +40,15 @@ module Scrabble
     def highest_scoring_word
       return Scrabble::Scoring.highest_scoring_word(@plays)
     end
+
+    def draw_tiles(tile_bag)
+      num = (7 - @tiles.length)
+      drawn_tiles = tile_bag.draw_tiles(num)
+      num.times do
+        @tiles << drawn_tiles.pop
+      end
+    end
+
 
 
     private
