@@ -69,7 +69,7 @@ describe "Scoring" do
         Scrabble::Scoring.best_word("ssssssd", "ssssssg").must_equal "ssssssg"
         Scrabble::Scoring.best_word("ssssssg", "ssssssd").must_equal "ssssssd"
       end
-  end
+    end
   end#of_self#highest_score_from
 
 end

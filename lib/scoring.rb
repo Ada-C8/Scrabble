@@ -49,20 +49,21 @@ module Scrabble
       end
 
       def self.best_word(left, right) #returns left if the left-hand word is better than the right-hand, otherwise return right
-        score_left = self.score(left)
-        score_right = self.score(right)
+        score_left = self.score(left) # score for KIWI
+        score_right = self.score(right) # score for apple
+        # Check to see if one is greater than the other
         if score_left > score_right
           return left
         elsif score_right > score_left
           return right
         end
-
+        # If tied, return the first 7 letter word
         if right.length == 7
           return right
         elsif left.length == 7
           return left
         end
-
+        # Otherwise, return the shortest word
         if left.length < right.length
           return left
         else
