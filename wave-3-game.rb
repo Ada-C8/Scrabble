@@ -7,7 +7,7 @@ module Scrabble
     def initialize
       @words = []
       @players = setup_players
-      @tilebag = Scrabble::TileBag.new
+      @tilebag = TileBag.new
     end
 
     def play
@@ -30,6 +30,7 @@ module Scrabble
 puts "player has won #{player_has_won}"
           if player_has_won
             crown_winner(player)
+            conclude
             exit
             break
           end
@@ -66,14 +67,22 @@ puts "player has won #{player_has_won}"
       # end
 
       puts "Would you like to play another round? (Y/N)"
-      continue = gets.chomp
+      continue = gets.chomp.upcase
       (continue == "Y") ? true : false
     end
 
     def get_word_for(player)
+
       puts "Enter a word to score:"
-      word = gets.chomp
+      word = gets.chomp.upcase
       @words << word
+      while !player.word_uses_tiles?(word)
+        puts "You do not have the tiles to play that word."
+        puts "Please enter another word."
+        word = gets.chomp
+        @words << word
+        word
+      end
 
       keep_playing = player.play(word)
 
