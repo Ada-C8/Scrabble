@@ -7,7 +7,11 @@ module Scrabble
 
     SCRABBLE_DICT = CSV.read('./support/dictionary.csv')
 
-    def import(csv)
+    def initialize
+      @dictionary = Dictionary.import(SCRABBLE_DICT)
+    end
+
+    def self.import(csv)
       hash = {}
 
       csv.each do |word_row|
@@ -22,11 +26,6 @@ module Scrabble
       end
 
       return hash
-    end
-
-
-    def initialize
-      @dictionary = self.import(SCRABBLE_DICT)
     end
 
     def is_word?(word)
