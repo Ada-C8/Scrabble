@@ -18,11 +18,11 @@ describe "Scrabble" do
 
     describe "draw_tiles" do
       it "returns num random tiles" do
-        Scrabble::TileBag.new.draw_tiles(7).length.must_equal 7
+        Scrabble::TileBag.new.draw_tiles(1).length.must_equal 1
       end
 
       it "must return an array of tiles" do
-        Scrabble::TileBag.new.draw_tiles(3).must_be_kind_of Array
+        Scrabble::TileBag.new.draw_tiles(1).must_be_kind_of String
       end
 
 

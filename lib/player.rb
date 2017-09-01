@@ -51,7 +51,7 @@ module Scrabble
 
     private
     def won?
-      return (total_score > 100) 
+      return (total_score > 100)
     end
 
   end

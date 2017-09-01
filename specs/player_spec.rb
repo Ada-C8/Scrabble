@@ -6,6 +6,24 @@ describe 'Scrabble' do
     before do
       @player = Scrabble::Player.new("Ada")
     end
+    #mocking @tilebag to simulate test because we need to know exactly what is in the tile bag!
+    class TestTileBag
+      def initialize
+        @default_tiles = {
+          'z' => 10
+        }
+      end
+
+      def draw_tiles(num)
+        @default_tiles.delete_if {|k, v| v == 0}
+        tiles_drawn = @default_tiles.keys.sample(num)
+        tiles_drawn.each do |drawn_tile|
+          @default_tiles[drawn_tile] -= 1
+        end
+        return tiles_drawn[0]
+      end
+    end
+    ########## testing begins #########
     describe "initialize" do
       it "raises error if given integer for name" do
         proc {Scrabble::Player.new(1)}.must_raise ArgumentError
@@ -29,9 +47,10 @@ describe 'Scrabble' do
 
       describe "Player#play" do
         it "contains an array of words plays " do
-          @player.play("cat")
-          @player.play("bat")
-          @player.play("tap")
+          @player.draw_tiles(TestTileBag.new)
+          @player.play("zz")
+          @player.play("zzz")
+          @player.play("z")
           @player.plays.must_be_kind_of Array
         end
 
@@ -47,24 +66,23 @@ describe 'Scrabble' do
 
         describe "Player#play" do
           it "play method shovels words into plays array" do
-            @player.play("word")
-            @player.plays.must_include "word"
-          end
-
-          it "returns score of the word played" do
-            @player.play("cat").must_equal Scrabble::Scoring.score("cat")
+            @player.draw_tiles(TestTileBag.new)
+            @player.play("zz")
+            @player.plays.must_include "zz"
           end
 
           it "play method adds word score to total_score instance variable" do
-            @player.play("word")
-            @player.total_score.must_equal 8
+            @player.draw_tiles(TestTileBag.new)
+            @player.play("zz")
+            @player.total_score.must_equal 20
           end
 
           it "play method sums scores from all words in total_score instance variable" do
-            @player.play("word")
-            @player.play("cat")
-            @player.play("bat")
-            @player.total_score.must_equal 18
+            @player.draw_tiles(TestTileBag.new)
+            @player.play("z")
+            @player.play("zz")
+            @player.play("zzz")
+            @player.total_score.must_equal 60
           end
 
           it "makes the player play only a word" do
@@ -80,34 +98,41 @@ describe 'Scrabble' do
           end
 
           it "returns false if score is over 100" do
-            @player.play("zzzzz")
-            @player.play("zzzzzz")
+            @player.draw_tiles(TestTileBag.new)
+
+            @player.play("zzzzzzz")
+            @player.play("z")
             @player.play("zz").must_equal false
           end
 
           it "returns highest scoring word" do
-            @player.play("zzzzzx")
-            @player.play("z")
-            @player.play("laurend")
-            @player.play("cat")
-            @player.play("bat")
-            @player.highest_scoring_word.must_equal "laurend"
+            @player.draw_tiles(TestTileBag.new)
+            @player.play("zzzzz")
+            @player.play("zz")
+            # @player.play("z")
+            # @player.play("laurend")
+            # @player.play("cat")
+            # @player.play("bat")
+            @player.highest_scoring_word.must_equal "zzzzz"
           end
 
           it "returns highest scoring word" do
-            @player.play("zzzzzx")
+            @player.draw_tiles(TestTileBag.new)
+            @player.play("zzzzz")
             @player.play("z")
-            @player.highest_word_score.must_equal 58
+            @player.highest_word_score.must_equal 50
           end
 
           it "returns the sum of all scores of player's words" do
-            @player.play("cat")
-            @player.play("bat")
-            @player.total_score.must_equal 10
+            @player.draw_tiles(TestTileBag.new)
+            @player.play("zz")
+            @player.play("z")
+            @player.total_score.must_equal 30
           end
 
           it "highest_word_score returns an integer" do
-            @player.play("zzzzzx")
+            @player.draw_tiles(TestTileBag.new)
+            @player.play("zzzzz")
             @player.play("z")
             @player.highest_word_score.must_be_kind_of Integer
           end
@@ -118,6 +143,7 @@ describe 'Scrabble' do
 
           describe "Player#tiles" do
             it "draws 7 tiles " do
+              @player.draw_tiles(Scrabble::TileBag.new)
               @player.tiles.length.must_equal 7
             end
 
@@ -130,11 +156,13 @@ describe 'Scrabble' do
 
               describe "Player#won? method" do
                 it "if total_score has over 100 points, they win" do
+                  @player.draw_tiles(TestTileBag.new)
                   @player.play("zzzzzzz")
                   @player.send(:won?).must_equal true
                 end
 
                 it "doesn't win if less than 100" do
+                  @player.draw_tiles(TestTileBag.new)
                   @player.play("zzzz")
                   @player.send(:won?).must_equal false
                 end
