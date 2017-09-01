@@ -10,22 +10,31 @@ module Scrabble
       @board = []
 
       BOARD_SIZE.times do
-        @board << Array.new(15)
+        @board << ([" "] * BOARD_SIZE)
       end
     end
 
     def draw
       # returns human readable representation of board
-      rep = ""
+      display = ""
 
-      BOARD_SIZE.times do
-        rep += "_" * BOARD_SIZE + "_" * (BOARD_SIZE + 1) + "\n"
+      line = "_" * (4 * BOARD_SIZE+ 1) + "\n"
 
+      @board.each do |row|# going through rows
+        display += line
+        row.each do |char|# going through cols
+          display += "| " + char + " "
+        end
+        display += "|\n"
       end
+      display += line
 
-      return rep
+      return display
     end
 
   end # end of board class
 
 end # end of module
+
+board = Scrabble::Board.new
+puts board.draw

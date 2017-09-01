@@ -37,6 +37,9 @@ module Scrabble
         player.draw_tiles(@tile_bag)
       end
 
+      # draw board
+      @board.draw
+
       #executive decision: @players[0] begins play
     end
 
