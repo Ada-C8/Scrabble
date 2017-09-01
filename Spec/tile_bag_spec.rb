@@ -42,4 +42,14 @@ describe "TileBag" do
       # remaining tiles must be 7 shorter than previously
     end
   end# end describe draw tiles
+  describe "remaining_tiles" do
+    it "shuffles uniquely" do
+      tile_comparison_array = []
+      10000.times do |thing|
+        new_scrabble = Scrabble::TileBag.new
+        tile_comparison_array << new_scrabble.remaining_tiles
+      end
+      tile_comparison_array.uniq.length.must_equal 10000
+    end
+  end #end remaining_tiles
 end # end describe TileBag

@@ -89,8 +89,49 @@ describe "Scrabble::Player" do
     # #end
 
 
-  end #end player
-end
+  end
+
+  describe "remove_tiles" do
+    it "should return a different tile array than the original with the correct number of elements" do
+      larry = Scrabble::Player.new("Larry")
+      larry.draw_tiles(Scrabble::TileBag.new)
+
+      before_remove = larry.tiles.dup
+      larry.remove_tiles(larry.tiles[0]+larry.tiles[1])
+      after_remove = larry.tiles
+
+      after_remove.wont_equal before_remove
+      after_remove.length.must_equal 5
+      (before_remove.length - after_remove.length).must_equal 2
+      after_remove.must_equal before_remove[2..6]
+    end
+    it "should remove only one of duplicate letters" do
+      test = 0
+      while test == 0
+
+        larry = Scrabble::Player.new("Larry")
+        larry.draw_tiles(Scrabble::TileBag.new)
+        drawn_tiles = larry.tiles
+
+        repeated_tiles = drawn_tiles.detect{ |e| drawn_tiles.count(e) > 1 }
+        if repeated_tiles != nil
+
+          before_remove = larry.tiles.dup
+          larry.remove_tiles(repeated_tiles[0])
+          after_remove = larry.tiles
+          after_remove.length.must_equal 6
+          test += 1
+        end
+      end
+    end
+
+  end #remove_tiles
+
+  describe "word_uses_tiles" do
+
+
+  end
+end # end player
 
 # describe "can get highest scoring word" do
 #   words = ["looking", "pizza", "macaroni", "leech", "sniff"]
