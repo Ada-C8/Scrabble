@@ -9,7 +9,7 @@ module Scrabble
       @plays = []
       @tiles = []
     end
-
+    #SRB - I think we can use an enumerable like inject or reduce to dry up total score.
     def total_score
       # total_score: Returns the sum of scores of played words
       running_score = 0
@@ -20,17 +20,16 @@ module Scrabble
     end
 
     def draw_tiles(tile_bag)
+      #SRB - could this be an until loop? AKA until tiles.length = 7 keep drawing one tile?
       # fills tiles array until it has 7 letters from the given tile bag
       draws = []
       num_to_draw = 7 - @tiles.length
       if num_to_draw != 0
-      draws = tile_bag.draw_tiles(num_to_draw)
+        draws = tile_bag.draw_tiles(num_to_draw)
       end
       draws.each do |tile|
         @tiles << tile
       end
-      # ["e", "s", "o", "r", "d", "t", "i"]
-      # @tiles <<
     end
 
     def play(word)
