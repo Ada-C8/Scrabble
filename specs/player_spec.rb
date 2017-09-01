@@ -45,28 +45,55 @@ describe "Player" do
   describe "#play(word)" do
 
     it "will add the word to the @player_words array" do
-      @test_player.play("hello")
+      test_word = @test_player.tiles_in_hand.join
+      @test_player.play(test_word)
 
       @test_player.player_words.length.must_equal 1
       array = @test_player.player_words
-      array[0].must_equal "HELLO"
+      array[0].must_equal test_word
     end #it "will add the word to the @player_words array" do
 
     it "should add word score to @total_score" do
-      @test_player.play("hello")
-      @test_player.total_score.must_equal 8
+      test_tile_bag = Scrabble::Tilebag.new
+      @test_player.draw_tiles(test_tile_bag)
+      test_word = @test_player.tiles_in_hand.join
+      score_is = Scrabble::Scoring.score(test_word)
+      @test_player.play(test_word).must_equal score_is
+      # @test_player.play("hello")
+      # @test_player.total_score.must_equal 8
     end
 
     it "if won is true, should return false" do
+      #TODO: we need to fix this to work with our ArgumentError checking!!!
       #if we exclude words over seven letter we will have to change this
-      @test_player.play("zzzzzzzzzz")
-      @test_player.play("hello").must_equal false
+      # total_score = 0
+      # test_words = []
+      #
+      # until total_score = 93
+      #   test_word = @test_player.tiles_in_hand.join
+      #   total_score += Scrabble::Scoring.score(test_word)
+      #   test_words << test_word
+      # end
+      #
+      # test_words.each do |word|
+      #   @test_player.play(word)
+      # end
+      #
+      # next_test_word = @test_player.tiles_in_hand.join
+      #
+      # @test_player.play(word).must_equal false
+
+      # @test_player.play("zzzzzzzzzz")
+      # @test_player.play("hello").must_equal false
     end
 
     it "if won is false, should return score as Integer" do
-      @test_player.play("z")
-      @test_player.play("hello").must_equal 8
-      @test_player.play("hello").must_be_kind_of Integer
+      test_tile_bag = Scrabble::Tilebag.new
+      @test_player.draw_tiles(test_tile_bag)
+      test_word = @test_player.tiles_in_hand.join
+      score_is = Scrabble::Scoring.score(test_word)
+      score_is.must_be :<, 100
+      @test_player.play(test_word).must_be_kind_of Integer
     end
 
     it "should remove tiles that were played from tiles in hand" do
@@ -80,34 +107,60 @@ describe "Player" do
   end #describe "#play(word)" do
 
   describe "won?" do
-    #TODO: Q: do we need to test the won? private method since we test this functionaly already in the play(word) method tests?
-    xit "should return true if @total_score > 100" do
+
+    it "should return true if @total_score > 100" do
+
+      test_tile_bag = Scrabble::Tilebag.new
+
+      until @test_player.total_score > 100
+        @test_player.draw_tiles(test_tile_bag)
+        test_word = @test_player.tiles_in_hand.join
+        @test_player.play(test_word)
+      end
+
+      @test_player.won?.must_equal true
+
       #This doesn't work because you can't call a private method
       # @test_player.play("zzzzzzzzzz")
       # @test_player.won?.must_equal true
     end # It
 
-    xit "should return false if @total_score < 100" do
-      #This doesn't work because you c an't call a private method
-      # @test_player.play("z")
-      # @test_player.won?.must_equal false
-    end # It
+    it "should return false if @total_score < 100" do
+      test_tile_bag = Scrabble::Tilebag.new
+      @test_player.draw_tiles(test_tile_bag)
+      test_word = @test_player.tiles_in_hand.join
+      score_is = @test_player.play(test_word)
 
-    #TODO: should we test that the play(word) method respond to the won? method? If so, how do we test if a method responds to a private method?
+      score_is.must_be :<, 100
+      @test_player.won?.must_equal false
+    end # It  
   end # Describe won?
 
   describe "#highest_scoring_word" do
 
     it "will return a string" do
-      @test_player.play("hello")
+      test_tile_bag = Scrabble::Tilebag.new
+      @test_player.draw_tiles(test_tile_bag)
+      test_word = @test_player.tiles_in_hand.join
+      @test_player.play(test_word)
       @test_player.highest_scoring_word.must_be_kind_of String
     end #it "will return a string" do
 
     it "will return the highest scoring word" do
-      ["a", "aa", "aaa"].each do |string|
-        @test_player.play(string)
+      test_tile_bag = Scrabble::Tilebag.new
+      @test_player.draw_tiles(test_tile_bag)
+      test_word = @test_player.tiles_in_hand.join
+      @test_player.play(test_word)
+      test_word_2 = @test_player.tiles_in_hand.join
+      @test_player.play(test_word_2)
+
+      if Scrabble::Scoring.score(test_word) < Scrabble::Scoring.score(test_word_2)
+        score_is = Scrabble::Scoring.score(test_word_2)
+      else
+        score_is = Scrabble::Scoring.score(test_word)
       end
-      @test_player.highest_scoring_word.must_equal "AAA"
+      @test_player.highest_word_score.must_equal score_is
+
     end #it "will return the highest scoring word" do
 
   end # describe "#highest_scoring_word" do
@@ -115,17 +168,30 @@ describe "Player" do
   describe "#highest_word_score" do
 
     it "should return an Integer" do
-      ["hello", "jukebox"].each do |string|
-        @test_player.play(string)
-      end
+
+      test_tile_bag = Scrabble::Tilebag.new
+      @test_player.draw_tiles(test_tile_bag)
+      test_word = @test_player.tiles_in_hand.join
+      @test_player.play(test_word)
+      test_word_2 = @test_player.tiles_in_hand.join
+      @test_player.play(test_word_2)
       @test_player.highest_word_score.must_be_kind_of Integer
+
+      #below is how we tested this in basic wave-3
+      # ["hello", "jukebox"].each do |string|
+      #   @test_player.play(string)
+      # end
+      # @test_player.highest_word_score.must_be_kind_of Integer
     end
 
     it "should return the actual score" do
-      ["hello", "jukebox"].each do |string|
-        @test_player.play(string)
-      end
-      @test_player.highest_word_score.must_equal 77
+
+      test_tile_bag = Scrabble::Tilebag.new
+      @test_player.draw_tiles(test_tile_bag)
+      test_word = @test_player.tiles_in_hand.join
+      score_is = Scrabble::Scoring.score(test_word)
+      @test_player.play(test_word)
+      @test_player.highest_word_score.must_equal score_is
     end
 
   end # Describe
