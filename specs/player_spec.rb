@@ -43,6 +43,19 @@ describe 'Player' do
     it 'returns the score of the word' do
       @player.play('jazzily').must_equal 85
     end
+
+    it 'returns false if player does not have tiles to play word' do
+      # (debug mode for hand)
+      # (check for double-letter words)
+    end
+
+    it 'removes played tiles from hand' do
+
+    end
+
+    it 'draws new tiles to replace tiles played' do
+
+    end
   end
 
   describe 'total_score' do
