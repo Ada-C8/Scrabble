@@ -18,6 +18,7 @@ module Scrabble
 
     def play(word)
       return false if won?
+      #consider making it only possibl to play tiles provided in @tiles 
       @plays << word
       @total_score += Scrabble::Scoring.score(word)
     end
@@ -42,7 +43,6 @@ module Scrabble
     def tiles
     Scrabble::TileBag.new.draw_tiles(7)
     end
-
 
     def draw_tiles(tilebag)
       until @tiles.length == 7

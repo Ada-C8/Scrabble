@@ -41,6 +41,7 @@ module Scrabble
 
 
     def draw_tiles(num)
+      @default_tiles.delete_if {|k, v| v == 0}
       tiles_drawn = @default_tiles.keys.sample(num)
       tiles_drawn.each do |drawn_tile|
         @default_tiles[drawn_tile] -= 1
@@ -56,5 +57,8 @@ end
 
 # test = Scrabble::TileBag.new
 # puts test.draw_tiles(7)
-
-# puts test.tilebag
+# puts
+# puts test.draw_tiles(9)
+# puts
+# puts test.draw_tiles(9)
+# puts test.default_tiles

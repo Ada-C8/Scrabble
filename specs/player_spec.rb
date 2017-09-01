@@ -131,20 +131,23 @@ describe 'Scrabble' do
               @player.tiles.length.must_equal 7
             end
 
-            # describe "Player#draw_tiles"
-            # it "gives the player the necessary tiles" do
-            #
-            # end
-
-            describe "Player#won? method" do
-              it "if total_score has over 100 points, they win" do
-                @player.play("zzzzzzz")
-                @player.send(:won?).must_equal true
+            describe "Player#draw_tiles" do
+              it "gives the player the necessary tiles" do
+                @player.draw_tiles(Scrabble::TileBag.new)
+                @player.tiles.length.must_equal 7
               end
 
-              it "doesn't win if less than 100" do
-                @player.play("zzzz")
-                @player.send(:won?).must_equal false
+
+              describe "Player#won? method" do
+                it "if total_score has over 100 points, they win" do
+                  @player.play("zzzzzzz")
+                  @player.send(:won?).must_equal true
+                end
+
+                it "doesn't win if less than 100" do
+                  @player.play("zzzz")
+                  @player.send(:won?).must_equal false
+                end
               end
             end
           end
@@ -152,4 +155,4 @@ describe 'Scrabble' do
       end
     end
   end
-  end
+end

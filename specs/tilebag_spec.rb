@@ -20,21 +20,19 @@ describe "Scrabble" do
       it "returns num random tiles" do
         Scrabble::TileBag.new.draw_tiles(7).length.must_equal 7
       end
-    end
 
-    describe "tiles_remaining" do
-      it "returns the number of remaining tiles" do
-        game = Scrabble::TileBag.new
-        game.draw_tiles(7)
-        game.tiles_remaining.must_equal 91
+      it "must return an array of tiles" do
+        Scrabble::TileBag.new.draw_tiles(3).must_be_kind_of Array
+      end
 
+
+      describe "tiles_remaining" do
+        it "returns the number of remaining tiles" do
+          game = Scrabble::TileBag.new
+          game.draw_tiles(7)
+          game.tiles_remaining.must_equal 91
+        end
       end
     end
-
   end
-
-
-
-
-
 end
