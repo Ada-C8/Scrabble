@@ -71,8 +71,6 @@ describe "Player class" do
       end
 
       it "Doesn't add word to player's plays array" do
-        puts "anna's plays is #{@anna.plays}"
-
         @anna.play("the")
 
 
@@ -81,7 +79,6 @@ describe "Player class" do
 
       it "Leaves tiles in player's hand" do
         @anna.play("THE")
-        puts @anna.tiles
 
         @anna.tiles.sort!.must_equal ['W', 'O', 'T'].sort!
       end
