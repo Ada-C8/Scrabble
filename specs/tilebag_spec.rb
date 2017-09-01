@@ -1,9 +1,6 @@
-require 'minitest/autorun'
-require 'minitest/reporters'
-require 'minitest/skip_dsl'
-require_relative '../lib/wave-3-TileBag'
 
-# require_relative 'spec_helper'
+
+require_relative 'spec_helper'
 
 
 describe "tilebag" do

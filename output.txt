@@ -1,0 +1,96 @@
+Coverage report generated for RSpec to /Users/tanjastroble/Desktop/ADA/Week4/Scrabble/coverage. 96 / 263 LOC (36.5%) covered.
+Started with run options --seed 29537
+
+Run options: --seed 29537
+
+# Running:
+
+highest_word_score
+  test_0001_returns the score of the highest scoring word        [32m PASS[0m (0.00s)
+.
+Scoring Class
+  test_0001_has a hash constant                                  [32m PASS[0m (0.00s)
+.
+tiles
+  test_0001_tiles must be an array                               [32m PASS[0m (0.00s)
+.
+total_score
+  test_0001_returns the score of zero if the Array is empty      [32m PASS[0m (0.00s)
+.  test_0002_returns the sum when 2 words are played              [32m PASS[0m (0.00s)
+.
+method won?
+  test_0001_returns true if score is over 100                    [32m PASS[0m (0.00s)
+.  test_0002_returns false for scores =< 100.                     [32m PASS[0m (0.00s)
+.
+tilebag
+  test_0002_Default tiles initialized                            [32m PASS[0m (0.00s)
+.  test_0003_Initial tile bag contains 26 kinds of tiles          [32m PASS[0m (0.00s)
+.  test_0004_Initial tile bag contains 98 total tiles.            [32m PASS[0m (0.00s)
+.  test_0001_should create and instance of TileBag                [32m PASS[0m (0.00s)
+.
+draw_tiles
+  test_0005_when called 4 times, removes 4 drawn tiles from the original set[32m PASS[0m (0.00s)
+.  test_0001_returns an array of tiles                            [32m PASS[0m (0.00s)
+.  test_0004_returns the number of tiles drawn                    [32m PASS[0m (0.00s)
+.  test_0003_removes one tile of that letter from its original set[32m PASS[0m (0.00s)
+.  test_0007_cannot draw a letter if none remaining               [32m PASS[0m (0.00s)
+.  test_0002_the elements of the return array are objects from the TileBag[32m PASS[0m (0.00s)
+.  test_0006_cannot draw if no tiles remaining                    [32m PASS[0m (0.00s)
+.
+method self.highest_score_from
+  test_0002_raises an ArgumentError if input Array is empty      [32m PASS[0m (0.00s)
+.  test_0006_in case of a tie, a word with 7 letters wins         [32m PASS[0m (0.00s)
+.  test_0007_in case of an entire tie, the first word entered wins[32m PASS[0m (0.00s)
+.  test_0003_returns a word from the original array               [32m PASS[0m (0.00s)
+.  test_0001_raises an ArgumentError if not an Array              [32m PASS[0m (0.00s)
+.  test_0004_must return the word with the highest score (no-ties)[32m PASS[0m (0.00s)
+.  test_0005_In case of a tie, chooses word with fewer letters    [32m PASS[0m (0.00s)
+.
+method highest_scoring_word
+  test_0001_returns a message if no words were played            [32m PASS[0m (0.00s)
+.  test_0002_returns the highest scoring played word              [32m PASS[0m (0.00s)
+.
+draw_tiles(tile_bag)
+  test_0001_fills the tiles array to seven letters               [32m PASS[0m (0.00s)
+.
+method play(word)
+  test_0001_raises an ArguentError if input is not a String      [32m PASS[0m (0.00s)
+.  test_0004_adds the input word to the plays Array               [32m PASS[0m (0.00s)
+.  test_0006_returns the score of the word                        [32m PASS[0m (0.00s)
+.  test_0002_raises an ArgumentError if a word has more than seven chars or less than 0[32m PASS[0m (0.00s)
+.  test_0003_raises an Argument Error if input word is not composed of valid letters[32m PASS[0m (0.00s)
+.  test_0005_returns false if player has already won              [32m PASS[0m (0.00s)
+.
+method self.score
+  test_0004_scores comprehensively for several example words     [32m PASS[0m (0.00s)
+.  test_0005_raises an ArgumentError if a word has more than seven chars or less than 0[32m PASS[0m (0.00s)
+.  test_0003_correctly scores a word                              [32m PASS[0m (0.00s)
+.  test_0001_must return an integer                               [32m PASS[0m (0.00s)
+.  test_0002_raises an Argument Error if input word is not composed of valid letters[32m PASS[0m (0.00s)
+.
+Player class 
+  test_0001_Player is initialized with one argument.             [32m PASS[0m (0.00s)
+.  test_0002_Can read name from instance.                         [32m PASS[0m (0.00s)
+.  test_0003_plays returns an Array                               [32m PASS[0m (0.00s)
+.
+tiles remaining
+  test_0001_number of times remaining must be an integer         [32m PASS[0m (0.00s)
+.  test_0002_returns the correct number of tiles                  [32m PASS[0m (0.00s)
+.
+Dictionary
+  test_0007_will return true for the last word listed in the dictionary[32m PASS[0m (0.33s)
+.  test_0004_raises an ArgumentError if the input String doesn't contain only letters[32m PASS[0m (0.00s)
+.  test_0002_Must return false for invalid word                   [32m PASS[0m (0.35s)
+.  test_0006_will return true for the first word listed in the dictionary[32m PASS[0m (0.03s)
+.  test_0003_raises an Argument error if input word is not a String[32m PASS[0m (0.00s)
+.  test_0001_Must return true for valid word                      [32m PASS[0m (0.00s)
+.  test_0005_raises an ArgumentError if the String is empty       [32m PASS[0m (0.00s)
+.  test_0008_accepts lowercase input                              [32m PASS[0m (0.00s)
+.
+Finished in 0.73141s
+52 tests, 76 assertions, [32m0 failures, 0 errors, [0m[33m0 skips[0m
+
+
+Finished in 0.731455s, 71.0912 runs/s, 103.9025 assertions/s.
+
+52 runs, 76 assertions, 0 failures, 0 errors, 0 skips
