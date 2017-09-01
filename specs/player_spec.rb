@@ -7,8 +7,9 @@ describe "PlayerClass" do
     @player1.play("dog")
     @player1.play("kitten")
     @player1.play("panda")
+    @bag_o_tiles = Scrabble::Tilebag.new
   end
-  describe "name instance variable" do
+  xdescribe "name instance variable" do
     it "Scrabble::Player responds to name" do
       @player1.must_respond_to :name
     end
@@ -16,7 +17,7 @@ describe "PlayerClass" do
       @player1.name.must_equal "Sandy"
     end
   end
-  describe "plays method" do
+  xdescribe "plays method" do
     it "Scrabble::Player responds to Plays" do
       @player1.must_respond_to :plays
     end
@@ -27,7 +28,7 @@ describe "PlayerClass" do
       @player1.plays.must_equal ["dog", "kitten", "panda"]
     end
   end
-  describe "Total score method" do
+  xdescribe "Total score method" do
     it "Scrabble::Player responds to total_score" do
       @player1.must_respond_to :total_score
     end
@@ -38,7 +39,7 @@ describe "PlayerClass" do
       @player1.total_score.must_equal 23
     end
   end
-  describe "Play method" do
+  xdescribe "Play method" do
     word = "otter"
     it "Scrabble::Player responds to play method" do
       @player1.must_respond_to :play
@@ -59,7 +60,29 @@ describe "PlayerClass" do
       @player1.play(word).must_equal 5
     end
   end
-  describe "highest scoring word" do
+  describe "Draw tiles method" do
+    it "Tiles is an array" do
+    @player1.tiles.must_be_kind_of Array
+    end
+    it "Draw_tiles takes tiles from tile bag" do
+      @player1.draw_tiles(1)
+      @bag_o_tiles.tiles_remaining.must_equal 97
+    end
+    it "Draw_tiles adds to tiles array instance variable" do
+      @player1.draw_tiles(1)
+      @player1.tiles.length.must_equal 1
+    end
+    it "draw_tiles will not add a tile to tiles array if it already has 7 tiles." do
+      @player1.draw_tiles(7)
+      @player1.tiles.length.must_equal 7
+      @player1.draw_tiles(1)
+      @player1.tiles.length.must_equal 7
+    end
+    # it "Edgecase draw_tiles(num)" do
+    #   #edge case draw_tiles(num) so that it only accepts integers
+    # end
+  end
+  xdescribe "highest scoring word" do
     it "Player 1 must respond to highest scoring word" do
       @player1.must_respond_to :highest_scoring_word
     end
@@ -71,7 +94,7 @@ describe "PlayerClass" do
       @player1.highest_scoring_word.must_equal "zzz"
     end
   end
-  describe "Highest Word Score method" do
+  xdescribe "Highest Word Score method" do
     it "Responds to highest_word_score" do
       @player1.must_respond_to :highest_word_score
     end
@@ -84,7 +107,7 @@ describe "PlayerClass" do
     end
   end
 
-  describe "legit_word?" do
+  xdescribe "legit_word?" do
     it "will raise argument error for invalid entry in the string AKA - numbers, special characters, empty string" do
       proc{@player1.legit_word?("1")}.must_raise ArgumentError
       proc{@player1.legit_word?("")}.must_raise ArgumentError

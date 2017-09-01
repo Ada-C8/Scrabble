@@ -23,9 +23,9 @@ describe "Tilebag Class" do
       @bag.draw_tiles(7).must_be_kind_of Array
     end
     it "Removes the tiles from the default set" do
-      @bag.tiles_remaining.must_equal 10
+      # Tile bag starts with 98. Remove 7 and you should have 91 left
       @bag.draw_tiles(7)
-      @bag.tiles_remaining.must_equal 3
+      @bag.tiles_remaining.must_equal 91
     end
   end
 end

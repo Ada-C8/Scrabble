@@ -1,12 +1,13 @@
 require 'pry'
 module Scrabble
   class PlayerClass
-    attr_reader :name, :plays
+    attr_reader :name, :plays, :tiles
     #name: returns the value of the @name instance variable
     #plays: returns an Array of the words played by the player
     def initialize(name)
       @name = name
       @plays = []
+      @tiles = []
     end
 
     def total_score
@@ -16,6 +17,11 @@ module Scrabble
         running_score += Scrabble::ScoringClass.score(word)
       end
       return running_score
+    end
+
+    def draw_tiles(tile_bag)
+      # fills tiles array until it has 7 letters from the given tile bag
+
     end
 
     def play(word)
@@ -33,7 +39,7 @@ module Scrabble
     def is_string?(input)
       input.class == String
     end
-    
+
     def legit_word?(player_word)
       raise ArgumentError.new("#{player_word} is an invalid entry - you may only enter letters in the the english alphabet") if is_alphabet?(player_word) == nil
     end
