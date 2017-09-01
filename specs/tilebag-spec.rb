@@ -17,7 +17,6 @@ describe "TileBag class" do
       til = Scrabble::TileBag.new
       til.draw_tiles(4).must_be_instance_of Array
     end
-
   end
 
   describe "tiles_remaining" do

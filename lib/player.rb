@@ -1,5 +1,4 @@
 require_relative 'scrabble'
-require_relative 'tilebag'
 
 module Scrabble
   class Player
@@ -11,7 +10,7 @@ module Scrabble
       @plays = []
       @won = false
       @total_score = 0
-      @tiles = draw_tiles(7)
+      @tiles = []
     end
 
     def play(word)
@@ -29,7 +28,6 @@ module Scrabble
         sum_of_scores << Scrabble::Scoring.score(word)
       end
       @total_score = sum_of_scores.inject(:+)
-      #puts "Your score is #{@total_score}"
       won?
       return @total_score
     end
@@ -47,7 +45,13 @@ module Scrabble
     end
 
     def draw_tiles(tile_bag)
-      return true if @tiles.length < 7
+      until @tiles.length == 7 do
+        @tiles << tile_bag.draw_tiles(1)
+      end
+
+      @tiles = @tiles.pop(7 - @plays.last.length)
+      @tiles << tile_bag.draw_tiles(@plays.last.length)
+      @tiles = @tiles.flatten
     end
 
     private
@@ -55,12 +59,9 @@ module Scrabble
     def won?
       if @total_score > 99
         @won = true
-        # puts "You win!"
+        return "You win!"
       end
     end
 
   end # end of class
 end #end of module
-
-patty = Scrabble::Player.new("patty").draw_tiles(3)
-p patty

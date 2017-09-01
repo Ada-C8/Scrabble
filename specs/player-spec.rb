@@ -56,6 +56,20 @@ describe "Player class" do
 
   end
 
+  describe "draw_tiles method" do
+    it "Tiles array exist" do
+      patty = Scrabble::Player.new("patty")
+      patty.tiles.must_be_instance_of Array
+    end
+
+    it "Refills to 7 tiles" do
+      tile_bag = Scrabble::TileBag.new
+      patty = Scrabble::Player.new("patty")
+      patty.play("cats")
+      patty.draw_tiles(tile_bag).length.must_equal 7
+    end
+  end
+
   describe "won? method" do
     it "doesn't add to the score if total score is more than 99" do
       patty = Scrabble::Player.new("Patty")
@@ -87,7 +101,6 @@ describe "Player class" do
       spongebob.total_score.must_equal 100
       spongebob.won.must_equal true
     end
-
   end
 
 end
