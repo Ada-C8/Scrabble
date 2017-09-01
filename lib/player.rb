@@ -3,16 +3,15 @@ require_relative 'tilebag'
 module Scrabble
 
   class Player
-    @@gamebag = TileBag.new
 
     attr_reader :name, :plays, :tiles
 
     attr_writer :tiles
 
-    def initialize(name)
+    def initialize(name, tilebag)
       @name = name
       @plays = []
-      @tiles = @@gamebag.draw_tiles(7)
+      @tiles = tilebag.draw_tiles(7)
     end
 
     def play(word)
@@ -24,9 +23,9 @@ module Scrabble
       end
     end
 
-    def draw_tiles
+    def draw_tiles(tilebag)
       num = 7 - @tiles.length
-      replacement = @@gamebag.draw_tiles(num)
+      replacement = tilebag.draw_tiles(num)
       replacement.each do |letter|
         @tiles << letter
       end

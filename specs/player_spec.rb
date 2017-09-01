@@ -3,14 +3,15 @@ require_relative 'spec_helper'
 
 describe "Player class" do
   before do
-    @bennett = Scrabble::Player.new("Amy")
+    @tilebag = Scrabble::TileBag.new
+    @bennett = Scrabble::Player.new("Amy", @tilebag)
   end
   describe "initialize" do
     before do
-      @amy = Scrabble::Player.new("Amy")
+      @amy = Scrabble::Player.new("Amy", @tilebag)
     end
     it "can instantiate a Player class" do
-      Scrabble::Player.new("Bob").must_be_kind_of Scrabble::Player
+      Scrabble::Player.new("Bob", @tilebag).must_be_kind_of Scrabble::Player
     end
     it "Player can assign and access #name" do
       @amy.name.must_equal "Amy"
@@ -52,7 +53,7 @@ describe "Player class" do
 
     it "returns three tiles if played 3 tiles" do
       @bennett.tiles = ["A", "B", "C", "D"]
-      @bennett.draw_tiles
+      @bennett.draw_tiles(@tilebag)
       @bennett.tiles.length.must_equal 7
     end
 
