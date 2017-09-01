@@ -1,21 +1,23 @@
 require_relative 'scrabble'
+require_relative 'tilebag'
 
 module Scrabble
   class Player
     attr_reader :name, :plays, :won
+    attr_accessor :tiles
 
     def initialize(name)
       @name = name
       @plays = []
       @won = false
       @total_score = 0
+      @tiles = draw_tiles(7)
     end
 
     def play(word)
       if @won
         return false
       end
-
       plays << word
       total_score
       return Scrabble::Scoring.score(word) # new instance of score
@@ -37,12 +39,15 @@ module Scrabble
       @plays.each do |word|
         num_hash[word] = Scrabble::Scoring.score(word)
       end
-
       return num_hash.values.max
     end
 
     def highest_scoring_word #returns word
       return Scrabble::Scoring.highest_score_from(@plays)
+    end
+
+    def draw_tiles(tile_bag)
+      return true if @tiles.length < 7
     end
 
     private
@@ -57,10 +62,5 @@ module Scrabble
   end # end of class
 end #end of module
 
-# patty = Scrabble::Player.new("Patty")
-# patty.play("october")
-# patty.play("happiness")
-# patty.play("xyz")
-# patty.play("happiness")
-# # patty.play("xyz")
-# # patty.total_score
+patty = Scrabble::Player.new("patty").draw_tiles(3)
+p patty

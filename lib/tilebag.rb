@@ -11,13 +11,22 @@ module Scrabble
 #talk to someone about private methods for executing the wave2 file
 
     def draw_tiles(num)
+      #creates a array of all tiles as strings
       all_tiles = []
       @tiles.each do |k,v|
-        all_tiles << k.to_s * v
+        v.times do
+          all_tiles << k.to_s
+        end
       end
-      #create random pull from all tiles
-      #make sure to decrement value from @tiles
-      
+      #returns random tiles based on number inputted
+      tiles_drawn = []
+      num.times do
+        random_tile = all_tiles.sample
+        tiles_drawn << random_tile
+        #decrements number of tiles left for that letter
+        @tiles[random_tile.to_sym] -= 1
+      end
+      return tiles_drawn
     end
 
     def tiles_remaining
@@ -26,4 +35,3 @@ module Scrabble
 
   end
 end
-  p Scrabble::TileBag.new.tiles[:A]
