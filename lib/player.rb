@@ -24,10 +24,10 @@ module Scrabble
       @word_scores << score
       #thinking we need to delete letters from the hand
       word = word.split("")
-      
+
       word.each do |letter|
         if @hand.include?(letter)
-          @hand.delete(letter)
+          @hand.delete_at(@hand.index(letter))
         end
       end
 
