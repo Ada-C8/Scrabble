@@ -1,4 +1,4 @@
-require_relative 'lib/scrabble'
+require_relative 'scoring.rb'
 
 module Scrabble
   class Game
