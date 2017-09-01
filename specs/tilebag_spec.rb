@@ -37,9 +37,11 @@ describe "draw_tiles" do
 
   it "the elements of the return array are objects from the TileBag" do
     tile_bag = Scrabble::TileBag.new
+    originals = tile_bag.original_tile_bag.clone
+
     tiles = tile_bag.draw_tiles(3)
     tiles.each do |tile|
-      tile_bag.original_tile_bag.keys.include?(tile).must_equal true
+      originals.keys.include?(tile).must_equal true
     end
   end
 
@@ -48,8 +50,8 @@ describe "draw_tiles" do
     before = tile_bag.original_tile_bag.clone
     letter = tile_bag.draw_tiles(1)[0]
     after = tile_bag.original_tile_bag
-    before[letter].must_equal (after[letter] + 1)
 
+    ((after[letter].nil?) || (before[letter] == after[letter] + 1)).must_equal true
   end
 
   it "returns the number of tiles drawn" do

@@ -137,10 +137,6 @@ describe "tiles" do
   it "tiles must be an array" do
     @ada.tiles.must_be_kind_of Array
   end
-
-  it "when a certain number of tiles are drawn, the tiles array reflects the qty" do
-
-  end
 end
 
 describe "draw_tiles(tile_bag)" do
