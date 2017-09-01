@@ -30,7 +30,7 @@ module Scrabble
         return Scrabble::Scoring.score(word)
       end
     end
-
+#scrabble-player_updated.rb file has optional enhancement to force user to use only tiles in their hand.
 
     def total_score
       total = 0
