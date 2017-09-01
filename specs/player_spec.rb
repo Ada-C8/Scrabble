@@ -174,6 +174,12 @@ describe "Player Class" do
       input = Scrabble::Player.new("Marisa")
       input.must_respond_to :draw_tiles
     end
+
+    it "should take a tiebag as an argument" do
+      input_bag = "Scrabble Bag"
+      input_player = Scrabble::Player.new("Marisa")
+      proc {input_player.draw_tiles(input_bag)}.must_raise ArgumentError
+    end
     # TODO
     # it "If the bag is not an instance of tile_bag, raise an error " do
     #   input = Scrabble::Player.new("Marisa")

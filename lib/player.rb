@@ -39,6 +39,7 @@ module Scrabble
     end
 
     def draw_tiles(input_bag)
+      raise ArgumentError.new "Can only draw from a Tilebag" if !(input_bag.is_a? Scrabble::Tilebag)
       tiles_needed = 7 - @tiles.length
       if tiles_needed <= 7
         grab = input_bag.draw_tiles(tiles_needed)
