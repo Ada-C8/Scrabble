@@ -27,7 +27,7 @@ module Scrabble
 
     def word_uses_tiles?(word)
       hand_check = []
-      tiles.each{ |tile_letter| hand_check << tile_letter.dup}
+      hand_check = @tiles.dup
       word.each_char do |letter|
         index = hand_check.find_index{ |x| x == letter}
         return false if index == nil

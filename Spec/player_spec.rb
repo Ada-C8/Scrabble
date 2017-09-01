@@ -12,6 +12,13 @@ describe "Scrabble::Player" do
       roy.plays.wont_be_nil
       roy.total_score.wont_be_nil
     end
+    it "calculates the number of plays" do
+      roy = Scrabble::Player.new("Roy")
+      roy.plays.must_equal []
+      roy.draw_tiles(Scrabble::TileBag.new)
+      roy.play(roy.tiles[0] + roy.tiles[1]+ roy.tiles[2])
+      roy.plays.length.must_equal 1
+    end
   end
 
   describe "can play a word" do
@@ -122,6 +129,19 @@ describe "Scrabble::Player" do
           after_remove.length.must_equal 6
           test += 1
         end
+      end
+    end
+
+    describe "word_uses_tiles" do
+
+      it "takes in a string as an argument" do
+        mary = Scrabble::Player.new("Mary")
+        mary.draw_tiles(Scrabble::TileBag.new)
+        word = 3
+        proc{mary.word_uses_tiles?(word)}.must_raise NoMethodError
+        word = "elephantitis"
+        mary.word_uses_tiles?(word).must_equal false
+        mary.word_uses_tiles?(mary.tiles[0]+mary.tiles[1]+mary.tiles[2]).must_equal true
       end
     end
 

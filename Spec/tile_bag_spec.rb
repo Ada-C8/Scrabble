@@ -51,5 +51,12 @@ describe "TileBag" do
       end
       tile_comparison_array.uniq.length.must_equal 10000
     end
+    it "gives the correct number of remaining tiles" do
+      new_game = Scrabble::TileBag.new
+      new_game.draw_tiles(7)
+      new_game.tiles_remaining.must_equal 91
+      new_game.draw_tiles(7)
+      new_game.tiles_remaining.must_equal 84
+    end
   end #end remaining_tiles
 end # end describe TileBag
