@@ -39,7 +39,7 @@ module Scrabble
     def self.highest_score_from(array_of_words)
       scores_array = []
       array_of_words.each do |word|
-        # nested array with word and its cooresponding score
+        # nested array with word and its cooresponding score ex. ["dog",5]
         scores_array << [word, score(word)]
       end
       # returns highest scoring word
@@ -47,26 +47,25 @@ module Scrabble
     end
 
     def self.tie(words_and_scores)
-      # iterate over nested array and return words with highest score
-      # compare words by length
-      # return word with shortest length
+      # words_and_scores is scores_array aka nested array of [["word",score],["word",score]]
+      # looks through words_and_scores array and stores the max score in max_score variable
       max_score = words_and_scores.max_by{|a| a[1]}[1]
+
+      # pulls the top scoring word or words and stores them in array variable
       top_scoring_words = words_and_scores.select{|a| a[1] == max_score}.map(&:first)
+
+      # takes the first word from top_scoring_words which we will use as a starting point for comparing the length of words in the loop below
       tie_word = top_scoring_words[0]
 
+      # compares top_scoring_words for length. A seven letter word wins the tie breaker and is returned immediately. Otherwise it compares words and stores the smallest word in varible tie_word. At the end of the loop we will be left with the top scoring word with the smallest length.
       top_scoring_words.each do |word|
         if word.length == 7
-          return word
+          return word # tie breaking word if length = 7
         elsif word.length < tie_word.length
           tie_word = word
         end
       end
-      return tie_word
+      return tie_word # top scoring word with the smallest length
     end
   end # end of ScoringClass
 end
-
-# ties
-# It’s better to use fewer tiles, in the case of a tie, prefer the word with the fewest letters.
-# There is a bonus for words that are seven letters. If the top score is tied between multiple words and one used all seven letters, choose the one with seven letters over the one with fewer tiles.
-# If the there are multiple words that are the same score and same length, pick the first one in the supplied list.

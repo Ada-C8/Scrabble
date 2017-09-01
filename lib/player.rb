@@ -9,19 +9,25 @@ module Scrabble
       @plays = []
       @tiles = []
     end
-    #SRB - I think we can use an enumerable like inject or reduce to dry up total score.
+
     def total_score
       # total_score: Returns the sum of scores of played words
-      running_score = 0
-      @plays.each do |word|
-        running_score += Scrabble::ScoringClass.score(word)
-      end
-      return running_score
+
+      # Loop version of what we accomplish with the inject enumerable below
+        # running_score = 0
+        # @plays.each do |word|
+        #   running_score += Scrabble::ScoringClass.score(word)
+        # end
+        # return running_score
+
+      #[1,2,3,4].inject(0) { |result, element| result + element } # => 10
+      total = @plays.inject(0){|sum,word| sum + Scrabble::ScoringClass.score(word)}
+      return total
     end
 
     def draw_tiles(tile_bag)
       until @tiles.length == 7 do
-          @tiles << tile_bag.draw_tiles(1)
+        @tiles << tile_bag.draw_tiles(1)
       end
     end
 
