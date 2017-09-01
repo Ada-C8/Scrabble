@@ -7,14 +7,17 @@ describe "Tilebag" do
   end
 
   describe "#initialize" do
+
     it "should have 98 tiles in @tilebag" do
       @tilebag.tiles.length.must_equal 98
       @tilebag.tiles.must_be_kind_of Array
       @tilebag.must_respond_to :tiles
     end
+
   end
 
   describe "#draw_tiles" do
+
     it "should return an array of picked _tiles" do
       @tilebag.draw_tiles(7).must_be_kind_of Array
     end
@@ -29,10 +32,6 @@ describe "Tilebag" do
       picked_tiles.length.must_equal 98
     end
 
-    # it "should return an arugment error if number input is 0 or less" do
-    #   proc { @tilebag.draw_tiles(0) }.must_raise ArgumentError
-    # end
-
     it "should remove each tile from the @tile" do
       starting_tiles = @tilebag.tiles.length
       num = 10
@@ -43,6 +42,7 @@ describe "Tilebag" do
   end #describe "#draw_tiles" do
 
   describe "#tiles_remaining" do
+
     it "will return an Integer" do
       @tilebag.tiles_remaining.must_be_kind_of Integer
     end #it "will return an Integer" do

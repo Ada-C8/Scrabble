@@ -16,10 +16,8 @@ module Scrabble
     def play(play_word)
       play_word = play_word.upcase
       arg_test = play_word.split("")
-      p arg_test
       arg_test.each do |l|
         if !(@tiles_in_hand.include? (l))
-          puts "Argument Error is here"
           raise ArgumentError.new("Word is not included in your tiles")
         end
       end
@@ -38,7 +36,6 @@ module Scrabble
       else
         return result # Score of the play_word
       end
-
       # CHECK IF WORD IS IN TILES.HAND -> RAISE ARGUMENT ERROR IF NOT IN TILES --> GET_WORD_FOR
         # ELSE
       # CHECK WITH SCRABBLE::DICTIONARY.NEW.COMPARE INPUT WORD TO DICTIONARY WORDS

@@ -7,6 +7,7 @@ describe "scoring" do
   end
 
   describe "SCORE_CHART" do
+
     it "must be able to return SCORE_CHART hash" do
       Scrabble::Scoring::SCORE_CHART.must_be_kind_of Hash
     end #it "must be able to initilize @score_chart as a hash"
@@ -17,10 +18,10 @@ describe "scoring" do
       end #.each
     end #it "@score_chart must include ("A".."z")" do
 
-
   end #describe "initialize" do
 
   describe "self.score(word)" do
+
     it "must be a class method" do
       Scrabble::Scoring.must_respond_to :score
     end #it "must be a class method" do
@@ -40,9 +41,11 @@ describe "scoring" do
     it "will add 50 to a 7 letter word" do
       Scrabble::Scoring.score("CATTTTT").must_equal 59
     end
+
   end #describe "self.score(word)" do
 
   describe "self.highest_score_from_array_array(array_of_words)" do
+
     it "should return a string" do
       Scrabble::Scoring.highest_score_from_array(["cat", "dog", "pony"]).must_be_kind_of String
     end #it "should return a string" do

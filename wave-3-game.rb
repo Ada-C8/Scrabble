@@ -21,7 +21,7 @@ module Scrabble
           player.draw_tiles(@tilebag)
 
           puts "#{player.name} has the following tiles: #{player.tiles_in_hand}"
-          #
+
           player_word = get_word_for(player) #still waiting for some kind of return from get_word
           player_has_won = !player_word
 
@@ -72,29 +72,19 @@ module Scrabble
     def get_word_for(player)
       puts "Enter a word to score:"
       word = gets.chomp.upcase
-      # begin
-        # keep playing = play.play(word)
-      # rescue
-        # "Please enter a valid word"
-        # get_word_for(player)
-      # end
-      #begin
-        keep_playing = player.play(word) # RETURNS AN INTEGER
-        puts "This is the #{word}" # This is a string
-        @words << word
 
-        if keep_playing
-          return word
-        else
-          return false
-        end
-      # rescue ArgumentError => e
-      #   puts e.message
-      # end
+      keep_playing = player.play(word) # RETURNS AN INTEGER
+      @words << word
+
+      if keep_playing
+        return word
+      else
+        return false
+      end
+
     rescue ArgumentError
-      # get_word_for(player)
+      puts "Word is not included in your tiles"
       retry
-
     end
 
     def print_score(word)
@@ -130,9 +120,6 @@ module Scrabble
     end
   end
 end
-
-
-
 
 game = Scrabble::Game.new
 game.play
