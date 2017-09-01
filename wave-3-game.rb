@@ -30,8 +30,9 @@ module Scrabble
 
           if player_has_won
             crown_winner(player)
+            conclude
             exit
-            break
+            #break
           end
         end
       end
@@ -66,13 +67,13 @@ module Scrabble
       # end
 
       puts "Would you like to play another round? (Y/N)"
-      continue = gets.chomp
+      continue = gets.chomp.upcase
       (continue == "Y") ? true : false
     end
 
     def get_word_for(player)
       puts "Enter a word to score:"
-      word = gets.chomp
+      word = gets.chomp.upcase
       @words << word
 
       keep_playing = player.play(word)
