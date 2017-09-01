@@ -6,7 +6,7 @@ module Scrabble
       @name = name.to_s
       @plays = []
       if debug == :debug
-        @tiles = ['C','A','T','T','Y','C','D']
+        @tiles = ['C','A','T','T','Y','J','Z']
       else
         @tiles = []
       end

@@ -12,7 +12,7 @@ describe 'TileBag' do
     end
 
     it 'counts total tiles of each letter in TILES_COUNT' do
-      @tilebag::TILES_COUNT['A'].must_equal 9
+      @tilebag::TILES_COUNT['A'].must_equal 8
     end
   end
 
