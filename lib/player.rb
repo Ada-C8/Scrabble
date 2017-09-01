@@ -15,10 +15,10 @@ module Scrabble
         false
       else
         @plays << word.upcase
-        word = word.upcase
-        word.split("").each do |letter|
-           @tiles.slice!(@tiles.index(letter))
-        end
+        #word = word.upcase
+        #word.split("").each do |letter|
+        #   @tiles.slice!(@tiles.index(letter))
+        #end
         word_score = Scrabble::Scoring.score(word)
         @score_array << word_score
         return word_score
@@ -49,15 +49,16 @@ module Scrabble
     end
 
 
-    # def draw_tiles(tile_bag)
-    #   # tile_bag.draw_tiles(amount_of_tiles_i_want)
-    #   if @tiles.length < 7
-    #     tiles_drawn = draw_tiles(7 - @tiles.length)
-    #     tiles_drawn.each do |letter|
-    #       @tiles << letter
-    #     end
-    #   end
-    # end
+    def draw_tiles(tile_bag)
+      # tile_bag.draw_tiles(amount_of_tiles_i_want)
+      if @tiles.length < 7
+        tiles_drawn = tile_bag.draw_tiles(7 - @tiles.length)
+        tiles_drawn.each do |letter|
+          @tiles << letter
+        end
+      end
+      return @tiles
+    end
 
 
 

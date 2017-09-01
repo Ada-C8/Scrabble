@@ -1,6 +1,12 @@
 require_relative 'spec_helper.rb'
 
 describe "Class player" do
+  #before do
+    #@tile_bag =
+    #@tile_bag = Scrable::TileBag.new
+    #@player_prueba = Scrabble::Player.new
+    #@tiles = @player_prueba.draw_tiles(tile_bag)
+  #end
   describe "Initialize" do
     it "Return to name" do
       Scrabble::Player.must_respond_to :name
@@ -84,9 +90,16 @@ describe "Class player" do
       end
     end #describe highest
 
-    # describe "draw_tiles" do
-    #   it ""
-    # end
+    describe "draw_tiles" do
+      before do
+        @morsa = Scrabble::Player.new("Morsa")
+        @tile_bag = Scrabble::TileBag.new
+      end
+
+      it "fills tile array" do
+        @morsa.draw_tiles(@tile_bag).length.must_equal 7
+      end
+    end
 
 
   end#describe initialize
