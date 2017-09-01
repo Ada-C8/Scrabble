@@ -6,7 +6,7 @@ module Scrabble
       @name = name
       @plays = []
       @total_score = 0
-      @tiles = [] #max 7 
+      @tiles = [] #max 7
     end
 
     def play(word)

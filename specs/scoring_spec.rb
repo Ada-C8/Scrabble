@@ -37,6 +37,10 @@ describe "Scoring" do
 
     it "Raises an ArgumentError if input is not a String" do
       proc { @test_class_method.score(123) }.must_raise ArgumentError
+
+      proc { @test_class_method.score([]) }.must_raise ArgumentError
+
+      proc { @test_class_method.score(0) }.must_raise ArgumentError
     end
 
     it "Returns the total score for the given word" do
@@ -60,6 +64,10 @@ describe "Scoring" do
 
     it "Raises an error if parameter is not an Array" do
       proc { @test_class_method.highest_score_from(123) }.must_raise ArgumentError
+
+      proc { @test_class_method.highest_score_from({}) }.must_raise ArgumentError
+
+      proc { @test_class_method.highest_score_from(0) }.must_raise ArgumentError
     end
 
     it "Returns a String" do
@@ -72,19 +80,37 @@ describe "Scoring" do
       @test_class_method.highest_score_from(test_arr).must_equal "ZZZ"
     end
 
+  end
+
+  describe "self.tie method" do
+
+    it "Can be called" do
+      @test_class_method.must_respond_to :tie
+    end
+
+    it "Returns a String" do
+      test_word = "ARE" #score = 3
+      test_word_2 = "DO" #score = 3
+      @test_class_method.tie(test_word, test_word_2).must_be_instance_of String
+    end
+
     it "Returns the word with the fewest letters in the case of a tie" do
-      test_arr = ["AEIO", "DG"] #both score to 4
-      @test_class_method.highest_score_from(test_arr).must_equal "DG"
+      test_word = "ARE" #score = 3
+      test_word_2 = "DO" #score = 3
+      @test_class_method.tie(test_word, test_word_2).must_equal "DO"
     end
 
     it "Returns the first word supplied, in the case of a tie with words of the same length and same score" do
-      test_arr = ["AE", "OU"] #both score to 2
-      @test_class_method.highest_score_from(test_arr).must_equal "AE"
+      test_word = "GO" #score = 3
+      test_word_2 = "DO" #score = 3
+      @test_class_method.tie(test_word, test_word_2).must_equal "GO"
     end
 
     it "Returns the seven letter word, in the case of a tie" do
-      test_arr = ["AEIOULN", "KD"] #both score to 7
-      @test_class_method.highest_score_from(test_arr).must_equal "AEIOULN"
+      test_word = "AEIOULN" #score = 7
+      test_word_2 = "KD" #score = 7
+      @test_class_method.tie(test_word, test_word_2).must_equal "AEIOULN"
     end
+
   end
 end
