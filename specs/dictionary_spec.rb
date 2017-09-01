@@ -11,6 +11,10 @@ describe "Dictionary" do
 
   end
 
+  it "Creates a hash with 26 keys" do
+    @dict.all_words.length.must_equal 26
+  end
+
   it "Finds the word 'azotic'" do
     @dict.is_word?("azotic").must_equal true
   end
