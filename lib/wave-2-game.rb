@@ -10,16 +10,13 @@ module Scrabble
 
     def play
       start
-
       while continue?
         @players.each do |player|
           puts "It is #{player.name}'s turn"
           player_word = get_word_for(player)
           player_has_won = !player_word
 
-          if player_word
-            print_score(player_word)
-          end
+          print_score(player_word) if player_word
 
           if player_has_won
             crown_winner(player)
@@ -27,37 +24,36 @@ module Scrabble
           end
         end
       end
-
       conclude
     end
 
     private
 
     def setup_players
-      puts "How many players do you have?"
+      puts 'How many players do you have?'
       num_of_players = get_int_input
 
       players = []
       num_of_players.times do |player|
         players << Player.new(get_player_name(player))
       end
-      return players
+      players
     end
 
     def start
-      puts "Welcome to our Scrabble game!"
+      puts 'Welcome to our Scrabble game!'
     end
 
     def continue?
-      return true if @words.length == 0 # haven't started playing yet
+      return true if @words.empty? # haven't started playing yet
 
-      puts "Would you like to play another round? (Y/N)"
+      puts 'Would you like to play another round? (Y/N)'
       continue = gets.chomp
-      (continue == "Y") ? true : false
+      continue == "Y" ? true : false
     end
 
     def get_word_for(player)
-      puts "Enter a word to score:"
+      puts 'Enter a word to score:'
       word = gets.chomp
       @words << word
 
@@ -91,7 +87,7 @@ module Scrabble
     def get_int_input
       input = gets.chomp
       while input.match(/\D/)
-        puts "Please put in a valid integer"
+        puts 'Please put in a valid integer'
         input = gets.chomp
       end
       return input.to_i

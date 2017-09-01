@@ -9,9 +9,7 @@ module Scrabble
     def play
       start
 
-      while continue?
-        print_score(get_word)
-      end
+      print_score(get_word) while continue?
 
       conclude
     end
@@ -19,33 +17,32 @@ module Scrabble
     private
 
     def start
-      puts "Welcome to our Scrabble game!"
+      puts 'Welcome to our Scrabble game!'
     end
 
     def continue?
-      return true if @words.length == 0 # haven't started playing yet
+      return true if @words.empty? # haven't started playing yet
 
-      puts "Would you like to score another word? (Y/N)"
+      puts 'Would you like to score another word? (Y/N)'
       continue = gets.chomp
-      (continue == "Y") ? true : false
+      continue == 'Y' ? true : false
     end
 
     def get_word
-      puts "Enter a word to score:"
+      puts 'Enter a word to score:'
       word = gets.chomp
       @words << word
-
-      return word
+      word
     end
 
     def print_score(word)
       result = Scrabble::Scoring.score(word)
-      puts "The score of #{ word } is #{ result }"
+      puts "The score of #{word} is #{result}"
     end
 
     def conclude
       highest_word = Scrabble::Scoring.highest_score_from(@words)
-      puts "The final highest scoring word is #{ highest_word }"
+      puts "The final highest scoring word is #{highest_word}"
     end
   end
 end
