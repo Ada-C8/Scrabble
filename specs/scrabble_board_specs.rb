@@ -59,9 +59,13 @@ describe "Scrabble::Board" do
     @board.check_placement("test",[0,0],:down)
     @board.check_placement("dog",[0,1],:down).must_equal false
   end
-  it "can't play word that intersects at non-matching letter" do
+  it "can't play word that intersects at non-matching letter in down direction" do
     @board.check_placement("test",[0,0],:down)
     @board.check_placement("dog",[0,0],:down).must_equal false
+  end
+  it "can't play word that intersects at non-matching letter in right direction" do
+    @board.check_placement("dog",[0,1],:down)
+    @board.check_placement("test",[1,0],:right).must_equal false
   end
   it "won't play a non-word" do
     @board.check_placement("asdfg",[0,0],:down).must_equal false

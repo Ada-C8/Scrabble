@@ -64,7 +64,6 @@ module Scrabble
           if board[start[0]][start[1]+i].nil?
             board[start[0]][start[1]+i] = word[i]
           elsif word[i] != board[start[0]][start[1]+i]
-            puts "wrong letter"
             return false
           end
         end

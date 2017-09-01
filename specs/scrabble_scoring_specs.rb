@@ -30,8 +30,8 @@ describe "Scrabble::Scoring" do
         Scrabble::Scoring.highest_score_from_array(array3).must_equal "k"
       end
       it "finds word with length = 7 when words are same score" do
-        array4 = %w(aaaaaaa aak)
-        Scrabble::Scoring.highest_score_from_array(array4).must_equal "aaaaaaa"
+        array4 = %w(a i e qqqqqj aaaaaad)
+        Scrabble::Scoring.highest_score_from_array(array4).must_equal "aaaaaad"
       end
       it "calls blank strings zero" do
         array4 = ['','','']

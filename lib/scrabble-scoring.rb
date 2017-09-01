@@ -1,7 +1,5 @@
-
 module Scrabble
   class Scoring
-    attr_reader
 
     TILE_SCORES = {
       "A"=>1,
@@ -31,9 +29,6 @@ module Scrabble
       "Q"=>10,
       "Z"=>10}
 
-      def initialize
-      end
-
       def self.score(word)
         letters = word.upcase.split(//)
         score = 0
@@ -49,6 +44,7 @@ module Scrabble
       def self.highest_score_from_array(array_of_words)
         max_score = [0,0, ""]
         array_of_words.each do |word|
+          puts "#{word} and #{self.score(word)}"
           if self.score(word) > max_score[0]
             max_score = [self.score(word), word.length, word]
           elsif self.score(word) == max_score[0]
@@ -62,8 +58,5 @@ module Scrabble
         return max_score[2]
       end
 
-
-
-
-    end # end class
-  end # end module
+  end # end class
+end # end module
