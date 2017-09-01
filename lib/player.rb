@@ -26,7 +26,11 @@ module Scrabble
     def delete_tiles_from_tiles_array(word)
       word = word.upcase
       word.split("").each do |letter|
-        @tiles.slice!(@tiles.index(letter))
+        if @tiles.include?(letter)
+          @tiles.slice!(@tiles.index(letter))
+        else
+          raise ArgumentError.new("You cannot play this word.")
+        end
       end
     end
 
@@ -53,7 +57,6 @@ module Scrabble
       end
     end
 
-
     def draw_tiles(tile_bag, test_array = [])
       # tile_bag.draw_tiles(amount_of_tiles_i_want)
       if @debug
@@ -70,6 +73,8 @@ module Scrabble
       end
       # return @tiles
     end
+
+
 
 
 

@@ -33,6 +33,10 @@ describe "Class player" do
         @new_player.tiles.must_equal ["P", "E", "R", "E", "Z"]
       end
 
+      it "Raises an argument error if tiles are not available to make word" do
+        proc {@new_player.play("zorro")}.must_raise ArgumentError
+      end
+
     end
 
     describe "total_score" do
@@ -80,7 +84,7 @@ describe "Class player" do
         @jugador.play("ZZZZZZZ")
         @jugador.won?.must_equal true
       end
-     end #describe
+    end #describe
 
     describe "highest score with word" do
       before do
@@ -97,7 +101,7 @@ describe "Class player" do
       it "Returns the highest score" do
         @jugador.highest_scoring_word_score.must_equal ["PEREZA", 17]
       end
-    
+
       it "Returns empty array and 0 score for 0 words played" do
         fantasma = Scrabble::Player.new("Fantasma")
         proc{fantasma.highest_scoring_word_score}.must_raise ArgumentError
