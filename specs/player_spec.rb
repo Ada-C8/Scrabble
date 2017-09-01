@@ -4,6 +4,10 @@ describe "The Player class" do
 
   before do
     @player = Scrabble::Player.new('Peter')
+    @tilebag = Scrabble::TileBag.new
+    @player.draw_tiles(@tilebag)
+    @tiles = @player.tiles
+    ap @tiles
   end
 
   describe "Initialising Player" do
@@ -28,61 +32,70 @@ describe "The Player class" do
     end
 
     it "stores the words that you input in the play method inside @plays" do
-      @player.play("word")
-      @player.plays.must_equal ["WORD"]
+      word = @tiles[0] + @tiles[1] + @tiles[2]
+      @player.play(word)
+      @player.plays.must_equal [word.upcase]
     end
 
     it "increases the total_score as you add new words" do
-      score1 = @player.play("word")
-      score2 = @player.play("hello")
+      word = @tiles[0] + @tiles[1] + @tiles[2]
+      score1 = @player.play(word)
+      @player.draw_tiles(@tilebag)
+      word2 = @tiles[3] + @tiles[4] + @tiles[5]
+      score2 = @player.play(word2)
       ourscore = score1 + score2
       @player.total_score.must_equal ourscore
     end
 
     it "Returns false if the player has already won" do
-      @player.play("zzebras")
-      @player.play("azaleas")
-      @player.play("hello").must_equal false
+      @player.draw_tiles(@tilebag)
+      word = @tiles[0] + @tiles[1] + @tiles[2] + @tiles[3] + @tiles[4] + @tiles[5] + @tiles[6]
+      ap "Our test word1: #{word}"
+      @player.play(word)
+      @player.draw_tiles(@tilebag)
+      word2 = @tiles[0] + @tiles[1] + @tiles[2] + @tiles[3] + @tiles[4] + @tiles[5] + @tiles[6]
+      @player.play(word2).must_equal false
     end
   end
 
   describe "Class attributes" do
     it "@plays is an array" do
-      @player.play("word")
-      @player.play("hello")
-      @player.play("apple")
-      @player.play("zzzzzzz")
+      @player.draw_tiles(@tilebag)
+      word = @tiles[0] + @tiles[1] + @tiles[2] + @tiles[3]
+      @player.play(word)
+      @player.draw_tiles(@tilebag)
+      word2 = @tiles[0] + @tiles[1] + @tiles[2]
+      @player.play(word2)
       @player.plays.must_be_kind_of Array
     end
     it "@plays must contains all of a player words" do
-      @player.play("word")
-      @player.play("hello")
-      @player.play("apple")
-      @player.play("zzzzzzz")
-      @player.plays.must_include "WORD"
-      @player.plays.must_include "HELLO"
-      @player.plays.must_include "APPLE"
-      @player.plays.must_include "ZZZZZZZ"
+      @player.draw_tiles(@tilebag)
+      word = @tiles[0] + @tiles[1] + @tiles[2] + @tiles[3]
+      @player.play(word)
+      @player.draw_tiles(@tilebag)
+      word2 = @tiles[0] + @tiles[1] + @tiles[2]
+      @player.play(word2)
+      @player.plays.must_include word
+      @player.plays.must_include word2
     end
   end
-
-
 
   describe "The highest_scoring_word method" do
 
     it "Returns the highest scoring word for the player" do
-      @player.play("word")
-      @player.play("hello")
-      @player.play("apple")
-      @player.play("zzzzzzz")
-      @player.highest_scoring_word.must_equal "ZZZZZZZ"
+      @player.draw_tiles(@tilebag)
+      word = @tiles[0] + @tiles[1] + @tiles[2] + @tiles[3] + @tiles[4] + @tiles[5] + @tiles[6]
+      @player.play(word)
+      @player.draw_tiles(@tilebag)
+      word2 = @tiles[0] + @tiles[1] + @tiles[2]
+      @player.play(word2)
+      @player.highest_scoring_word.must_equal word
     end
 
     it "Returns  a string" do
-      @player.play("word")
-      @player.play("hello")
-      @player.play("apple")
-      @player.play("zzzzzzz")
+      @player.draw_tiles(@tilebag)
+      word = @tiles[0] + @tiles[1] + @tiles[2] + @tiles[3] + @tiles[4] + @tiles[5] + @tiles[6]
+      @player.play(word)
       @player.highest_scoring_word.class.must_equal String
     end
   end
@@ -90,11 +103,10 @@ describe "The Player class" do
   describe "The highest_word_score method" do
 
     it "Returns the highest scoring word score" do
-      @player.play("word")
-      @player.play("hello")
-      @player.play("apple")
-      @player.play("zzzzzzz")
-      @player.highest_word_score.must_equal 120
+      @player.draw_tiles(@tilebag)
+      word = @tiles[0] + @tiles[1] + @tiles[2] + @tiles[3] + @tiles[4] + @tiles[5] + @tiles[6]
+      @player.play(word)
+      @player.highest_word_score.must_equal Scrabble::Scoring.score(word)
     end
   end
 

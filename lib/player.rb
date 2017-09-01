@@ -1,4 +1,6 @@
 require_relative 'scoring'
+require 'awesome_print'
+
 module Scrabble
   class Player
     attr_reader :name, :plays, :total_score, :tiles
@@ -10,8 +12,27 @@ module Scrabble
     end
 
     def play(word)
+      ap "Played word = #{word}"
+      tiles_copy = @tiles
+
+      #if all the letters in word are present in the player's hand, then it will pass through this loop without raising an error.
+      word.upcase.split("").each do |letter|
+        if tiles_copy.include?(letter)
+            tiles_copy.delete_at(tiles_copy.index(letter) || tiles_copy.length)
+            ap "After removing tile form hand: #{tiles_copy}"
+        else
+          raise ArgumentError.new("The letter \"#{letter}\" is not in your hand.")
+        end
+      end
+
+      @tiles = tiles_copy
+
+      ap "Tiles in hand- tiles_copy: #{tiles_copy}"
+      ap "Tiles in hand- tiles_copy: #{@tiles}"
+
       @plays << word.upcase
       @total_score += Scoring.score(word)
+
       if won?
         return false
       else
@@ -32,8 +53,10 @@ module Scrabble
     end
 
     def draw_tiles(tile_bag)
+      ap "Tiles in hand before player draws: #{@tiles}"
       draw = 7 - @tiles.length
-      @tiles.concat(tile_bag.draw_tiles(draw))
+      @tiles.concat(tile_bag.draw_tiles(draw)) #both this class and the TileBag class have draw_tiles methods.
+      ap "Tiles in hand after player draws: #{@tiles}"
     end
 
     private

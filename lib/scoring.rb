@@ -12,7 +12,6 @@ module Scrabble
       }
 
       if word.class != String
-        puts "not ok"
         raise ArgumentError.new("You did not enter a string for the word being scored.")
       elsif word.length == 0
         raise ArgumentError.new("You did not enter a word")

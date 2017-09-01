@@ -36,8 +36,9 @@ module Scrabble
      end
 
      def draw_tiles(num)
+       ap "This is the number of tiles requested from the player method: #{num}"
        #Raise argument error if num > 7
-       puts"Tiles remaining at start: #{@tiles_remaining}"
+       #puts"Tiles remaining at start: #{@tiles_remaining}"
        raise ArgumentError.new("cannot take more than 7 letters at a time") if num > 7
        #Raise argument error if num > @tiles_remaining
        raise ArgumentError.new("you have requested more tiles than there are in the bag. There are #{@tiles_remaining} tiles remaining in the bag.") if num > @tiles_remaining
@@ -47,28 +48,31 @@ module Scrabble
        drawn_tiles = []
        num.times do
          letter = @tiles.to_a.sample(1)
-         puts "THIS LETTER #{letter}"
+         #puts "THIS LETTER #{letter}"
          @tiles[letter[0][0]] -= 1
-         
+
          #quantity -= 1
-         puts "QUANTITY? #{@tiles[letter[0][0]]}"
+         #puts "QUANTITY? #{@tiles[letter[0][0]]}"
          @tiles.delete_if {|ltr, qty| qty == 0}
          drawn_tiles << letter[0]
-         puts "drawn tiles inside loop: #{drawn_tiles}"
+         #puts "drawn tiles inside loop: #{drawn_tiles}"
        end
 
-      #  letters.each do |letter|
-      #    @tiles[letter] -= 1
-      #  end
-        #@tiles.delete_if {|letter, quantity| quantity == 0}
-        puts "Drawn_tiles1: #{drawn_tiles}"
-        drawn_tiles = drawn_tiles.to_h.keys
-        puts "Drawn_tiles2: #{drawn_tiles}"
-        @tiles_remaining = tiles.values.inject(:+)
-        puts "Tiles remaining after draw: #{@tiles_remaining}"
+        ap "Drawn_tiles before to_h: #{drawn_tiles}"
 
-        puts "DRAWN TILES! #{drawn_tiles}"
-        return drawn_tiles
+        #drawn_tiles = drawn_tiles.to_h.keys
+        final_drawn_tiles = []
+        drawn_tiles.each do |array|
+
+            final_drawn_tiles << array[0]
+
+        end
+        ap "final_drawn_tiles after loops: #{final_drawn_tiles}"
+        @tiles_remaining = @tiles.values.inject(:+)
+        #puts "Tiles remaining after draw: #{@tiles_remaining}"
+
+        #puts "DRAWN TILES! #{final_drawn_tiles}"
+        return final_drawn_tiles
      end
 
 
