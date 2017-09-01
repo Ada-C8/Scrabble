@@ -2,6 +2,8 @@ require_relative 'spec_helper'
 
 describe "Player" do
 
+#TODO : we didn't have time to write the tests for the ArgumentError calling in the play(word) method! But we know we should have. We would have tested that an ArgumentError was raised if the word that was played was not included in @tiles_in_hand
+
   before do
     @test_player = Scrabble::Player.new("Mira")
   end
@@ -53,6 +55,11 @@ describe "Player" do
       array[0].must_equal test_word
     end #it "will add the word to the @player_words array" do
 
+    xit "will raise ArgumentError if word is not in tile_bag" do
+      #TODO: get this test to work 
+      @test_player.play("hello").must_raise ArgumentError
+    end
+
     it "should add word score to @total_score" do
       test_tile_bag = Scrabble::Tilebag.new
       @test_player.draw_tiles(test_tile_bag)
@@ -61,6 +68,30 @@ describe "Player" do
       @test_player.play(test_word).must_equal score_is
       # @test_player.play("hello")
       # @test_player.total_score.must_equal 8
+    end
+
+    it "if won is true, should return false" do
+      #TODO: we need to fix this to work with our ArgumentError checking!!!
+      #if we exclude words over seven letter we will have to change this
+      # total_score = 0
+      # test_words = []
+      #
+      # until total_score = 93
+      #   test_word = @test_player.tiles_in_hand.join
+      #   total_score += Scrabble::Scoring.score(test_word)
+      #   test_words << test_word
+      # end
+      #
+      # test_words.each do |word|
+      #   @test_player.play(word)
+      # end
+      #
+      # next_test_word = @test_player.tiles_in_hand.join
+      #
+      # @test_player.play(word).must_equal false
+
+      # @test_player.play("zzzzzzzzzz")
+      # @test_player.play("hello").must_equal false
     end
 
     it "if won is false, should return score as Integer" do
@@ -85,6 +116,7 @@ describe "Player" do
   describe "won?" do
 
     it "should return true if @total_score > 100" do
+
       test_tile_bag = Scrabble::Tilebag.new
 
       until @test_player.total_score > 100
@@ -92,7 +124,10 @@ describe "Player" do
         test_word = @test_player.tiles_in_hand.join
         @test_player.play(test_word)
       end
+
       @test_player.won?.must_equal true
+
+      #This doesn't work because you can't call a private method
       # @test_player.play("zzzzzzzzzz")
       # @test_player.won?.must_equal true
     end # It
@@ -102,10 +137,10 @@ describe "Player" do
       @test_player.draw_tiles(test_tile_bag)
       test_word = @test_player.tiles_in_hand.join
       score_is = @test_player.play(test_word)
+
       score_is.must_be :<, 100
       @test_player.won?.must_equal false
     end # It
-
   end # Describe won?
 
   describe "#highest_scoring_word" do
@@ -132,6 +167,7 @@ describe "Player" do
         score_is = Scrabble::Scoring.score(test_word)
       end
       @test_player.highest_word_score.must_equal score_is
+
     end #it "will return the highest scoring word" do
 
   end # describe "#highest_scoring_word" do
@@ -139,6 +175,7 @@ describe "Player" do
   describe "#highest_word_score" do
 
     it "should return an Integer" do
+
       test_tile_bag = Scrabble::Tilebag.new
       @test_player.draw_tiles(test_tile_bag)
       test_word = @test_player.tiles_in_hand.join
@@ -155,6 +192,7 @@ describe "Player" do
     end
 
     it "should return the actual score" do
+
       test_tile_bag = Scrabble::Tilebag.new
       @test_player.draw_tiles(test_tile_bag)
       test_word = @test_player.tiles_in_hand.join
@@ -175,7 +213,6 @@ describe "Player" do
       @test_player.draw_tiles(test_tile_bag)
       @test_player.tiles_in_hand.length.must_equal 7
     end #it "should only draw tiles till player had seven tiles"
-    
   end #describe "draw_tiles(tile_bag)" do
 
 end # Describe
