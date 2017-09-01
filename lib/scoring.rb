@@ -1,4 +1,3 @@
-require 'pry'
 module Scrabble
   class Scoring
 
@@ -13,6 +12,11 @@ module Scrabble
         ['Q', 'Z'] => 10
       }
 
+      letters_only = /^[a-zA-Z]{1,7}$/
+      if !letters_only.match(word)
+        raise ArgumentError.new("Only letter characters are accepted. Your word must be between 1 and 7 letters.")
+      end
+
       word = word.upcase.split("")
 
       total = 0
@@ -26,7 +30,6 @@ module Scrabble
 
       if word.length == 7
         total += 50
-        # puts "great job, 50 extra points to Ravenclaw!"
       end
       return total
     end

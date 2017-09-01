@@ -1,4 +1,3 @@
-require 'pry'
 require_relative 'scoring'
 module Scrabble
   class Player
@@ -26,12 +25,6 @@ module Scrabble
       return sum
     end
 
-    # private
-
-    def won?
-      return total_score > 100 ? true : false
-    end
-
     def highest_word_score
       scores = []
       plays.each do |word|
@@ -44,6 +37,12 @@ module Scrabble
       return Scrabble::Scoring.highest_scoring_word(@plays)
     end
 
+
+    private
+
+    def won?
+      return total_score > 100 ? true : false
+    end
 
   end #(class end)
 end #(module)

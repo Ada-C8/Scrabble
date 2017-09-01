@@ -1,6 +1,6 @@
 require 'simplecov'
 SimpleCov.start
-
+require 'csv'
 require 'minitest'
 require 'minitest/autorun'
 require 'minitest/reporters'

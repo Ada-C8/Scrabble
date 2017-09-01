@@ -12,6 +12,7 @@ describe "PlayerClass" do
     player.name.must_equal "jan"
   end
 end
+
 describe "Plays" do
   it "returns an empty array if no words have been played" do
     play = Scrabble::Player.new("jan")
@@ -22,13 +23,14 @@ describe "Plays" do
 
   it "add word to plays array" do
     player = Scrabble::Player.new("Jan")
-    player.play("sensitive")
-    player.plays.must_equal ["sensitive"]
+    player.play("fisher")
+    player.plays.must_equal ["fisher"]
   end
 
   it "returns the score of the word played" do
     player = Scrabble::Player.new("Jan")
     player.play("cat").must_equal 5
+    player.play("a").must_equal 1
   end
 
   it "returns false if player has already won" do
@@ -56,23 +58,38 @@ describe "total score method" do
     player = Scrabble::Player.new("Jan")
     player.total_score.must_equal 0
   end
-
-  it "True if over 100 points" do
-    player = Scrabble::Player.new("Jan")
-    player.play("zzzzzzz")
-    player.play("dogzzzz")
-    player.play("a")
-    player.won?.must_equal true
-  end
-
+end
+  #
+  # it "True if over 100 points" do
+  #   player = Scrabble::Player.new("Jan")
+  #   player.play("zzzzzzz")
+  #   player.play("dogzzzz")
+  #   player.play("a")
+  #   player.won?.must_equal true
+  # end
+describe "highest word score method" do
   it "returns the highest score of a played word" do
     player = Scrabble::Player.new("Jan")
     player.play("cat")
     player.play("dog")
     player.play("zzz")
     player.highest_word_score.must_equal 30
+
+    playertwo = Scrabble::Player.new("Jan")
+    playertwo.play("cat")
+    playertwo.play("a")
+    playertwo.play("b")
+    playertwo.highest_word_score.must_equal 5
   end
 
+  it "returns the highest score even in case of a tie score" do
+    player = Scrabble::Player.new("Jan")
+    player.play("cat")
+    player.play("dog")
+    player.highest_word_score.must_equal 5
+  end
+
+describe "highest scoring word method" do
   it "returns the highest scoring played word" do
     player = Scrabble::Player.new("Jan")
     player.play("cat")
@@ -103,6 +120,7 @@ describe "total score method" do
       player.play("a")
       player.highest_scoring_word.must_equal "cat"
     end
+  end
 
 
 end
