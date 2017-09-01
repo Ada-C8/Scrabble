@@ -35,21 +35,18 @@ module Scrabble
     end
 
     def draw_tiles(num)
+      tiles_remaining < num ? num = tiles_remaining : num
+
       available_tiles = tiles.to_a
       tiles_drawn = []
+
       num.times do
-        tile = available_tiles.sample[0]
-
-
-        unless tiles[tile] == 0
-          tiles[tile] -= 1
-          tiles_drawn << tile
-        else
-          tile = available_tiles.sample[0]
-        end
-
-
+        available_tiles.shuffle
+        tile = available_tiles.find { |letter, num| num > 0 }[0]
+        tiles[tile] -= 1
+        tiles_drawn << tile
       end
+
       tiles_drawn
     end
 
