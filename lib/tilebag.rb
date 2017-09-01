@@ -1,7 +1,7 @@
 module Scrabble
   class TileBag
     def initialize
-      @remaining_tiles = {
+      tile_distribution = {
         "A" => 9,
         "B" => 2,
         "C" => 2,
@@ -29,8 +29,6 @@ module Scrabble
         "Y" => 2,
         "Z" => 1
       }
-
-<<<<<<< HEAD
       #  Here we push each letter as many times as it is
       #  in their value into an array called remaining_tiles
       # Example: A 9 times, B 2 times
@@ -40,30 +38,19 @@ module Scrabble
           @remaining_tiles << letter
         end
       end
-=======
-      
->>>>>>> c08f2cf622a13eba77d3d2c962ec481bc84b10d0
     end
-
+    
     def draw_tiles(num)
       tiles = []
       num.times do
-        tile = @remaining_tiles.keys.sample
-		until @remaining_tiles[tile] != 0  
-			tile = @remaining_tiles.keys.sample
-		end
-		@remaining_tiles[tile] -= 1	
+        tile = @remaining_tiles.delete_at(rand(@remaining_tiles.length))
         tiles << tile
       end
       return tiles
     end
 
     def tiles_remaining
-	  sum = 0
-	  @remaining_tiles.keys.each do |key, value|
-		sum += value
-	  end
-      return sum
+      return @remaining_tiles.length
     end
   end
 end
