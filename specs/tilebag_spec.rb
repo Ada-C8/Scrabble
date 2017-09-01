@@ -11,6 +11,14 @@ describe "TileBag" do
     end
   end
   describe "#draw_tiles(num)" do
+    it "Returns a collection of random tiles" do
+      bag = Scrabble::TileBag.new
+      bag.draw_tiles(4).class.must_equal Array 
+    end
+
+    it "Removes tiles from the default set" do
+
+    end
 
   end
   describe "#tiles_remaining" do

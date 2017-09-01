@@ -8,6 +8,16 @@ module Scrabble
         S: 4, T: 6, U: 4, V: 2, W: 2, X: 1, Y: 2, Z: 1
       }
     end
+
+    def draw_tiles(num)
+      #convert the letter_quantity hash to an array
+      #use sample to get a random key
+      #once accessed, add to player array
+      #decrement quantity of that letter
+
+      quantity_array = @letter_quantity.to_a
+      quantity_array.sample(n)
+    end
   end
 
 
