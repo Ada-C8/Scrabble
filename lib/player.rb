@@ -9,7 +9,7 @@ module Scrabble
       @plays = []
       @tiles = []
     end
-
+    #SRB - I think we can use an enumerable like inject or reduce to dry up total score.
     def total_score
       # total_score: Returns the sum of scores of played words
       running_score = 0
