@@ -1,3 +1,4 @@
+require 'pry'
 module Scrabble
   class PlayerClass
     attr_reader :name, :plays
@@ -18,10 +19,23 @@ module Scrabble
     end
 
     def play(word)
+      legit_word?(word)
       # Returns false if player has already won
       # Returns the score of the word
       @plays << word
       won? ? (return false) : (return Scrabble::ScoringClass.score(word))
+    end
+
+    def is_alphabet?(input)
+      is_string?(input) == false ? (raise ArgumentError.new("#{input} is an invalid entry - you may only enter strings")) : (return /^[a-z]+$/.match(input))
+    end
+
+    def is_string?(input)
+      input.class == String
+    end
+    
+    def legit_word?(player_word)
+      raise ArgumentError.new("#{player_word} is an invalid entry - you may only enter letters in the the english alphabet") if is_alphabet?(player_word) == nil
     end
 
     def highest_scoring_word

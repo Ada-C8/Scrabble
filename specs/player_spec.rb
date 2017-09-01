@@ -83,6 +83,20 @@ describe "PlayerClass" do
       @player1.highest_word_score.must_equal 30
     end
   end
+
+  describe "legit_word?" do
+    it "will raise argument error for invalid entry in the string AKA - numbers, special characters, empty string" do
+      proc{@player1.legit_word?("1")}.must_raise ArgumentError
+      proc{@player1.legit_word?("")}.must_raise ArgumentError
+      proc{@player1.legit_word?("!")}.must_raise ArgumentError
+      proc{@player1.legit_word?("legitword")}.must_be_silent
+    end
+    it "will raise arguement error if anything but a string in entered" do
+      proc{@player1.legit_word?([0])}.must_raise ArgumentError
+      proc{@player1.legit_word?(0)}.must_raise ArgumentError
+      proc{@player1.legit_word?(false)}.must_raise ArgumentError
+    end
+  end
 end
 
 # SET UP VARIABLES
