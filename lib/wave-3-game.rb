@@ -79,10 +79,10 @@ module Scrabble
 
       while word_validation == false || compare_tiles == false
         puts "Enter a word to score:"
-        word = gets.chomp
-        while word == ""
+        word = gets.chomp.upcase
+        while word.match(/[\W_\d]/) || word == ""
           puts "You must enter a word."
-          word = gets.chomp
+          word = gets.chomp.upcase
         end
         word_validation = Scrabble::Dictionary.look_up(word)
         compare_tiles = player.compare_to_tiles(word)
