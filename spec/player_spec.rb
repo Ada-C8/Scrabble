@@ -27,17 +27,26 @@ describe "class Player"  do
     it "adds the word to the plays array" do
       @player.must_respond_to :play
     end
+
     it "returns false if player already won" do
+      @player.won?.must_equal false
       @player.play("ZZZZZZZ")
-      @player.play("hi").must_equal false
+      @player.won?.must_equal true
+      @player.play("hi").must_equal nil
     end
+  end
+
+  describe "total score" do
     it "returns the total score of played words" do
       @player.play("darts")
       @player.play("monkey")
-      @player.play("food").must_equal 29
+      @player.play("food")
+      @player.total_score.must_equal 29
     end
+
     it "returns zero if array is empty" do
-      @player.play("").must_equal 0
+      @player.play("")
+      @player.total_score.must_equal 0
     end
   end
 
@@ -51,14 +60,14 @@ describe "class Player"  do
     end
   end
 
-    describe "highest word score" do
-      it "returns the highest scoring word score" do
-        @player.play("darts")
-        @player.play("pizza")
-        @player.play("food")
-        @player.play("monkey")
-        @player.highest_word_score.must_equal 25
-      end
+  describe "highest word score" do
+    it "returns the highest scoring word score" do
+      @player.play("darts")
+      @player.play("pizza")
+      @player.play("food")
+      @player.play("monkey")
+      @player.highest_word_score.must_equal 25
     end
+  end
 
-  end #end of describe
+end #end of describe
