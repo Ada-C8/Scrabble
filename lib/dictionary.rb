@@ -3,7 +3,7 @@ require 'csv'
 module Scrabble
 
   class Dictionary
-    attr_reader :all_words
+    attr_reader :dictionary
 
     SCRABBLE_DICT = CSV.read('./support/dictionary.csv')
 
@@ -26,7 +26,7 @@ module Scrabble
 
 
     def initialize
-      @all_words = self.import(SCRABBLE_DICT)
+      @dictionary = self.import(SCRABBLE_DICT)
     end
 
     def is_word?(word)
@@ -40,7 +40,7 @@ module Scrabble
       letter1 = word[0]
 
       # get all words beginning with first letter from dict
-      words_beginning_with_letter1 = @all_words[letter1.to_sym]
+      words_beginning_with_letter1 = @dictionary[letter1.to_sym]
 
       # use binary search to search for word in the array
       low = 0
@@ -66,11 +66,3 @@ module Scrabble
 
   end #end of Dictionary clas
 end #end of module
-
-d = Scrabble::Dictionary.new
-#puts d.all_words[:a]
-
-
-puts d.is_word?("azotic")
-puts d.is_word?("qqrjk")
-puts d.is_word?("baby")

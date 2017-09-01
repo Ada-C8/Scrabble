@@ -7,12 +7,12 @@ describe "Dictionary" do
 
   it "Can create a Dictionary hash with first letter as key and values as arrays of words beginning with key" do
     @dict.must_be_instance_of Scrabble::Dictionary
-    @dict.all_words.must_be_kind_of Hash
+    @dict.dictionary.must_be_kind_of Hash
 
   end
 
   it "Creates a hash with 26 keys" do
-    @dict.all_words.length.must_equal 26
+    @dict.dictionary.length.must_equal 26
   end
 
   it "Finds the word 'azotic'" do

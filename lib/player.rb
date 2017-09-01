@@ -21,17 +21,17 @@ module Scrabble
       # word_array = word.chars
       word.upcase!
 
-      trial_word = [] # TODO use in game play
+      temp_array = []
 
       # loop through word array; if char in @tiles, pop off tiles and move to trial_word
 
       #TODO preserve order of word
       word.each_char do |char|
         if @tiles.include? char
-          trial_word << @tiles.delete_at(@tiles.index(char))
+          temp_array << @tiles.delete_at(@tiles.index(char))
         else
-          @tiles.concat(trial_word)
-          return nil
+          @tiles.concat(temp_array)
+          return nil #TODO For Game Play
         end
       end
 

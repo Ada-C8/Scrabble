@@ -20,7 +20,7 @@ module Scrabble
 
       BOARD_SIZE.times do
         rep += "_" * BOARD_SIZE + "_" * (BOARD_SIZE + 1) + "\n"
-        
+
       end
 
       return rep
@@ -29,6 +29,3 @@ module Scrabble
   end # end of board class
 
 end # end of module
-
-board = Scrabble::Board.new
-puts board.draw
