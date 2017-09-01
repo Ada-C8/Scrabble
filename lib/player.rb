@@ -3,11 +3,12 @@ require_relative '../lib/tilebag'
 module Scrabble
   class Player
     attr_reader :name, :plays, :tiles
-    def initialize(name)
+    def initialize(name, debug = false)
       @name = name
       @plays = []
       @score_array = []
       @tiles = []
+      @debug = debug
     end#initialize
 
     def play(word)
@@ -15,15 +16,19 @@ module Scrabble
         false
       else
         @plays << word.upcase
-        #word = word.upcase
-        #word.split("").each do |letter|
-        #   @tiles.slice!(@tiles.index(letter))
-        #end
+        delete_tiles_from_tiles_array(word)
         word_score = Scrabble::Scoring.score(word)
         @score_array << word_score
         return word_score
       end
     end #play word end
+
+    def delete_tiles_from_tiles_array(word)
+      word = word.upcase
+      word.split("").each do |letter|
+        @tiles.slice!(@tiles.index(letter))
+      end
+    end
 
     def total_score
       return @score_array.inject(0){|sum, x| sum + x}
@@ -49,15 +54,21 @@ module Scrabble
     end
 
 
-    def draw_tiles(tile_bag)
+    def draw_tiles(tile_bag, test_array = [])
       # tile_bag.draw_tiles(amount_of_tiles_i_want)
-      if @tiles.length < 7
-        tiles_drawn = tile_bag.draw_tiles(7 - @tiles.length)
-        tiles_drawn.each do |letter|
-          @tiles << letter
+      if @debug
+        @tiles = test_array
+        return @tiles
+      else
+        if @tiles.length < 7
+          tiles_drawn = tile_bag.draw_tiles(7 - @tiles.length)
+          tiles_drawn.each do |letter|
+            @tiles << letter
+          end
         end
+        return @tiles
       end
-      return @tiles
+      # return @tiles
     end
 
 
