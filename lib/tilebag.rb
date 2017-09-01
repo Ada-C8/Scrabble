@@ -47,6 +47,5 @@ module Scrabble
       num_of_tiles = @tile_bag.length
       return num_of_tiles
     end
-
   end
 end
