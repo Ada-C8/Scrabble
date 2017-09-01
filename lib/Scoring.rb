@@ -18,7 +18,6 @@ module Scrabble
       word_arr = word.upcase.split("")
       if word_arr.length == 7
         word_score += 50
-
       end
       word_arr.each do |letter|
         letter = letter.to_sym
@@ -33,16 +32,35 @@ module Scrabble
 
       array_of_words.each do |word|
         word_score = self.score(word)
+        word = word.upcase
         if word_score > highest_score
           highest_score = word_score
-          highest_score_word = word.upcase
-        elsif word_score == highest_score && word.length < highest_score_word.length
-          unless highest_score_word.length == 7
-            highest_score_word = word.upcase
-          end
+          highest_score_word = word
+        elsif word_score == highest_score
+            if word.length < highest_score_word.length
+              unless highest_score_word.length == 7
+              highest_score_word = word
+              end
+            elsif word.length == 7 && highest_score_word.length != 7
+              highest_score_word = word
+            end
         end
-      end
-      return highest_score_word
+
+          #GOOD CODE, attempt to refactor##
+          # if word_score > highest_score
+          #   highest_score = word_score
+          #   highest_score_word = word.upcase
+          # elsif word_score == highest_score
+          #   if word.length < highest_score_word.length
+          #     unless highest_score_word.length == 7
+          #     highest_score_word = word.upcase
+          #     end
+          #   elsif word.length == 7 && highest_score_word.length < 7
+          #     highest_score_word = word.upcase
+          #   end
+          # end
+        end
+        return highest_score_word
     end
   end
 end
