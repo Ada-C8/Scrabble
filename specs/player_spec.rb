@@ -1,6 +1,5 @@
 require_relative 'spec_helper'
 
-
 describe "Player" do
   describe "#initialize" do
     it "must take name as a parameter" do
@@ -14,6 +13,12 @@ describe "Player" do
     it "returns @name" do
       Scrabble::Player.new("Gale").name.must_equal "Gale"
       Scrabble::Player.new("Stef").name.must_equal "Stef"
+    end
+  end
+  describe "#tiles" do
+    it "Returns @tiles" do
+      player1 = Scrabble::Player.new("Gale")
+      player1.tiles.must_be_instance_of Array
     end
   end
   describe "#play(word)" do
@@ -70,6 +75,14 @@ describe "Player" do
       player1.play("Hedwig") #14
       player1.play("Bijous") #15
       player1.highest_word_score.must_equal 15
+    end
+  end
+  describe "draw_tiles(tile_bag)" do
+    it "fills the tiles array until it has 7 letters from the given tile bag" do
+      bag = Scrabble::TileBag.new
+      player1 = Scrabble::Player.new("Stef")
+      player1.draw_tiles(bag)
+      player1.tiles.length.must_equal 7
     end
   end
 end

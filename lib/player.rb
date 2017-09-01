@@ -1,14 +1,15 @@
 require_relative 'scoring'
-
+require_relative 'tilebag'
 
 module Scrabble
   class Player
-    attr_reader :name, :played_words #need to not have a reader that is the same as a method name
+    attr_reader :name, :played_words, :tiles#need to not have a reader that is the same as a method name
     def initialize(name)
       raise ArgumentError.new("Name must be a string") if name.class != String
       @name = name
       @played_words = []
       @total_score = 0
+      @tiles = []
     end
 
     def total_score
@@ -39,6 +40,13 @@ module Scrabble
 
     def highest_word_score
       Scrabble::Scoring.score(self.highest_scoring_word)
+    end
+
+    def draw_tiles(bag) #takes instance of TileBag as parameter
+      until @tiles.length == 7
+        tile = bag.draw_tiles(1)
+        @tiles << tile
+      end
     end
 
     private

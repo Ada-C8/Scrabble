@@ -10,15 +10,23 @@ module Scrabble
     end
 
     def draw_tiles(num)
-      #convert the letter_quantity hash to an array
-      #use sample to get a random key
-      #once accessed, add to player array
-      #decrement quantity of that letter
-
       quantity_array = @letter_quantity.to_a
-      quantity_array.sample(n)
+      tile_selection = []
+
+      quantity_array.sample(num).each do |letter_pair|
+        tile_selection << letter_pair[0]
+        if letter_pair[1] == 1 #If you drew the last tile of that letter, letter no longer available
+          letter_pair[0] = "remove"
+        end
+        letter_pair[1] -= 1
+      end
+      quantity_array.reject! {|pair| pair[0] == "remove"}
+      @letter_quantity = quantity_array.to_h
+      return tile_selection #returns an array of symbols
+    end
+
+    def tiles_remaining
+      @letter_quantity.sum {|letter, quantity| quantity}
     end
   end
-
-
 end

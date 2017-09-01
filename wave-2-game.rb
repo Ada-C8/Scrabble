@@ -50,7 +50,7 @@ module Scrabble
     def continue?
       return true if @words.length == 0 # haven't started playing yet
       @players.each do |player|
-        if player.won?
+        if player.total_score >= 100
           crown_winner(player)
           return false
         end
