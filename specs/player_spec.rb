@@ -73,7 +73,7 @@ describe "PlayerClass" do
       @player1.tiles.length.must_equal 7
     end
   end
-  describe "highest scoring word" do
+  describe "highest_scoring_word method" do
     it "Player 1 must respond to highest scoring word" do
       @player1.must_respond_to :highest_scoring_word
     end
@@ -85,7 +85,7 @@ describe "PlayerClass" do
       @player1.highest_scoring_word.must_equal "zzz"
     end
   end
-  describe "Highest Word Score method" do
+  describe "highest_word_score method" do
     it "Responds to highest_word_score" do
       @player1.must_respond_to :highest_word_score
     end
