@@ -5,7 +5,6 @@ describe "Scoring" do
 
     it 'check to see if word passed in self.score is a string' do
       word = 100004
-
       proc { Scrabble::Scoring.score(word) }.must_raise ArgumentError
     end
 
@@ -49,6 +48,11 @@ describe "Scoring" do
     it "returns a word (as a string) with length of 7 or returns highest scoring word" do
       array_of_words = [ "animals", "frog", "zoo"]
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal "animals"
+    end
+
+    it "returns the shortest word out of 2 words with the same score" do
+      array_of_words = ["frog", "strands"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "frog"
     end
 
 

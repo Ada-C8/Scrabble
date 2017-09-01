@@ -1,4 +1,5 @@
 require 'pry'
+require 'awesome_print'
 
 module Scrabble
   class Scoring
@@ -49,12 +50,24 @@ module Scrabble
       array_of_words.each do |word|
         word_score_hash[word] = self.score(word)
       end
-      max_word_pair = word_score_hash.max_by{|word, score| score }
-      return max_word_pair[0]
-      scored_words = array_of_words.map {|word| self.score(word)}
+
+      words_with_length_7 = array_of_words.find_all{ |word| word.length == 7}
+
+      # puts words_with_length_7
+
+      # max_word_pair = word_score_hash.max_by{ |word, score| score }
+      # max_word_pair[0]
+      #
+      # shortest_length_pair = word_score_hash.min_by{ |word, score| word.length }
+      # shortest_length_pair[0]
+
 
     end
 
   end #end of class
 
 end #end of module
+
+# array_of_words = [ "animals", "frog", "zoo", "quizzes"]
+#
+# ap Scrabble::Scoring.highest_score_from(array_of_words)
