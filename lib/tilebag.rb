@@ -34,5 +34,23 @@ module Scrabble
       }
     end
 
+    def draw_tiles(num)
+      available_tiles = tiles.to_a
+      tiles_drawn = []
+      num.times do
+        tile = available_tiles.sample[0]
+        unless tiles[tile] == 0
+          tiles[tile] -= 1
+          tiles_drawn << tile
+        else
+          tile = available_tiles.sample[0]
+        end
+      end
+      tiles_drawn
+    end
+
+    def tiles_remaining
+      tiles.values.inject(0, :+)
+    end
   end
 end

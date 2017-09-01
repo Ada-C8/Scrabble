@@ -25,7 +25,7 @@ describe "TileBag" do
       from_draw_tiles = @tilebag.draw_tiles(7)
       from_draw_tiles.must_be_instance_of Array
       from_draw_tiles.length.must_equal 7
-      froim_draw_tiles[rand(7)].must_be_instance_of String
+      from_draw_tiles[rand(7)].must_be_instance_of String
     end
 
     it "Must decrease the tile count of each tile picked from the tile bag" do
@@ -33,13 +33,17 @@ describe "TileBag" do
       @tilebag.tiles.values.inject(0, :+).must_equal 91
     end
 
+    it "Must not draw a tile if the value is 0" do
+      @tilebag.draw_tiles(98)
+      @tilebag.draw_tiles(1).length.must_equal 0
+    end
   end
 
   describe "tiles_remaining" do
     it "Returns the remaining number of tiles in the tilebag" do
     # Test code goes here
       @tilebag.tiles_remaining.must_be_instance_of Integer
-      @tilebag.tiles_remaining.must_match @tilebag.tiles.values.inject(0, :+)
+      @tilebag.tiles_remaining.must_equal 98
 
       @tilebag.draw_tiles(4)
       @tilebag.tiles_remaining.must_equal 94
