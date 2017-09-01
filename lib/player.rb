@@ -14,9 +14,12 @@ module Scrabble
     def play(input_word)
       total_score #TODO 99 vs. 101 edge case.
 
-       if won? == true
-         return false
-       end
+      if won? == true
+        return false
+      end
+
+      check_tiles(input_word)
+
       score = Scrabble::Scoring.score(input_word)
       @plays << input_word
       total_score
@@ -57,6 +60,13 @@ module Scrabble
     private
     def won?
       @total > 99 ? true : false
+    end
+
+    def check_tiles(input_word)
+      input_letters = input_word.split(" ")
+      input_letters.each do |letter|
+        raise ArgumentError.new "word contains letters not found in player tiles." if !(@tiles.include? letter)
+      end
     end
 
   end # => end of class

@@ -216,6 +216,7 @@ describe "Player Class" do
   end
 
   describe "optional 1" do
+
     it "raise error if player plays words with letters not in hand" do
       input_bag = Scrabble::Tilebag.new
       new_player = Scrabble::Player.new("Marisa")
@@ -226,5 +227,6 @@ describe "Player Class" do
       new_player = Scrabble::Player.new("Marisa")
       proc {new_player.play("zzz")}.must_raise ArgumentError
     end
+    it ""
   end
 end
