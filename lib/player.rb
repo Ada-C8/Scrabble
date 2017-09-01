@@ -7,7 +7,7 @@ module Scrabble
       @plays = []
       @debug = debug
       if @debug == :debug
-        @tiles = ['J','A','Z','Z','C','A','T']
+        @tiles = %w[J A Z Z C A T]
         @debug_points = 0
       else
         @tiles = []
@@ -21,9 +21,9 @@ module Scrabble
 
       word.upcase.chars.each do |letter|
         location = @tiles.index(letter)
-        if location == nil
+        if location.nil?
           @tiles = backup_hand
-          return false
+          return :fail
         end
         @tiles.delete_at(location)
       end
@@ -37,16 +37,12 @@ module Scrabble
       @plays.each do |word|
         total += Scoring.score(word)
       end
-      if @debug == :debug
-        total += @debug_points
-      end
+      total += @debug_points if @debug == :debug
       total
     end
 
     def add_points(num)
-      if @debug == :debug
-        @debug_points += num
-      end
+      @debug_points += num if @debug == :debug
     end
 
     def highest_scoring_word
@@ -67,6 +63,5 @@ module Scrabble
     def won?
       total_score > 100
     end
-
   end # end of Player class
 end # end of Scrabble module

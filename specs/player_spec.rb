@@ -13,7 +13,7 @@ describe 'Player' do
     end
 
     it 'creates DEBUG player if passed :debug argument' do
-      @debug_player.tiles.must_equal ['J','A','Z','Z','C','A','T']
+      @debug_player.tiles.must_equal %w[J A Z Z C A T]
     end
 
     it 'will convert everything passed as name into a String' do
@@ -51,17 +51,14 @@ describe 'Player' do
     end
 
     it 'returns false if player does not have tiles to play word' do
-      # (debug mode for hand)
-      # (check for double-letter words)
       @debug_player.play('jazzily').must_equal false
     end
 
     it 'removes played tiles from hand' do
       hand1 = @debug_player.tiles.dup
-      @debug_player.play("jazz")
+      @debug_player.play('jazz')
       @debug_player.tiles.wont_equal hand1
     end
-
   end
 
   describe 'total_score' do

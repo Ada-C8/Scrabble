@@ -64,11 +64,14 @@ module Scrabble
     end
 
     def get_word_for(player)
-      puts "Enter a word to score:"
-      word = gets.chomp
-      @words << word
+      keep_playing = :fail
+      while keep_playing == :fail
+        puts "Enter a word to score:"
+        word = gets.chomp
+        @words << word
 
-      keep_playing = player.play(word)
+        keep_playing = player.play(word)
+      end
 
       if keep_playing
         return word
