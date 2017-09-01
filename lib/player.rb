@@ -2,52 +2,64 @@
 require_relative 'scoring'
 module Scrabble
 
-class Player
-  attr_accessor :name
+  class Player
+    attr_accessor :name
 
-  def initialize(name)
-    @name  = name
-    @plays = []
-  end
-
-  def plays
-    return @plays
-  end
-
-  def play(word)
-    @plays << word
-    total_score = 0
-    @plays.each do |played_word|
-      total_score += Scoring.score(played_word)
+    def initialize(name)
+      @name  = name
+      @plays = []
     end
-    if total_score >= 100
-      false
-    else
+
+    def plays
+      return @plays
+    end
+
+    # def play(word)
+    #   @plays << word
+    #   total_score = 0
+    #   @plays.each do |played_word|
+    #     total_score += Scoring.score(played_word)
+    #   end
+    #   if total_score >= 100
+    #     false
+    #   else
+    #     return total_score
+    #   end
+    # end
+
+    def play(word)
+      if won? == false
+        @plays << word
+      end
+    end
+
+    def total_score
+      total_score = 0
+      @plays.each do |played_word|
+        total_score += Scrabble::Scoring.score(played_word)
+      end
       return total_score
     end
-  end
 
-  def highest_scoring_word
-    Scoring.highest_score_from(@plays)
-  end
+    def highest_scoring_word
+      Scoring.highest_score_from(@plays)
+    end
 
-  def highest_word_score
-    Scoring.score(highest_scoring_word)
-  end
+    def highest_word_score
+      Scoring.score(highest_scoring_word)
+    end
 
-  private
+    # private
+    def won?
+      if total_score < 100
+        return false
+      else
+        return true
+      end
+    end
 
-#   def won?
-#     if total_score < 100
-#       return @won = false
-#     else
-#       return @won = true
-#     end
-#   end
-#
-#
-end # end of the class
-end
+  end # end of the class
+end # end of module
 
 ######TESTING######
 # bob = Player.new("bob")
