@@ -51,7 +51,7 @@ describe 'Player' do
     end
 
     it 'returns false if player does not have tiles to play word' do
-      @debug_player.play('jazzily').must_equal false
+      @debug_player.play('jazzily').must_equal :fail
     end
 
     it 'removes played tiles from hand' do
