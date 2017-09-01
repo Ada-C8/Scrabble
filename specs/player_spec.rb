@@ -4,6 +4,7 @@ describe 'Player' do
   before do
     @player = Scrabble::Player.new('Mimi')
     @debug_player = Scrabble::Player.new('Arya', :debug)
+    @bag = Scrabble::TileBag.new
   end
 
   describe 'initialize' do
@@ -12,7 +13,7 @@ describe 'Player' do
     end
 
     it 'creates DEBUG player if passed :debug argument' do
-      @debug_player.tiles.must_equal ['C','A','T','T','Y','J','Z']
+      @debug_player.tiles.must_equal ['J','A','Z','Z','C','A','T']
     end
 
     it 'will convert everything passed as name into a String' do
@@ -34,19 +35,19 @@ describe 'Player' do
 
   describe 'play(word)' do
     it 'adds the input word in the plays Array' do
-      @player.play('jazzily')
-      @player.plays.must_include 'jazzily'
+      @debug_player.play('jazzcat')
+      @debug_player.plays.must_include 'jazzcat'
     end
 
     it 'returns false if the player has already won' do
-      @player.play('jazzily') # score => 85
-      @player.play('jazzily') # score => 170
+      @debug_player.play('jazz')
+      @debug_player.add_points(100)
 
-      @player.play('jazzily').must_equal false
+      @debug_player.play('cat').must_equal false
     end
 
     it 'returns the score of the word' do
-      @player.play('jazzily').must_equal 85
+      @debug_player.play('jazzcat').must_equal 84
     end
 
     it 'returns false if player does not have tiles to play word' do
@@ -57,34 +58,35 @@ describe 'Player' do
 
     it 'removes played tiles from hand' do
       hand1 = @debug_player.tiles.dup
-      @debug_player.play("jatty")
+      @debug_player.play("jazz")
       @debug_player.tiles.wont_equal hand1
     end
 
-    it 'draws new tiles to replace tiles played' do
-      @debug_player.play("jatty")
-      @debug_player.tiles.length.must_equal 7
-    end
   end
 
   describe 'total_score' do
     it 'returns the sum of scores of played words' do
-      @player.play('jazzily')
-      @player.play('ylizzaj')
-      @player.total_score.must_equal 170
+      @debug_player.play('jazz')
+      @debug_player.play('cat')
+      @debug_player.total_score.must_equal 34
     end
 
     it 'returns 0 if there are no words yet' do
       @player.total_score.must_equal 0
     end
+
+    it 'adds debug points' do
+      @debug_player.add_points(100)
+      @debug_player.total_score.must_equal 100
+    end
   end
 
   describe 'highest_scoring_word' do
     it 'returns the highest scoring played word' do
-      @player.play('jazzily')
-      @player.play('cup')
+      @debug_player.play('jazz')
+      @debug_player.play('cup')
 
-      @player.highest_scoring_word.must_equal 'jazzily'
+      @debug_player.highest_scoring_word.must_equal 'jazz'
     end
 
     it 'returns Exception if called before words are played' do
@@ -94,9 +96,9 @@ describe 'Player' do
 
   describe 'highest_word_score' do
     it 'returns the numeric highest word score' do
-      @player.play('jazzily')
+      @debug_player.play('jazzcat')
 
-      @player.highest_word_score.must_equal 85
+      @debug_player.highest_word_score.must_equal 84
     end
 
     it 'raises ArgumentError if called before words are played' do
@@ -106,23 +108,20 @@ describe 'Player' do
 
   describe 'draw_tiles' do
     it 'draws tiles until player has 7' do
-      bag = Scrabble::TileBag.new
-      @player.draw_tiles(bag)
+      @player.draw_tiles(@bag)
       @player.tiles.length.must_equal 7
     end
 
     it 'will not draw if the player already has 7 tiles' do
-      bag = Scrabble::TileBag.new
-      @player.draw_tiles(bag)
-      @player.draw_tiles(bag)
+      @player.draw_tiles(@bag)
+      @player.draw_tiles(@bag)
       @player.tiles.length.must_equal 7
     end
 
     it 'removes tiles from tilebag' do
-      bag = Scrabble::TileBag.new
-      @player.draw_tiles(bag)
+      @player.draw_tiles(@bag)
       @player.tiles.length.must_equal 7
-      bag.tiles_remaining.must_equal 91
+      @bag.tiles_remaining.must_equal 91
     end
 
     it 'raises ArgumentError if passed anything but TileBag object' do
@@ -142,10 +141,8 @@ describe 'Player' do
     end
 
     it "becomes 'true' when player's points are over 100" do
-      @player.play('jazzily')
-      @player.play('ylizzaj')
-
-      @player.send(:won?).must_equal true
+      @debug_player.add_points(101)
+      @debug_player.send(:won?).must_equal true
     end
   end
 end

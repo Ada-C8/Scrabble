@@ -5,8 +5,10 @@ module Scrabble
     def initialize(name, debug = false)
       @name = name.to_s
       @plays = []
-      if debug == :debug
-        @tiles = ['C','A','T','T','Y','J','Z']
+      @debug = debug
+      if @debug == :debug
+        @tiles = ['J','A','Z','Z','C','A','T']
+        @debug_points = 0
       else
         @tiles = []
       end
@@ -14,6 +16,18 @@ module Scrabble
 
     def play(word)
       return false if won?
+
+      backup_hand = @tiles.dup
+
+      word.upcase.chars.each do |letter|
+        location = @tiles.index(letter)
+        if location == nil
+          @tiles = backup_hand
+          return false
+        end
+        @tiles.delete_at(location)
+      end
+
       @plays << word
       Scoring.score(word)
     end
@@ -23,7 +37,16 @@ module Scrabble
       @plays.each do |word|
         total += Scoring.score(word)
       end
+      if @debug == :debug
+        total += @debug_points
+      end
       total
+    end
+
+    def add_points(num)
+      if @debug == :debug
+        @debug_points += num
+      end
     end
 
     def highest_scoring_word
@@ -44,5 +67,6 @@ module Scrabble
     def won?
       total_score > 100
     end
+
   end # end of Player class
 end # end of Scrabble module
