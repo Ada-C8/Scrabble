@@ -5,7 +5,7 @@ module Scrabble
 
     def initialize
 
-       @remaining_tiles = [
+      @remaining_tiles = [
         ["A"] * 9,
         ["B"] * 2,
         ["C"] * 2,
@@ -38,10 +38,17 @@ module Scrabble
 
     def draw_tiles(num)
       tile_hand = []
-      # raise ArgumentError.new("Not Enough Tiles!") if @remaining_tiles.length < 7
-      num.times{  tile_hand << @remaining_tiles.delete_at(0) }
-      # binding.pry
-      tile_hand
+      if @remaining_tiles.length == 0
+        puts "No tiles left"
+      elsif @remaining_tiles.length < num
+        @remaining_tiles.each do |tile|
+          tile_hand << tile
+        end
+      else
+
+        num.times{  tile_hand << @remaining_tiles.delete_at(0) }
+        tile_hand
+      end
     end#end draw_tiles
 
     def tiles_remaining
