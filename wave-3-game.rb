@@ -78,20 +78,23 @@ module Scrabble
         # "Please enter a valid word"
         # get_word_for(player)
       # end
-      begin
-        keep_playing = player.play(word)
-      rescue
-        puts "Please enter a valid word"
-        get_word_for(player)
-      end
+      #begin
+        keep_playing = player.play(word) # RETURNS AN INTEGER
+        puts "This is the #{word}" # This is a string
+        @words << word
 
-      @words << word
+        if keep_playing
+          return word
+        else
+          return false
+        end
+      # rescue ArgumentError => e
+      #   puts e.message
+      # end
+    rescue ArgumentError
+      # get_word_for(player)
+      retry
 
-      if keep_playing
-        return word
-      else
-        return false
-      end
     end
 
     def print_score(word)
