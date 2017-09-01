@@ -21,6 +21,14 @@ module Scrabble
 
       @plays << word
       @score = Scrabble::Scoring.score(word)
+      i = 0
+      @hand.each do |letter|
+        if letter == @plays[i]
+          letter.delete!
+        end
+        i += 1
+      end 
+
       #thinking we need to delete letters from the hand
       @word_scores << @score
       return @score
