@@ -1,12 +1,6 @@
 require_relative 'spec_helper.rb'
 
 describe "Class player" do
-  #before do
-    #@tile_bag =
-    #@tile_bag = Scrable::TileBag.new
-    #@player_prueba = Scrabble::Player.new
-    #@tiles = @player_prueba.draw_tiles(tile_bag)
-  #end
   describe "Initialize" do
     it "Return to name" do
       Scrabble::Player.must_respond_to :name
@@ -80,11 +74,11 @@ describe "Class player" do
         @jugador.highest_scoring_word_score.must_be_instance_of Array
       end
 
-      it "Retuns the highest score" do
+      it "Returns the highest score" do
         @jugador.highest_scoring_word_score.must_equal ["PEREZA", 17]
       end
 
-      it "Returns empty array and 0 score for 0 word played" do
+      it "Returns empty array and 0 score for 0 words played" do
         fantasma = Scrabble::Player.new("Fantasma")
         proc{fantasma.highest_scoring_word_score}.must_raise ArgumentError
       end

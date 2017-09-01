@@ -63,7 +63,7 @@ module Scrabble
 
 
 
-
+    #We comment this out for now to make sure our won? method pass the test.
     # private :won?
 
   end # class

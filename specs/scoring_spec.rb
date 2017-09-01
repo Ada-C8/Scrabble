@@ -3,17 +3,6 @@ require_relative 'spec_helper.rb'
 
 describe "Scrabble::Scoring class" do
 
-  describe "Initialize" do
-    it "Can be intialized" do
-      #arrange
-      Scrabble::Scoring.new.must_be_instance_of Scrabble::Scoring
-      #act
-
-      #assert
-
-    end
-  end#describe initialize
-
   describe "Score class method" do
     it "Retunrs 0 for an empty string" do
       Scrabble::Scoring.score("").must_equal 0

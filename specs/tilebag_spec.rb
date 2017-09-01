@@ -23,17 +23,24 @@ describe "TileBag class" do
     before do
       @new_test = Scrabble::TileBag.new
     end
+
     it "Returns an array " do
       @new_test.draw_tiles(3).must_be_instance_of Array
     end
-    it "Returns num tiles from tiles bag" do
+
+    it "Returns correct number of tiles from tiles bag" do
       @new_test.draw_tiles(3).length.must_equal 3
     end
 
-    it "Delete num tiles from tiles bag" do
+    it "Delete correct number of tiles from tiles bag" do
       @new_test.draw_tiles(5)
       @new_test.tile_array.length.must_equal 93
     end
+
+    it "Raise ArgumentError when there is no enought tiles" do
+      proc {@new_test.draw_tiles(100)}.must_raise ArgumentError
+    end
+    
   end
 
   describe "tiles remaining method" do
