@@ -17,18 +17,18 @@ describe "WAVE 3" do
         @tilebaggins.must_respond_to :num_tiles_remaining
       end
 
-
-
-      it "Can initialize drawtiles with num " do
-        @tilebaggins.draw_tiles(7)
-        @num_tiles_remaining.must_equal 100
-      end
-
-
-
-
-
     end
 
+    describe "#draw_tiles" do
+      it "Can #draw_tiles with a specified number " do
+        @tilebaggins.draw_tiles(7)
+        @tilebaggins.num_tiles_remaining.must_equal 91
+      end
 
+      it "Raises an ArgumentError if the number of tiles drawn is not an integer less than 8." do
+        proc {@tilebaggins.draw_tiles(8)}.must_raise ArgumentError
+        proc {@tilebaggins.draw_tiles("A")}.must_raise ArgumentError
+        proc {@tilebaggins.draw_tiles(0)}.must_raise ArgumentError
+      end
+    end
 end

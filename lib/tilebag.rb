@@ -6,19 +6,26 @@ module Scrabble
 
     def initialize
       @tilebag = {a: 9, b:2, c:2, d:4, e:12, f:2, g:3, h:2, i:9, j:1, k:1, l:4, m:2, n:6, o:8, p:2, q:1, r:6, s:4, t:6, u:4, v:2, w:2, x:1, y:2, z:1}
-
-      @num_tiles_remaining = 107
+      @num_tiles_remaining = 98
     end
 
     def draw_tiles(num)
-      raise ArgumentError.new("Number must be an integer less than 8.") unless /^[0-7]$/.match(num)
+      can_draw(num)
 
       letter = @tilebag.keys.sample
       @tilebag[letter] -= 1
-
+      @num_tiles_remaining -= num
     end
 
+    def can_draw(num)
+      unless /[1-7]/.match(num.to_s)
+        raise ArgumentError.new("Please choose an integer between 1 and 7.")
+      end
 
-
+      unless @num_tiles_remaining > num
+        raise ArgumentError.new("There are only #{@num_tiles_remaining}. remaining. Please draw #{@num_tiles_remaining} or fewer.")
+      end
+      
+    end
   end
 end
