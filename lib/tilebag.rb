@@ -14,6 +14,7 @@ module Scrabble
 
       letter = @tilebag.keys.sample
       @tilebag[letter] -= 1
+      @tilebag.delete_if {|key,value| value == 0}
       @num_tiles_remaining -= num
     end
 
@@ -25,7 +26,7 @@ module Scrabble
       unless @num_tiles_remaining > num
         raise ArgumentError.new("There are only #{@num_tiles_remaining}. remaining. Please draw #{@num_tiles_remaining} or fewer.")
       end
-      
+
     end
   end
 end
