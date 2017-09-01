@@ -67,11 +67,8 @@ module Scrabble
         end
       end
 
-
-      # @tiles = @tiles.reject {|tile_letter| tile_letter == word_letter}
-
-      # @tiles =@tiles[0]
     end# end draw tiles
+    
     private
     #won?: If the player has over 100 points returns true.
     # otherwise returns false
