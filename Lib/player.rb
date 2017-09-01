@@ -4,7 +4,7 @@ require 'pry'
 module Scrabble
   class Player
 
-    attr_accessor :name, :plays, :total_score, :tiles
+    attr_reader :name, :plays, :total_score, :tiles
 
     def initialize(name = "Pipes")
       @name = name
@@ -24,6 +24,18 @@ module Scrabble
         word_score
       end
     end
+
+    def word_uses_tiles?(word)
+      hand_check = []
+      tiles.each{ |tile_letter| hand_check << tile_letter.dup}
+      word.each_char do |letter|
+        index = hand_check.find_index{ |x| x == letter}
+        return false if index == nil
+        hand_check.delete_at(index)
+      end
+      true
+    end
+
 
     # highest_scoring_word: Returns the highest scoring played word
     def highest_scoring_word
@@ -47,12 +59,16 @@ module Scrabble
       new_tiles.each do |tile|
         @tiles << tile
       end
-
+      #REMOVES EVERY INSTANCE OF LETTER
       def remove_tiles(word)
-        word.each_char do |letter|
-          @tiles.delete(letter)
+        word.each_char do |word_letter|
+          index = @tiles.find_index {|tile_letter| tile_letter == word_letter}
+          @tiles.delete_at(index)
         end
       end
+
+
+      # @tiles = @tiles.reject {|tile_letter| tile_letter == word_letter}
 
       # @tiles =@tiles[0]
     end# end draw tiles
