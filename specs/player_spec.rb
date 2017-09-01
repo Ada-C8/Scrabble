@@ -65,19 +65,12 @@ describe "Player class" do
 
     describe "Checks if word can be played from player's tiles" do # requires attr_writer for :tiles in Player class to check
 
-      # before do
-      #   @anna = Scrabble::Player.new("Anna")
-      #   @annas_score = @anna.play("cat")
-      # end
-
       it "Returns nil if word can't be played" do # TODO change nil to another return val for game play??
-        #@anna.tiles = ['W', 'O', 'T']
         @anna.play("THE").must_be_nil
 
       end
 
       it "Doesn't add word to player's plays array" do
-        #@anna.tiles = ['W', 'O', 'T']
         puts "anna's plays is #{@anna.plays}"
 
         @anna.play("the")
@@ -87,10 +80,9 @@ describe "Player class" do
       end
 
       it "Leaves tiles in player's hand" do
-        #@anna.tiles = ['W', 'O', 'T']
         @anna.play("THE")
         puts @anna.tiles
-        
+
         @anna.tiles.sort!.must_equal ['W', 'O', 'T'].sort!
       end
     end

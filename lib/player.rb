@@ -21,7 +21,7 @@ module Scrabble
       # word_array = word.chars
       word.upcase!
 
-      trial_word = []
+      trial_word = [] # TODO use in game play
 
       # loop through word array; if char in @tiles, pop off tiles and move to trial_word
 
