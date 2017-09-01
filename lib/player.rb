@@ -31,9 +31,7 @@ module Scrabble
       player_word_score = Scrabble::Scoring.score(word)
 
       @total_score += player_word_score
-
-      #TO DO => How to remove tiles from players while still getting tests to pass? (in tests you don't know what @tiles will be so how to test the output of test word and remove the correct letters from @tiles?)
-
+      
       #remove tiles from player's tile hand
       word_arr = word.split("")
       word_arr.each do |letter|

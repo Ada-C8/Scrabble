@@ -47,10 +47,9 @@ module Scrabble
     def draw_tiles(num)
       #take num and remove that num from random key-value pairs, if value in pair is equal or greater to that num
 
-      #TO DO => account for situation where num is greater than the number of tiles left
-      # if num > @default_tiles.length
-      #   num = @default_tiles.length
-      # end
+      unless num <= @default_tiles.length
+        raise ArgumentError.new("Not enough tiles, game over")
+      end
 
       sample_tiles = @default_tiles.sample(num)
       sample_tiles.each do |letter|

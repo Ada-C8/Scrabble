@@ -61,13 +61,15 @@ describe "Tilebag" do
   describe "draw_tiles(num) method" do
 
     it "Can be called" do
-      test_ob = Scrabble::Tilebag.new
-      test_ob.must_respond_to :draw_tiles
+      @test_ob.must_respond_to :draw_tiles
+    end
+
+    it "Raise ArgumentError if not enough tiles" do
+      proc {@test_ob.draw_tiles(100)}.must_raise ArgumentError
     end
 
     it "Returns an array " do
-      test_ob = Scrabble::Tilebag.new
-      test_ob.draw_tiles(3).must_be_instance_of Array
+      @test_ob.draw_tiles(3).must_be_instance_of Array
     end
 
     it "Returns the inputed argument number of tiles " do
