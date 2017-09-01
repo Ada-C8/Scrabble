@@ -22,20 +22,43 @@ describe "Player" do
   end
 
   describe "#play(word)" do
-    it "adds the input word to the play array" do
-      @player_test.play("word")
-      word_array = @player_test.plays
-      word_array.include?("WORD").must_equal(true)
+    it "#play(word) adds the input word to the plays Array" do
+      player1 = Scrabble::Player.new("Ada")
+      player1.play("cat")
+      player1.plays.must_include "cat"
     end
 
     it "returns the score of the word" do
-      word = "apple" #9
+      word = "apple"
       expected_output = 9
       @player_test.play(word).must_equal(expected_output)
     end
 
-    it "returns false if player has already won" do
+    it "#total_score: Returns the sum of scores of played words" do
+      player1 = Scrabble::Player.new("Ada")
+      plays = ["apple", "kiwi", "tomato"]
+        plays.each do |word|
+          player1.play(word)
+        end
+      player1.total_score.must_equal 28
+    end
 
+    it "#highest_word returns the word with the highest score" do
+      player1 = Scrabble::Player.new("Ada")
+      plays = ["apple", "kiwi", "quizzed"]
+        plays.each do |word|
+          player1.play(word)
+        end
+      player1.highest_word.must_equal "quizzed"
+    end
+
+    it "#highest_score returns the score of the highest scored word" do
+      player1 = Scrabble::Player.new("Ada")
+      plays = ["apple", "kiwi", "quizzed"]
+        plays.each do |word|
+          player1.play(word)
+        end
+      player1.highest_score.must_equal 85
     end
 
   end
