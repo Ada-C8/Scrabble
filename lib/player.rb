@@ -23,9 +23,6 @@ module Scrabble
 
       temp_array = []
 
-      # loop through word array; if char in @tiles, pop off tiles and move to trial_word
-
-      #TODO preserve order of word
       word.each_char do |char|
         if @tiles.include? char
           temp_array << @tiles.delete_at(@tiles.index(char))
@@ -57,8 +54,12 @@ module Scrabble
       @tiles.concat(tile_bag.draw_tiles(num_to_draw)) if num_to_draw > 0
     end
 
-    private #begin private methods
+    def pass
 
+    end
+
+    private #begin private methods
+    # leaving here for assignment; real usage in Game class
     def won?
       return @total_score > 100
     end
