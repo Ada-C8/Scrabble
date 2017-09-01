@@ -13,4 +13,14 @@ describe "Scoring" do
       tile_bag.bag_of_tiles[:E].must_equal 12
     end
   end #end of initialize
+
+  describe "#draw_tiles" do
+
+    it "returns a collection of random tiles as an Array" do
+      tile_bag = Scrabble::TileBag.new
+      tile_bag.draw_tiles(4).must_be_kind_of Array
+    end
+
+  end #end of draw tiles
+
 end #end of scoring
