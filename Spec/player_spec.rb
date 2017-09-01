@@ -87,15 +87,6 @@ describe "Scrabble::Player" do
       larry.highest_word_score.must_be_kind_of Integer
       larry.highest_word_score.must_equal 74
     end
-
-    # describe "Remove used tiles"
-    # #it "takes outs used tiles" from @tiles
-    # #it doesn't take out tiles that were not used
-    # #if given nothing it takes out nothing
-    # #if given too many tiles it raises an error? returns []?
-    # #end
-
-
   end
 
   describe "remove_tiles" do
@@ -112,6 +103,7 @@ describe "Scrabble::Player" do
       (before_remove.length - after_remove.length).must_equal 2
       after_remove.must_equal before_remove[2..6]
     end
+
     it "should remove only one of duplicate letters" do
       test = 0
       while test == 0
@@ -122,8 +114,6 @@ describe "Scrabble::Player" do
 
         repeated_tiles = drawn_tiles.detect{ |e| drawn_tiles.count(e) > 1 }
         if repeated_tiles != nil
-
-          before_remove = larry.tiles.dup
           larry.remove_tiles(repeated_tiles[0])
           after_remove = larry.tiles
           after_remove.length.must_equal 6
@@ -147,7 +137,17 @@ describe "Scrabble::Player" do
 
   end #remove_tiles
 
-  describe "word_uses_tiles" do
+  describe "draw_tiles" do
+    it "should return tiles to make a hand of seven" do
+      mary = Scrabble::Player.new("Mary")
+      mary_tilebag = Scrabble::TileBag.new
+      mary.draw_tiles(mary_tilebag)
+      mary.tiles.length.must_equal 7
+      mary.play(mary.tiles[0]+mary.tiles[1]+mary.tiles[2])
+      mary.draw_tiles(mary_tilebag)
+      mary.tiles.length.must_equal 7
+    end
+
 
 
   end
