@@ -10,6 +10,7 @@ module Scrabble
       @tiles = []
     end
 
+
     def total_score
       # total_score: Returns the sum of scores of played words
 
@@ -33,7 +34,9 @@ module Scrabble
 
     def play(word)
       legit_word?(word)
-
+      @tiles = word_in_tiles(word)
+      # hit a wall - need to program in game.rb to get further on this optional
+      draw_tiles(we would call tilebag here)
       # Returns false if player has already won
       # Returns the score of the word
       @plays << word
@@ -50,6 +53,29 @@ module Scrabble
 
     def legit_word?(player_word)
       raise ArgumentError.new("#{player_word} is an invalid entry - you may only enter letters in the the english alphabet") if is_alphabet?(player_word) == nil
+    end
+
+    def word_in_tiles(word)
+      hash_letters = Hash.new(0)
+      @tiles.each do |element|
+        hash_letters[element] += 1
+      end
+
+      word_arr = word.split('')
+
+      word_arr.each do |letter|
+        temp = hash_letters.has_key? letter
+        if temp != true
+          raise ArgumentError.new("you don't have the right tiles to play the word #{word}")
+        else
+          hash_letters[letter] -= 1
+          if hash_letters[letter] < 0
+            raise ArgumentError.new("you don't have enough of #{letter} tiles to play the word #{word}")
+          end
+        end
+      end
+
+      return hash_letters.select {|key, value| value > 0}.keys
     end
 
     def highest_scoring_word
@@ -72,3 +98,8 @@ module Scrabble
     end
   end
 end
+
+# player1 = Scrabble::PlayerClass.new("Sandy")
+# bag_o_tiles = Scrabble::Tilebag.new
+#
+# player1.play("dog")
