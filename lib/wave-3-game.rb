@@ -1,11 +1,15 @@
-require_relative 'lib/scrabble'
+# require_relative '../lib/.'
+require_relative 'dictionary'
+require_relative 'wave-2-player'
+require_relative 'wave-1-scoring'
+require_relative 'wave-3-TileBag'
 
 module Scrabble
   class Game
     def initialize
       @words = []
       @players = setup_players
-      @tilebag = Scrabble::Tilebag.new
+      @tilebag = Scrabble::TileBag.new
     end
 
     def play
@@ -20,6 +24,7 @@ module Scrabble
           puts "#{player.name} has the following tiles: #{player.tiles}"
 
           player_word = get_word_for(player)
+
           player_has_won = !player_word
 
           if player_word
@@ -63,13 +68,20 @@ module Scrabble
       # end
 
       puts "Would you like to play another round? (Y/N)"
-      continue = gets.chomp
+      continue = gets.chomp.upcase
       (continue == "Y") ? true : false
     end
 
     def get_word_for(player)
-      puts "Enter a word to score:"
-      word = gets.chomp
+
+      word_validation = false
+
+      while word_validation == false
+        puts "Enter a word to score:"
+        word = gets.chomp
+        word_validation = Scrabble::Dictionary.look_up(word)
+      end
+
       @words << word
 
       keep_playing = player.play(word)

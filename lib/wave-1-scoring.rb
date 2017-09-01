@@ -13,14 +13,13 @@ module Scrabble
 
     def self.score(word)
       raise ArgumentError.new "Input must be a String class." if word.class != String
-      word_score = 0
-
       raise ArgumentError.new "Word must be one to seven letters long." if word.length == 0 || word.length > 7
+      raise ArgumentError.new "Word must contain only regular ASCII letters." if !word.match(/^[A-Z]+$/i)
 
       letters = word.upcase.split("")
-      letters.each do |letter|
-        raise ArgumentError.new "Word must contain only regular ASCII letters." if !letter.match(/^[A-Z]$/)
+      word_score = 0
 
+      letters.each do |letter|
         SCORE_HASH.each do |letter_arr, letter_score|
           if letter_arr.include? letter
             word_score += letter_score
@@ -60,5 +59,6 @@ module Scrabble
     end
   end #end class
 end #end module
-winner = Scrabble::Scoring.highest_score_from(%w(qzzzzj to the ok hi aaaaaad))
-p winner
+
+# winner = Scrabble::Scoring.highest_score_from(%w(qzzzzj to the ok hi aaaaaad))
+# p winner

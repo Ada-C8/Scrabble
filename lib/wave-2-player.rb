@@ -48,8 +48,6 @@ module Scrabble
     def draw_tiles(tile_bag)
       tiles_needed = 7 - (@tiles.length)
       new_tiles = tile_bag.draw_tiles(tiles_needed)
-      p "tiles! #{tiles}"
-      p "new_tiles #{new_tiles}"
       new_tiles.each do |tile|
         tiles << tile
       end
