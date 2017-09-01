@@ -1,3 +1,4 @@
+#
 module Scrabble
   class Player
     attr_reader :name, :player_words, :total_score, :tiles_in_hand
