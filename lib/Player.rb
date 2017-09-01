@@ -11,6 +11,7 @@ module Scrabble
       @plays = []
       @total_score = 0
       @tiles = []
+      @max_tiles = 7
     end
 
     def play(word)
@@ -35,7 +36,7 @@ module Scrabble
     end
 
     def draw_tiles(tilebag)
-      num = 7 - @tiles.length
+      num = @max_tiles - @tiles.length
       @tiles.concat(tilebag.draw_tiles(num))
     end
 

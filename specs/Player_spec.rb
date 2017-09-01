@@ -1,5 +1,11 @@
 require_relative 'spec_helper'
 
+module Scrabble
+  class Player
+    attr_writer :tiles
+  end
+end
+
 describe "Scrabble::Player class " do
   before do
 
@@ -28,24 +34,28 @@ describe "Scrabble::Player class " do
       @player = Scrabble::Player.new("Ada")
     end
 
-    #TODO: create dynamic testing for letters in the players @tiles array
-    # xit "adds the input word to the plays array" do
-    #   word = "hello"
-    #   @player.play(word)
-    #   @player.plays.must_include word
-    # end
-    #
-    # xit "returns false if the game won? = true" do
-    #   words = ["quizzed", "zippers"]
-    #   words.each_with_index do |word, index|
-    #     @player.play(word)
-    #   end
-    #   @player.play("hello").must_equal false
-    # end
-    #
-    # xit "returns the score of the word if won? = false" do
-    #   @player.play("quizzed").must_equal 85
-    # end
+    it "adds the input word to the plays array" do
+      word = "hello"
+      @player.tiles = word.split("")
+      @player.play(word)
+      @player.plays.must_include word
+    end
+
+    it "returns false if the game won? = true" do
+      words = ["quickly", "zippers"]
+      words.each_with_index do |word, index|
+        @player.tiles = word.split("")
+        @player.play(word)
+      end
+
+      @player.tiles = "hello".split("")
+      @player.play("hello").must_equal false
+    end
+
+    it "returns the score of the word if won? = false" do
+      @player.tiles = "quiz".split("")
+      @player.play("quiz").must_equal 22
+    end
 
     it "removes played tiles from @tiles" do
       tilebag = Scrabble::TileBag.new
@@ -69,73 +79,85 @@ describe "Scrabble::Player class " do
       proc{@player.play(letter)}.must_raise Exception
     end
 
+    it "doesn't accept words with more letters than the max number of tiles" do
+      @player.tiles = "trombone".split("")
+      proc{@player.play("trombone")}.must_raise ArgumentError
+    end
+
+    it "doesn't accept empty strings as words" do
+      proc{@player.play("")}.must_raise ArgumentError
+    end
+
 
   end
   #TODO: create dynamic testing for letters in the players @tiles array
-  # describe "total_score" do
-  #   before do
-  #     @player = Scrabble::Player.new("Ada")
-  #     @words = ["apple", "hello", "zoo", "ufo"]
-  #   end
-  #
-  #   it "returns the sum of all played words" do
-  #     @words.each do |word|
-  #       @player.play(word)
-  #     end
-  #     @player.total_score.must_be_instance_of Integer
-  #     @player.total_score.must_equal 35
-  #   end
-  #
-  #   it "initializes with value of 0" do
-  #     @player.total_score.must_equal 0
-  #   end
-  #
-  #   it "updates after every valid play" do
-  #     @words.each do |word|
-  #       x = @player.total_score
-  #       @player.play(word)
-  #       @player.total_score.must_be :>, x
-  #     end
-  #   end
-  #
-  #   it "does not update after the game has been won " do
-  #     words = ["quizzed", "zippers"]
-  #     words.each do |word|
-  #       @player.play(word)
-  #     end
-  #     x = @player.total_score
-  #     @player.play("another")
-  #     x.must_equal @player.total_score
-  #   end
-  # end
+  describe "total_score" do
+    before do
+      @player = Scrabble::Player.new("Ada")
+      @words = ["apple", "hello", "zoo", "ufo"]
+    end
 
-  #TODO: create dynamic testing for letters in the players @tiles array
-  # xdescribe "high score variables" do
-  #   before do
-  #     @player = Scrabble::Player.new("Ada")
-  #     @words = ["quizzed", "zippers"]
-  #     @words.each do |word|
-  #       @player.play(word)
-  #     end
-  #   end
-  #
-  #   describe "highest_scoring_word" do
-  #     it "returns the word with the highest score" do
-  #       @player.highest_scoring_word.must_be_instance_of String
-  #       @player.highest_scoring_word.must_equal "quizzed"
-  #     end
-  #   end
-  #
-  #   describe "highest_word_score" do
-  #     it "it is a number" do
-  #       @player.highest_word_score.must_be_instance_of Integer
-  #     end
-  #
-  #     it "is the highest score of any word the player has played" do
-  #       @player.highest_word_score.must_equal 85
-  #     end
-  #   end
-  # end
+    it "returns the sum of all played words" do
+      @words.each do |word|
+        @player.tiles = word.split("")
+        @player.play(word)
+      end
+      @player.total_score.must_be_instance_of Integer
+      @player.total_score.must_equal 35
+    end
+
+    it "initializes with value of 0" do
+      @player.total_score.must_equal 0
+    end
+
+    it "updates after every valid play" do
+      @words.each do |word|
+        x = @player.total_score
+        @player.tiles = word.split("")
+        @player.play(word)
+        @player.total_score.must_be :>, x
+      end
+    end
+
+    it "does not update after the game has been won " do
+      words = ["quickly", "zippers"]
+      words.each do |word|
+        @player.tiles = word.split("")
+        @player.play(word)
+      end
+      x = @player.total_score
+      @player.play("another")
+      x.must_equal @player.total_score
+    end
+  end
+
+  describe "high score variables" do
+    before do
+      @player = Scrabble::Player.new("Ada")
+      @words = ["quickly", "zippers"]
+      @words.each do |word|
+        @player.tiles = word.split("")
+        @player.play(word)
+      end
+    end
+
+    describe "highest_scoring_word" do
+      it "returns the word with the highest score" do
+        @player.highest_scoring_word.must_be_instance_of String
+        @player.highest_scoring_word.must_equal "quickly"
+      end
+    end
+
+    describe "highest_word_score" do
+      it "it is a number" do
+        @player.highest_word_score.must_be_instance_of Integer
+      end
+
+      it "is the highest score of any word the player has played" do
+        @player.highest_word_score.must_equal 75
+      end
+    end
+  end
 
   describe "tiles" do
     it "returns an array of letters" do
