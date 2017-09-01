@@ -12,13 +12,22 @@ describe "TileBag" do
 
     it "Should create a collection default tiles" do
       tilebag = Scrabble::TileBag.new
+<<<<<<< HEAD
       tilebag.tiles_remaining.must_equal 98
+=======
+      tilebag.remaining_tiles.must_be_kind_of Hash
+      (tilebag.remaining_tiles.length > 0).must_equal true
+>>>>>>> c08f2cf622a13eba77d3d2c962ec481bc84b10d0
     end
 
   end
 
   describe "#draw_tiles method" do
-    it " " do
+    it "Should make sure a max of 7 tiles drawn" do
+		tilebag = Scrabble::TileBag.new
+		tilebag.draw_tiles(5)
+		count = tilebag.tiles_remaining
+		count.must_equal 93
     end
   end
 
@@ -26,14 +35,20 @@ describe "TileBag" do
   describe "#tiles_remaining" do
     it "should return amount of tiles in the bag" do
       tilebag = Scrabble::TileBag.new
+<<<<<<< HEAD
+=======
+	  sum = 0
+	  tilebag.remaining_tiles.each do |key, value|
+		sum += value
+	  end
+>>>>>>> c08f2cf622a13eba77d3d2c962ec481bc84b10d0
       tilebag.tiles_remaining.must_equal 98
     end
 
     it "should remain correct after tiles are drawn" do
       tilebag = Scrabble::TileBag.new
-      tile_count = tilebag.tiles_remaining
       tilebag.draw_tiles(5)
-      tilebag.tiles_remaining.must_equal (tile_count - 5)
+      tilebag.tiles_remaining.must_equal 93
     end
   end
 end

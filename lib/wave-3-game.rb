@@ -1,11 +1,13 @@
-require_relative 'lib/scrabble'
+require_relative 'player'
+require_relative 'score'
+require_relative 'tilebag'
 
 module Scrabble
   class Game
     def initialize
       @words = []
       @players = setup_players
-      @tilebag = Tilebag.new
+      @tilebag = Scrabble::TileBag.new
     end
 
     def play
@@ -90,7 +92,7 @@ module Scrabble
     end
 
     def conclude
-      highest_word = Scrabble::Scoring.highest_score_from(@words)
+      highest_word = Scrabble::Scoring.highest_score_from_array(@words)
       puts "The final highest scoring word for all players is #{ highest_word }"
 
       @players.each do |player|

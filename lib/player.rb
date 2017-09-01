@@ -1,7 +1,8 @@
+require_relative 'score'
 
 module Scrabble
   class Player
-    attr_reader :name, :plays
+    attr_reader :name, :plays, :tiles
     def initialize(name)
       @name = name
       @plays = []
@@ -9,13 +10,24 @@ module Scrabble
     end
 
 
-    def play(word) #Adds the input word to the plays Array
-      if won?
-        return false
-      else
-        @plays << word
-        return Scrabble::Scoring.score(word)
+    def play(word) 
+	  valid_play = true
+	  word = word.upcase
+	  word.split("").each do |i|
+		if !@tiles.include? i
+			valid_play = false
 		end
+	  end
+	  if valid_play
+		  if won?
+			return false
+		  else
+			@plays << word
+			return Scrabble::Scoring.score(word)
+			end
+	  else
+		puts "You must use the tiles you have"
+	  end
     end
 
 
@@ -32,21 +44,9 @@ module Scrabble
        total_score > 100 ? true : false
     end
 
-# The shorter version of highest_scoring_word
-
     def highest_scoring_word
       return Scrabble::Scoring.highest_score_from_array(@plays)
     end
-
-    # def highest_scoring_word
-    #   current_highest_word = ""
-    #   @plays.each do |j|
-    #     if Scrabble::Scoring.score(j) > Scrabble::Scoring.score(current_highest_word)
-    #       current_highest_word = j
-    #     end
-    #   end
-    #   return current_highest_word
-    # end
 
     def highest_word_score
       return Scrabble::Scoring.score(highest_scoring_word)

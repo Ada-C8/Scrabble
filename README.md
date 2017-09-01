@@ -1,4 +1,5 @@
 # Scrabble
+
 Use __Test Driven Development (TDD)__ to create a collection of Ruby classes that would provide the foundation for creating a scrabble game.  **In this project we will NOT create a full Scrabble game.**
 
 ### Learning Goals
