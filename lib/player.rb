@@ -20,17 +20,9 @@ module Scrabble
     end
 
     def draw_tiles(tile_bag)
-      # fills tiles array until it has 7 letters from the given tile bag
-      draws = []
-      num_to_draw = 7 - @tiles.length
-      if num_to_draw != 0
-      draws = tile_bag.draw_tiles(num_to_draw)
+      until @tiles.length == 7 do
+          @tiles << tile_bag.draw_tiles(1)
       end
-      draws.each do |tile|
-        @tiles << tile
-      end
-      # ["e", "s", "o", "r", "d", "t", "i"]
-      # @tiles <<
     end
 
     def play(word)
