@@ -40,8 +40,11 @@ module Scrabble
     end
 
     def self.tiebreaker(word1, word2)
+      # take the shorter word if neither has 7 letters
       return word2 if (word2.length < word1.length) && (word1.length != 7)
+      # take the 7 letter word if the original high score didn't have 7 letters
       return word2 if (word2.length == 7) && (word1.length != 7)
+      # otherwise, the original high score stands
       return word1
     end
 
