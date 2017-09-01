@@ -18,24 +18,19 @@ module Scrabble
       end
     end
 
-    # initialize Should set up the instance with a collection of all default tiles
-
     def draw_tiles(num)
       if num > tiles_remaining
         raise(ArgumentError, 'There are not enough tiles remaining in the bag!')
       end
-
       draw = @bag.sample(num)
       draw.each do |letter|
         @bag.delete_at(@bag.index(letter))
       end
-      return draw
+      draw
     end
-    # draw_tiles(num) returns a collection of random tiles, removes the tiles from the default set
 
     def tiles_remaining
       @bag.length
     end
-    # tiles_remaining returns the number of tiles remaining in the bag
   end # end of class
 end # end of module
