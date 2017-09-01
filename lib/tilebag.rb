@@ -32,10 +32,11 @@ module Scrabble
         Z: 1
       }
       # Flattens hash into one array filled with all the letters.
+      # convert symbols to strings
       @default_tiles = []
       hash_tiles.keys.each do |key|
         hash_tiles[key].times do
-          @default_tiles << key
+          @default_tiles << key.to_s
         end
       end
 
@@ -46,14 +47,14 @@ module Scrabble
     def draw_tiles(num)
       #take num and remove that num from random key-value pairs, if value in pair is equal or greater to that num
 
-      #account for situation where num is greater than the number of tiles left 
-      if num > @default_tiles.length
-        num = @default_tiles.length
-      end
+      #TO DO => account for situation where num is greater than the number of tiles left
+      # if num > @default_tiles.length
+      #   num = @default_tiles.length
+      # end
 
       sample_tiles = @default_tiles.sample(num)
       sample_tiles.each do |letter|
-        @default_tiles.delete(letter)
+        @default_tiles.delete_at(@default_tiles.find_index(letter))
       end
       @tiles_remaining -= num
       return sample_tiles

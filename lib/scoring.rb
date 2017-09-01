@@ -42,6 +42,25 @@ module Scrabble
       return total_score
     end
 
+    def self.tie(best_word, word)
+      if best_word.length == 7 #then best_word remains the same
+        return best_word
+      elsif word.length == 7
+        best_word = word
+        return word
+      else #neither of the words are 7 characters long
+        if (best_word.length <=> word.length) == 1 #best_word is more letters
+          best_word = word
+          return word
+        elsif (best_word.length <=> word.length) == -1 #best_word is less letters
+          return best_word
+        else #they are equal, and best_word remains the same
+          return best_word
+        end
+      end
+
+    end
+
     def self.highest_score_from(arr_of_words)
 
       unless arr_of_words.class == Array
@@ -57,16 +76,7 @@ module Scrabble
           highest_score = word_score
           best_word = word
         elsif word_score == highest_score #check for tie
-          if best_word.length == 7 #then best_word remains the same
-          elsif word.length == 7
-            best_word = word
-          else #neither of the words are 7 characters long
-            if (best_word.length <=> word.length) == 1 #best_word is more letters
-              best_word = word
-            elsif (best_word.length <=> word.length) == -1 #best_word is less letters
-            else #they are equal, and best_word remains the same
-            end
-          end
+          best_word = tie(best_word, word)
         else #word_score < highest_score
         end
       end

@@ -4,7 +4,9 @@ describe "Player" do
 
   before do
     @test_ob = Scrabble::Player.new("name")
+    @test_tile_bag = Scrabble::Tilebag.new
   end
+
 
   describe "initialize method" do
     it "Is a Player object" do
@@ -40,17 +42,18 @@ describe "Player" do
     end
 
     it "Adds the word input to the @plays instance variable" do
-      @test_ob.play("word")
-      @test_ob.plays.must_equal ["word"]
+      @test_ob.play("WORD")
+      @test_ob.plays.must_equal ["WORD"]
     end
 
     it "Returns false if player has already won" do
-      @test_ob.play("zzzzzzz")
+      @test_ob.play("AZZZZZZ")
       @test_ob.play("word").must_equal false
     end
 
     it "returns score of word" do
     word = "A"
+    @test_ob.draw_tiles(@test_tile_bag)
     @test_ob.play(word).must_equal 1
     end
   end#play method
@@ -121,8 +124,8 @@ describe "draw_tiles(tile_bag) method" do
   end
 
   it "When called once, return an array of 7 elements" do
-    test_tile_bag = Scrabble::Tilebag.new
-    @test_ob.draw_tiles(test_tile_bag).length.must_equal 7
+    @test_ob.draw_tiles(@test_tile_bag).length.must_equal 7
+    @test_ob.tiles.length.must_equal 7
   end
 end
 

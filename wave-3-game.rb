@@ -65,7 +65,7 @@ module Scrabble
 
     def get_word_for(player)
       puts "Enter a word to score:"
-      word = gets.chomp
+      word = gets.chomp.upcase
       @words << word
 
       keep_playing = player.play(word)
