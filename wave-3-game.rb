@@ -21,8 +21,8 @@ module Scrabble
           player.draw_tiles(@tilebag)
 
           puts "#{player.name} has the following tiles: #{player.tiles_in_hand}"
-
-          player_word = get_word_for(player)
+          #
+          player_word = get_word_for(player) #still waiting for some kind of return from get_word
           player_has_won = !player_word
 
           if player_word
@@ -71,10 +71,21 @@ module Scrabble
 
     def get_word_for(player)
       puts "Enter a word to score:"
-      word = gets.chomp
-      @words << word
+      word = gets.chomp.upcase
+      # begin
+        # keep playing = play.play(word)
+      # rescue
+        # "Please enter a valid word"
+        # get_word_for(player)
+      # end
+      begin
+        keep_playing = player.play(word)
+      rescue
+        puts "Please enter a valid word"
+        get_word_for(player)
+      end
 
-      keep_playing = player.play(word)
+      @words << word
 
       if keep_playing
         return word

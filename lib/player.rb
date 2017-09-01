@@ -14,20 +14,34 @@ module Scrabble
     end #plays
 
     def play(word)
-      @player_words << word.upcase!
-      result = Scrabble::Scoring.score(word)
-      @total_score += result
-      word_array = word.split(//)
-      # Will remove tiles from the @tiles_in_hand instance
-      word_array.each do |letter|
-        @tiles_in_hand.delete_at(@tiles_in_hand.index(letter) || @tiles_in_hand.length)
-      end
+      arg_test = word.split("")
+      arg_test.each do |l|
+        if !(@tiles_in_hand.include? (l))
+          puts "Argument Error is here"
+          raise ArgumentError.new("Word is not included in your tiles")
+        else
+          @player_words << word.upcase!
 
-      if won?
-        return false
-      else
-        return result # Score of the word
+          result = Scrabble::Scoring.score(word)
+          @total_score += result
+          word_array = word.split(//)
+          # Will remove tiles from the @tiles_in_hand instance
+          word_array.each do |letter|
+            @tiles_in_hand.delete_at(@tiles_in_hand.index(letter) || @tiles_in_hand.length)
+          end
+
+          if won?
+            return false
+          else
+            return result # Score of the word
+          end
+        end
       end
+      # CHECK IF WORD IS IN TILES.HAND -> RAISE ARGUMENT ERROR IF NOT IN TILES --> GET_WORD_FOR
+        # ELSE
+      # CHECK WITH SCRABBLE::DICTIONARY.NEW.COMPARE INPUT WORD TO DICTIONARY WORDS
+        # -> RETURN ARGUMENT ERROR IF WORD IS NOT IN DICTIONARY --> GET_WORD_FOR
+
     end #play
 
     def highest_scoring_word

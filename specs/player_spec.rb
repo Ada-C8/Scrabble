@@ -88,7 +88,7 @@ describe "Player" do
     end # It
 
     xit "should return false if @total_score < 100" do
-      #This doesn't work because you can't call a private method
+      #This doesn't work because you c an't call a private method
       # @test_player.play("z")
       # @test_player.won?.must_equal false
     end # It
