@@ -19,22 +19,11 @@ module Scrabble
         return false
       end
 
-      @plays << word
-<<<<<<< HEAD
-      @score = Scrabble::Scoring.score(word)
-      i = 0
-      @hand.each do |letter|
-        if letter == @plays[i]
-          letter.delete!
-        end
-        i += 1
-      end 
 
-=======
       score = Scrabble::Scoring.score(word)
       @word_scores << score
->>>>>>> d21f25c9df9e2aa384e5520b59ee75041494ed36
-      #thinking we need to delete letters from the hand
+      @plays << word
+
       word = word.split("")
 
       word.each do |letter|
@@ -100,3 +89,5 @@ private
 
   end
 end
+
+##mariam webster dictionary api??

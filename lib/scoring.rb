@@ -43,7 +43,7 @@ module Scrabble
       if array_of_words.empty?
         return "None!"
       end
-      
+
       scores = array_of_words.group_by {|word| score(word)}
       #this returns a hash, where keys are scores, and value is an array of words
 

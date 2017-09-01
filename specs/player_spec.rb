@@ -59,13 +59,13 @@ describe "#Scrabble::Player" do
   describe "highest_scoring_word & highest_word_score returned" do
     #8
     it "returns string word (highest_scoring_word)"do
-       @carlisle.highest_scoring_word.must_equal "schmuck"
-    end
-    #9
-    it "returns score for highest scoring word" do
-      @carlisle.highest_word_score.must_equal 70
-    end
+    @carlisle.highest_scoring_word.must_equal "schmuck"
   end
+  #9
+  it "returns score for highest scoring word" do
+    @carlisle.highest_word_score.must_equal 70
+  end
+
 
   describe "#won" do
     #10
@@ -84,8 +84,8 @@ describe "#Scrabble::Player" do
 
   describe "check draw tiles method" do
     before do
-    @tilebagginsIII = Scrabble::Tilebag.new
-    @carlisleIII = Scrabble::Player.new("Carlisle, III", @tilebagginsIII)
+      @tilebagginsIII = Scrabble::Tilebag.new
+      @carlisleIII = Scrabble::Player.new("Carlisle, III", @tilebagginsIII)
     end
 
 
@@ -100,19 +100,16 @@ describe "#Scrabble::Player" do
     end
 
     it "bag is low" do
-      2.times do
-        @carlisleIII.draw_tiles
-
-        @carlisleIII.play(@carlisleIII.hand[0..5].join(""))
-      end
-
-
-      @carlisleIII.tile_bag.num_tiles_remaining.must_equal 85
+      @tilebagginsIII.num_tiles_remaining = 5
+      @carlisleIII.draw_tiles
+      @carlisleIII.hand.length.must_equal 5
+      @tilebagginsIII.num_tiles_remaining.must_equal 0
     end
 
     it "bag is empty" do
-
+      @tilebagginsIII.num_tiles_remaining = 0
+      @carlisleIII.draw_tiles.must_match "Sorry, you can't draw from an empty bag! Work with whatcha momma gave ya!"
     end
-
   end
+end
 end
