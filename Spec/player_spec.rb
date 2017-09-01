@@ -46,10 +46,6 @@ describe "Scrabble::Player" do
       end
       larry.total_score.must_equal 157
     end
-    it "raises an argument error for calling won? on a class" do
-      michelle = Scrabble::Player.new("Michelle")
-      proc{michelle.won?}.must_raise NoMethodError
-    end
   end
 
   describe "can find highest_scoring_word" do
