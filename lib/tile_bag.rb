@@ -37,6 +37,10 @@ module Scrabble
     return @letter_quantity
     end
 
+    def tiles_remaining
+      return @letter_quantity.inject(0) { |sum, i| sum += i[1] }
+    end
+
   end #end of class
 end #end of module
 
