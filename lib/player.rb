@@ -35,10 +35,10 @@ module Scrabble
       #TO DO => How to remove tiles from players while still getting tests to pass? (in tests you don't know what @tiles will be so how to test the output of test word and remove the correct letters from @tiles?)
 
       #remove tiles from player's tile hand
-      # word_arr = word.split("")
-      # word_arr.each do |letter|
-      #   @tiles.delete_at(@tiles.find_index(letter))
-      # end
+      word_arr = word.split("")
+      word_arr.each do |letter|
+        @tiles.delete_at(@tiles.find_index(letter))
+      end
 
       return player_word_score
     end
@@ -60,8 +60,6 @@ module Scrabble
       @tiles += drawn_tiles
       return @tiles
     end
-
-    private
 
     def won?
       if @total_score > 100
