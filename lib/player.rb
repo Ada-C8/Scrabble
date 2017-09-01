@@ -20,6 +20,7 @@ module Scrabble
       end
 
       @plays << word
+<<<<<<< HEAD
       @score = Scrabble::Scoring.score(word)
       i = 0
       @hand.each do |letter|
@@ -29,9 +30,20 @@ module Scrabble
         i += 1
       end 
 
+=======
+      score = Scrabble::Scoring.score(word)
+      @word_scores << score
+>>>>>>> d21f25c9df9e2aa384e5520b59ee75041494ed36
       #thinking we need to delete letters from the hand
-      @word_scores << @score
-      return @score
+      word = word.split("")
+
+      word.each do |letter|
+        if @hand.include?(letter)
+          @hand.delete_at(@hand.index(letter))
+        end
+      end
+
+      return score
     end
 
     def total_score
@@ -88,13 +100,3 @@ private
 
   end
 end
-
-bag = Scrabble::Tilebag.new
-new_player = Scrabble::Player.new("Carli", bag)
-new_player.draw_tiles
-
-hand = new_player.hand
-puts "#{hand}"
-hand = new_player.hand[0..1].join("")
-puts "#{hand}"
-new_player.play(hand)

@@ -95,7 +95,7 @@ describe "#Scrabble::Player" do
       @carlisle.draw_tiles
       @carlisle.hand.length.must_equal 7
       @carlisle.tile_bag.num_tiles_remaining.must_equal 91
-      @carlisle.play(@carlisle.hand[0..6])
+      @carlisle.play(@carlisle.hand[0..6].join(""))
       @carlisle.hand.length.must_equal 0
     end
 
@@ -103,7 +103,7 @@ describe "#Scrabble::Player" do
       2.times do
         @carlisleIII.draw_tiles
 
-        @carlisleIII.play(@carlisleIII.hand[0..4].join(""))
+        @carlisleIII.play(@carlisleIII.hand[0..5].join(""))
       end
 
 
