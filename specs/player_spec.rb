@@ -147,3 +147,18 @@ describe "draw_tiles(tile_bag)" do
   end
 
 end
+
+describe "method compare_to_tiles" do
+  it "returns true if player has the necessary tiles" do
+    @ada = Scrabble::Player.new("Countess Lovelace")
+    @ada.draw_tiles(Scrabble::TileBag.new)
+    tiles = @ada.tiles.join
+    @ada.compare_to_tiles(tiles).must_equal true
+  end
+
+  it "returns false if player doesn't have necessary tiles" do
+    @ada = Scrabble::Player.new("Countess Lovelace")
+    @ada.draw_tiles(Scrabble::TileBag.new)
+    @ada.compare_to_tiles("QQK").must_equal false
+  end
+end

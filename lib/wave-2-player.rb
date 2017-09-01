@@ -52,5 +52,17 @@ module Scrabble
         tiles << tile
       end
     end
+
+    def compare_to_tiles(word)
+      tiles = @tiles.clone
+      word.each_char do |char|
+        if tiles.include?(char) == false
+          return false
+        else
+          tiles.delete_at(tiles.index(char))
+        end
+      end
+      return true
+    end
   end  #end of Player class
 end  #end of Scrabble module
