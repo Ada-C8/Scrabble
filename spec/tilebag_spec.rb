@@ -19,7 +19,11 @@ describe "TileBag" do
   end
 
   describe "#draw_tiles method" do
-    it " " do
+    it "Should make sure a max of 7 tiles drawn" do
+		tilebag = Scrabble::TileBag.new
+		tilebag.draw_tiles(5)
+		count = tilebag.tiles_remaining
+		count.must_equal 93
     end
   end
 
@@ -29,7 +33,6 @@ describe "TileBag" do
       tilebag = Scrabble::TileBag.new
 	  sum = 0
 	  tilebag.remaining_tiles.each do |key, value|
-		puts "the key is " + key + " the value is #{value}"
 		sum += value
 	  end
       tilebag.tiles_remaining.must_equal 98
