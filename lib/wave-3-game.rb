@@ -77,9 +77,13 @@ module Scrabble
       word_validation = false
       compare_tiles = false
 
-      while word_validation == false || compare_to_tiles == false
+      while word_validation == false || compare_tiles == false
         puts "Enter a word to score:"
         word = gets.chomp
+        while word == ""
+          puts "You must enter a word."
+          word = gets.chomp
+        end
         word_validation = Scrabble::Dictionary.look_up(word)
         compare_tiles = player.compare_to_tiles(word)
       end

@@ -62,6 +62,7 @@ module Scrabble
           tiles.delete_at(tiles.index(char))
         end
       end
+      @tiles = tiles
       return true
     end
   end  #end of Player class
