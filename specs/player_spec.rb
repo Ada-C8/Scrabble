@@ -29,6 +29,7 @@ describe "Player class" do
 
   end
 
+  # these tests only work if attr_writer :tiles is uncommented
   describe "play(word) method" do
     before do
       @anna = Scrabble::Player.new("Anna")
@@ -36,27 +37,31 @@ describe "Player class" do
       @annas_score = @anna.play("cat")
     end
 
-    xit "Adds input word to player's plays array" do
+    it "Adds input word to player's plays array" do
       @anna.plays.must_include "CAT"
+      @anna.tiles = "HAT".split("")
       @anna.play("hat")
+      @anna.tiles = "BOOK".split("")
       @anna.play("book")
 
       @anna.plays.length.must_equal 3
       @anna.plays.must_include ("BOOK" && "HAT")
     end
 
-    xit "Returns the score of the played word" do
+    it "Returns the score of the played word" do
       @annas_score.must_equal 5
     end
 
-    xit "Adds the score to player's total_score" do
+    it "Adds the score to player's total_score" do
       @anna.total_score.must_equal 5
 
+      @anna.tiles = "PIE".split("")
       @anna.play("pie")
       @anna.total_score.must_equal 10
     end
 
-    xit "Returns false if a player's already won" do
+    it "Returns false if a player's already won" do
+      @anna.tiles = "FANTASTICSCRABBLEDOG".split("")
       @anna.play("fantastic")
       @anna.play("scrabble")
 
@@ -72,7 +77,6 @@ describe "Player class" do
 
       it "Doesn't add word to player's plays array" do
         @anna.play("the")
-
 
         @anna.plays.must_include "CAT"
       end
@@ -110,9 +114,11 @@ describe "Player class" do
 
   end
 
-  xdescribe "highest_scoring_word method" do
+  # only works if attr_writer :tiles is uncommented
+  describe "highest_scoring_word method" do
     it "Returns a string with the highest score in the played words array" do
       @bob = Scrabble::Player.new("Bob")
+      @bob.tiles = "CATHATFANTASTICBOOK".split("")
       @bob.play("cat")
       @bob.play("hat")
       @bob.play("fantastic")
@@ -122,9 +128,11 @@ describe "Player class" do
     end
   end
 
-  xdescribe "highest_word_score method" do
+  # only works with attr_writer :tiles uncommented
+  describe "highest_word_score method" do
     it "Returns a string with the highest score in the played words array" do
       @bob = Scrabble::Player.new("Bob")
+      @bob.tiles = "CATHATFANTASTICBOOK".split("")
       @bob.play("cat")
       @bob.play("hat")
       @bob.play("fantastic")
@@ -134,7 +142,7 @@ describe "Player class" do
     end
   end
 
-  xdescribe "draw_tiles method" do
+  describe "draw_tiles method" do
     before do
       @edie = Scrabble::Player.new("Edie")
       @tile_bag = Scrabble::TileBag.new
