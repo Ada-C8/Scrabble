@@ -3,11 +3,16 @@ require_relative 'spec_helper'
 describe 'Player' do
   before do
     @player = Scrabble::Player.new('Mimi')
+    @debug_player = Scrabble::Player.new('Arya', :debug)
   end
 
   describe 'initialize' do
     it 'assigns parameter to @name variable' do
       @player.name.must_equal 'Mimi'
+    end
+
+    it 'creates DEBUG player if passed :debug argument' do
+      @debug_player.tiles.must_equal ['C','A','T','T','Y','C','D']
     end
 
     it 'will convert everything passed as name into a String' do
@@ -42,6 +47,19 @@ describe 'Player' do
 
     it 'returns the score of the word' do
       @player.play('jazzily').must_equal 85
+    end
+
+    it 'returns false if player does not have tiles to play word' do
+      # (debug mode for hand)
+      # (check for double-letter words)
+    end
+
+    it 'removes played tiles from hand' do
+
+    end
+
+    it 'draws new tiles to replace tiles played' do
+
     end
   end
 
