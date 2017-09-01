@@ -8,8 +8,7 @@ describe 'Player' do
 
   describe "initialize" do
     it "must_be_instance_of Player" do
-      new_player = Scrabble::Player.new("Ada")
-      new_player.must_be_instance_of Scrabble::Player
+      @new_player.must_be_instance_of Scrabble::Player
     end
 
     it "must respond to method name" do

@@ -1,6 +1,6 @@
 
-require 'SimpleCov'
-SimpleCov.start
+# require 'SimpleCov'
+# SimpleCov.start
 require 'minitest'
 require 'minitest/autorun'
 require 'minitest/reporters'
@@ -9,5 +9,5 @@ require 'pry'
 
 require_relative '../lib/Player.rb'
 require_relative '../lib/Scoring.rb'
-
 require_relative '../lib/TileBag.rb'
+require_relative '../lib/Dictionary.rb'
