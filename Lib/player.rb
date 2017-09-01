@@ -1,5 +1,6 @@
 require_relative 'scrabble'
 require_relative 'tile_bag'
+require 'oxford_dictionary'
 require 'pry'
 module Scrabble
   class Player
@@ -25,6 +26,7 @@ module Scrabble
       end
     end
 
+
     def word_uses_tiles?(word)
       hand_check = []
       hand_check = @tiles.dup
@@ -47,18 +49,22 @@ module Scrabble
       Scoring.score(highest_scoring_word)
     end
 
+
     def draw_tiles(tilebag)
       num = 7
+
       if @plays == []
       else
         remove_tiles(@plays[-1])
         num = @plays[-1].length
       end
-      # tilebag << Scrabble::TileBag.remaining_tiles
       new_tiles = tilebag.draw_tiles(num)
       new_tiles.each do |tile|
         @tiles << tile
       end
+
+
+
       #REMOVES EVERY INSTANCE OF LETTER
       def remove_tiles(word)
         word.each_char do |word_letter|
@@ -68,10 +74,9 @@ module Scrabble
       end
 
     end# end draw tiles
-    
+
     private
-    #won?: If the player has over 100 points returns true.
-    # otherwise returns false
+
     def won?
       @total_score >= 100
     end
