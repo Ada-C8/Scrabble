@@ -13,15 +13,15 @@ describe "tilebag" do
   end
 
   it "Default tiles initialized" do
-    @tile_bag.original_tile_bag.must_be_kind_of Hash
+    @tile_bag.original_tile_bag.must_be_kind_of Array
   end
 
   it "Initial tile bag contains 26 kinds of tiles " do
-    @tile_bag.original_tile_bag.count.must_equal 26
+    @tile_bag.original_tile_bag.uniq.count.must_equal 26
   end
 
   it "Initial tile bag contains 98 total tiles." do
-    @tile_bag.original_tile_bag.values.inject(&:+).must_equal 98
+    @tile_bag.original_tile_bag.length.must_equal 98
   end
 end
 
@@ -38,17 +38,14 @@ describe "draw_tiles" do
 
     tiles = tile_bag.draw_tiles(3)
     tiles.each do |tile|
-      originals.keys.include?(tile).must_equal true
+      originals.include?(tile).must_equal true
     end
   end
 
-  it "removes one tile of that letter from its original set" do
+  it "after removing the last letter, bag is empty" do
     tile_bag = Scrabble::TileBag.new
-    before = tile_bag.original_tile_bag.clone
-    letter = tile_bag.draw_tiles(1)[0]
-    after = tile_bag.original_tile_bag
-
-    ((after[letter].nil?) || (before[letter] == after[letter] + 1)).must_equal true
+    tile_bag.draw_tiles(98)
+    tile_bag.original_tile_bag.length.must_equal 0
   end
 
   it "returns the number of tiles drawn" do
@@ -58,9 +55,9 @@ describe "draw_tiles" do
 
   it "when called 4 times, removes 4 drawn tiles from the original set" do
     tile_bag = Scrabble::TileBag.new
-    before = tile_bag.original_tile_bag.values.inject(&:+)
+    before = tile_bag.original_tile_bag.length
     tile_bag.draw_tiles(4)
-    after = tile_bag.original_tile_bag.values.inject(&:+)
+    after = tile_bag.original_tile_bag.length
 
     (before - 4).must_equal after
   end
@@ -71,13 +68,11 @@ describe "draw_tiles" do
   end
 
   it "cannot draw a letter if none remaining" do
-    10.times do
       tile_bag = Scrabble::TileBag.new
-      tile_bag.draw_tiles(97)
-      tile_bag.original_tile_bag.each do |key, qty|
-        qty.must_be :>=, 0
-      end
-    end
+      originals = tile_bag.original_tile_bag.clone
+      tiles_returned = []
+      tiles_returned << tile_bag.draw_tiles(98)
+      tiles_returned.flatten.sort.must_equal originals
   end
 end
 
