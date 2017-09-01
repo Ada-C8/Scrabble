@@ -19,9 +19,6 @@ describe "Player" do
       @player.tiles.must_be_instance_of Array
     end
 
-    it "gives Player 7 tiles to start" do
-      @player.tiles.length.must_equal 7
-    end
   end
 
   describe "play(word)" do
