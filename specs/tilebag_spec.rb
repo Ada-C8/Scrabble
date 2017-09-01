@@ -28,12 +28,16 @@ describe "tilebag" do
         input = Scrabble::Tilebag.new
         input.must_respond_to :draw_tiles
       end
-
     end
     describe "tiles_remaining" do
       it "should respond to tiles_remaining" do
         input = Scrabble::Tilebag.new
         input.must_respond_to :tiles_remaining
+      end
+      it "should give an integer" do
+        input_bag = Scrabble::Tilebag.new
+        input_bag.tiles_remaining.must_be_instance_of Integer
+
       end
       it "should give 98 tiles before draws" do
         input = Scrabble::Tilebag.new
