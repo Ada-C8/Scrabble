@@ -18,7 +18,7 @@ module Scrabble
         return false
       end
 
-      check_tiles(input_word)
+      # check_tiles(input_word) # => OPTIONAL 1
 
       score = Scrabble::Scoring.score(input_word)
       @plays << input_word
@@ -62,12 +62,18 @@ module Scrabble
       @total > 99 ? true : false
     end
 
-    def check_tiles(input_word)
-      input_letters = input_word.split(" ")
-      input_letters.each do |letter|
-        raise ArgumentError.new "word contains letters not found in player tiles." if !(@tiles.include? letter)
-      end
-    end
+    # def check_tiles(input_word # => OPTIONAL 1
+    #   used_letters = []
+    #   input_letters = input_word.split(" ")
+    #   input_letters.each do |input_letter|
+    #     if @tiles.include? input_letter
+    #       used_letters << @tiles.delete_at((@tiles.index(input_letter)))
+    #     else
+    #       used_letters.each {|letter| @tiles << letter}
+    #       raise ArgumentError.new "word contains letter player does not have"
+    #     end
+    #   end
+    # end
 
   end # => end of class
 end # => end of module
