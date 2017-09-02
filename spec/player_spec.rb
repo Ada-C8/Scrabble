@@ -2,7 +2,6 @@ require_relative '../lib/player'
 require_relative 'spec_helper'
 
 describe "class Player"  do
-
   before do
     @player = Scrabble::Player.new(name)
   end
@@ -17,8 +16,31 @@ describe "class Player"  do
     end
   end
 
+  describe "tiles method" do
+    it "returns empty array before player starts first game" do
+      @player.tiles.must_be_empty true
+    end
+  end
+
+    # it "must raise an error if tile length is greater than 7" do
+    #   tile_bag = Scrabble::TileBag.new
+    #
+    #   @player.play("ttttttt")
+    #   @player.draw_tiles(tile_bag)
+    #   @player.tiles
+    #   proc {Scrabble::Player.tiles}.must_raise ArgumentError
+    # ends
+
+  # describe "draw tiles" method do
+  #   it "fills tiles array until it has 7 letters from the given tile bag" do
+  #
+  #   end
+  # end
+
   describe "plays method" do
     it "returns an array of word played by the player" do
+      # @player.play("cats")
+      # @player.play("rats")
       @player.plays.must_be_kind_of Array
     end
   end
@@ -32,7 +54,7 @@ describe "class Player"  do
       @player.won?.must_equal false
       @player.play("ZZZZZZZ")
       @player.won?.must_equal true
-      @player.play("hi").must_equal nil
+      @player.play("hi").must_be_nil true
     end
   end
 

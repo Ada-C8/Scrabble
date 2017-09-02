@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 describe "Scoring" do
-   before do
+  before do
     @game = Scrabble::Scoring.new
   end
 
@@ -12,10 +12,21 @@ describe "Scoring" do
   end
 
   describe "scoring" do
-    it "should check the value of 1 tile" do
+    it "should check the value of 1-6 tiles" do
      Scrabble::Scoring.score("A").must_equal 1
+     Scrabble::Scoring.score("ME").must_equal 4
+     Scrabble::Scoring.score("COT").must_equal 5
+     Scrabble::Scoring.score("BING").must_equal 7
+     Scrabble::Scoring.score("hurry").must_equal 11
+     Scrabble::Scoring.score("zinger").must_equal 16
     end
 
+    it "should accept lower and upper case tiles" do
+    Scrabble::Scoring.score("CAT").must_equal 5
+    Scrabble::Scoring.score("cat").must_equal 5
+    Scrabble::Scoring.score("CaT").must_equal 5
+    end
+  
     it "should check the value of 2 tiles" do
      Scrabble::Scoring.score("WE").must_equal 5
     end

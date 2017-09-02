@@ -1,7 +1,7 @@
 describe "class TileBag" do
   before do
    @tile_bag = Scrabble::TileBag.new
- end
+  end
 
   describe "initialize" do
     it "sets up the instance with a collection of all default tiles" do
@@ -21,11 +21,11 @@ describe "class TileBag" do
     it "returns an empty array of tiles to user" do
       @tile_bag.draw_tiles(0).must_be_empty Array
     end
-
   end
 
   describe "tiles_remaining" do
-    it "subtracts from the values of letter quantity and returns remaining tiles" do
+    it "subtracts from the values of letter quantity and returns remaining
+    tiles" do
       @tile_bag.draw_tiles(5)
       @tile_bag.tiles_remaining.must_equal 93
     end
@@ -34,15 +34,4 @@ describe "class TileBag" do
       @tile_bag.tiles_remaining.must_equal 98
     end
   end
-
-    # it "removes the tiles from the default set" do
-    #
-    # end
-
 end #end of describe block
-
-
-# returns a collection of random tiles, removes the tiles from the default set
-
-
-#

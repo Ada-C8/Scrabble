@@ -1,31 +1,35 @@
-## Don't forget to commit
 require_relative 'scoring'
-module Scrabble
+require_relative 'tile_bag'
 
+module Scrabble
   class Player
-    attr_accessor :name
+    attr_accessor :name, :tiles
 
     def initialize(name)
       @name  = name
       @plays = []
+      @tiles = []
+    end
+
+    def tiles
+      if @tiles.length <= 7
+        return @tiles
+      else
+        raise ArgumentError.new("Cannot select more than 7 tiles")
+      end
+    end
+
+    def draw_tiles(tile_bag)
+      puts "Inside draw_tiles, @tiles is #{@tiles}"
+      tiles_to_draw = 7 - @tiles.length
+      @tiles.concat(tile_bag.draw_tiles(tiles_to_draw))
+      puts "after, @tiles is #{@tiles}"
+      return @tiles
     end
 
     def plays
       return @plays
     end
-
-    # def play(word)
-    #   @plays << word
-    #   total_score = 0
-    #   @plays.each do |played_word|
-    #     total_score += Scoring.score(played_word)
-    #   end
-    #   if total_score >= 100
-    #     false
-    #   else
-    #     return total_score
-    #   end
-    # end
 
     def play(word)
       if won? == false
@@ -49,7 +53,6 @@ module Scrabble
       Scoring.score(highest_scoring_word)
     end
 
-    # private
     def won?
       if total_score < 100
         return false
@@ -61,8 +64,11 @@ module Scrabble
   end # end of the class
 end # end of module
 
-######TESTING######
-# bob = Player.new("bob")
+#####TESTING######
+
+# bob = Scrabble::Player.new("bob")
+# # tile_bag = Scrabble::TileBag.new
+#
 # puts bob.play("cats")
 # puts
 # puts bob.plays
@@ -78,4 +84,17 @@ end # end of module
 # puts
 # print bob.plays
 # puts
+# print bob.total_score
+# puts
 # puts bob.highest_scoring_word
+
+####TESTING-2#########
+# puts bob.tiles
+# puts
+# puts bob.play("cats")
+# puts
+# print bob.tiles
+# puts
+# print bob.draw_tiles(tile_bag)
+# puts
+# print bob.tiles
