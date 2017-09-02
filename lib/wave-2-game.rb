@@ -1,11 +1,12 @@
-require_relative 'lib/scrabble'
+#require_relative 'lib/scrabble'
+require_relative 'lib/score'
+require_relative 'lib/player'
 
 module Scrabble
   class Game
     def initialize
       @words = []
       @players = setup_players
-      @tilebag = Tilebag.new
     end
 
     def play
@@ -14,11 +15,6 @@ module Scrabble
       while continue?
         @players.each do |player|
           puts "It is #{player.name}'s turn"
-
-          player.draw_tiles(@tilebag)
-
-          puts "#{player.name} has the following tiles: #{player.tiles}"
-
           player_word = get_word_for(player)
           player_has_won = !player_word
 
