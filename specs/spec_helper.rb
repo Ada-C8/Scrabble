@@ -9,5 +9,6 @@ require_relative '../lib/scoring'
 require_relative '../lib/player'
 require_relative '../lib/tilebag'
 require_relative '../lib/dictionary'
+require 'ruby-dictionary'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new

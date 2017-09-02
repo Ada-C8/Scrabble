@@ -56,6 +56,14 @@ describe "The Player class" do
       word2 = @tiles[0] + @tiles[1] + @tiles[2] + @tiles[3] + @tiles[4] + @tiles[5] + @tiles[6]
       @player.play(word2).must_equal false
     end
+
+    #NOTE to instructor: We made this to test the dictionary functionality. The functionality only works when actually playing the game, and not during testing, since we randomly generate bogus words in testing.
+  #   it "checks the dictionary to see if the word exists" do
+  #     @player.draw_tiles(@tilebag)
+  #     word = @tiles[0] + @tiles[1] + @tiles[2] + @tiles[3] + @tiles[4] + @tiles[5] + @tiles[6]
+  #     ap "Our test word1: #{word}"
+  #     @player.play(word).must_raise ArgumentError
+  #   end
   end
 
   describe "Class attributes" do

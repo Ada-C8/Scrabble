@@ -1,15 +1,23 @@
 require_relative 'spec_helper.rb'
+require 'ruby-dictionary'
+require 'awesome_print'
 
 describe "The Dictionary class" do
 
-
-  it "Can be initialized" do
-    word = "Hello"
-    dictionary = Scrabble::Dictionary.new(word)
-    dictionary.must_be_instance_of Scrabble::Dictionary
+  before do
+       @ourdictionary = Scrabble::OurDictionary.new
   end
 
-  it "Returns true if a word is in the dictionary" do
+  describe "find method" do
+    it "Returns true" do
+      word = "Hello"
+      @ourdictionary.find(word).must_equal true
+    end
+
+    it "Returns false" do
+      word = "Arglekl"
+      @ourdictionary.find(word).must_equal false
+    end
 
   end
 
