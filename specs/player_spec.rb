@@ -7,7 +7,6 @@ describe "The Player class" do
     @tilebag = Scrabble::TileBag.new
     @player.draw_tiles(@tilebag)
     @tiles = @player.tiles
-    ap @tiles
   end
 
   describe "Initialising Player" do
@@ -50,7 +49,6 @@ describe "The Player class" do
     it "Returns false if the player has already won" do
       @player.draw_tiles(@tilebag)
       word = @tiles[0] + @tiles[1] + @tiles[2] + @tiles[3] + @tiles[4] + @tiles[5] + @tiles[6]
-      ap "Our test word1: #{word}"
       @player.play(word)
       @player.draw_tiles(@tilebag)
       word2 = @tiles[0] + @tiles[1] + @tiles[2] + @tiles[3] + @tiles[4] + @tiles[5] + @tiles[6]

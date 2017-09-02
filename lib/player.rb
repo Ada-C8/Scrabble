@@ -12,8 +12,6 @@ module Scrabble
     end
 
     def play(word)
-      ap "Played word = #{word}"
-
       # ******************************************************************************
       # NOTE TO TEACHER
       # This chunk is implementation of the optional dictionary. We have hashed it out so that tests can pass (since tests depend on randomly generated junk words.)
@@ -27,17 +25,12 @@ module Scrabble
       word.upcase.split("").each do |letter|
         if tiles_copy.include?(letter)
             tiles_copy.delete_at(tiles_copy.index(letter) || tiles_copy.length)
-            ap "After removing tile form hand: #{tiles_copy}"
         else
           raise ArgumentError.new("The letter \"#{letter}\" is not in your hand.")
         end
       end
 
       @tiles = tiles_copy
-
-      ap "Tiles in hand- tiles_copy: #{tiles_copy}"
-      ap "Tiles in hand- tiles_copy: #{@tiles}"
-
       @plays << word.upcase
       @total_score += Scoring.score(word)
 
@@ -54,17 +47,15 @@ module Scrabble
       return best_word
     end
 
-    def highest_word_score#(winning_word)
+    def highest_word_score
       # sends the highest_scoring_word method to the score method to be scored.
       highest_score = Scoring.score(highest_scoring_word)
       return highest_score
     end
 
     def draw_tiles(tile_bag)
-      ap "Tiles in hand before player draws: #{@tiles}"
       draw = 7 - @tiles.length
-      @tiles.concat(tile_bag.draw_tiles(draw)) #both this class and the TileBag class have draw_tiles methods.
-      ap "Tiles in hand after player draws: #{@tiles}"
+      @tiles.concat(tile_bag.draw_tiles(draw))
     end
 
     private

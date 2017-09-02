@@ -8,7 +8,6 @@ module Scrabble
 
     def find(word)
       dictionary = Dictionary.from_file('lib/english3.txt')
-      ap "#{word} is the word we are looking up in the dictionary!"
       dictionary.exists?(word)
 
     end
@@ -16,6 +15,7 @@ module Scrabble
 end
 
   #OUR ATTEMPT AT USING THE MW_DICTIONARY_API
+  #We'd like to find out how to make this work!
   #
   #require 'mw_dictionary_api'
   # @client = MWDictionaryAPI::Client.new(ENV['ec412a70-7275-413a-a532-bb742a598286'], api_type: "collegiate")
