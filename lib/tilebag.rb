@@ -1,4 +1,3 @@
-require 'awesome_print'
 module Scrabble
   class TileBag
 
@@ -15,14 +14,12 @@ module Scrabble
       draw = @bag_of_tiles.keys.to_a.sample
       tiles_drawn << draw
       @bag_of_tiles[draw] -= 1 #takes the letter drawn and subtracts it from the bag of tiles
-
-
     end
       return tiles_drawn
     end
 
     def tiles_remaining
-      @bag_of_tiles.values.inject(:+)
+      @bag_of_tiles.values.inject(:+) #returns the sum of values remaining in the bag
     end
 
   end

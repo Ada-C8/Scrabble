@@ -37,9 +37,10 @@ describe "Scoring" do
 
     it "reduce the number of tiles in the bag by the number drawn" do
       tile_bag = Scrabble::TileBag.new
-      tile_bag.draw_tiles(4)
-      tile_bag.tiles_remaining.must_equal 94
+      tile_bag.draw_tiles(7)
+      tile_bag.tiles_remaining.must_equal 91
     end
+
   end
 
 

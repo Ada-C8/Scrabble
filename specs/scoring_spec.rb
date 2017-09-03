@@ -50,6 +50,8 @@ describe "Scoring" do
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal "animals"
     end
 
+
+
     describe "self#best_word" do
       it "returns the higher scoring word when score is not equal" do
         Scrabble::Scoring.best_word("cat", "dogs").must_equal "dogs"
@@ -68,6 +70,7 @@ describe "Scoring" do
         Scrabble::Scoring.best_word("dog", "cat").must_equal "cat"
         Scrabble::Scoring.best_word("ssssssd", "ssssssg").must_equal "ssssssg"
         Scrabble::Scoring.best_word("ssssssg", "ssssssd").must_equal "ssssssd"
+        Scrabble::Scoring.best_word("ssssssd", "qqqqqx").must_equal "ssssssd"
       end
     end
   end#of_self#highest_score_from
