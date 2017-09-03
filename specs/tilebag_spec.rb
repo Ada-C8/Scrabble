@@ -33,6 +33,15 @@ describe "Scoring" do
       }.must_raise ArgumentError
     end
 
+  describe "#tiles_remaining" do
+
+    it "reduce the number of tiles in the bag by the number drawn" do
+      tile_bag = Scrabble::TileBag.new
+      tile_bag.draw_tiles(4)
+      tile_bag.tiles_remaining.must_equal 94
+    end
+  end
+
 
   end #end of draw tiles
 
