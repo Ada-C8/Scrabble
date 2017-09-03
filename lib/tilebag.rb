@@ -9,17 +9,15 @@ module Scrabble
     end
 
     def draw_tiles(num)
-      tiles_drawn = []
+      raise ArgumentError.new if num.class != Integer
+      tiles_drawn = [] #lines 13 through 15 draw a random tile and enter in array based on the number of tiles drawn
+
+      num.times do |tiles|
       draw = @bag_of_tiles.keys.to_a.sample
-
-
-      tiles_drawn << draw
+      tiles_drawn << draw.to_s
+    end
       return tiles_drawn
     end
 
   end
 end
-
-trying_this = Scrabble::TileBag.new
-tiles = trying_this.draw_tiles(5)
-ap "#{tiles}"

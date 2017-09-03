@@ -21,6 +21,19 @@ describe "Scoring" do
       tile_bag.draw_tiles(4).must_be_kind_of Array
     end
 
+    it "returns the correct number of tiles drawn in the array" do
+      tile_bag = Scrabble::TileBag.new
+      tile_bag.draw_tiles(4).length.must_equal 4
+    end
+
+    it "raise an error if requested number of tiles is not a number" do
+      tile_bag = Scrabble::TileBag.new
+      proc {
+        tile_bag.draw_tiles("")
+      }.must_raise ArgumentError
+    end
+
+
   end #end of draw tiles
 
 end #end of scoring
