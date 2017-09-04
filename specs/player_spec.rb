@@ -90,5 +90,12 @@ describe "Player" do
     end
   end
 
+  describe "draw_tiles(tile_bag)" do
+    it "Draws tiles until a user has 7 tiles" do
+      tile_bag = Scrabble::TileBag.new
+      @player.draw_tiles(tile_bag)
+      @player.tiles.length.must_equal 7
+    end
+  end
 
 end
