@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 
-describe "Scoring" do
+describe "TileBag" do
   before do
     @tile_bag = Scrabble::TileBag.new
   end
@@ -19,7 +19,7 @@ describe "Scoring" do
     it "returns the correct quantity for the amount of tiles" do
       @tile_bag.bag_of_tiles[:E].must_equal 12
     end
-  end #end of initialize
+  end#_of_"#initialize"
 
   describe "#draw_tiles" do
 
@@ -28,28 +28,22 @@ describe "Scoring" do
     end
 
     it "returns the correct number of tiles drawn in the array" do
-      tile_bag = Scrabble::TileBag.new
-      tile_bag.draw_tiles(4).length.must_equal 4
+      @tile_bag.draw_tiles(4).length.must_equal 4
     end
 
     it "raises an error if requested number of tiles is not a number" do
-      tile_bag = Scrabble::TileBag.new
-      proc {
-        tile_bag.draw_tiles("")
-      }.must_raise ArgumentError
+      proc { @tile_bag.draw_tiles("") }.must_raise ArgumentError
     end
 
-    describe "#tiles_remaining" do
+  end#of_"#draw_tiles"
 
-      it "reduce the number of tiles in the bag by the number drawn" do
-        tile_bag = Scrabble::TileBag.new
-        tile_bag.draw_tiles(7)
-        tile_bag.tiles_remaining.must_equal 91
-      end
+  describe "#tiles_remaining" do
 
+    it "reduce the number of tiles in the bag by the number drawn" do
+      @tile_bag.draw_tiles(7)
+      @tile_bag.tiles_remaining.must_equal 91
     end
 
+  end#of_"#tiles_remaining"
 
-  end #end of draw tiles
-
-end #end of scoring
+end#of_TileBag

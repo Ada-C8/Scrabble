@@ -1,11 +1,14 @@
-require_relative 'lib/scrabble'
+# require_relative 'lib/scrabble'
+require_relative 'lib/player'
+require_relative 'lib/scoring'
+require_relative 'lib/tilebag'
 
 module Scrabble
   class Game
     def initialize
       @words = []
       @players = setup_players
-      @tilebag = Tilebag.new
+      @tilebag = TileBag.new
     end
 
     def play
@@ -15,7 +18,7 @@ module Scrabble
         @players.each do |player|
           puts "It is #{player.name}'s turn"
 
-          player.draw_tiles(@tilebag)
+          tiles = player.draw_tiles(@tilebag)
 
           puts "#{player.name} has the following tiles: #{player.tiles}"
 
