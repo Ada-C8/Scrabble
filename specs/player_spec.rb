@@ -1,6 +1,5 @@
 require_relative 'spec_helper'
 
-
 describe "PlayerClass" do
   it "initiates an instance of player" do
     player = Scrabble::Player.new("jan")
@@ -59,6 +58,7 @@ describe "total score method" do
     player.total_score.must_equal 0
   end
 end
+
 describe "highest word score method" do
   it "returns the highest score of a played word" do
     player = Scrabble::Player.new("Jan")
@@ -81,55 +81,52 @@ describe "highest word score method" do
     player.highest_word_score.must_equal 5
   end
 end
-  describe "highest scoring word method" do
-    it "returns the highest scoring played word" do
-      player = Scrabble::Player.new("Jan")
-      player.play("cat")
-      player.play("dog")
-      player.play("zzz")
-      player.highest_scoring_word.must_equal "zzz"
-    end
-
-    it "returns the word of shorter length if there is a tie" do
-      player = Scrabble::Player.new("Jan")
-      player.play("z")
-      player.play("mpy")
-      player.highest_scoring_word.must_equal "z"
-    end
-
-    it "returns the word of 7 letters if there is a tie in points" do
-      player = Scrabble::Player.new("Jan")
-      player.play("zzzz")
-      player.play("zzzdddf")
-      player.play("zzkkkk")
-      player.highest_scoring_word.must_equal "zzzdddf"
-    end
-
-    it "returns the first played word if there is a tie in score and length" do
-      player = Scrabble::Player.new("Jan")
-      player.play("cat")
-      player.play("dog")
-      player.play("a")
-      player.highest_scoring_word.must_equal "cat"
-    end
+describe "highest scoring word method" do
+  it "returns the highest scoring played word" do
+    player = Scrabble::Player.new("Jan")
+    player.play("cat")
+    player.play("dog")
+    player.play("zzz")
+    player.highest_scoring_word.must_equal "zzz"
   end
 
-  describe "tiles method" do
-    before do
-      @player = Scrabble::Player.new("Jan")
-    end
-
-    it "returns an array of tiles" do
-      @player.tiles.must_be_instance_of Array
-    end
-
-    it "fills tile array until reaches 7 letters" do
-      tile_bag = Scrabble::TileBag.new
-      @player.draw_tiles(tile_bag)
-      @player.tiles.count.must_equal 7
-      @player.play("cats")
-      # @player.tiles.count.must_equal 3
-      # @player.draw_tiles(tile_bag)
-      # @player.tiles.count.must_equal 7
-    end
+  it "returns the word of shorter length if there is a tie" do
+    player = Scrabble::Player.new("Jan")
+    player.play("z")
+    player.play("mpy")
+    player.highest_scoring_word.must_equal "z"
   end
+
+  it "returns the word of 7 letters if there is a tie in points" do
+    player = Scrabble::Player.new("Jan")
+    player.play("zzzz")
+    player.play("zzzdddf")
+    player.play("zzkkkk")
+    player.highest_scoring_word.must_equal "zzzdddf"
+  end
+
+  it "returns the first played word if there is a tie in score and length" do
+    player = Scrabble::Player.new("Jan")
+    player.play("cat")
+    player.play("dog")
+    player.play("a")
+    player.highest_scoring_word.must_equal "cat"
+  end
+end
+
+describe "tiles method" do
+  before do
+    @player = Scrabble::Player.new("Jan")
+  end
+
+  it "returns an array of tiles" do
+    @player.tiles.must_be_instance_of Array
+  end
+
+  it "fills tile array until reaches 7 letters" do
+    tile_bag = Scrabble::TileBag.new
+    @player.tiles.count.must_equal 0
+    @player.draw_tiles(tile_bag)
+    @player.tiles.count.must_equal 7
+  end
+end

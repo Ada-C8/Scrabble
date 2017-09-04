@@ -20,7 +20,6 @@ module Scrabble
       end
     end
 
-    ##draw_tiles(num) returns a collection of random tiles, removes the tiles from the default set
     def draw_tiles(num)
       if num == 0 || num > 7 || num.class != Integer
         raise ArgumentError.new("This is incorrect. Enter a number between 1 and 7.")
@@ -31,21 +30,12 @@ module Scrabble
         @tiles.shuffle!
         tiles_array << @tiles.pop
       end
-    return tiles_array
+      return tiles_array
     end
 
     def tiles_remaining
       return @tiles.count
     end
-
-
-
-
-
-
-
-
-
 
   end #(end of class)
 end #(end of module)

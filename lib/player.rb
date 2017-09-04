@@ -1,11 +1,9 @@
 require_relative 'scoring'
-# require_relative 'tilebag'
-require 'pry'
 
 module Scrabble
   class Player
 
-  attr_accessor :name, :plays, :tiles
+    attr_accessor :name, :plays, :tiles
 
     def initialize(name)
       @name = name
@@ -13,11 +11,19 @@ module Scrabble
       @tiles = []
     end
 
+    # Commented out code is an attempt at the optional requirement to allow player to only use tiles they currently have.  We struggled with how to implement many of our tests that have the players play words now that the tiles are an unknown, so we didn't fully implement.
     def play(word)
       return false if won?
+      # word_array = word.upcase.split("")
+      # if (word_array & @tiles).length == word_array.length
       plays << word
+      #   word_array.each do |letter|
+      #     @tiles.delete(letter)
+      #   end
       return Scrabble::Scoring.score(word)
-      
+      # else
+      #   return ArgumentError.new("You do not have the tiles to play that word.")
+      # end
     end
 
     def total_score
@@ -48,8 +54,6 @@ module Scrabble
         @tiles << drawn_tiles.pop
       end
     end
-
-
 
     private
 

@@ -10,6 +10,7 @@ describe "ScoringClass" do
 
     it 'returns Argument Error if non-letter characters are entered' do
       proc { Scrabble::Scoring.score("ca4ts") }.must_raise ArgumentError
+      proc { Scrabble::Scoring.score("5567") }.must_raise ArgumentError
     end
   end
 
