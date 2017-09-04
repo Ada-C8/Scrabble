@@ -41,8 +41,8 @@ module Scrabble
       tiles_drawn = []
 
       num.times do
-        available_tiles.shuffle
-        tile = available_tiles.find { |letter, num| num > 0 }[0]
+        available_tiles.shuffle!
+        tile = available_tiles.find { |letter, num_remaining| num_remaining > 0 }[0]
         tiles[tile] -= 1
         tiles_drawn << tile
       end
