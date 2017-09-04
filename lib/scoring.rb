@@ -40,7 +40,7 @@ module Scrabble
 
       def self.highest_score_from(array_of_words)
         raise ArgumentError.new("Input must be an Array") if !array_of_words.is_a? Array
-        raise ArgumentError.new("elements inside array must be strings") if !array_of_words.all? { |word| word.is_a? String}
+        raise ArgumentError.new("elements inside array must be strings") if !array_of_words.all? { |word| word.is_a? String }
         array_of_words.reduce do |best, word|
           best_word(word, best)
         end
