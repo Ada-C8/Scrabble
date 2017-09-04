@@ -53,6 +53,8 @@ module Scrabble
             @board_grid[start_row][j] = word_array[letter_index].colorize(:light_white)
             letter_index += 1
           end
+        else
+          return false #neither "horizontal" nor "vertical" were given as a direction
         end
         return true #successfully places it
       end
@@ -63,9 +65,6 @@ module Scrabble
     # Returns an array [row, column]
     # 0-based
     def convert_tile_to_index_coordinate(tile_number)
-      if tile_number > BOARD_SIDE_SIZE ** 2
-        raise ArgumentError.new("Tile #{tile_number} does not exist.")
-      end
       row = 0
       column = 0
       while tile_number > 15
@@ -81,10 +80,6 @@ module Scrabble
     def convert_index_coordinate_to_tile(coordinate_arr)
       row = coordinate_arr[0]
       column = coordinate_arr[1]
-      if row >= BOARD_SIDE_SIZE || column >= BOARD_SIDE_SIZE
-        raise ArgumentError.new("Invalid coordinates passed to function: [#{row}, #{column}]")
-      end
-
       tile_number = (BOARD_SIDE_SIZE * row) + column + 1
       return tile_number
     end
@@ -101,17 +96,20 @@ module Scrabble
     end
 
     def can_place_word_on_board?(word, direction, starting_tile)
+      # if the "word" is not a string, nor does it contain special characters
+      return false unless word.class == String && word.match?(/^[A-z]+$/)
+      # if tile number is not in the board...
+      return false if starting_tile > BOARD_SIDE_SIZE ** 2
+
       word_array = word.split("")
       coordinates = convert_tile_to_index_coordinate(starting_tile)
       start_row = coordinates[0]
       start_col = coordinates[1]
       letter_index = 0
+
       # Invalid play if:
       # Runs off the board: if row = 14 (index) and direction is horizontal OR if col = 14 (index) and direction is vertical
       # It runs into another letter, the letter doesn't match what's at the current word letter
-
-      # if tile number is not in the board...
-      return false if starting_tile > BOARD_SIDE_SIZE ** 2
 
       if direction == "vertical" # check vertically if it runs into another word
         return false if start_row + word.length > BOARD_SIDE_SIZE #reaches the end of the word
