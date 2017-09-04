@@ -1,4 +1,5 @@
 require_relative 'spec_helper'
+require 'colorize'
 
 describe "Board" do
   before do
@@ -15,6 +16,60 @@ describe "Board" do
       row_col_size = @board.board_grid.length
       row_col_size.must_equal 15
       @board.board_grid[rand(15)].must_be_instance_of Array
+    end
+  end
+
+  describe "put_on_board" do
+    it "Can put a word vertically on the board" do
+      word = "apple"
+      @board.put_on_board(word, "vertical", 32)
+      word.each_char do |char|
+        @board.board_grid.flatten.include?(char.colorize(:light_white)).must_equal true
+      end
+
+    end
+
+    it "Can put a word horizontally on the board" do
+      word = "bagel"
+      @board.put_on_board(word, "horizontal", 100)
+      word.each_char do |char|
+        @board.board_grid.flatten.include?(char.colorize(:light_white)).must_equal true
+      end
+    end
+
+    it "Can put words on the corners of the board" do
+      word1 = "couple"
+      @board.put_on_board(word1, "horizontal", 1).must_equal true
+      word2 = "ant"
+      @board.put_on_board(word2, "vertical", 15).must_equal true
+      word3 = "cork"
+      @board.put_on_board(word3, "horizontal", 211).must_equal true
+      word4 = "bump"
+      @board.put_on_board(word4, "vertical", 180).must_equal true
+    end
+
+    it "Does not put words on the board if it collides with another word that doesn't have shared letters" do
+      initial_word = "berry"
+      @board.put_on_board(initial_word, "vertical", 1)
+      new_word = "cat"
+      @board.put_on_board(new_word, "vertical", 1).must_equal false
+
+      initial_word = "bump"
+      @board.put_on_board(initial_word, "vertical", 3)
+      new_word = "ben"
+      @board.put_on_board(new_word, "horizontal", 17).must_equal false
+    end
+
+    it "Doesn't let you put a word in a non-existing tile/not between 1 - 225" do
+      word = "pie"
+      proc {@board.put_on_board(word, "vertical", 226)}.must_raise ArgumentError
+    end
+
+    it "Does not let you put a word if the word goes past the board" do
+      word = "fluff"
+      @board.put_on_board(word, "vertical", 225).must_equal false
+      word = "bun"
+      @board.put_on_board(word, "horizontal", 15).must_equal false
     end
   end
 

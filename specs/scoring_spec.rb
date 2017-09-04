@@ -23,6 +23,10 @@ describe "Scoring" do
       proc { Scrabble::Scoring.score("2384") }.must_raise ArgumentError
       proc { Scrabble::Scoring.score(["h", "e", "l", "l", "o"]) }.must_raise ArgumentError
     end
+
+    it "raises an error if the user tries to put in a word more than 7 letters" do
+      proc { Scrabble::Scoring.score("pineapple") }.must_raise ArgumentError
+    end
   end
 
   describe "self.highest_score_from(array_of_words)" do
