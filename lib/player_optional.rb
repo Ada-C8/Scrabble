@@ -16,7 +16,6 @@ module Scrabble
         word_array = word.split("").sort
         tiles = @tiles.sort
         taken_tiles = word_array.take_while { |letter| tiles.include?(letter) }
-
         if taken_tiles.length < word.length
           return false
         else
