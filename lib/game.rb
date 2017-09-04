@@ -55,7 +55,6 @@ module Scrabble
       end
     end
 
-
     def show_tiles(player)
       tiles = player.tiles.join(" ")
       puts "#{player.name}, these are your tiles!: #{tiles}"
@@ -129,10 +128,11 @@ module Scrabble
         dir = gets.chomp.upcase
       end
 
+      # subtract 1 from user row/col to get idx
       if dir == "A"
-        check_space(word,col)
+        check_space(word,col - 1)
       else
-        check_space(word,row)
+        check_space(word,row - 1)
       end
 
       # TODO Check whatever letters exist there- Scrabblicious land again
@@ -163,12 +163,8 @@ module Scrabble
 
   #Game Play
   #
-  new_game = Game.new
-  new_game.start
-  new_game.play
-
-
-
-
+  # new_game = Game.new
+  # new_game.start
+  # new_game.play
 
 end # end of module

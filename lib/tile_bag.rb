@@ -29,9 +29,6 @@ module Scrabble
       num = tiles_remaining if num > tiles_remaining
 
       num.times do
-        # pick a random letter
-        # letter = ('A'..'Z').to_a.sample
-
         # pick a random letter, add it to hand, and remove from tile bag
         letter = @tiles.sample
         hand << letter
@@ -40,21 +37,12 @@ module Scrabble
         letter_idx = @tiles.index(letter)
         @tiles.delete_at(letter_idx)
 
-        # # if letter not avail, pick another letter
-        # while @tiles[letter.to_sym] == 0
-        #   letter = ('A'..'Z').to_a.sample
-        # end
-        #
-        # # add letter to hand; remove from @tiles
-        # hand << letter
-        # @tiles[letter.to_sym] -=1
       end
 
       return hand
     end
 
     def tiles_remaining
-      # return @tiles.values.sum
       return @tiles.length
     end
   end # end of TileBag class

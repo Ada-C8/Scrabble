@@ -6,7 +6,6 @@ module Scrabble
 
   class Player
     attr_reader :name, :plays, :total_score, :tiles
-    # attr_writer :tiles # for testing ONLY
 
     def initialize(name)
       @name = name

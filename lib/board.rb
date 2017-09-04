@@ -35,6 +35,3 @@ module Scrabble
   end # end of board class
 
 end # end of module
-
-board = Scrabble::Board.new
-puts board.draw

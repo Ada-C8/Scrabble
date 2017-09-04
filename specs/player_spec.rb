@@ -29,12 +29,10 @@ describe "Player class" do
 
   end
 
-  # these tests only work if attr_writer :tiles is uncommented
   describe "play(word) method" do
     before do
       @anna = Scrabble::Player.new("Anna")
       @anna_tilebag = Scrabble::TileBag.new(['C', 'A', 'T'])
-      # @anna.tiles = ['C', 'A', 'T', 'T', 'W', 'O']
       @anna.draw_tiles(@anna_tilebag)
       @annas_score = @anna.play("cat")
     end
@@ -43,10 +41,9 @@ describe "Player class" do
       @anna.plays.must_include "CAT"
 
       hat_tiles = Scrabble::TileBag.new("HAT".split(""))
-      #@anna.tiles = "HAT".split("")
       @anna.draw_tiles(hat_tiles)
       @anna.play("hat")
-      #@anna.tiles = "BOOK".split("")
+
       book_tiles = Scrabble::TileBag.new("BOOK".split(""))
       @anna.draw_tiles(book_tiles)
       @anna.play("book")
@@ -63,7 +60,6 @@ describe "Player class" do
       @anna.total_score.must_equal 5
 
       pie_tiles = Scrabble::TileBag.new("PIE".split(""))
-      #@anna.tiles = "PIE".split("")
       @anna.draw_tiles(pie_tiles)
       @anna.play("pie")
       @anna.total_score.must_equal 10
@@ -75,14 +71,11 @@ describe "Player class" do
         @anna.draw_tiles(test_tiles)
         @anna.play("quizzes")
       end
-      # @anna.tiles = "FANTASTICSCRABBLEDOG".split("")
-      # @anna.play("fantastic")
-      # @anna.play("scrabble")
 
       @anna.play("dog").must_equal false
     end
 
-    describe "Checks if word can be played from player's tiles" do # requires attr_writer for :tiles in Player class to check
+    describe "Checks if word can be played from player's tiles" do
       before do
         more_tiles = Scrabble::TileBag.new("TWO".split(""))
         @anna.draw_tiles(more_tiles)
@@ -132,7 +125,6 @@ describe "Player class" do
 
   end
 
-  # only works if attr_writer :tiles is uncommented
   describe "highest_scoring_word method" do
     it "Returns a string with the highest score in the played words array" do
       bob = Scrabble::Player.new("Bob")
@@ -147,18 +139,9 @@ describe "Player class" do
       bob.play("quizzes")
 
       bob.highest_scoring_word.must_equal "QUIZZES"
-
-      # @bob.tiles = "CATHATFANTASTICBOOK".split("")
-      # @bob.play("cat")
-      # @bob.play("hat")
-      # @bob.play("fantastic")
-      # @bob.play("book")
-      #
-      # @bob.highest_scoring_word.must_equal "FANTASTIC"
     end
   end
 
-  # only works with attr_writer :tiles uncommented
   describe "highest_word_score method" do
     it "Returns a string with the highest score in the played words array" do
       bob = Scrabble::Player.new("Bob")
@@ -173,13 +156,6 @@ describe "Player class" do
       bob.play("quizzes")
 
       bob.highest_word_score.must_equal 84
-      # @bob.tiles = "CATHATFANTASTICBOOK".split("")
-      # @bob.play("cat")
-      # @bob.play("hat")
-      # @bob.play("fantastic")
-      # @bob.play("book")
-      #
-      # @bob.highest_word_score.must_equal 64
     end
   end
 
@@ -200,9 +176,7 @@ describe "Player class" do
       @edie.tiles.length.must_equal 7
     end
 
-    it "Draws 4 tiles if Edie has 3 tiles" do #reqs attr_writer in tile_bag.rb
-      # @edie.tiles = ["A", "B", "D"]
-      # @edie.draw_tiles(@tile_bag)
+    it "Draws 4 tiles if Edie has 3 tiles" do #
       new_tiles = Scrabble::TileBag.new(["A", "B", "D"])
       @edie.draw_tiles(new_tiles)
       @edie.draw_tiles(@tile_bag)
