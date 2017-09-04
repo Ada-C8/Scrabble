@@ -1,3 +1,4 @@
+require 'awesome_print'
 module Scrabble
   class TileBag
 
@@ -50,5 +51,5 @@ module Scrabble
       @bag_of_tiles.values.inject(:+) #returns the sum of values remaining in the bag
     end
 
-  end
-end
+  end#of_TileBag
+end#of_Scrabble
