@@ -5,7 +5,7 @@ module Scrabble
     def initialize
       @words = []
       @players = setup_players
-      @tilebag = Tilebag.new
+      @tilebag = Scrabble::TileBag.new
     end
 
     def play
@@ -27,6 +27,7 @@ module Scrabble
           end
 
           if player_has_won
+            crown_winner(player)
             break
           end
         end
@@ -54,12 +55,6 @@ module Scrabble
 
     def continue?
       return true if @words.length == 0 # haven't started playing yet
-      @players.each do |player|
-        if player.won?
-          crown_winner(player)
-          return false
-        end
-      end
 
       puts "Would you like to play another round? (Y/N)"
       continue = gets.chomp
@@ -90,7 +85,7 @@ module Scrabble
     end
 
     def conclude
-      highest_word = Scrabble::Scoring.highest_score_from_array(@words)
+      highest_word = Scrabble::Scoring.highest_score_from(@words)
       puts "The final highest scoring word for all players is #{ highest_word }"
 
       @players.each do |player|
