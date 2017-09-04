@@ -4,10 +4,13 @@ describe "TileBag class" do
 
   describe "initialize" do
 
-    it "creates a new TileBag with a hash of letters and their quantities" do
+    # it "creates a new TileBag with a hash of letters and their quantities" do
+    it "Creates a new TileBag with an array of letters, each letter represented frequency num of times in array" do
       new_tile_bag = Scrabble::TileBag.new
       new_tile_bag.must_be_instance_of Scrabble::TileBag
-      new_tile_bag.tiles.must_equal Scrabble::TileBag::LETTER_FREQUENCY
+      # new_tile_bag.tiles.must_equal Scrabble::TileBag::LETTER_FREQUENCY
+      new_tile_bag.tiles.must_be_kind_of Array
+      new_tile_bag.tiles_remaining.must_equal 98
     end
   end
 
@@ -28,7 +31,8 @@ describe "TileBag class" do
     end
 
     it "Removes the tiles from Tile Bag" do
-      @new_tile_bag.tiles.values.sum.must_equal (Scrabble::TileBag::LETTER_FREQUENCY.values.sum - 21)
+      # @new_tile_bag.tiles.values.sum.must_equal (Scrabble::TileBag::LETTER_FREQUENCY.values.sum - 21)
+      @new_tile_bag.tiles_remaining.must_equal (Scrabble::TileBag::LETTER_FREQUENCY.values.sum - 21)
     end
 
     it "Won't pick more than 4 Ds and 1 Z when all tiles are picked" do

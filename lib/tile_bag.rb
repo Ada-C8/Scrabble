@@ -1,7 +1,5 @@
 module Scrabble
 
-
-
   class TileBag
     attr_reader :tiles
 
@@ -9,14 +7,22 @@ module Scrabble
 
     LETTER_FREQUENCY = { A: 9, B: 2, C: 2, D: 4, E: 12, F: 2, G: 3, H: 2, I: 9, J: 1, K: 1, L: 4, M: 2, N: 6, O: 8, P: 2, Q: 1, R: 6, S: 4, T: 6, U: 4, V: 2, W: 2, X: 1, Y: 2, Z: 1 }.freeze
 
-    def initialize
+    def initialize(tiles = [])
       # @tiles = LETTER_FREQUENCY.select {|k,v| true}
-      @tiles = LETTER_FREQUENCY.dup
+      # @tiles = LETTER_FREQUENCY.dup
+      @tiles = tiles
+
+      # if tiles not supplied (for testing), add tiles to tile bag
+      if @tiles.length < 1
+        LETTER_FREQUENCY.each do |letter, num_times|
+          num_times.times { @tiles << letter.to_s }
+        end
+      end
     end
 
     def draw_tiles(num)
       # TODO check if tile bag empty && player has empty hand; if true, end game
-      
+
       hand = []
 
       # check that tile bag isn't empty
@@ -24,23 +30,32 @@ module Scrabble
 
       num.times do
         # pick a random letter
-        letter = ('A'..'Z').to_a.sample
+        # letter = ('A'..'Z').to_a.sample
 
-        # if letter not avail, pick another letter
-        while @tiles[letter.to_sym] == 0
-          letter = ('A'..'Z').to_a.sample
-        end
-
-        # add letter to hand; remove from @tiles
+        # pick a random letter, add it to hand, and remove from tile bag
+        letter = @tiles.sample
         hand << letter
-        @tiles[letter.to_sym] -=1
+
+        # get idx of letter, delete
+        letter_idx = @tiles.index(letter)
+        @tiles.delete_at(letter_idx)
+
+        # # if letter not avail, pick another letter
+        # while @tiles[letter.to_sym] == 0
+        #   letter = ('A'..'Z').to_a.sample
+        # end
+        #
+        # # add letter to hand; remove from @tiles
+        # hand << letter
+        # @tiles[letter.to_sym] -=1
       end
 
       return hand
     end
 
     def tiles_remaining
-      return @tiles.values.sum
+      # return @tiles.values.sum
+      return @tiles.length
     end
   end # end of TileBag class
 
