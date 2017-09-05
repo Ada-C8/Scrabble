@@ -64,7 +64,7 @@ describe "draw_tiles" do
 
   it "cannot draw if no tiles remaining" do
     tile_bag = Scrabble::TileBag.new
-    proc{tile_bag.draw_tiles(150)}.must_raise ArgumentError
+    tile_bag.draw_tiles(150).must_equal false
   end
 
   it "cannot draw a letter if none remaining" do

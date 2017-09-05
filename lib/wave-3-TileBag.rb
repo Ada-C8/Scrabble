@@ -33,8 +33,10 @@ module Scrabble
     end
 
     def draw_tiles(num)
+      p @original_tile_bag.length
+      p num
       if @original_tile_bag.length < num
-        raise ArgumentError.new "not enough tiles"
+        return false
       end
       tiles = []
       num.times do
