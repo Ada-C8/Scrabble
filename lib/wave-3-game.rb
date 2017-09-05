@@ -27,26 +27,32 @@ module Scrabble
 
           puts "#{player.name} has the following tiles: #{player.tiles}"
 
-          player_word = get_word_for(player)
+          word_validation = false
+          tiles_needed = false
+          compare_tiles = false
 
-          word_validation = Scrabble::Dictionary.look_up(player_word)
-          if word_validation == false
-            puts "Not a real word"
-          end
+          while word_validation == false || tiles_needed == false || compare_tiles == false
+            player_word = get_word_for(player)
 
-          loc_num = get_loc_num_for(player)
-          loc_let = get_loc_letter_for(player)
-          direction = get_direction_for(player)
+            word_validation = Scrabble::Dictionary.look_up(player_word)
+            if word_validation == false
+              puts "Not a real word"
+            end
 
-          tiles_needed = @board.check_if_possible(player_word, loc_let, loc_num, direction)
+            loc_num = get_loc_num_for(player)
+            loc_let = get_loc_letter_for(player)
+            direction = get_direction_for(player)
 
-          if tiles_needed == false
-            puts "Not a valid word for that location"
-          else
-            tiles_needed = tiles_needed.join
-            compare_tiles = player.compare_to_tiles(tiles_needed)
-            if compare_tiles == false
-              puts "player doesn't have the tiles needed"
+            tiles_needed = @board.check_if_possible(player_word, loc_let, loc_num, direction)
+
+            if tiles_needed == false
+              puts "Not a valid word for that location"
+            else
+              tiles_needed = tiles_needed.join
+              compare_tiles = player.compare_to_tiles(tiles_needed)
+              if compare_tiles == false
+                puts "player doesn't have the tiles needed"
+              end
             end
           end
 

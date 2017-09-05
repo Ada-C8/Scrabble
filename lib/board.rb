@@ -86,14 +86,14 @@ module Scrabble
       else
         letters.delete(true)
         return letters
-      end 
+      end
     end # end of play_word
 
     def check_if_possible(word, loc_let, loc_num, direction)
       loc_down = BOARD_HASH[loc_let]
       letters = []
       word.upcase.split("").each do |letter|
-        if loc_down > 15 || loc_num > 15
+        if loc_down > 15 || loc_num > 16
           puts "TOOOO BIIIIIIIG!!!!"
           return false
         end
