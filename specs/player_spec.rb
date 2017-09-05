@@ -36,6 +36,15 @@ describe "method play(word)" do
     proc{@tanja.play(20)}.must_raise ArgumentError
   end
 
+  it 'raises an ArgumentError if a word has more than seven chars or less than 0' do
+    proc{@tanja.play("supercalifrag")}.must_raise ArgumentError
+    proc{@tanja.play("")}.must_raise ArgumentError
+  end
+
+  it 'raises an Argument Error if input word is not composed of valid letters' do
+    proc{@tanja.play(15)}.must_raise ArgumentError
+  end
+
   it "adds the input word to the plays Array" do
     before = @tanja.plays.length
     @tanja.play("code")
@@ -117,5 +126,39 @@ describe "highest_word_score" do
       @ada.play(word)
     end
     @ada.highest_word_score.must_equal 10
+  end
+end
+
+describe "tiles" do
+  before do
+    @ada = Scrabble::Player.new("Countess Lovelace")
+  end
+
+  it "tiles must be an array" do
+    @ada.tiles.must_be_kind_of Array
+  end
+end
+
+describe "draw_tiles(tile_bag)" do
+  it "fills the tiles array to seven letters" do
+    @ada = Scrabble::Player.new("Countess Lovelace")
+    @ada.draw_tiles(Scrabble::TileBag.new)
+    @ada.tiles.length.must_equal 7
+  end
+
+end
+
+describe "method compare_to_tiles" do
+  it "returns true if player has the necessary tiles" do
+    @ada = Scrabble::Player.new("Countess Lovelace")
+    @ada.draw_tiles(Scrabble::TileBag.new)
+    tiles = @ada.tiles.join
+    @ada.compare_to_tiles(tiles).must_equal true
+  end
+
+  it "returns false if player doesn't have necessary tiles" do
+    @ada = Scrabble::Player.new("Countess Lovelace")
+    @ada.draw_tiles(Scrabble::TileBag.new)
+    @ada.compare_to_tiles("QQK").must_equal false
   end
 end
