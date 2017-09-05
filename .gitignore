@@ -1,3 +1,7 @@
+#What we added
+#Nothing... tried README.md but it already existed
+.DS_Store
+
 *.gem
 *.rbc
 /.config
