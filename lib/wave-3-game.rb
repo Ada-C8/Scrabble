@@ -37,6 +37,7 @@ module Scrabble
             word_validation = Scrabble::Dictionary.look_up(player_word)
             if word_validation == false
               puts "Not a real word"
+              next
             end
 
             loc_num = get_loc_num_for(player)

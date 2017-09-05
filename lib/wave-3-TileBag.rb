@@ -34,7 +34,7 @@ module Scrabble
 
     def draw_tiles(num)
       if @original_tile_bag.length < num
-        return false
+        return []
       end
       tiles = []
       num.times do
