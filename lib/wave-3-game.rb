@@ -128,7 +128,7 @@ module Scrabble
 
     def get_loc_num_for(player)
       loc_num = String.new
-      until loc_num.match(/^([1-9]|1[012])$/)
+      until loc_num.match(/^([1-9]|1[012345])$/)
         puts "What column (number) would you like the word to begin?"
         loc_num = gets.chomp
       end
