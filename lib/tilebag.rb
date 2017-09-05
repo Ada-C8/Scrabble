@@ -23,6 +23,7 @@ module Scrabble
       return drawn_tiles
     end
 
+    ##I moved this chunk of code into a new method, which I called on line 14 where the block of code used to be.
     def can_draw(num)
       unless /^[0-7]$/.match(num.to_s)
         raise ArgumentError.new("Please choose an integer between 0 and 7.")

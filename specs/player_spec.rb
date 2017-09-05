@@ -99,7 +99,7 @@ describe "#Scrabble::Player" do
       @carlisle.hand.length.must_equal 0
     end
 
-    it "bag is low" do
+    it "When there are fewer tiles in the bag than the player requires, the player draws what's left" do
       @tilebagginsIII.num_tiles_remaining = 5
       @carlisleIII.draw_tiles
       @carlisleIII.hand.length.must_equal 5
@@ -108,7 +108,7 @@ describe "#Scrabble::Player" do
 
     it "bag is empty" do
       @tilebagginsIII.num_tiles_remaining = 0
-      @carlisleIII.draw_tiles.must_match "Sorry, you can't draw from an empty bag! Work with whatcha momma gave ya!"
+      @carlisleIII.draw_tiles.must_match "Sorry, bag's empty! Work with whatcha momma gave ya!"
     end
   end
 end

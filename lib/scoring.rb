@@ -1,15 +1,15 @@
 
 module Scrabble
   class Scoring
-
     def initialized
     end
 
     def self.score(word)
-      raise ArgumentError.new("Invalid word!") unless /^([a-zA-Z]){1,7}$/.match(word.to_s)
+      unless /^([a-zA-Z]){1,7}$/.match(word.to_s)
+        raise ArgumentError.new("Invalid word!")
+      end
 
       word = word.upcase.split("") #array
-
       score = 0
       word.each do |letter|
         case letter
@@ -28,8 +28,7 @@ module Scrabble
         when "Q", "Z"
           score += 10
         else
-          raise ArgumentError.new("Invalid Input for string!")
-
+          raise ArgumentError.new("Invalid input for string!")
         end
       end
 
@@ -39,16 +38,17 @@ module Scrabble
       return score
     end
 
+
     def self.highest_score_from_array(array_of_words)
       if array_of_words.empty?
         return "None!"
       end
 
       scores = array_of_words.group_by {|word| score(word)}
-      #this returns a hash, where keys are scores, and value is an array of words
+      #returns a hash, key==scores, value==array of words
 
       max_score = scores.keys.max
-      #returns array of keys, calls .max to find highest value keys
+      #returns keys_array, finds max
 
       #checks length of value(array of words) of key(max_score)
       if scores[max_score].length == 1
@@ -58,22 +58,11 @@ module Scrabble
         if seven_letters.length >= 1 #if there are any with 7 letters
           return seven_letters.first #return the first one
         else
-          fewest_letters = scores[max_score].min_by {|word| word.length} #returns the first intance of (a word with) length F, where F is fewest number of letters.
-
+          fewest_letters = scores[max_score].min_by {|word| word.length}
+          #returns the first intance of (a word with) length F, where F is fewest number of letters.
           return fewest_letters
         end
       end
-
     end
-  end
-
-end
-
-#
-# point_one = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
-# point_two = ["D", "G"]
-# point_three = ["B", "C", "M", "P"]
-# point_four = ["F", "H", "V", "W", "Y"]
-# point_five = ["K"]
-# point_eight = ["J", "X"]
-# point_ten = ["Q", "Z"]
+  end #end of class
+end #end of module
