@@ -138,7 +138,7 @@ module Scrabble
 
     def get_loc_letter_for(player)
       loc_let = String.new
-      until loc_let =~ (/[A-Za-z]/)
+      until loc_let =~ (/[A-Oa-o]/)
         puts "What row (letter) would you like the word to begin?"
         loc_let = gets.chomp
       end
