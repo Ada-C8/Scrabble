@@ -1,4 +1,4 @@
-require_relative 'lib/scrabble'
+require_relative 'lib/scoring'
 
 module Scrabble
   class Game
@@ -27,7 +27,7 @@ module Scrabble
 
       puts "Would you like to score another word? (Y/N)"
       continue = gets.chomp
-      (continue == "Y") ? true : false
+      (continue.upcase == "Y") ? true : false
     end
 
     def get_word
@@ -44,7 +44,7 @@ module Scrabble
     end
 
     def conclude
-      highest_word = Scrabble::Scoring.highest_score_from_array(@words)
+      highest_word = Scrabble::Scoring.highest_score_from(@words)
       puts "The final highest scoring word is #{ highest_word }"
     end
   end

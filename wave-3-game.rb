@@ -1,11 +1,13 @@
-require_relative 'lib/scrabble'
+require_relative 'lib/scoring'
+require_relative 'lib/player'
+require_relative 'lib/tilebag'
 
 module Scrabble
   class Game
     def initialize
       @words = []
       @players = setup_players
-      @tilebag = Tilebag.new
+      @tilebag = TileBag.new
     end
 
     def play
@@ -55,14 +57,14 @@ module Scrabble
     def continue?
       return true if @words.length == 0 # haven't started playing yet
       @players.each do |player|
-        if player.won?
+        if player.total_score >= 100
           crown_winner(player)
           return false
         end
       end
 
       puts "Would you like to play another round? (Y/N)"
-      continue = gets.chomp
+      continue = gets.chomp.upcase
       (continue == "Y") ? true : false
     end
 
@@ -90,7 +92,7 @@ module Scrabble
     end
 
     def conclude
-      highest_word = Scrabble::Scoring.highest_score_from_array(@words)
+      highest_word = Scrabble::Scoring.highest_score_from(@words)
       puts "The final highest scoring word for all players is #{ highest_word }"
 
       @players.each do |player|
