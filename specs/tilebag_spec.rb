@@ -10,6 +10,7 @@ describe "TileBag" do
       bag.letter_quantity[:Z].must_equal 1
     end
   end
+
   describe "#draw_tiles(num)" do
     it "Returns a collection of random tiles" do
       bag = Scrabble::TileBag.new
@@ -38,6 +39,7 @@ describe "TileBag" do
       after.wont_equal before
     end
   end
+  
   describe "#tiles_remaining" do
     it "Returns the number of tiles remaining in the bag" do
       bag = Scrabble::TileBag.new

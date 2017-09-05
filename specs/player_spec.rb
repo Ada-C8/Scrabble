@@ -1,6 +1,7 @@
 require_relative 'spec_helper'
 
 describe "Player" do
+
   describe "#initialize" do
     it "must take name as a parameter" do
       Scrabble::Player.new(name)
@@ -15,12 +16,14 @@ describe "Player" do
       Scrabble::Player.new("Stef").name.must_equal "Stef"
     end
   end
+
   describe "#tiles" do
     it "Returns @tiles" do
       player1 = Scrabble::Player.new("Gale")
       player1.tiles.must_be_instance_of Array
     end
   end
+
   describe "#play(word)" do
     it "raises an argument error if word is not a string" do
       player1 = Scrabble::Player.new("player1")
@@ -47,6 +50,7 @@ describe "Player" do
       player1.play("aaaaa").must_equal 5
     end
   end
+
   describe "#plays" do
     it "returns an array of words played" do
       player1 = Scrabble::Player.new("player1")
@@ -54,6 +58,7 @@ describe "Player" do
       player1.plays.must_equal ["Hedwig"]
     end
   end
+
   describe "#total_score" do
     it "returns the sum of played words' scores" do
       player1 = Scrabble::Player.new("player1")
@@ -61,6 +66,7 @@ describe "Player" do
       player1.total_score.must_equal 14
     end
   end
+
   describe "highest_scoring_word" do
     it "returns the highest scoring played word" do
       player1 = Scrabble::Player.new("player1")
@@ -69,6 +75,7 @@ describe "Player" do
       player1.highest_scoring_word.must_equal "Bijous"
     end
   end
+
   describe "highest_word_score" do
     it "returns the highest_scoring_word score" do
       player1 = Scrabble::Player.new("player1")
@@ -77,6 +84,7 @@ describe "Player" do
       player1.highest_word_score.must_equal 15
     end
   end
+  
   describe "draw_tiles(tile_bag)" do
     it "fills the tiles array until it has 7 letters from the given tile bag" do
       bag = Scrabble::TileBag.new

@@ -3,7 +3,7 @@ require_relative 'tilebag'
 
 module Scrabble
   class Player
-    attr_reader :name, :played_words, :tiles#need to not have a reader that is the same as a method name
+    attr_reader :name, :played_words, :tiles
     def initialize(name)
       raise ArgumentError.new("Name must be a string") if name.class != String
       @name = name
@@ -22,12 +22,35 @@ module Scrabble
     def play(word)
       raise ArgumentError.new("Word must be a string") if word.class != String
       raise ArgumentError.new("Word must be 7 letters or less") if word.length > 7
+      # We abandoned trying to verify that a player has the needed tiles because
+      # it looks like we would have to adjust a bunch of our tests.
+      # Question: is it normal/acceptable to go back and change tests?
+      # Or is that indicative of serious design problems?
 
-      if self.total_score >= 100 #total_score is called every time player plays a word
+      # required_letters = word.split(//)
+      # required_letters.each do |letter|
+      #   if @tiles.include?([letter.upcase.to_sym])
+      #     next
+      #   else
+      #     raise ArgumentError.new("Insufficient tiles to play that word")
+      #   end
+      # end
+      if self.total_score >= 100
         return false
       end
+
       @played_words << word
-      Scrabble::Scoring.score(word)
+      played_letters = word.split(//) #remove used tiles from player's "hand"
+      played_letters.length.times do |i|
+        letter = played_letters.pop.upcase.to_sym
+        @tiles.length.times do |j|
+          if @tiles[j] == letter
+            @tiles.slice!(j)
+            next
+          end
+        end
+      end
+      return Scrabble::Scoring.score(word)
     end
 
     def plays
@@ -45,13 +68,13 @@ module Scrabble
     def draw_tiles(bag) #takes instance of TileBag as parameter
       until @tiles.length == 7
         tile = bag.draw_tiles(1)
-        @tiles << tile
+        @tiles += tile
       end
     end
 
     private
 
-    def won?
+    def won? #Question: why did the assignment require this method?
       @total_score >= 100 ? true : false
     end
   end
