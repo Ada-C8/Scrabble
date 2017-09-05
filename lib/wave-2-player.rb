@@ -1,13 +1,15 @@
 require_relative 'wave-1-scoring'
+require_relative 'wave-3-TileBag'
 
 module Scrabble
   class Player
-    attr_reader :name, :plays
+    attr_reader :name, :plays, :tiles
 
     def initialize(name)
       @name = name
       @plays = []
       @word_score_arr = []
+      @tiles = []
     end
 
     def play(word)
@@ -41,6 +43,27 @@ module Scrabble
 
     def highest_word_score
       Scrabble::Scoring.score(highest_scoring_word)
+    end
+
+    def draw_tiles(tile_bag)
+      tiles_needed = 7 - (@tiles.length)
+      new_tiles = tile_bag.draw_tiles(tiles_needed)
+      new_tiles.each do |tile|
+        tiles << tile
+      end
+    end
+
+    def compare_to_tiles(word)
+      tiles = @tiles.clone
+      word.each_char do |char|
+        if tiles.include?(char) == false
+          return false
+        else
+          tiles.delete_at(tiles.index(char))
+        end
+      end
+      @tiles = tiles
+      return true
     end
   end  #end of Player class
 end  #end of Scrabble module

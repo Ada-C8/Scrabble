@@ -1,11 +1,17 @@
-require_relative 'lib/scrabble'
+require_relative 'wave-1-scoring.rb'
+require_relative 'wave-2-player.rb'
+require_relative 'wave-3-TileBag.rb'
+require_relative 'board.rb'
+require_relative 'dictionary'
 
 module Scrabble
   class Game
     def initialize
       @words = []
       @players = setup_players
-      @tilebag = Scrabble::Tilebag.new
+      @tilebag = Scrabble::TileBag.new
+      @board = Scrabble::Board.new
+      @board.create_board
     end
 
     def play
@@ -13,6 +19,8 @@ module Scrabble
 
       while continue?
         @players.each do |player|
+          @board.show_table
+
           puts "It is #{player.name}'s turn"
 
           player.draw_tiles(@tilebag)
@@ -20,6 +28,34 @@ module Scrabble
           puts "#{player.name} has the following tiles: #{player.tiles}"
 
           player_word = get_word_for(player)
+
+          word_validation = Scrabble::Dictionary.look_up(player_word)
+          if word_validation == false
+            puts "Not a real word"
+          end
+
+          loc_num = get_loc_num_for(player)
+          loc_let = get_loc_letter_for(player)
+          direction = get_direction_for(player)
+
+          tiles_needed = @board.check_if_possible(player_word, loc_let, loc_num, direction)
+
+          if tiles_needed == false
+            puts "Not a valid word for that location"
+          else
+            tiles_needed = tiles_needed.join
+            compare_tiles = player.compare_to_tiles(tiles_needed)
+            if compare_tiles == false
+              puts "player doesn't have the tiles needed"
+            end
+          end
+
+          @words << player_word
+          @board.play_word(player_word, loc_let, loc_num.to_i, direction)
+          @board.show_table
+
+          player.play(player_word)
+
           player_has_won = !player_word
 
           if player_word
@@ -63,22 +99,52 @@ module Scrabble
       # end
 
       puts "Would you like to play another round? (Y/N)"
-      continue = gets.chomp
+      continue = gets.chomp.upcase
       (continue == "Y") ? true : false
     end
 
     def get_word_for(player)
-      puts "Enter a word to score:"
-      word = gets.chomp
-      @words << word
 
-      keep_playing = player.play(word)
+      word_validation = false
 
-      if keep_playing
+      while word_validation == false
+        puts "Enter a word to score:"
+        word = gets.chomp.upcase
+
+        while word.match(/[\W_\d]/) || word == ""
+          puts "You must enter a word."
+            word = gets.chomp.upcase
+        end
+
         return word
-      else
-        return false
       end
+    end
+
+    def get_loc_num_for(player)
+      loc_num = String.new
+      until loc_num.match(/^([1-9]|1[012])$/)
+        puts "What column (number) would you like the word to begin?"
+        loc_num = gets.chomp
+      end
+      return loc_num.to_i
+    end
+
+    def get_loc_letter_for(player)
+      loc_let = String.new
+      until loc_let =~ (/[A-Za-z]/)
+        puts "What row (letter) would you like the word to begin?"
+        loc_let = gets.chomp
+      end
+      loc_let = loc_let.upcase
+    end
+
+    def get_direction_for(player)
+      direction = String.new
+      until direction == "across" || direction == "down"
+        puts "Would you like to play down or across?"
+        direction = gets.chomp.downcase
+      end
+      return direction
     end
 
     def print_score(word)
