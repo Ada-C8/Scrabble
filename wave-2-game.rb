@@ -37,7 +37,7 @@ module Scrabble
 
       players = []
       num_of_players.times do |player|
-        players << Player.new(get_player_name(player))
+        players << Scrabble::Player.new(get_player_name(player))
       end
       return players
     end
@@ -84,7 +84,7 @@ module Scrabble
     end
 
     def conclude
-      highest_word = Scrabble::Scoring.highest_score_from_array(@words)
+      highest_word = Scrabble::Scoring.highest_score_from(@words)
       puts "The final highest scoring word for all players is #{ highest_word }"
 
       @players.each do |player|
